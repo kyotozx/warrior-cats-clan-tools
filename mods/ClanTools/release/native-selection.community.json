@@ -1,0 +1,121 @@
+{
+  "finalized": true,
+  "preparedUtc": "2026-10-25T17:43:28.1588634Z",
+  "blockers": [],
+  "files": [
+    {
+      "destination": "clanparty.dll",
+      "source": "clanparty.dll",
+      "sha256": "CB658584608D14C73CD7A51F425C12B040B0509F3A2698B16A9FB9F5B18ED5EE",
+      "acceptance": "Final source/binary audit and isolated native guards passed. See VALIDATION.txt for feature-specific live coverage and limitations."
+    },
+    {
+      "destination": "clanappearance.dll",
+      "source": "clanappearance-skins-v8.dll",
+      "sha256": "135ECEF0938C79FFA49793F1076BAA87284CDC384BAFE5487C623D37BF1D50D3",
+      "acceptance": "Player preview/cancel/apply/reload and separate original-creator player creation passed. Final native harness/source comparison passed; see VALIDATION.txt for limitations."
+    },
+    {
+      "destination": "clanappearance-skins-v8.dll",
+      "source": "clanappearance-skins-v8.dll",
+      "sha256": "135ECEF0938C79FFA49793F1076BAA87284CDC384BAFE5487C623D37BF1D50D3",
+      "acceptance": "Player preview/cancel/apply/reload and separate original-creator player creation passed. Final native harness/source comparison passed; see VALIDATION.txt for limitations."
+    },
+    {
+      "destination": "item-feedback.dll",
+      "source": "item-feedback-v5.dll",
+      "sha256": "881B3A8331B1D524B0231A2248541A3F8596D454A57673879B0C1875968460D5",
+      "acceptance": "Final source/binary audit and isolated native guards passed. See VALIDATION.txt for feature-specific live coverage and limitations."
+    },
+    {
+      "destination": "crafting-v4.dll",
+      "source": "crafting-v4.dll",
+      "sha256": "34A85E5CACEF98BED3A6AC6BA0B3C25FCF99B7121B1CBCE57A3E6666E10D1DC5",
+      "acceptance": "Final source/binary audit and isolated native guards passed. See VALIDATION.txt for feature-specific live coverage and limitations."
+    },
+    {
+      "destination": "admin-heal.dll",
+      "source": "admin-heal.dll",
+      "sha256": "E6368A285AFC592E8BF4AE6C9F0B0B70F113EB0C1A5F9FEC7673818445CD8A8D",
+      "acceptance": "Final source/binary audit and isolated native guards passed. See VALIDATION.txt for feature-specific live coverage and limitations."
+    },
+    {
+      "destination": "admin-progression.dll",
+      "source": "admin-progression-v2.dll",
+      "sha256": "6C31F1CBACCF2FF3CB5D201C1812BB69B8DBA7DFEA55045F3BA25342CD270883",
+      "acceptance": "Final source/binary audit and isolated native guards passed. See VALIDATION.txt for feature-specific live coverage and limitations."
+    },
+    {
+      "destination": "admin-quests.dll",
+      "source": "admin-quests-v5.dll",
+      "sha256": "E1A8DB79B86AA7F2A10D3E7E46E2B202FF4FA2311904464017ADD344D0A7CC96",
+      "acceptance": "Final source/binary audit and isolated native guards passed. See VALIDATION.txt for feature-specific live coverage and limitations."
+    },
+    {
+      "destination": "follower-appearance.dll",
+      "source": "follower-appearance-v4.dll",
+      "sha256": "8DF7F8230DFF0B8EC288368A049F31FCE50B1C9F3E05FA4172BE527996B8B063",
+      "acceptance": "Final source/binary audit and isolated native guards passed. See VALIDATION.txt for feature-specific live coverage and limitations."
+    },
+    {
+      "destination": "follower-appearance-v4.dll",
+      "source": "follower-appearance-v4.dll",
+      "sha256": "8DF7F8230DFF0B8EC288368A049F31FCE50B1C9F3E05FA4172BE527996B8B063",
+      "acceptance": "Final source/binary audit and isolated native guards passed. See VALIDATION.txt for feature-specific live coverage and limitations."
+    },
+    {
+      "destination": "settings-bridge-v2.dll",
+      "source": "settings-bridge-v2.dll",
+      "sha256": "7C3E840FB98E3057EE1DE0B91183794A74010470059C8E4A656A87A084DC8E6F",
+      "acceptance": "Final source/binary audit and isolated native guards passed. See VALIDATION.txt for feature-specific live coverage and limitations."
+    },
+    {
+      "destination": "settings-remap-v3.dll",
+      "source": "settings-remap-v3.dll",
+      "sha256": "69D2E50B62383BBDBF49FFCE7467D2F7495CAC42188A821C59D93ACB7068F9AA",
+      "acceptance": "Final source/binary audit and isolated native guards passed. See VALIDATION.txt for feature-specific live coverage and limitations."
+    },
+    {
+      "destination": "admin-quests-v5.dll",
+      "source": "admin-quests-v5.dll",
+      "sha256": "E1A8DB79B86AA7F2A10D3E7E46E2B202FF4FA2311904464017ADD344D0A7CC96",
+      "acceptance": "Final source/binary audit and isolated native guards passed. See VALIDATION.txt for feature-specific live coverage and limitations."
+    },
+    {
+      "destination": "item-feedback-v5.dll",
+      "source": "item-feedback-v5.dll",
+      "sha256": "881B3A8331B1D524B0231A2248541A3F8596D454A57673879B0C1875968460D5",
+      "acceptance": "Final source/binary audit and isolated native guards passed. See VALIDATION.txt for feature-specific live coverage and limitations."
+    },
+    {
+      "destination": "enemy-cleanup.dll",
+      "source": "enemy-cleanup.dll",
+      "sha256": "412BB696B870068BF992048C4DC3398A847C7B6CCD6F4AF804F518184B4DA709",
+      "acceptance": "Final source/binary audit and isolated native guards passed. See VALIDATION.txt for feature-specific live coverage and limitations."
+    },
+    {
+      "destination": "admin-progression-v2.dll",
+      "source": "admin-progression-v2.dll",
+      "sha256": "6C31F1CBACCF2FF3CB5D201C1812BB69B8DBA7DFEA55045F3BA25342CD270883",
+      "acceptance": "Final source/binary audit and isolated native guards passed. See VALIDATION.txt for feature-specific live coverage and limitations."
+    },
+    {
+      "destination": "admin-sandbox.dll",
+      "source": "admin-sandbox.dll",
+      "sha256": "A41EFDEE740C4BE33C1499EE2FA539B17EA5388C3A94EB2E0F5C49F8164BFA84",
+      "acceptance": "Final source/binary audit and isolated native guards passed. See VALIDATION.txt for feature-specific live coverage and limitations."
+    },
+    {
+      "destination": "admin-inventory.dll",
+      "source": "admin-inventory.dll",
+      "sha256": "C30A42E093CAC401E73054F1A673F530AB76FA1066A791E028012A80ACFBC45B",
+      "acceptance": "Final source/binary audit and isolated native guards passed. See VALIDATION.txt for feature-specific live coverage and limitations."
+    },
+    {
+      "destination": "workshop.dll",
+      "source": "workshop.dll",
+      "sha256": "4185E8000FD7B0EF83823584B525C98E64528D41B4E057247B41F7CD36555D33",
+      "acceptance": "Exact build guards and fresh native section comparison passed; live workshop validation recorded in VALIDATION.txt."
+    }
+  ]
+}

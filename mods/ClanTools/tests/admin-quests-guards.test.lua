@@ -1,0 +1,10 @@
+local bin=assert(arg[1]);local run=assert(package.loadlib(bin..'admin-quests.dll','ClanQuests_run'))
+local function check(request,expected)local f=assert(io.open(bin..'admin-quest-request.txt','wb'));f:write(request);f:close();run();f=assert(io.open(bin..'admin-quest-status.txt','rb'));local s=f:read('*a');f:close();assert(s:find('status='..expected,1,true),s)end
+check('','Invalid request')
+check('1 QUEST_STEP 1 1 1 2 0 trailing','Invalid request')
+check('1 QUEST_TURN_IN 1 1 1 5 0','Invalid request')
+check('1 QUEST_PROBE 1 1 1 0 -1','Invalid request')
+check('1 QUEST_PROBE 1 1 1 0 0','Unsupported game build')
+check('2 QUEST_STEP ffffffffffffffff 1 1 2 0','Unsupported game build')
+check('3 QUEST_TURN_IN ffffffffffffffff 1 1 3 0','Unsupported game build')
+print('7 quest native guard tests passed; no game process accessed.')

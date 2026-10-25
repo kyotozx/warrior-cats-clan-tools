@@ -1,0 +1,175 @@
+CLAN TOOLS 0.3.0-rc1 / CLAN LOADER - COMMUNITY ACCEPTANCE
+2026-10-25. Windows x64; Steam build 24847281.
+Local release candidate; no external publication or Workshop integration.
+
+CURRENT AUTOMATED COVERAGE
+74 Lua suites (67 standalone + seven isolated native-guard suites) passed.
+Native appearance C harness: six groups passed, covering cosmetic field ownership,
+deep-copy lifetimes, stale UObject refusal, editor initialization and Cancel.
+14 native binaries matched fresh source builds in every production PE section.
+Clan Loader registry/restart-state tests and 19 PowerShell package lifecycle checks
+passed, including dependency refusal, hash/path validation, unchanged retired-file
+cleanup and preservation of personal state. Existing installer lifecycle tests
+also passed, preserving 29 personal-state categories.
+
+PLAYER SKINS LIVE COVERAGE
+- Saved the original player appearance and a native-randomized test variant.
+- Preview/Cancel preserved the original player appearance exactly.
+- Apply saved all 24 expected cosmetic fields; name and progression stayed intact.
+- Restart displayed the applied skin in the original save selector and portrait.
+- Native gallery displayed two genuine cat portraits with named library actions.
+- Loaded a saved skin in the original creator, continued through the original
+  identity steps, and created a separate new player with exactly the same 24 fields.
+- Native nature, color, pattern/marking selectors and sorting were synchronized
+  with imported data. Preview readback remained byte-for-field identical afterward.
+- Test characters/changes were archived and the original user save restored.
+
+CLAN LOADER LIVE COVERAGE
+Native Mods screen opened from the main menu with F10, used the game's fonts,
+buttons and animated background, navigated via keyboard and restored the original
+menu on Back. External executable opened with automatic Steam-folder detection,
+English labels and installed-package listing. New code activates only on restart.
+
+LIGHTING LIVE COVERAGE
+Night and Day produced distinct native sky/lighting in the restored campaign.
+Automatic released the override and restored zone lighting; pending=false.
+
+LIMITS
+No physical controller was available for acceptance testing; controller command
+routing is implemented, but model checks are not a physical-controller test.
+Native HUD portrait caches can retain the previous look until a save reload.
+The new-player flow was sampled across WindClan skin -> ThunderClan character;
+this does not represent every cross-clan appearance combination or game scenario.
+No dynamic clock/weather system was found; lighting uses authored sky presets.
+Skin exchange excludes identity, progression, accessories and scars.
+Generic third-party settings integration and online/Workshop downloads are not
+included in loader API 1. Packages contain executable code, not sandboxed plugins.
+
+PREVIOUS RELEASE COVERAGE (historical)
+CLAN TOOLS 0.2.0-rc4 — VALIDATION
+2026-10-25. Windows x64; Steam build 24847281; UE4SS 3.0.1-1181-g83330635.
+Local release candidate. No Workshop publication or exhaustive compatibility claim.
+
+AUTOMATED CHECKS
+65 standalone Lua suites passed after the final changes, including native UI
+models, ownership/cleanup, progression transactions, typed text, map geometry,
+controller command routing, appearance, followers, photo and den layout.
+Seven isolated native guard suites passed (56 malformed-input/build checks).
+14 native source/binary comparisons passed in all production PE sections;
+linker build identifiers may differ. The sandbox health override was corrected
+and recompiled before that audit. Installer fixtures cover nine lifecycle cases
+and preservation of 29 kinds of personal state. Package dependency closure and
+all manifest hashes are checked separately when packaging/installing.
+
+RC4 DEN WORKSHOP CHECKS
+- Catalog: 189 native entries (60 decorations, 58 supplies, 71 accessories).
+  All 189 native probes succeeded inside the den; outside-den probes refused.
+- Free crafts increased ready decorations, accessory, fresh-kill and material
+  counts by exactly two. A paid Algae-Grip Stone consumed Moss 3, Rock 2 and
+  Poppy 7, with exact count readbacks. Missing-material refusal passed.
+- Ready decorations use the dedicated native decoration inventory and callback;
+  accessories use their native cosmetic inventory. Native Place displayed the
+  crafted Spiky Pine Cone, placed it and deducted one from its ready count.
+- After a full restart, five sampled counts persisted exactly: Spiky Pine Cone
+  1, Algae-Grip Stone 3, Beads Band 2, Bird Fresh-kill 4 and Bark 8.
+- Native catalog, icons, English labels, keyboard selection and recipe review
+  were visually checked at 1920x1080. Removed the borrowed pause footer because
+  its stale Track Quest hint overlapped navigation. Replaced an unsupported
+  arrow glyph with English text. Confirmation/result routing has model coverage;
+  native crafting was invoked through the diagnostic backend for acceptance.
+- Native consumable capacity refusal was observed with a full backpack; actual
+  consumable grants, every decoration placement and physical controllers have
+  not all been live-tested. No original recipe is invented for supplies or
+  accessories: these require Free mode. Quest tokens are excluded.
+- Source audit: analysis/workshop/native-verify/source-binary-audit.json.
+  Receipts: analysis/workshop/{free-v2,paid-v2,placed-v2,reload-v2}.json.
+  Initial v1 decoration evidence is superseded by v2 native-storage fixes.
+
+RC3 POLISH CHECKS
+- Private appearance actor rotates with held keyboard and analog inputs while
+  the game is paused. Bounded simulated E/right-stick input changed yaw from
+  0 to 152 to 35 degrees and settled after release; cosmetic fields were equal
+  before/after and no Apply occurred. Body framing now accommodates side views.
+  Generic Button X command 7 no longer aliases randomization: keyboard E also
+  generates that command. Dedicated randomize command 27 remains supported.
+- Two owned followers used different native idle-break countdowns and renewed
+  intervals over multiple idle cycles. Native locomotion speed is unchanged.
+- Flight fallback orbits the existing native camera root; live bounded input
+  verifies horizontal motion, neutral settling and unchanged vertical pitch.
+  Model coverage includes remaps, deadzones, invert-X and restoration. These
+  simulated input checks are not physical-controller acceptance.
+- Common navigation hints include select/back and tab bindings for keyboard,
+  Xbox and PlayStation labels. Editor hints distinguish editing from actions.
+  No native DLL changed in RC3; the RC2 source/binary audit still applies.
+
+RC2 LIVE GAME CHECKS (retained behavior and historical evidence)
+- Original appearance randomization visibly changes the preview and native
+  controls. Free typing, Enter confirmation and generated name application
+  passed. Fixed duplicate raw key events and an unwanted Q on Enter.
+- Renamed cat appeared in the roster, follower label and combat character slot.
+  Native nearby name/rank fonts/colors render at corrected height.
+- Both party followers spawn on traced floor on slopes. New movement completed
+  a bounded corner/stop scenario with minimum sampled separation 164.85 cm and
+  both final speeds zero; no lifecycle/navigation error. Capsule Pawn response
+  is Ignore while WorldStatic remains Block. Six motion-model scenarios also
+  cover idle turns, distinct slots, overlap recovery, corners and arrival.
+- Flight tuning captures/restores original acceleration/braking/friction values.
+  Ascending/position changes worked. Full physical keyboard/controller camera
+  feel still needs user review; short automated arrow taps were inconclusive.
+- Original map F9 preview/confirmation teleported to the selected safe point.
+  Marker projection error was below 0.0002 map units. Corrected canvas inversion,
+  packed-hit flag interpretation and missed input edges. This is representative
+  terrain coverage, not acceptance of every point/zoom level.
+- Ignore Enemies disabled queries on 148 roamers. An approach within 98.65 cm
+  remained out of combat for 184 frames. Exact intrinsic collision restoration
+  passed after a full enable/disable cycle. Distant-actor setter early-outs and
+  effective-vs-intrinsic collision are handled explicitly; nearby restore waits.
+- XP +1 and +800 advanced level 11 to 12 through the native path. Individual
+  StrongClaw unlock, Strength 140/141/140 and Prowess 163/164/163 readbacks passed.
+  Bark inventory increased by exactly one; pile 100/95/100 readbacks passed.
+- Native WeakMice training created BP_SparCombatDirector_C. One-hit produced an
+  actual 1,000,000 damage event on an enemy and the encounter ended with unchanged
+  XP (58/1500, level 12). Native Spar completion omits XP/item grant calls; an
+  exhaustive live inventory diff was not captured for this encounter.
+- Infinite stamina enabled in exploration/combat. Empty-party transition errors
+  after victory were corrected; the new regression covers that transition and
+  oversized-party rejection. Extended repeated combat endurance remains untested.
+- Photo mode applied FOV 65, roll 10, hidden interface/names and freeze of 160
+  characters. Exiting restored character dilation to 1 and cleared freeze state.
+  The FPS overlay now also follows photo UI hiding (model/clean boot coverage).
+- Inside the clan den, a completed Wool Fleece decoration moved 20 cm, rotated
+  15 degrees, duplicated, applied and undid successfully; clone count returned
+  to zero. Discovery also handles teleport entry with an empty door cache using
+  the same visible-world/clan-volume checks. Skeletal decorations and multiple
+  simultaneous layouts still need representative in-game testing.
+
+TEST SAVE POLICY
+RC4 uses the newest pre-test backup: backups/workshop-20261025-143211.
+Skywing level 11, XP 517/1160, original empty party. Temporary test saves,
+configuration and mod state are archived separately before restoration.
+Older polish3/RC2 baselines must not overwrite newer user progress.
+Package contents contain no user saves or diagnostic runner.
+
+REMAINING COVERAGE / LIMITATIONS
+Physical Xbox/PlayStation controls, extended flight feel, all terrain/chapter
+transitions, sustained gameplay, every appearance preset combination, all items,
+all quests/enemies, skeletal den assets, other resolutions and other-mod
+compatibility have not been exhaustively tested. Native bindings and controller
+routing have model coverage; do not equate that with a physical-controller test.
+Some native name lists (including combat turn order), bonds lists and authored
+dialogue text retain the original name. There are two companion slots. Followers
+can wait at obstacles where native navigation is absent. Crafting acceleration
+is active inside the den. Offline-only tools do not modify network sessions.
+
+DEVELOPMENT EVIDENCE (not distributed)
+analysis/polish3-runtime/lua-suites.json
+analysis/polish3-runtime/appearance-rotation-live.json
+analysis/polish3-runtime/idle-live.json
+analysis/polish3-runtime/flight-orbit-test.json
+analysis/polish3-runtime/flight-input-live.json
+analysis/iteration-tests/lua-suites.json
+analysis/iteration-tests/native-final-af215b7d22a642b29337880821f4e5bf/results.json
+analysis/iteration-release-verify/source-binary-audit.json
+analysis/iteration-runtime/ (map, appearance, avoidance, sandbox, photo, den,
+training and follower receipts; this directory is excluded from the package).
+Previous rc1 acceptance remains historical, not a substitute for these checks.

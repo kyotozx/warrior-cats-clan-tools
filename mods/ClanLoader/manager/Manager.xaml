@@ -1,0 +1,69 @@
+﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="Clan Loader" Width="1380" Height="920" MinWidth="1000" MinHeight="700" Background="#122C32" Foreground="#F3F4E8" WindowStartupLocation="CenterScreen" FontFamily="{DynamicResource BodyFont}">
+ <Window.Resources>
+  <FontFamily x:Key="BodyFont">Segoe UI</FontFamily><FontFamily x:Key="HeadingFont">Georgia</FontFamily>
+  <SolidColorBrush x:Key="Accent" Color="#39E7CF"/><SolidColorBrush x:Key="Selected" Color="#EDD35C"/>
+  <ImageBrush x:Key="ButtonMask"/><ImageBrush x:Key="NoiseMask"/><ImageBrush x:Key="BaseMask"/><ImageBrush x:Key="LineMask"/>
+  <Style TargetType="Button">
+   <Setter Property="Padding" Value="24,6"/><Setter Property="Foreground" Value="#F0F3DF"/><Setter Property="FontSize" Value="21"/><Setter Property="Height" Value="64"/><Setter Property="Cursor" Value="Hand"/><Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+   <Setter Property="Template"><Setter.Value><ControlTemplate TargetType="Button">
+    <Grid Background="Transparent"><Rectangle x:Name="Wash" Fill="{DynamicResource Accent}" Opacity="0.22" OpacityMask="{DynamicResource ButtonMask}"/><ContentPresenter Margin="{TemplateBinding Padding}" HorizontalAlignment="Center" VerticalAlignment="Center"/><TextBlock x:Name="Arrow" Text="›" FontSize="32" Foreground="#F7DE6D" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8,0,0,0" Opacity="0"/></Grid>
+    <ControlTemplate.Triggers>
+     <Trigger Property="IsMouseOver" Value="True"><Setter TargetName="Wash" Property="Fill" Value="{DynamicResource Selected}"/><Setter TargetName="Wash" Property="Opacity" Value="0.7"/><Setter Property="Foreground" Value="#FFF8D5"/><Setter TargetName="Arrow" Property="Opacity" Value="1"/></Trigger>
+     <Trigger Property="IsKeyboardFocused" Value="True"><Setter TargetName="Wash" Property="Fill" Value="{DynamicResource Selected}"/><Setter TargetName="Wash" Property="Opacity" Value="0.7"/><Setter TargetName="Arrow" Property="Opacity" Value="1"/></Trigger>
+     <Trigger Property="IsPressed" Value="True"><Setter TargetName="Wash" Property="Opacity" Value="1"/></Trigger>
+     <Trigger Property="IsEnabled" Value="False"><Setter Property="Opacity" Value="0.35"/></Trigger>
+    </ControlTemplate.Triggers>
+   </ControlTemplate></Setter.Value></Setter>
+  </Style>
+  <Style x:Key="Quiet" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}"><Setter Property="FontSize" Value="18"/><Setter Property="Height" Value="48"/></Style>
+  <Style TargetType="ListBoxItem">
+   <Setter Property="HorizontalContentAlignment" Value="Stretch"/><Setter Property="Margin" Value="0,0,0,10"/><Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+   <Setter Property="Template"><Setter.Value><ControlTemplate TargetType="ListBoxItem">
+    <Grid Background="Transparent"><Rectangle x:Name="Wash" Fill="{DynamicResource Accent}" Opacity="0.09" OpacityMask="{DynamicResource ButtonMask}"/><ContentPresenter Margin="24,20"/><TextBlock x:Name="Arrow" Text="›" Foreground="#F4DE66" FontSize="32" VerticalAlignment="Center" Opacity="0"/></Grid>
+    <ControlTemplate.Triggers><Trigger Property="IsSelected" Value="True"><Setter TargetName="Wash" Property="Fill" Value="{DynamicResource Selected}"/><Setter TargetName="Wash" Property="Opacity" Value="0.5"/><Setter TargetName="Arrow" Property="Opacity" Value="1"/></Trigger><Trigger Property="IsMouseOver" Value="True"><Setter TargetName="Wash" Property="Opacity" Value="0.45"/></Trigger></ControlTemplate.Triggers>
+   </ControlTemplate></Setter.Value></Setter>
+  </Style>
+ </Window.Resources>
+ <Grid ClipToBounds="True">
+  <Grid IsHitTestVisible="False">
+   <Rectangle><Rectangle.Fill><RadialGradientBrush Center="0.52,0.48" GradientOrigin="0.52,0.48" RadiusX="0.8" RadiusY="0.9"><GradientStop Color="#253E46"/><GradientStop Color="#10272D" Offset="0.7"/><GradientStop Color="#0A6C68" Offset="1"/></RadialGradientBrush></Rectangle.Fill></Rectangle>
+   <Rectangle Name="CloudVeil" Fill="#62FFF0" Opacity="0.045" OpacityMask="{DynamicResource NoiseMask}" RenderTransformOrigin="0.5,0.5"><Rectangle.RenderTransform><ScaleTransform ScaleX="1.2" ScaleY="1.2"/></Rectangle.RenderTransform></Rectangle>
+   <Rectangle Fill="{DynamicResource Accent}" Opacity="0.14" OpacityMask="{DynamicResource BaseMask}" Width="760" HorizontalAlignment="Left" Margin="-310,-180,0,-200"/>
+   <Rectangle Name="EdgeGlow" Fill="{DynamicResource Accent}" Opacity="0.35"/>
+   <Border><Border.Background><RadialGradientBrush Center="0.5,0.5" RadiusX="0.7" RadiusY="0.7"><GradientStop Color="#00101E28" Offset="0.4"/><GradientStop Color="#99101E28" Offset="1"/></RadialGradientBrush></Border.Background></Border>
+  </Grid>
+  <Viewbox Stretch="Uniform"><Grid Width="1320" Height="840" Margin="0">
+   <Grid Margin="64,42,64,0" Height="112" VerticalAlignment="Top">
+    <StackPanel Orientation="Horizontal" VerticalAlignment="Center"><Image Name="AppMark" Width="48" Height="48" Margin="0,0,20,0"/><TextBlock Text="Clan Loader" FontFamily="{DynamicResource HeadingFont}" FontSize="50" VerticalAlignment="Center"/></StackPanel>
+
+   </Grid>
+   <Rectangle Fill="{DynamicResource Accent}" OpacityMask="{DynamicResource LineMask}" Height="12" Margin="42,160,42,0" VerticalAlignment="Top" Opacity="0.35"/>
+   <Grid Margin="64,192,64,0" Height="452" VerticalAlignment="Top"><Grid.ColumnDefinitions><ColumnDefinition Width="365"/><ColumnDefinition Width="64"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+    <Grid><Grid.RowDefinitions><RowDefinition Height="45"/><RowDefinition Height="*"/><RowDefinition Height="65"/><RowDefinition Height="40"/></Grid.RowDefinitions>
+     <DockPanel><TextBlock Text="Your mods" FontFamily="{DynamicResource HeadingFont}" FontSize="27"/><TextBlock Name="ModCount" Text="0 INSTALLED" HorizontalAlignment="Right" Foreground="#9CBAB8" FontSize="14" VerticalAlignment="Center"/></DockPanel>
+     <ListBox Name="Mods" Grid.Row="1" Background="Transparent" BorderThickness="0" Foreground="#F3F4E8" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto">
+      <ListBox.ItemTemplate><DataTemplate><StackPanel Orientation="Horizontal"><Image Source="{Binding IconSource}" Width="32" Height="32" Margin="0,0,16,0" VerticalAlignment="Center"/><StackPanel><TextBlock Text="{Binding DisplayName}" FontFamily="{DynamicResource HeadingFont}" FontSize="27" TextTrimming="CharacterEllipsis"/><StackPanel Orientation="Horizontal" Margin="0,5,0,0"><Ellipse Fill="{Binding StateBrush}" Width="6" Height="6" Margin="0,1,9,0"/><TextBlock Text="{Binding StateLabel}" Foreground="#C2D8CE" FontSize="15"/><TextBlock Text="{Binding VersionLabel}" Foreground="#91ABA9" FontSize="15" Margin="15,0,0,0"/></StackPanel></StackPanel></StackPanel></DataTemplate></ListBox.ItemTemplate>
+     </ListBox>
+     <Button Name="ImportMod" Grid.Row="2" Content="+  ADD MOD PACKAGE" FontSize="20"/><Button Name="Refresh" Grid.Row="3" Content="Refresh library" Style="{StaticResource Quiet}"/>
+    </Grid>
+    <Rectangle Grid.Column="1" Width="1" Fill="#31545B" Opacity="0.6" Margin="25,8,25,0"/>
+    <Grid Grid.Column="2"><Grid.RowDefinitions><RowDefinition Height="90"/><RowDefinition Height="84"/><RowDefinition Height="68"/><RowDefinition Height="44"/><RowDefinition Height="76"/><RowDefinition Height="90"/></Grid.RowDefinitions>
+     <StackPanel><TextBlock Name="DetailName" Text="Clan Loader" FontFamily="{DynamicResource HeadingFont}" FontSize="40"/><TextBlock Name="DetailVersion" Text="Install the suite or add a mod package." FontSize="16" Foreground="#AAC8C3" Margin="2,9,0,0"/></StackPanel>
+     <TextBlock Name="DetailDescription" Grid.Row="1" Text="Your installed mods will appear here." FontSize="21" Foreground="#D5E2D9" TextWrapping="Wrap" LineHeight="28" Margin="2,2,20,0"/>
+     <Grid Grid.Row="2"><Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition/></Grid.ColumnDefinitions><Button Name="Toggle" Content="ENABLE MOD" IsEnabled="False"/><Button Name="Remove" Grid.Column="1" Content="UNINSTALL" IsEnabled="False" FontSize="19"/></Grid>
+     <Rectangle Grid.Row="3" Fill="{DynamicResource Accent}" OpacityMask="{DynamicResource LineMask}" Height="8" VerticalAlignment="Center" Opacity="0.2"/>
+     <Grid Grid.Row="4"><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="190"/><ColumnDefinition Width="190"/></Grid.ColumnDefinitions><StackPanel Orientation="Horizontal" VerticalAlignment="Center"><Image Name="SkinMark" Width="28" Height="28" Margin="0,0,12,0"/><TextBlock Text="Player skins" FontFamily="{DynamicResource HeadingFont}" FontSize="26"/></StackPanel><Button Name="ImportSkin" Grid.Column="1" Content="IMPORT SKIN" FontSize="18"/><Button Name="ExportSkin" Grid.Column="2" Content="EXPORT SKIN" FontSize="18" ToolTip="Export the skin prepared in the in-game gallery."/></Grid>
+     <StackPanel Grid.Row="5" VerticalAlignment="Bottom"><TextBlock Text="SETUP &amp; RECOVERY" FontSize="12" Foreground="#8FAFAB" Margin="12,0,0,5"/><UniformGrid Columns="3"><Button Name="Setup" Content="Install / update suite" Style="{StaticResource Quiet}"/><Button Name="OpenMods" Content="Mods folder" Style="{StaticResource Quiet}"/><Button Name="Backups" Content="Backups" Style="{StaticResource Quiet}"/></UniformGrid></StackPanel>
+    </Grid>
+   </Grid>
+   <Grid Margin="64,670,64,0" Height="52" VerticalAlignment="Top"><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="180"/></Grid.ColumnDefinitions>
+    <StackPanel VerticalAlignment="Center"><TextBlock Name="GameLocationLabel" Text="GAME LOCATION" FontSize="12" Foreground="#87AAA8"/><TextBox Name="GamePath" Background="Transparent" BorderThickness="0" Foreground="#AFCBC7" FontSize="15" IsReadOnly="True" Padding="0,2" ToolTip="Your installed game folder"/></StackPanel><Button Name="Browse" Grid.Column="1" Content="Change folder" Style="{StaticResource Quiet}"/>
+   </Grid>
+   <Grid Margin="64,738,64,0" Height="70" VerticalAlignment="Top"><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="330"/></Grid.ColumnDefinitions>
+    <StackPanel VerticalAlignment="Center" Margin="0,0,24,0"><TextBox Name="Status" Text="Preparing your mod library..." IsReadOnly="True" IsTabStop="False" TextWrapping="Wrap" MaxHeight="43" VerticalScrollBarVisibility="Auto" Background="Transparent" BorderThickness="0" Foreground="#A9C8BD" FontSize="16" Padding="0"/><TextBlock Text="IN GAME   F10 / R3: Mods     •     F6 / Y: Clan Tools" FontSize="13" Foreground="#719996" Margin="0,7,0,0"/></StackPanel>
+    <Button Name="Launch" Grid.Column="1" Content="PLAY ON STEAM" FontFamily="{DynamicResource HeadingFont}" FontSize="28" Height="70"/>
+   </Grid>
+   <TextBlock Text="Credits: kyotozx" FontSize="11" Foreground="#72908F" Margin="64,816,0,0" VerticalAlignment="Top"/>
+  </Grid></Viewbox>
+ </Grid>
+</Window>

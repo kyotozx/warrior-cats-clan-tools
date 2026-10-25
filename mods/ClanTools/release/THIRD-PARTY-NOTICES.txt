@@ -1,0 +1,9 @@
+UE4SS_v3.0.1-1181-g83330635
+Project: https://github.com/UE4SS-RE/RE-UE4SS
+Included files: dwmapi.dll, UE4SS.dll, UE4SS-settings.ini and original MIT LICENSE.
+The full permission/copyright notice is included at loader/ue4ss/LICENSE.
+
+Warrior Cats: Clans of the Forest and related names are owned by their respective
+rights holders. Clan Tools is an unofficial mod. Game artwork, audio, fonts,
+models, cooked packages and game executable code are not distributed here.
+Identifier/role/name catalogs provide interoperability and display labels only.

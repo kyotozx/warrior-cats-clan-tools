@@ -1,0 +1,25 @@
+name: Source checks
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  manager:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - name: Compile manager and original icons
+        shell: powershell
+        run: ./mods/ClanLoader/manager/Build-Launcher.ps1
+      - name: Test manager package lifecycle
+        shell: powershell
+        run: ./mods/ClanLoader/tests/manager.test.ps1
+      - name: Test installer with filesystem fixtures
+        shell: powershell
+        run: ./mods/ClanTools/tests/package.test.ps1
+      - name: Check README punctuation
+        shell: powershell
+        run: |
+          $readme = [IO.File]::ReadAllText((Join-Path $pwd 'README.md'))
+          if ($readme.Contains([char]0x2014)) { throw 'README must not contain em dashes.' }

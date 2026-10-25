@@ -1,0 +1,92 @@
+﻿{
+    "schema":  2,
+    "silhouette":  "M10,6 L22,20 L42,20 L54,6 L54,58 L10,58 Z",
+    "rim":  "M13,14 L21,23 L43,23 L51,14 L51,55 L13,55 Z",
+    "ink":  "#17363A",
+    "icons":  {
+                  "loader":  {
+                                 "label":  "Clan Loader",
+                                 "color":  "#E8CE87",
+                                 "paths":  [
+                                               "M32,28 L38,34 L32,40 L26,34 Z M23,39 L27,43 L23,47 L19,43 Z M41,39 L45,43 L41,47 L37,43 Z M32,44 L36,48 L32,52 L28,48 Z"
+                                           ]
+                             },
+                  "clan-tools":  {
+                                     "label":  "Clan Tools",
+                                     "color":  "#8DC8B0",
+                                     "paths":  [
+                                                   "M23,31 L42,50 M20,34 L26,28 M21,48 L40,29 M36,28 L43,28 L43,35"
+                                               ]
+                                 },
+                  "package":  {
+                                  "label":  "Mod package",
+                                  "color":  "#C2C4AE",
+                                  "paths":  [
+                                                "M22,33 L32,28 L42,33 L42,46 L32,51 L22,46 Z M22,33 L32,38 L42,33 M32,38 L32,51"
+                                            ]
+                              },
+                  "party":  {
+                                "label":  "Party Manager",
+                                "color":  "#88C9CE",
+                                "paths":  [
+                                              "M27,36 L27,27 L32,31 L37,27 L37,36 Q32,40 27,36 Z M18,48 L18,39 L23,43 L28,39 L28,48 Q23,52 18,48 Z M36,48 L36,39 L41,43 L46,39 L46,48 Q41,52 36,48 Z"
+                                          ]
+                            },
+                  "appearance":  {
+                                     "label":  "Clan appearance",
+                                     "color":  "#DFA5A0",
+                                     "paths":  [
+                                                   "M22,49 L25,41 L38,28 L44,34 L31,47 Z M34,32 L40,38 M25,41 L31,47"
+                                               ]
+                                 },
+                  "item-feedback":  {
+                                        "label":  "Item feedback",
+                                        "color":  "#ACC681",
+                                        "paths":  [
+                                                      "M21,45 C18,33 25,28 35,28 C35,39 29,45 21,45 Z M21,45 L29,35 M40,40 L40,50 M35,45 L45,45"
+                                                  ]
+                                    },
+                  "offline-admin":  {
+                                        "label":  "Offline Admin",
+                                        "color":  "#DAA17E",
+                                        "paths":  [
+                                                      "M21,33 L27,39 L32,29 L37,39 L43,33 L40,46 L24,46 Z M25,51 L39,51"
+                                                  ]
+                                    },
+                  "den-workshop":  {
+                                       "label":  "Den Workshop",
+                                       "color":  "#D3B17A",
+                                       "paths":  [
+                                                     "M20,39 L32,28 L44,39 M24,36 L24,50 L40,50 L40,36 M29,50 L29,42 L35,42 L35,50"
+                                                 ]
+                                   },
+                  "keybinds":  {
+                                   "label":  "Keybinds",
+                                   "color":  "#95B4D5",
+                                   "paths":  [
+                                                 "M22,30 L42,30 L42,50 L22,50 Z M27,39 L32,35 L37,39 M32,35 L32,45"
+                                             ]
+                               },
+                  "fps":  {
+                              "label":  "FPS tools",
+                              "color":  "#9FCDBE",
+                              "paths":  [
+                                            "M22,49 L42,49 M24,43 L24,38 M32,43 L32,33 M40,43 L40,28"
+                                        ]
+                          },
+                  "player-skins":  {
+                                       "label":  "Player skins",
+                                       "color":  "#B9A6D4",
+                                       "paths":  [
+                                                     "M21,39 L21,28 L26,33 L32,33 L37,28 L37,43 L21,43 Z M27,49 L43,49 L43,35 M27,38 L28,38 M32,38 L33,38"
+                                                 ]
+                                   },
+                  "sky":  {
+                              "label":  "Sky \u0026 lighting",
+                              "color":  "#B9C7D3",
+                              "paths":  [
+                                            "M35,28 C20,28 17,44 28,49 C35,52 42,47 43,42 C32,46 26,34 35,28 Z M42,28 L42,34 M39,31 L45,31"
+                                        ]
+                          }
+              }
+}

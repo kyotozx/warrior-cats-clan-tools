@@ -1,0 +1,29 @@
+name: Bug report
+description: Report a reproducible issue
+title: "[Bug] "
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What happened?
+      description: Describe expected and actual behavior.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+    validations:
+      required: true
+  - type: input
+    id: versions
+    attributes:
+      label: Game build and mod version
+      placeholder: "Steam build 24847281, Clan Loader 0.3.0-rc3, Clan Tools 0.3.0-rc1"
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Keyboard/controller, other mods, screenshots, and a short relevant log excerpt. Remove personal paths and account information. Do not attach full saves.

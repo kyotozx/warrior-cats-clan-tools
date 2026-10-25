@@ -1,0 +1,677 @@
+[
+  {
+    "tag": "Gameplay.Combat.Attack.Universal.1",
+    "name": "Taunting Strike",
+    "description": "The cat lashes out with a quick, shallow bite, enraging its opponent.",
+    "category": "Universal",
+    "clan": "None",
+    "rank": "Apprentice",
+    "stamina": 20
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.Universal.2",
+    "name": "Quick Claw",
+    "description": "A blur of motion as the cat rakes its claws across its opponent's flank.",
+    "category": "Universal",
+    "clan": "None",
+    "rank": "Apprentice",
+    "stamina": 20
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.Universal.3",
+    "name": "Strong Claw",
+    "description": "The cat delivers a deliberate, powerful swipe, strengthened by coiled muscle.",
+    "category": "Universal",
+    "clan": "None",
+    "rank": "Warrior",
+    "stamina": 25
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.Universal.4",
+    "name": "Giga Stomp",
+    "description": "After leaping high into the air, the cat slams into the ground, sending out a powerful shockwave.",
+    "category": "Universal",
+    "clan": "None",
+    "rank": "Deputy",
+    "stamina": 40
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.Universal.5",
+    "name": "Provoking Stare",
+    "description": "The cat stands its ground, fixing the enemy with an unnerving, unflinching gaze that causes its opponent immense stress.",
+    "category": "Universal",
+    "clan": "None",
+    "rank": "Apprentice",
+    "stamina": 20
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.Universal.6",
+    "name": "Tackle",
+    "description": "Leaping into the air, the cat slams into the enemy with its entire body.",
+    "category": "Universal",
+    "clan": "None",
+    "rank": "Apprentice",
+    "stamina": 20
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.Universal.7",
+    "name": "Shoulder Bash",
+    "description": "The cat lowers its stance, driving a hard-as-granite shoulder into its foe.",
+    "category": "Universal",
+    "clan": "None",
+    "rank": "Warrior",
+    "stamina": 30
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.Universal.8",
+    "name": "Spiked Somersault",
+    "description": "The cat rolls into a tight ball, extending claws and fur, rolling into enemies to deal serious damage",
+    "category": "Universal",
+    "clan": "None",
+    "rank": "Deputy",
+    "stamina": 40
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.Universal.9",
+    "name": "Sand Throw",
+    "description": "A rapid flick of the paw, launching a stinging cloud of fine dirt into the eyes. It causes blindness",
+    "category": "Universal",
+    "clan": "None",
+    "rank": "Apprentice",
+    "stamina": 20
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.Universal.10",
+    "name": "Rock Throw",
+    "description": "A strong, low toss of a small stone, which serves to both sting and distract enemies.",
+    "category": "Universal",
+    "clan": "None",
+    "rank": "Apprentice",
+    "stamina": 20
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.Universal.11",
+    "name": "Mud Shot",
+    "description": "A well-aimed spray of thick, viscous mud.",
+    "category": "Universal",
+    "clan": "None",
+    "rank": "Warrior",
+    "stamina": 30
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.Universal.12",
+    "name": "Sand Splash",
+    "description": "The cat performs a wide, sweeping kick, showering all nearby foes with grit and debris.",
+    "category": "Universal",
+    "clan": "None",
+    "rank": "Deputy",
+    "stamina": 40
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.Universal.13",
+    "name": "Poisonous Claw",
+    "description": "A sudden, calculating swipe, drawing a bead of toxic liquid onto the wound. Causes the enemy to be posioned",
+    "category": "Universal",
+    "clan": "None",
+    "rank": "Apprentice",
+    "stamina": 30
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.Universal.14",
+    "name": "Leap-and-Hold",
+    "description": "After leaping straight into the air, the cat lands hard on the opponent in a surprise attack.",
+    "category": "Universal",
+    "clan": "None",
+    "rank": "Apprentice",
+    "stamina": 25
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.Universal.15",
+    "name": "Sneak Attack",
+    "description": "A moment of stillness, then a silent, rapid dash from the edge of battle.",
+    "category": "Universal",
+    "clan": "None",
+    "rank": "Warrior",
+    "stamina": 35
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.Universal.16",
+    "name": "Ambush",
+    "description": "The team strikes from multiple angles simultaneously in a coordinated, frenetic flurry.",
+    "category": "Universal",
+    "clan": "None",
+    "rank": "Deputy",
+    "stamina": 45
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.Universal.17",
+    "name": "Enraged Charge",
+    "description": "A last-ditch, low-stamina head-butt.",
+    "category": "Universal",
+    "clan": "None",
+    "rank": "Apprentice",
+    "stamina": 25
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.Universal.18",
+    "name": "Tail Attack",
+    "description": "A fast, broad sweep of the tail, used to trip or knock an enemy off balance.",
+    "category": "Universal",
+    "clan": "None",
+    "rank": "Apprentice",
+    "stamina": 25
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.Universal.19",
+    "name": "Strong Tail",
+    "description": "A heavy, powerful tail whip delivered with a mighty crack.",
+    "category": "Universal",
+    "clan": "None",
+    "rank": "Warrior",
+    "stamina": 35
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.Universal.20",
+    "name": "Hyper Roar",
+    "description": "The cat unleashes a deafening, vibrating roar that rattles an enemy's bones.",
+    "category": "Universal",
+    "clan": "None",
+    "rank": "Deputy",
+    "stamina": 45
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.ThunderClan.1",
+    "name": "Sharp Claw",
+    "description": "A focused, intense claw strike that slices deep and slightly boosts your Strength with each attack.",
+    "category": "Clan",
+    "clan": "ThunderClan",
+    "rank": "Warrior",
+    "stamina": 30
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.ThunderClan.2",
+    "name": "Poisonous Fang",
+    "description": "A quick, deep bite, leaving behind a toxic residue.",
+    "category": "Clan",
+    "clan": "ThunderClan",
+    "rank": "Deputy",
+    "stamina": 30
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.ThunderClan.3",
+    "name": "Strong Push",
+    "description": "The cat lunges forward, using its mass to shove the enemy away.",
+    "category": "Clan",
+    "clan": "ThunderClan",
+    "rank": "Warrior",
+    "stamina": 15
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.ThunderClan.4",
+    "name": "Bulk up",
+    "description": "After taking a moment to tense its muscles and broaden its stance, the cat seems to increase in size. Increases Strength with each attack (up to 3 times).",
+    "category": "Clan",
+    "clan": "ThunderClan",
+    "rank": "Deputy",
+    "stamina": 15
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.ThunderClan.5",
+    "name": "Loud Hissing",
+    "description": "A thunderous hiss that ripples across the battlefield, distracting foes.",
+    "category": "Clan",
+    "clan": "ThunderClan",
+    "rank": "Warrior",
+    "stamina": 40
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.ThunderClan.6",
+    "name": "Teeth Grip",
+    "description": "A standard attack where the cat sinks its teeth into an enemy’s limb. This slightly reduces enemy Speed with each attack.",
+    "category": "Clan",
+    "clan": "ThunderClan",
+    "rank": "Deputy",
+    "stamina": 40
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.ThunderClan.7",
+    "name": "Lightning Strike",
+    "description": "The cat attacks from one angle, then feigns a retreat, only to attack again from another angle. It slightly reduces enemy Resilience with each attack.",
+    "category": "Clan",
+    "clan": "ThunderClan",
+    "rank": "Warrior",
+    "stamina": 35
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.ThunderClan.8",
+    "name": "Poisonous Stab",
+    "description": "A single, quick strike using a sharp claw or fang that sinks deep into an enemy.",
+    "category": "Clan",
+    "clan": "ThunderClan",
+    "rank": "Leader",
+    "stamina": 35
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.ThunderClan.9",
+    "name": "Upright Lock",
+    "description": "The cat locks onto its opponent, rending and tearing with teeth and claws. This reduces enemy Instinct slightly with each attack.",
+    "category": "Clan",
+    "clan": "ThunderClan",
+    "rank": "Warrior",
+    "stamina": 35
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.ThunderClan.10",
+    "name": "Berserk Rush",
+    "description": "In a frenzy of motion, the cat charges an enemy with no regard for its own safety.",
+    "category": "Clan",
+    "clan": "ThunderClan",
+    "rank": "Leader",
+    "stamina": 35
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.ShadowClan.1",
+    "name": "Wrestle",
+    "description": "A powerful move that deals damage and may also Stress an opponent.",
+    "category": "Clan",
+    "clan": "ShadowClan",
+    "rank": "Warrior",
+    "stamina": 25
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.ShadowClan.2",
+    "name": "Body Slam",
+    "description": "The cat leaps high and lands heavily on an opponent. This action slightly reduces enemy Agility with each attack.",
+    "category": "Clan",
+    "clan": "ShadowClan",
+    "rank": "Deputy",
+    "stamina": 30
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.ShadowClan.3",
+    "name": "Warning Growl",
+    "description": "Reduces enemy Strength with each attack (up to 3 times).",
+    "category": "Clan",
+    "clan": "ShadowClan",
+    "rank": "Warrior",
+    "stamina": 45
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.ShadowClan.4",
+    "name": "Dirt Kick",
+    "description": "The cat paws the ground and flings debris directly into an opponent's face.",
+    "category": "Clan",
+    "clan": "ShadowClan",
+    "rank": "Deputy",
+    "stamina": 45
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.ShadowClan.5",
+    "name": "Deceptive Strike",
+    "description": "The cat executes a confusing flurry of feints and attacks. This maneuver slightly reduces enemy Instinct with each attack.",
+    "category": "Clan",
+    "clan": "ShadowClan",
+    "rank": "Warrior",
+    "stamina": 30
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.ShadowClan.6",
+    "name": "Unbalancing Strike",
+    "description": "A precise strike to the opponent's inner leg or base of the tail that causes Stress.",
+    "category": "Clan",
+    "clan": "ShadowClan",
+    "rank": "Deputy",
+    "stamina": 20
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.ShadowClan.7",
+    "name": "Belly Rake",
+    "description": "The cat darts low and aims for an enemy's exposed, soft underbelly. May inflict Poison.",
+    "category": "Clan",
+    "clan": "ShadowClan",
+    "rank": "Warrior",
+    "stamina": 30
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.ShadowClan.8",
+    "name": "Covered Lunge",
+    "description": "The cat darts behind a large object, then lunges out to ambush an opponent. This maneuver slightly boosts Agility with each attack.",
+    "category": "Clan",
+    "clan": "ShadowClan",
+    "rank": "Leader",
+    "stamina": 35
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.ShadowClan.9",
+    "name": "Last Stand",
+    "description": "The cat delivers a desperate but powerful attack that slightly reduces the cat's HP.",
+    "category": "Clan",
+    "clan": "ShadowClan",
+    "rank": "Warrior",
+    "stamina": 30
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.ShadowClan.10",
+    "name": "Overwhelm",
+    "description": "The cat delivers a flurry of blows intended to break an enemy's concentration. This maneuver slightly reduces enemy Strength with each attack.",
+    "category": "Clan",
+    "clan": "ShadowClan",
+    "rank": "Leader",
+    "stamina": 35
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.RiverClan.1",
+    "name": "Scatter Attack",
+    "description": "The cat swipes at the opponent, forcing them to break cover and give ground.",
+    "category": "Clan",
+    "clan": "RiverClan",
+    "rank": "Warrior",
+    "stamina": 40
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.RiverClan.2",
+    "name": "Throat Snap",
+    "description": "A swift, dangerous strike aimed at an enemy's throat. This move slightly reduces enemy Agility with each attack.",
+    "category": "Clan",
+    "clan": "RiverClan",
+    "rank": "Deputy",
+    "stamina": 30
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.RiverClan.3",
+    "name": "Stone Guard",
+    "description": "The cat plants its paws, refusing to be moved by any attack. This boosts its Resilience with each attack (up to three times).",
+    "category": "Clan",
+    "clan": "RiverClan",
+    "rank": "Warrior",
+    "stamina": 15
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.RiverClan.4",
+    "name": "Hunker Down",
+    "description": "The cat lowers into a defensive position, minimizing its profile. Reduces Stamina consumption for 2 turns. All moves cost 50% less Stamina for the duration (does not stack).",
+    "category": "Clan",
+    "clan": "RiverClan",
+    "rank": "Deputy",
+    "stamina": 25
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.RiverClan.5",
+    "name": "Play Dead",
+    "description": "The cat feigns a weak defensive move to goad an enemy into attack. Enrages the enemy.",
+    "category": "Clan",
+    "clan": "RiverClan",
+    "rank": "Warrior",
+    "stamina": 20
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.RiverClan.6",
+    "name": "Hissing Parry",
+    "description": "The cat deflects an opponent's blow, then follows up with a distracting hiss.",
+    "category": "Clan",
+    "clan": "RiverClan",
+    "rank": "Deputy",
+    "stamina": 20
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.RiverClan.7",
+    "name": "Poisonous Surprise",
+    "description": "In a surprise move, the cat uses a poisonous berry to turn the tables on its opponent.",
+    "category": "Clan",
+    "clan": "RiverClan",
+    "rank": "Warrior",
+    "stamina": 25
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.RiverClan.8",
+    "name": "Dust Bomb",
+    "description": "A small explosion of kicked-up dust that obscures the view of the battleground.",
+    "category": "Clan",
+    "clan": "RiverClan",
+    "rank": "Leader",
+    "stamina": 25
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.RiverClan.9",
+    "name": "Pin Down",
+    "description": "The cat uses its weight and momentum to crush an opponent. This maneuver slightly reduces enemy Strength with each attack.",
+    "category": "Clan",
+    "clan": "RiverClan",
+    "rank": "Warrior",
+    "stamina": 30
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.RiverClan.10",
+    "name": "Mega Splash",
+    "description": "A powerful strike that hits an opponent like a tidal wave.",
+    "category": "Clan",
+    "clan": "RiverClan",
+    "rank": "Leader",
+    "stamina": 55
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.WindClan.1",
+    "name": "Tail Whip",
+    "description": "The cat spins to unleash a stunning tail strike.",
+    "category": "Clan",
+    "clan": "WindClan",
+    "rank": "Warrior",
+    "stamina": 40
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.WindClan.2",
+    "name": "Hunting Leap",
+    "description": "A graceful, high leap followed by a focused attack upon landing. Slightly boosts Agility with each attack.",
+    "category": "Clan",
+    "clan": "WindClan",
+    "rank": "Deputy",
+    "stamina": 30
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.WindClan.3",
+    "name": "Thick Fur",
+    "description": "The cat puffs out its fur, appearing to grow larger and becoming more resilient. This maneuver boosts Resilience with each attack (up to three times).",
+    "category": "Clan",
+    "clan": "WindClan",
+    "rank": "Warrior",
+    "stamina": 15
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.WindClan.4",
+    "name": "Defensive Curl",
+    "description": "The cat goes into a defensive curl to protect itself and brace for attack. Boosts Strength with each attack (up to 3 times).",
+    "category": "Clan",
+    "clan": "WindClan",
+    "rank": "Deputy",
+    "stamina": 15
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.WindClan.5",
+    "name": "Dust Cloud",
+    "description": "A quick dispersal of dry dust into the air, clouding the enemy's vision.",
+    "category": "Clan",
+    "clan": "WindClan",
+    "rank": "Warrior",
+    "stamina": 45
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.WindClan.6",
+    "name": "Misdirection",
+    "description": "The cat performs an intricate series of feints, leading the enemy to attack the emptiness in its wake.",
+    "category": "Clan",
+    "clan": "WindClan",
+    "rank": "Deputy",
+    "stamina": 25
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.WindClan.7",
+    "name": "Guerilla Attack",
+    "description": "A swift, coordinated strike executed as the team weaves through the battlefield.",
+    "category": "Clan",
+    "clan": "WindClan",
+    "rank": "Warrior",
+    "stamina": 45
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.WindClan.8",
+    "name": "Elders' Guidance",
+    "description": "The cat closes its eyes, taking a moment of quiet focus to draw upon all the strength and wisdom they learned from their elders. This boosts Strength and Instinct with each attack (up to three times).",
+    "category": "Clan",
+    "clan": "WindClan",
+    "rank": "Leader",
+    "stamina": 25
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.WindClan.9",
+    "name": "Partner Fighting",
+    "description": "The next time a teammate is attacked, you take half of the damage instead. Absorbs 50% of the damage a teammate would receive.",
+    "category": "Clan",
+    "clan": "WindClan",
+    "rank": "Warrior",
+    "stamina": 30
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.WindClan.10",
+    "name": "Payback",
+    "description": "The cat inflicts the same amount of damage it received this round. User moves last. Deals damage equal to damage received this turn.",
+    "category": "Clan",
+    "clan": "WindClan",
+    "rank": "Leader",
+    "stamina": 30
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.Ancestor.1",
+    "name": "Go for the Ears",
+    "description": "A swift, sharp swipe of the claws aimed at the enemy's sensitive ears. Slightly reduces enemy Instinct with each attack.",
+    "category": "Ancestor",
+    "clan": "None",
+    "rank": "Warrior",
+    "stamina": 45
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.Ancestor.2",
+    "name": "StarClan Charge",
+    "description": "The cat glows faintly before charging forward, leaving a shimmer in its wake.",
+    "category": "Ancestor",
+    "clan": "None",
+    "rank": "Deputy",
+    "stamina": 45
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.Ancestor.3",
+    "name": "Ancestral Roar",
+    "description": "A spectral roar echoes across the battlefield, freezing enemies in their tracks.",
+    "category": "Ancestor",
+    "clan": "None",
+    "rank": "Leader",
+    "stamina": 55
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.Ancestor.4",
+    "name": "Go for the Tail",
+    "description": "The cat darts around the enemy, aiming low with fast nips at their tail or hindquarters. This maneuver slightly reduces enemy Resilience with each attack.",
+    "category": "Ancestor",
+    "clan": "None",
+    "rank": "Warrior",
+    "stamina": 45
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.Ancestor.5",
+    "name": "Spirit Ward",
+    "description": "A faint blue shield shimmers around the team, strengthening their resolve. Slightly boosts Resilience and Instinct for all allies with each attack.",
+    "category": "Ancestor",
+    "clan": "None",
+    "rank": "Deputy",
+    "stamina": 35
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.Ancestor.6",
+    "name": "Foresight",
+    "description": "The cat's eyes flash white, channeling StarClan's blessing to boost the team's speed. This greatly boosts Agility for all allies with each attack.",
+    "category": "Ancestor",
+    "clan": "None",
+    "rank": "Leader",
+    "stamina": 35
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.Ancestor.7",
+    "name": "Go for the Eyes",
+    "description": "An extremely swift, precise strike aimed at an enemy's eyes and face.",
+    "category": "Ancestor",
+    "clan": "None",
+    "rank": "Warrior",
+    "stamina": 45
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.Ancestor.8",
+    "name": "Go for the Paws",
+    "description": "A continuous flurry of low attacks binds the enemy's feet and impedes their movement. This greatly reduces enemy Speed with each attack.",
+    "category": "Ancestor",
+    "clan": "None",
+    "rank": "Deputy",
+    "stamina": 50
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.Ancestor.9",
+    "name": "Sand Storm",
+    "description": "A vortex of sand and spirit-dust whips up, affecting all enemies. Slightly reduces enemy Instinct and Resilience each attack.",
+    "category": "Ancestor",
+    "clan": "None",
+    "rank": "Leader",
+    "stamina": 65
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.Ancestor.10",
+    "name": "Substitute",
+    "description": "The cat shrouds itself in a ghostly image, distracting the enemy. The next attack targeting a teammate is redirected the image, which takes no damage. Slightly boosts Agility for all allies with each attack.",
+    "category": "Ancestor",
+    "clan": "None",
+    "rank": "Warrior",
+    "stamina": 60
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.Ancestor.11",
+    "name": "Invisible Strike",
+    "description": "The cat vanishes momentarily, then seems to appear from nowhere to strike.",
+    "category": "Ancestor",
+    "clan": "None",
+    "rank": "Deputy",
+    "stamina": 50
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.Ancestor.12",
+    "name": "Poisonous Smoke",
+    "description": "A dense, choking cloud of noxious vapor spreads out to blanket enemies.",
+    "category": "Ancestor",
+    "clan": "None",
+    "rank": "Leader",
+    "stamina": 55
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.Ancestor.13",
+    "name": "Killing Bite",
+    "description": "A high-risk, desperate leap aimed to deliver a killing blow.",
+    "category": "Ancestor",
+    "clan": "None",
+    "rank": "Warrior",
+    "stamina": 50
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.Ancestor.14",
+    "name": "Final Showdown",
+    "description": "A final, all-in grapple where both combatants refuse to yield.",
+    "category": "Ancestor",
+    "clan": "None",
+    "rank": "Deputy",
+    "stamina": 55
+  },
+  {
+    "tag": "Gameplay.Combat.Attack.Ancestor.15",
+    "name": "Force of Will",
+    "description": "The cat stands tall, emitting a wave of spiritual energy to revitalize the team. Fully recovers Stamina for all allies, but the team becomes Stressed for the next round.",
+    "category": "Ancestor",
+    "clan": "None",
+    "rank": "Leader",
+    "stamina": 55
+  }
+]

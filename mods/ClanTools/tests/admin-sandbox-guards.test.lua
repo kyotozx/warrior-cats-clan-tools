@@ -1,0 +1,21 @@
+local bin=assert(arg[1]);local run=assert(package.loadlib(bin..'admin-sandbox.dll','ClanSandbox_run'))
+local n=0
+local function check(request,expected)
+ local f=assert(io.open(bin..'admin-sandbox-request.txt','wb'));f:write(request);f:close();run()
+ f=assert(io.open(bin..'admin-sandbox-status.txt','rb'));local text=f:read('*a');f:close()
+ assert(text:find('status='..expected,1,true),text);n=n+1
+end
+check('','Invalid request')
+check('1 XP_ADD 1 1 1 1 0 1 100 trailing','Invalid request')
+check('1 XP_ADD 1 1 1 1 0 1 -1','Invalid request')
+check('1 XP_ADD 1 1 1 1 0 1 100001','Invalid request')
+check('1 XP_ADD 1 1 1 1 0 1 2.5','Invalid request')
+check('1 XP_PROBE 1 1 1 1 0 1 0 0','Unsupported game build')
+check('2 STAMINA_FILL ffffffffffffffff ffffffffffffffff 1 0 50 0 0 0','Unsupported game build')
+check('3 UNKNOWN 0 0 0 0 0 0 0','Invalid request')
+check('4 STAT_SET 1 1 1 1 140 11 200 6','Invalid request')
+check('5 STAT_SET 1 1 1 1 140 11 10001 1','Invalid request')
+check('6 STAT_SET 1 1 1 1 140 11 2.5 1','Invalid request')
+check('7 STAT_SET 1 1 1 1 140 11 200 1','Unsupported game build')
+check('8 HEALTH_MAX 1 1 1 0 155 0 200 0','Unsupported game build')
+print(n..' native sandbox request/build guard tests passed; no game process accessed.')

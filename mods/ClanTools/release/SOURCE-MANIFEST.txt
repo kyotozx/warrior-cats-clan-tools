@@ -1,0 +1,66 @@
+CLAN TOOLS SOURCE / REPRODUCIBILITY
+
+0.3 adds cosmetic-only player skins and creator preview exchange to the retained native selection. The package
+manifest identifies the tested source and binary files.
+
+manifest.json lists SHA256 for every shipped file and its purpose. Lua sources
+are the readable files under payload/ClanTools/Scripts, identical to installed
+runtime code. data/catalog.json contains enum, role and display-name metadata,
+without user save records. Asset paths and short labels identify assets in the
+user's game; original asset payloads are not included.
+data/admin-moves.json and data/admin-inventory.json are immutable interoperability
+catalogs for player moves and items. They contain no player inventory or unlock
+state. Personal state, presets, aliases, waypoints and layouts never ship.
+
+source/native contains original mod bridge source and generated interoperability
+tables. These are build-specific adapters written for the supported executable;
+they are not recovered game source. No reverse-engineering tool output is shipped.
+
+Native components (Windows x64 C, Zig 0.15.2 tested):
+  workshop.c -> workshop.dll
+  clanparty_bridge.c -> clanparty-next.dll            (link -lshell32)
+  appearance_bridge.c -> clanappearance-library-v6.dll
+  item_feedback.c -> item-feedback-v5.dll
+  crafting.c -> crafting-v4.dll
+  admin_heal.c -> admin-heal-next.dll
+  admin_progression.c -> admin-progression-v2.dll
+  admin_quests.c -> admin-quests-v5.dll
+  admin_sandbox.c -> admin-sandbox.dll
+  admin_inventory.c -> admin-inventory.dll
+  enemy_cleanup.c -> enemy-cleanup.dll
+  follower_appearance.c -> follower-appearance-v4.dll
+  settings_bridge.c -> settings-bridge-v2.dll
+  settings_remap.c -> settings-remap-v3.dll
+Read manifest.json for final filenames; distribution can select a newer bridge.
+workshop_catalog.h and data/workshop.json contain game item identifiers, display
+labels, asset references and recipe quantities. workshop_guards.h checks the
+exact native decoration/accessory entry points. No asset payloads are included.
+The rc2 appearance implementation includes appearance_library.h and uses the v6 bridge. Canonical and versioned aliases are listed in manifest.json.
+Original link basenames matter to Zig/LLD section layout. The party and heal
+binaries are copied to clanparty.dll/admin-heal.dll after linking. Appearance,
+item, quest and follower canonical aliases are separate physical copies of
+their selected versioned binaries; appearance editor and portrait consumers
+must retain separate DLL instances because native transaction state is static.
+follower_guards.h freezes the verified follower guard table independently of
+future appearance editor guard additions.
+
+Example from the extracted package root:
+zig cc -shared -O2 -Wall -Wextra source/native/settings_remap.c -o settings-remap-v3.dll
+Headers must remain beside the source. Lua uses UE4SS's Lua 5.4 runtime and its
+reflection API. Compiler output is not byte-identical across paths/toolchains;
+release hashes identify the actual tested binaries, not a reproducible-build claim.
+The development repository's release/files.json is an explicit source allowlist.
+Build-Package.ps1 requires a finalized DLL selection with hashes and never scans
+runtime directories into the package. Tests/fixtures and private analysis are
+deliberately omitted from the distribution archive.
+
+The packaging scripts verify integrity, preserve loader/settings/other mods,
+and keep ownership receipts. Integrity hashes detect accidental changes; they
+are not a digital publisher signature. Review the files before installing.
+
+UE4SS has its own MIT license at loader/ue4ss/LICENSE. Game names and asset
+identifiers remain the property of their owners. No independent project-wide
+license has been chosen for Clan Tools yet; source is provided for inspection.
+Do not assume an open-source redistribution license solely from availability.
+
+

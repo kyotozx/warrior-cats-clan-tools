@@ -1,0 +1,45 @@
+CLAN LOADER PACKAGE API 1
+
+Use example/ as a starting point. A mod is a UE4SS Lua entry point plus optional
+Lua modules, native DLLs and static JSON. Clan Loader adds package management and
+a native menu; it does not replace UE4SS or sandbox executable mod code.
+
+ZIP ROOT
+mod.json
+payload/YourMod/Scripts/main.lua
+payload/YourMod/Scripts/another_module.lua (optional)
+payload/YourMod/bin/your_bridge.dll (optional)
+payload/YourMod/data/catalog.json (optional)
+README.txt and LICENSE.txt (optional)
+
+MANIFEST
+schema: 1; loaderApi: 1; gameBuild: "24847281".
+id: ASCII letter followed by up to 63 letters, digits or underscores.
+name: up to 80 characters; description: up to 200 characters.
+version: starts with a digit; up to 51 letters, digits, periods, underscores/hyphens.
+dependencies: array of mod IDs that must be installed and enabled.
+files: array of {"path":"Scripts/main.lua","sha256":"64 hex characters"}.
+Every payload file must be declared and match its hash. ZIP the contents of the
+package directory, not the parent directory. Package paths are case-sensitive.
+Use ASCII filenames: Lua names use letters/digits/underscores; DLL/JSON names
+may additionally contain hyphens. Subfolders inside Scripts/bin/data are unsupported.
+Limits: 1000 program files, 1100 ZIP entries, 32 MiB per file, 128 MiB extracted.
+Links, path traversal, duplicate names and undeclared payload files are rejected.
+
+Program files belong in Scripts, bin and data. Keep user preferences, saves,
+presets and mutable state at your mod root; never include them in the manifest.
+Updates replace owned code with a backup and preserve next-launch enabled state.
+Uninstall removes unchanged owned files; modified files and personal data remain.
+Obsolete unchanged code files are removed on update; locally modified obsolete
+files are preserved. Dependencies are checked by ID, not semantic version range.
+
+All package versions currently target the exact Steam build above. Native hooks
+must validate game build, function signatures, UObject ownership/lifetime and
+offline state. Do not call mutation from rendering callbacks or hot-unload patches.
+Use UE4SS's game-thread callbacks. New mods appear in Mods after the next launch.
+Settings deep links currently support Clan Tools; other packages manage their
+own settings UI. A generic settings registration API is not part of API 1.
+
+The example prints one startup message to UE4SS.log and has no gameplay effects.
+Review source and update SHA256 values before packaging. No online marketplace,
+automatic downloads, upload flow or Workshop integration is included.

@@ -1,0 +1,11 @@
+OOZ standalone decompression helper
+Copyright (C) 2016, Powzix. GPL-3.0-or-later.
+Upstream: https://github.com/powzix/ooz
+Sources included under source/ without modifications.
+Built on Windows x64 with Zig 0.15.2:
+zig c++ -O2 -msse4.1 -DWIN32 -D_WIN64 -include sys/stat.h -Wno-writable-strings -Wno-format source/kraken.cpp source/lzna.cpp source/bitknit.cpp -o ooz.exe
+
+This separate command-line helper decodes only the original installed-game blocks
+whose SHA256 hashes match theme-assets.json. It runs in a hidden child process.
+It is not passed downloaded mods or user-provided archive data. No proprietary
+Oodle runtime, original game textures or original game fonts are distributed.

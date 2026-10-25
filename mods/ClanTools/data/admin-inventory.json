@@ -1,0 +1,366 @@
+[
+  {
+    "tag": "Gameplay.Inventory.Consumable.AntidoteHerbPouch",
+    "name": "Yarrow Leaves",
+    "category": "Consumable",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Flower_Yarrow_D.T_UI_Icon_Flower_Yarrow_D",
+    "index": 1
+  },
+  {
+    "tag": "Gameplay.Inventory.Consumable.BigCatnip",
+    "name": "Ragwort Flowers",
+    "category": "Consumable",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Flower_Ragwort_D.T_UI_Icon_Flower_Ragwort_D",
+    "index": 2
+  },
+  {
+    "tag": "Gameplay.Inventory.Consumable.BigHealingHerb",
+    "name": "Comfrey Poultice",
+    "category": "Consumable",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Poultice_Comfrey_D.T_UI_Icon_Inventory_Poultice_Comfrey_D",
+    "index": 3
+  },
+  {
+    "tag": "Gameplay.Inventory.Consumable.CatnipPouch",
+    "name": "Burnet Leaves",
+    "category": "Consumable",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Burnet_D.T_UI_Icon_Inventory_Burnet_D",
+    "index": 4
+  },
+  {
+    "tag": "Gameplay.Inventory.Consumable.CatThymePouch",
+    "name": "Thyme Poultice",
+    "category": "Consumable",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Poultice_Chestnut_D.T_UI_Icon_Inventory_Poultice_Chestnut_D",
+    "index": 5
+  },
+  {
+    "tag": "Gameplay.Inventory.Consumable.ChamomilePouch",
+    "name": "Chamomile Flowers",
+    "category": "Consumable",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Flower_Chamomile_D.T_UI_Icon_Flower_Chamomile_D",
+    "index": 6
+  },
+  {
+    "tag": "Gameplay.Inventory.Consumable.ChestnutPouch",
+    "name": "Thyme Wrap",
+    "category": "Consumable",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Wrap_Thyme_D.T_UI_Icon_Inventory_Wrap_Thyme_D",
+    "index": 7
+  },
+  {
+    "tag": "Gameplay.Inventory.Consumable.EyewortPouch",
+    "name": "Celandine Flowers",
+    "category": "Consumable",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Flower_Celandine_D.T_UI_Icon_Flower_Celandine_D",
+    "index": 8
+  },
+  {
+    "tag": "Gameplay.Inventory.Consumable.FeatherPouch",
+    "name": "Borage Poultice",
+    "category": "Consumable",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Poultice_Lavender_D.T_UI_Icon_Inventory_Poultice_Lavender_D",
+    "index": 9
+  },
+  {
+    "tag": "Gameplay.Inventory.Consumable.FishScalePouch",
+    "name": "Burdock Poultice",
+    "category": "Consumable",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Poultice_Burdock_D.T_UI_Icon_Inventory_Poultice_Burdock_D",
+    "index": 10
+  },
+  {
+    "tag": "Gameplay.Inventory.Consumable.FullHealingHerb",
+    "name": "Goldenrod Wrap",
+    "category": "Consumable",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Wrap_Goldenrod_D.T_UI_Icon_Inventory_Wrap_Goldenrod_D",
+    "index": 11
+  },
+  {
+    "tag": "Gameplay.Inventory.Consumable.GingerRootPouch",
+    "name": "Burdock Wrap",
+    "category": "Consumable",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Wrap_GingerRoot_D.T_UI_Icon_Inventory_Wrap_GingerRoot_D",
+    "index": 12
+  },
+  {
+    "tag": "Gameplay.Inventory.Consumable.HealingHerbPouch",
+    "name": "Wintergreen Berries",
+    "category": "Consumable",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_WinterGreen_D.T_UI_Icon_Inventory_WinterGreen_D",
+    "index": 13
+  },
+  {
+    "tag": "Gameplay.Inventory.Consumable.HerbSpicesPouch",
+    "name": "Willow Poultice",
+    "category": "Consumable",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Poultice_Willowspices_D.T_UI_Icon_Inventory_Poultice_Willowspices_D",
+    "index": 14
+  },
+  {
+    "tag": "Gameplay.Inventory.Consumable.LavenderPouch",
+    "name": "Borage Wrap",
+    "category": "Consumable",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Wrap_Borage_D.T_UI_Icon_Inventory_Wrap_Borage_D",
+    "index": 15
+  },
+  {
+    "tag": "Gameplay.Inventory.Consumable.MediumCatnip",
+    "name": "Ragweed Flowers",
+    "category": "Consumable",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Flower_MediumCatnip_D.T_UI_Icon_Flower_MediumCatnip_D",
+    "index": 16
+  },
+  {
+    "tag": "Gameplay.Inventory.Consumable.MediumHealingHerb",
+    "name": "Marigold Petal",
+    "category": "Consumable",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Flower_Marigold_D.T_UI_Icon_Flower_Marigold_D",
+    "index": 17
+  },
+  {
+    "tag": "Gameplay.Inventory.Consumable.PeppermintPouch",
+    "name": "Juniper Wrap",
+    "category": "Consumable",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Wrap_Peppermint_D.T_UI_Icon_Inventory_Wrap_Peppermint_D",
+    "index": 18
+  },
+  {
+    "tag": "Gameplay.Inventory.Consumable.SagePouch",
+    "name": "Chamomile Poultice",
+    "category": "Consumable",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Poultice_Sage_D.T_UI_Icon_Inventory_Poultice_Sage_D",
+    "index": 19
+  },
+  {
+    "tag": "Gameplay.Inventory.Consumable.SmallCatnip",
+    "name": "Lamb's Ear Leaves",
+    "category": "Consumable",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Lambsear_D.T_UI_Icon_Inventory_Lambsear_D",
+    "index": 20
+  },
+  {
+    "tag": "Gameplay.Inventory.Consumable.SmallHealingHerb",
+    "name": "Horsetail Stalks",
+    "category": "Consumable",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Horsetail_D.T_UI_Icon_Inventory_Horsetail_D",
+    "index": 21
+  },
+  {
+    "tag": "Gameplay.Inventory.Consumable.SuperHealingHerb",
+    "name": "Broom Poultice",
+    "category": "Consumable",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Poultice_Broom_D.T_UI_Icon_Inventory_Poultice_Broom_D",
+    "index": 22
+  },
+  {
+    "tag": "Gameplay.Inventory.Consumable.ThistlePouch",
+    "name": "Juniper Poultice",
+    "category": "Consumable",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Poultice_Juniper_D.T_UI_Icon_Inventory_Poultice_Juniper_D",
+    "index": 23
+  },
+  {
+    "tag": "Gameplay.Inventory.Consumable.TurmericPouch",
+    "name": "Willow Wrap",
+    "category": "Consumable",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_WillowWrap_D.T_UI_Icon_Inventory_WillowWrap_D",
+    "index": 24
+  },
+  {
+    "tag": "Gameplay.Inventory.Consumable.ValerianRootPouch",
+    "name": "Feverfew Flowers",
+    "category": "Consumable",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Flower_Feverfew_D.T_UI_Icon_Flower_Feverfew_D",
+    "index": 25
+  },
+  {
+    "tag": "Gameplay.Inventory.Materials.BerryFern",
+    "name": "Fern",
+    "category": "Materials",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Fern_D.T_UI_Icon_Inventory_Fern_D",
+    "index": 26
+  },
+  {
+    "tag": "Gameplay.Inventory.Materials.Birdnest",
+    "name": "Bird Nest",
+    "category": "Materials",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_BirdNest_D.T_UI_Icon_Inventory_BirdNest_D",
+    "index": 27
+  },
+  {
+    "tag": "Gameplay.Inventory.Materials.Bone",
+    "name": "Bone",
+    "category": "Materials",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Bone_D.T_UI_Icon_Inventory_Bone_D",
+    "index": 28
+  },
+  {
+    "tag": "Gameplay.Inventory.Materials.Borage",
+    "name": "Borage Flowers",
+    "category": "Materials",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Flower_Lavender_D.T_UI_Icon_Flower_Lavender_D",
+    "index": 29
+  },
+  {
+    "tag": "Gameplay.Inventory.Materials.Broom",
+    "name": "Broom Flowers",
+    "category": "Materials",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Flower_Broom_D.T_UI_Icon_Flower_Broom_D",
+    "index": 30
+  },
+  {
+    "tag": "Gameplay.Inventory.Materials.Burdock",
+    "name": "Burdock Root",
+    "category": "Materials",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Root_Burdock_D.T_UI_Icon_Inventory_Root_Burdock_D",
+    "index": 31
+  },
+  {
+    "tag": "Gameplay.Inventory.Materials.CattailReed",
+    "name": "Reed",
+    "category": "Materials",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Reed_D.T_UI_Icon_Inventory_Reed_D",
+    "index": 32
+  },
+  {
+    "tag": "Gameplay.Inventory.Materials.Cobwebs",
+    "name": "Cobwebs",
+    "category": "Materials",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_CobWebs_D.T_UI_Icon_Inventory_CobWebs_D",
+    "index": 33
+  },
+  {
+    "tag": "Gameplay.Inventory.Materials.Comfrey",
+    "name": "Comfrey Leaves",
+    "category": "Materials",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Flower_Comfrey_D.T_UI_Icon_Flower_Comfrey_D",
+    "index": 34
+  },
+  {
+    "tag": "Gameplay.Inventory.Materials.Cotton",
+    "name": "Cotton",
+    "category": "Materials",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Cotton_D.T_UI_Icon_Inventory_Cotton_D",
+    "index": 35
+  },
+  {
+    "tag": "Gameplay.Inventory.Materials.Dandelion",
+    "name": "Dandelion",
+    "category": "Materials",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Flower_Dandelion_D.T_UI_Icon_Flower_Dandelion_D",
+    "index": 36
+  },
+  {
+    "tag": "Gameplay.Inventory.Materials.DirtMound",
+    "name": "Earth & Stones",
+    "category": "Materials",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Earth_D.T_UI_Icon_Inventory_Earth_D",
+    "index": 37
+  },
+  {
+    "tag": "Gameplay.Inventory.Materials.Fur",
+    "name": "Fur",
+    "category": "Materials",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Fur_D.T_UI_Icon_Inventory_Fur_D",
+    "index": 38
+  },
+  {
+    "tag": "Gameplay.Inventory.Materials.Goldenrod",
+    "name": "Goldenrod Flowers",
+    "category": "Materials",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Flower_Goldenrod_D.T_UI_Icon_Flower_Goldenrod_D",
+    "index": 39
+  },
+  {
+    "tag": "Gameplay.Inventory.Materials.Heather",
+    "name": "Heather",
+    "category": "Materials",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Flower_Heather_D.T_UI_Icon_Flower_Heather_D",
+    "index": 40
+  },
+  {
+    "tag": "Gameplay.Inventory.Materials.Ivy",
+    "name": "Ivy",
+    "category": "Materials",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Ivy_D.T_UI_Icon_Inventory_Ivy_D",
+    "index": 41
+  },
+  {
+    "tag": "Gameplay.Inventory.Materials.Juniper",
+    "name": "Juniper Berries",
+    "category": "Materials",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Juniperberries_D.T_UI_Icon_Inventory_Juniperberries_D",
+    "index": 42
+  },
+  {
+    "tag": "Gameplay.Inventory.Materials.Leaves",
+    "name": "Dry Leaf",
+    "category": "Materials",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Leaves_D.T_UI_Icon_Inventory_Leaves_D",
+    "index": 43
+  },
+  {
+    "tag": "Gameplay.Inventory.Materials.Moss",
+    "name": "Moss",
+    "category": "Materials",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Moss_D.T_UI_Icon_Inventory_Moss_D",
+    "index": 44
+  },
+  {
+    "tag": "Gameplay.Inventory.Materials.Oakgall",
+    "name": "Oak Gall",
+    "category": "Materials",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Oakgall_D.T_UI_Icon_Inventory_Oakgall_D",
+    "index": 45
+  },
+  {
+    "tag": "Gameplay.Inventory.Materials.Pine",
+    "name": "Pine",
+    "category": "Materials",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Pine_D.T_UI_Icon_Inventory_Pine_D",
+    "index": 46
+  },
+  {
+    "tag": "Gameplay.Inventory.Materials.Poppy",
+    "name": "Poppy",
+    "category": "Materials",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Poppy_D.T_UI_Icon_Inventory_Poppy_D",
+    "index": 47
+  },
+  {
+    "tag": "Gameplay.Inventory.Materials.Rock",
+    "name": "Rock",
+    "category": "Materials",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Stone_D.T_UI_Icon_Inventory_Stone_D",
+    "index": 48
+  },
+  {
+    "tag": "Gameplay.Inventory.Materials.Rope",
+    "name": "Rope",
+    "category": "Materials",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Rope_D.T_UI_Icon_Inventory_Rope_D",
+    "index": 49
+  },
+  {
+    "tag": "Gameplay.Inventory.Materials.SharpeningTreeBark",
+    "name": "Bark",
+    "category": "Materials",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_WoodBark_D.T_UI_Icon_Inventory_WoodBark_D",
+    "index": 50
+  },
+  {
+    "tag": "Gameplay.Inventory.Materials.Thyme",
+    "name": "Thyme Leaves",
+    "category": "Materials",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Thyme_D.T_UI_Icon_Inventory_Thyme_D",
+    "index": 51
+  },
+  {
+    "tag": "Gameplay.Inventory.Materials.Willow",
+    "name": "Willow Flowers",
+    "category": "Materials",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Flower_WillowFlowers_D.T_UI_Icon_Flower_WillowFlowers_D",
+    "index": 52
+  }
+]

@@ -1,0 +1,3212 @@
+[
+  {
+    "tag": "Gameplay.Inventory.Consumable.AntidoteHerbPouch",
+    "name": "Yarrow Leaves",
+    "category": "Consumable",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Flower_Yarrow_D.T_UI_Icon_Flower_Yarrow_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 1
+  },
+  {
+    "tag": "Gameplay.Inventory.Consumable.BigCatnip",
+    "name": "Ragwort Flowers",
+    "category": "Consumable",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Flower_Ragwort_D.T_UI_Icon_Flower_Ragwort_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 2
+  },
+  {
+    "tag": "Gameplay.Inventory.Consumable.BigHealingHerb",
+    "name": "Comfrey Poultice",
+    "category": "Consumable",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Poultice_Comfrey_D.T_UI_Icon_Inventory_Poultice_Comfrey_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 3
+  },
+  {
+    "tag": "Gameplay.Inventory.Consumable.CatnipPouch",
+    "name": "Burnet Leaves",
+    "category": "Consumable",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Burnet_D.T_UI_Icon_Inventory_Burnet_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 4
+  },
+  {
+    "tag": "Gameplay.Inventory.Consumable.CatThymePouch",
+    "name": "Thyme Poultice",
+    "category": "Consumable",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Poultice_Chestnut_D.T_UI_Icon_Inventory_Poultice_Chestnut_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 5
+  },
+  {
+    "tag": "Gameplay.Inventory.Consumable.ChamomilePouch",
+    "name": "Chamomile Flowers",
+    "category": "Consumable",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Flower_Chamomile_D.T_UI_Icon_Flower_Chamomile_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 6
+  },
+  {
+    "tag": "Gameplay.Inventory.Consumable.ChestnutPouch",
+    "name": "Thyme Wrap",
+    "category": "Consumable",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Wrap_Thyme_D.T_UI_Icon_Inventory_Wrap_Thyme_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 7
+  },
+  {
+    "tag": "Gameplay.Inventory.Consumable.EyewortPouch",
+    "name": "Celandine Flowers",
+    "category": "Consumable",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Flower_Celandine_D.T_UI_Icon_Flower_Celandine_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 8
+  },
+  {
+    "tag": "Gameplay.Inventory.Consumable.FeatherPouch",
+    "name": "Borage Poultice",
+    "category": "Consumable",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Poultice_Lavender_D.T_UI_Icon_Inventory_Poultice_Lavender_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 9
+  },
+  {
+    "tag": "Gameplay.Inventory.Consumable.FishScalePouch",
+    "name": "Burdock Poultice",
+    "category": "Consumable",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Poultice_Burdock_D.T_UI_Icon_Inventory_Poultice_Burdock_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 10
+  },
+  {
+    "tag": "Gameplay.Inventory.Consumable.FullHealingHerb",
+    "name": "Goldenrod Wrap",
+    "category": "Consumable",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Wrap_Goldenrod_D.T_UI_Icon_Inventory_Wrap_Goldenrod_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 11
+  },
+  {
+    "tag": "Gameplay.Inventory.Consumable.GingerRootPouch",
+    "name": "Burdock Wrap",
+    "category": "Consumable",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Wrap_GingerRoot_D.T_UI_Icon_Inventory_Wrap_GingerRoot_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 12
+  },
+  {
+    "tag": "Gameplay.Inventory.Consumable.HealingHerbPouch",
+    "name": "Wintergreen Berries",
+    "category": "Consumable",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_WinterGreen_D.T_UI_Icon_Inventory_WinterGreen_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 13
+  },
+  {
+    "tag": "Gameplay.Inventory.Consumable.HerbSpicesPouch",
+    "name": "Willow Poultice",
+    "category": "Consumable",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Poultice_Willowspices_D.T_UI_Icon_Inventory_Poultice_Willowspices_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 14
+  },
+  {
+    "tag": "Gameplay.Inventory.Consumable.LavenderPouch",
+    "name": "Borage Wrap",
+    "category": "Consumable",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Wrap_Borage_D.T_UI_Icon_Inventory_Wrap_Borage_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 15
+  },
+  {
+    "tag": "Gameplay.Inventory.Consumable.MediumCatnip",
+    "name": "Ragweed Flowers",
+    "category": "Consumable",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Flower_MediumCatnip_D.T_UI_Icon_Flower_MediumCatnip_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 16
+  },
+  {
+    "tag": "Gameplay.Inventory.Consumable.MediumHealingHerb",
+    "name": "Marigold Petal",
+    "category": "Consumable",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Flower_Marigold_D.T_UI_Icon_Flower_Marigold_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 17
+  },
+  {
+    "tag": "Gameplay.Inventory.Consumable.PeppermintPouch",
+    "name": "Juniper Wrap",
+    "category": "Consumable",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Wrap_Peppermint_D.T_UI_Icon_Inventory_Wrap_Peppermint_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 18
+  },
+  {
+    "tag": "Gameplay.Inventory.Consumable.SagePouch",
+    "name": "Chamomile Poultice",
+    "category": "Consumable",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Poultice_Sage_D.T_UI_Icon_Inventory_Poultice_Sage_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 19
+  },
+  {
+    "tag": "Gameplay.Inventory.Consumable.SmallCatnip",
+    "name": "Lamb's Ear Leaves",
+    "category": "Consumable",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Lambsear_D.T_UI_Icon_Inventory_Lambsear_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 20
+  },
+  {
+    "tag": "Gameplay.Inventory.Consumable.SmallHealingHerb",
+    "name": "Horsetail Stalks",
+    "category": "Consumable",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Horsetail_D.T_UI_Icon_Inventory_Horsetail_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 21
+  },
+  {
+    "tag": "Gameplay.Inventory.Consumable.SuperHealingHerb",
+    "name": "Broom Poultice",
+    "category": "Consumable",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Poultice_Broom_D.T_UI_Icon_Inventory_Poultice_Broom_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 22
+  },
+  {
+    "tag": "Gameplay.Inventory.Consumable.ThistlePouch",
+    "name": "Juniper Poultice",
+    "category": "Consumable",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Poultice_Juniper_D.T_UI_Icon_Inventory_Poultice_Juniper_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 23
+  },
+  {
+    "tag": "Gameplay.Inventory.Consumable.TurmericPouch",
+    "name": "Willow Wrap",
+    "category": "Consumable",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_WillowWrap_D.T_UI_Icon_Inventory_WillowWrap_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 24
+  },
+  {
+    "tag": "Gameplay.Inventory.Consumable.ValerianRootPouch",
+    "name": "Feverfew Flowers",
+    "category": "Consumable",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Flower_Feverfew_D.T_UI_Icon_Flower_Feverfew_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 25
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Body.HeatherPetals.1",
+    "name": "Heather Petals",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_Body_HeatherPetals_D.T_UI_Accessory_Body_HeatherPetals_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 26
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Body.HeatherPetals.2",
+    "name": "Yarrow Leaves",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_Body_YarrowLeaves_D.T_UI_Accessory_Body_YarrowLeaves_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 27
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Body.LittleLeaves.1",
+    "name": "Little Leaves",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_Body_LittleLeaves_D.T_UI_Accessory_Body_LittleLeaves_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 28
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Body.LittleLeaves.2",
+    "name": "Red Leaves",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_Body_RedLeaves_D.T_UI_Accessory_Body_RedLeaves_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 29
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Body.MudMarks.1",
+    "name": "Mud Marks",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_Body_MudMarks_D.T_UI_Accessory_Body_MudMarks_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 30
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Body.MudMarks.2",
+    "name": "Grey Mud Marks",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_Body_GreyMudMarks_D.T_UI_Accessory_Body_GreyMudMarks_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 31
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Body.PineNeedles.1",
+    "name": "Pine Needles",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_Body_PineNeedles_D.T_UI_Accessory_Body_PineNeedles_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 32
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Body.PineNeedles.2",
+    "name": "Dry Needles",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_Body_DryNeedles_D.T_UI_Accessory_Body_DryNeedles_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 33
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Body.SpikySeeds.1",
+    "name": "Spiky Seeds",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_Body_SpikySeeds_D.T_UI_Accessory_Body_SpikySeeds_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 34
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Body.SpikySeeds.2",
+    "name": "Green Spikes",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_Body_GreenSpikes_D.T_UI_Accessory_Body_GreenSpikes_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 35
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Body.YellowPrimroses.1",
+    "name": "Yellow Primroses",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_Body_YellowPrimroses_D.T_UI_Accessory_Body_YellowPrimroses_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 36
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Body.YellowPrimroses.2",
+    "name": "Primroses",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_Body_Primroses_D.T_UI_Accessory_Body_Primroses_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 37
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Dlc.Head.AutumnWreath.1",
+    "name": "Leaf-Fall Wreath",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_AutumnWreath_D.T_UI_Accessory_AutumnWreath_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 38
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Dlc.Head.ButterflyBarrette.1",
+    "name": "Butterfly Barrette",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_ButterflyBarrette_D.T_UI_Accessory_ButterflyBarrette_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 39
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Dlc.Head.IvyCrown.1",
+    "name": "Ivy Crown",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_IvyCrown_D.T_UI_Accessory_IvyCrown_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 40
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Dlc.Head.LittleMouseHairpin.1",
+    "name": "Little Mouse Hairpin",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_LittleMouseHairpin_D.T_UI_Accessory_LittleMouseHairpin_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 41
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Dlc.Head.SnailCap.1",
+    "name": "Snail Cap",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_SnailCap_D.T_UI_Accessory_SnailCap_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 42
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Dlc.Head.SpringWreath.1",
+    "name": "Newleaf Wreath",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_SpringWreath_D.T_UI_Accessory_SpringWreath_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 43
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Dlc.Head.SummerWreath.1",
+    "name": "Greenleaf Wreath",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_SummerWreath_D.T_UI_Accessory_SummerWreath_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 44
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Dlc.Head.ThistlesPiercing.1",
+    "name": "Thistle Piercing",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_ThistlesPiercing_D.T_UI_Accessory_ThistlesPiercing_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 45
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Dlc.Head.WinterWreath.1",
+    "name": "Leaf-Bare Wreath",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_WinterWreath_D.T_UI_Accessory_WinterWreath_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 46
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Dlc.Legs.BeadsBand.1",
+    "name": "Beads Band",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_Paw_BeadsBand_D.T_UI_Accessory_Paw_BeadsBand_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 47
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Dlc.Legs.BeadsBand.2",
+    "name": "Clear Bead Band",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_Paw_ClearBeadsBand_D.T_UI_Accessory_Paw_ClearBeadsBand_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 48
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Dlc.Legs.BeadsBand.3",
+    "name": "Rainbow Bead Band",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_Paw_RainbowBeadsBand_D.T_UI_Accessory_Paw_RainbowBeadsBand_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 49
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Dlc.Legs.BeadsBand.4",
+    "name": "Metal Bead Band",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_Paw_MetalBeadsBand_D.T_UI_Accessory_Paw_MetalBeadsBand_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 50
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Dlc.Legs.BlueSatinArmband.1",
+    "name": "Blue Satin Armband",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_Paw_BlueSatinArmband_D.T_UI_Accessory_Paw_BlueSatinArmband_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 51
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Dlc.Legs.BlueSatinArmband.2",
+    "name": "Pink Satin Armband",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_Paw_PinkSatinArmband_D.T_UI_Accessory_Paw_PinkSatinArmband_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 52
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Dlc.Legs.BlueSatinArmband.3",
+    "name": "Yellow Satin Armband",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_Paw_YellowSatinArmband_D.T_UI_Accessory_Paw_YellowSatinArmband_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 53
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Dlc.Legs.BlueSatinArmband.4",
+    "name": "Purple Satin Armband",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_Paw_PurpleSatinArmband_D.T_UI_Accessory_Paw_PurpleSatinArmband_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 54
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Dlc.Legs.PinkRoseBangle.1",
+    "name": "Pink Rose Bangle",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_Paw_RoseBangle_D.T_UI_Accessory_Paw_RoseBangle_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 55
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Dlc.Legs.PinkRoseBangle.2",
+    "name": "Yellow Rose Bangle",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_Paw_YellowRoseBangle_D.T_UI_Accessory_Paw_YellowRoseBangle_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 56
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Dlc.Legs.PinkRoseBangle.3",
+    "name": "Purple Rose Bangle",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_Paw_PurpleRoseBangle_D.T_UI_Accessory_Paw_PurpleRoseBangle_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 57
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Dlc.Legs.PinkRoseBangle.4",
+    "name": "Blue Rose Bangle",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_Paw_BlueRoseBangle_D.T_UI_Accessory_Paw_BlueRoseBangle_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 58
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Head.BigLeaf.1",
+    "name": "Big Leaf",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_BigLeaf_D.T_UI_Accessory_BigLeaf_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 59
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Head.BlackberryBijoux.1",
+    "name": "Blackberry Bijoux",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_BlackberryBijoux_D.T_UI_Accessory_BlackberryBijoux_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 60
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Head.BrambleEarring.1",
+    "name": "Bramble Earring",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_BrambleEarring_D.T_UI_Accessory_BrambleEarring_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 61
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Head.DandelionHeaddress.1",
+    "name": "Dandelion Headdress",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_DandelionHeaddress_D.T_UI_Accessory_DandelionHeaddress_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 62
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Head.DryPoppyCrown.1",
+    "name": "Dry Poppy Crown",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_DryPoppyCrown_D.T_UI_Accessory_DryPoppyCrown_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 63
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Head.FernEyepatch.1",
+    "name": "Fern Eyepatch",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_FernEyepatch_D.T_UI_Accessory_FernEyepatch_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 64
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Head.HeatherCoronet.1",
+    "name": "Heather Coronet",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_HeatherCoronet_D.T_UI_Accessory_HeatherCoronet_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 65
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Head.MapleLeaf.1",
+    "name": "Maple Leaf",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_MapleLeaf_D.T_UI_Accessory_MapleLeaf_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 66
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Head.MossPatch.1",
+    "name": "Moss Patch",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_MossPatch_D.T_UI_Accessory_MossPatch_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 67
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Head.PoppyCrown.1",
+    "name": "Poppy Crown",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_PoppyCrown_D.T_UI_Accessory_PoppyCrown_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 68
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Head.SharpBonePiercing.1",
+    "name": "Sharp Bone Piercing",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_SharpBonePiercing_D.T_UI_Accessory_SharpBonePiercing_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 69
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Head.SkullCap.1",
+    "name": "Skull Cap",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_SkullCap_D.T_UI_Accessory_SkullCap_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 70
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Head.VineOrnament.1",
+    "name": "Vine Ornament",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_VineOrnament_D.T_UI_Accessory_VineOrnament_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 71
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Head.WildFlowersPendant.1",
+    "name": "Wild Flowers Pendant",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_WildFlowersPendant_D.T_UI_Accessory_WildFlowersPendant_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 72
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Legs.GreenBrier.1",
+    "name": "Green Briar",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_Paw_GreenBrier_D.T_UI_Accessory_Paw_GreenBrier_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 73
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Legs.GreenBrier.2",
+    "name": "Sweet Briar",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_Paw_SweetBrier_D.T_UI_Accessory_Paw_SweetBrier_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 74
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Legs.GreenBrier.3",
+    "name": "Saw Briar",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_Paw_SawBrier_D.T_UI_Accessory_Paw_SawBrier_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 75
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Legs.GreenBrier.4",
+    "name": "Bristly Greenbriar",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_Paw_BristlyGreenbrier_D.T_UI_Accessory_Paw_BristlyGreenbrier_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 76
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Legs.OakWrap.1",
+    "name": "Oak Wrap",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_Paw_OakWrap_D.T_UI_Accessory_Paw_OakWrap_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 77
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Legs.OakWrap.2",
+    "name": "Lichen Armband",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_Paw_LichenArmband_D.T_UI_Accessory_Paw_LichenArmband_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 78
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Legs.OakWrap.3",
+    "name": "Cedar Cuff",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_Paw_CedarCuff_D.T_UI_Accessory_Paw_CedarCuff_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 79
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Legs.OakWrap.4",
+    "name": "Rowan Band",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_Paw_RowanBand_D.T_UI_Accessory_Paw_RowanBand_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 80
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Legs.PaleStalkBangle.1",
+    "name": "Pale-Stalk Bangle",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_Paw_PaleStalkBanglep_D.T_UI_Accessory_Paw_PaleStalkBanglep_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 81
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Legs.PaleStalkBangle.2",
+    "name": "River-Thread Bracelet",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_Paw_RiverThreadBracelet_D.T_UI_Accessory_Paw_RiverThreadBracelet_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 82
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Legs.PaleStalkBangle.3",
+    "name": "Shadow-Soot Wristlet",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_Paw_ShadowSootWristlet_D.T_UI_Accessory_Paw_ShadowSootWristlet_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 83
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Legs.PaleStalkBangle.4",
+    "name": "Bright-Gorse Cord",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_Paw_BrightGorseCord_D.T_UI_Accessory_Paw_BrightGorseCord_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 84
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Neck.BrierNecklet.1",
+    "name": "Briar Necklet",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_Neck_BrierNecklet_D.T_UI_Accessory_Neck_BrierNecklet_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 85
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Neck.DogCollar.1",
+    "name": "Black BloodClan Collar",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_Neck_DogCollar_D.T_UI_Accessory_Neck_DogCollar_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 86
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Neck.DogCollar.2",
+    "name": "Red BloodClan Collar",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_Neck_RedDogCollar_D.T_UI_Accessory_Neck_RedDogCollar_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 87
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Neck.IvyNecklace.1",
+    "name": "Ivy Necklace",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_Neck_IvyNecklace_D.T_UI_Accessory_Neck_IvyNecklace_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 88
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Neck.KittypetCollar.1",
+    "name": "Kittypet Collar",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_Neck_KittypetCollar_D.T_UI_Accessory_Neck_KittypetCollar_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 89
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Neck.RopeNecklace.1",
+    "name": "Rope Necklace",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_Neck_RopeNecklace_D.T_UI_Accessory_Neck_RopeNecklace_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 90
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Neck.ShellCollar.1",
+    "name": "Shell Collar",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_Neck_ShellCollar_D.T_UI_Accessory_Neck_ShellCollar_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 91
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Neck.ShellCollar.2",
+    "name": "Shiny Shell Collar",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_Neck_ShinyShellCollar_D.T_UI_Accessory_Neck_ShinyShellCollar_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 92
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Neck.SnailNecklace.1",
+    "name": "Snail Necklace",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_Neck_SnailNecklace_D.T_UI_Accessory_Neck_SnailNecklace_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 93
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Neck.SnailNecklace.2",
+    "name": "Green Snail Necklace",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_Neck_GreenSnailNecklace_D.T_UI_Accessory_Neck_GreenSnailNecklace_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 94
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Neck.StringBones.1",
+    "name": "String and Bones",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_Neck_StringandBones_D.T_UI_Accessory_Neck_StringandBones_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 95
+  },
+  {
+    "tag": "Gameplay.Inventory.Cosmetic.Neck.VinesChain.1",
+    "name": "Vines Chain",
+    "category": "Cosmetic",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_accesories/T_UI_Accessory_Neck_VinesChain_D.T_UI_Accessory_Neck_VinesChain_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 96
+  },
+  {
+    "tag": "Gameplay.Inventory.Decoration.1",
+    "name": "Golden Hay Nest",
+    "category": "Decoration",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_den/T_UI_Icon_Den_Decoration_GoldenHayNest_D.T_UI_Icon_Den_Decoration_GoldenHayNest_D",
+    "costs": [
+      {
+        "tag": "Gameplay.Inventory.Materials.Dandelion",
+        "quantity": 3,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Flower_Dandelion_D.T_UI_Icon_Flower_Dandelion_D",
+        "index": 167,
+        "name": "Dandelion"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.BerryFern",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Fern_D.T_UI_Icon_Inventory_Fern_D",
+        "index": 157,
+        "name": "Fern"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Moss",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Moss_D.T_UI_Icon_Inventory_Moss_D",
+        "index": 181,
+        "name": "Moss"
+      }
+    ],
+    "size": "Medium",
+    "buildTime": 0,
+    "index": 97
+  },
+  {
+    "tag": "Gameplay.Inventory.Decoration.10",
+    "name": "Tall Grass Hammock",
+    "category": "Decoration",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_den/T_UI_Icon_Den_Decoration_GrassHammock_D.T_UI_Icon_Den_Decoration_GrassHammock_D",
+    "costs": [
+      {
+        "tag": "Gameplay.Inventory.Materials.Leaves",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Leaves_D.T_UI_Icon_Inventory_Leaves_D",
+        "index": 180,
+        "name": "Dry Leaf"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Cotton",
+        "quantity": 3,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Cotton_D.T_UI_Icon_Inventory_Cotton_D",
+        "index": 166,
+        "name": "Cotton"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Cobwebs",
+        "quantity": 2,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_CobWebs_D.T_UI_Icon_Inventory_CobWebs_D",
+        "index": 164,
+        "name": "Cobwebs"
+      }
+    ],
+    "size": "Medium",
+    "buildTime": 14400,
+    "index": 98
+  },
+  {
+    "tag": "Gameplay.Inventory.Decoration.11",
+    "name": "Shepherd’s Wool Fleece",
+    "category": "Decoration",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_den/T_UI_Icon_Den_Decoration_ShepherdsWoolFleece_D.T_UI_Icon_Den_Decoration_ShepherdsWoolFleece_D",
+    "costs": [
+      {
+        "tag": "Gameplay.Inventory.Materials.Leaves",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Leaves_D.T_UI_Icon_Inventory_Leaves_D",
+        "index": 180,
+        "name": "Dry Leaf"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Birdnest",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_BirdNest_D.T_UI_Icon_Inventory_BirdNest_D",
+        "index": 158,
+        "name": "Bird Nest"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Oakgall",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Oakgall_D.T_UI_Icon_Inventory_Oakgall_D",
+        "index": 182,
+        "name": "Oak Gall"
+      }
+    ],
+    "size": "Large",
+    "buildTime": 0,
+    "index": 99
+  },
+  {
+    "tag": "Gameplay.Inventory.Decoration.12",
+    "name": "Bunny Soft Down",
+    "category": "Decoration",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_den/T_UI_Icon_Den_Decoration_BunnysDown_D.T_UI_Icon_Den_Decoration_BunnysDown_D",
+    "costs": [
+      {
+        "tag": "Gameplay.Inventory.Materials.Fur",
+        "quantity": 2,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Fur_D.T_UI_Icon_Inventory_Fur_D",
+        "index": 175,
+        "name": "Fur"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.CattailReed",
+        "quantity": 3,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Reed_D.T_UI_Icon_Inventory_Reed_D",
+        "index": 163,
+        "name": "Reed"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Poppy",
+        "quantity": 7,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Poppy_D.T_UI_Icon_Inventory_Poppy_D",
+        "index": 184,
+        "name": "Poppy"
+      }
+    ],
+    "size": "Large",
+    "buildTime": 172800,
+    "index": 100
+  },
+  {
+    "tag": "Gameplay.Inventory.Decoration.13",
+    "name": "Cotton Terry Tangle",
+    "category": "Decoration",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_den/T_UI_Icon_Den_Decoration_CottonTerry.T_UI_Icon_Den_Decoration_CottonTerry",
+    "costs": [
+      {
+        "tag": "Gameplay.Inventory.Materials.Cotton",
+        "quantity": 5,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Cotton_D.T_UI_Icon_Inventory_Cotton_D",
+        "index": 166,
+        "name": "Cotton"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Rope",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Rope_D.T_UI_Icon_Inventory_Rope_D",
+        "index": 186,
+        "name": "Rope"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Birdnest",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_BirdNest_D.T_UI_Icon_Inventory_BirdNest_D",
+        "index": 158,
+        "name": "Bird Nest"
+      }
+    ],
+    "size": "Large",
+    "buildTime": 172800,
+    "index": 101
+  },
+  {
+    "tag": "Gameplay.Inventory.Decoration.14",
+    "name": "Forest Pelt Rug",
+    "category": "Decoration",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_den/T_UI_Icon_Den_Decoration_PetItRug_D.T_UI_Icon_Den_Decoration_PetItRug_D",
+    "costs": [
+      {
+        "tag": "Gameplay.Inventory.Materials.Fur",
+        "quantity": 2,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Fur_D.T_UI_Icon_Inventory_Fur_D",
+        "index": 175,
+        "name": "Fur"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Cotton",
+        "quantity": 5,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Cotton_D.T_UI_Icon_Inventory_Cotton_D",
+        "index": 166,
+        "name": "Cotton"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Dandelion",
+        "quantity": 9,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Flower_Dandelion_D.T_UI_Icon_Flower_Dandelion_D",
+        "index": 167,
+        "name": "Dandelion"
+      }
+    ],
+    "size": "Large",
+    "buildTime": 172800,
+    "index": 102
+  },
+  {
+    "tag": "Gameplay.Inventory.Decoration.15",
+    "name": "Purple Heather Loft",
+    "category": "Decoration",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_den/T_UI_Icon_Den_Decoration_PurpleHeather_D.T_UI_Icon_Den_Decoration_PurpleHeather_D",
+    "costs": [
+      {
+        "tag": "Gameplay.Inventory.Materials.Heather",
+        "quantity": 2,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Flower_Heather_D.T_UI_Icon_Flower_Heather_D",
+        "index": 177,
+        "name": "Heather"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Ivy",
+        "quantity": 2,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Ivy_D.T_UI_Icon_Inventory_Ivy_D",
+        "index": 178,
+        "name": "Ivy"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Rock",
+        "quantity": 2,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Stone_D.T_UI_Icon_Inventory_Stone_D",
+        "index": 185,
+        "name": "Rock"
+      }
+    ],
+    "size": "Large",
+    "buildTime": 172800,
+    "index": 103
+  },
+  {
+    "tag": "Gameplay.Inventory.Decoration.16",
+    "name": "Rough Pine Barker",
+    "category": "Decoration",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_den/T_UI_Icon_Den_Decoration_RoughPineBarker_D.T_UI_Icon_Den_Decoration_RoughPineBarker_D",
+    "costs": [
+      {
+        "tag": "Gameplay.Inventory.Materials.Pine",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Pine_D.T_UI_Icon_Inventory_Pine_D",
+        "index": 183,
+        "name": "Pine"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Bone",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Bone_D.T_UI_Icon_Inventory_Bone_D",
+        "index": 159,
+        "name": "Bone"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Moss",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Moss_D.T_UI_Icon_Inventory_Moss_D",
+        "index": 181,
+        "name": "Moss"
+      }
+    ],
+    "size": "Medium",
+    "buildTime": 0,
+    "index": 104
+  },
+  {
+    "tag": "Gameplay.Inventory.Decoration.17",
+    "name": "Weathered Pine Stump",
+    "category": "Decoration",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_den/T_UI_Icon_Den_Decoration_WeatheredPineStump_D.T_UI_Icon_Den_Decoration_WeatheredPineStump_D",
+    "costs": [
+      {
+        "tag": "Gameplay.Inventory.Materials.Cobwebs",
+        "quantity": 2,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_CobWebs_D.T_UI_Icon_Inventory_CobWebs_D",
+        "index": 164,
+        "name": "Cobwebs"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.SharpeningTreeBark",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_WoodBark_D.T_UI_Icon_Inventory_WoodBark_D",
+        "index": 187,
+        "name": "Bark"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Rock",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Stone_D.T_UI_Icon_Inventory_Stone_D",
+        "index": 185,
+        "name": "Rock"
+      }
+    ],
+    "size": "Medium",
+    "buildTime": 14400,
+    "index": 105
+  },
+  {
+    "tag": "Gameplay.Inventory.Decoration.18",
+    "name": "Sun-Bleached Driftwood",
+    "category": "Decoration",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_den/T_UI_Icon_Den_Decoration_DriftWood_D.T_UI_Icon_Den_Decoration_DriftWood_D",
+    "costs": [
+      {
+        "tag": "Gameplay.Inventory.Materials.SharpeningTreeBark",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_WoodBark_D.T_UI_Icon_Inventory_WoodBark_D",
+        "index": 187,
+        "name": "Bark"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.DirtMound",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Earth_D.T_UI_Icon_Inventory_Earth_D",
+        "index": 168,
+        "name": "Earth & Stones"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Dandelion",
+        "quantity": 3,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Flower_Dandelion_D.T_UI_Icon_Flower_Dandelion_D",
+        "index": 167,
+        "name": "Dandelion"
+      }
+    ],
+    "size": "Medium",
+    "buildTime": 0,
+    "index": 106
+  },
+  {
+    "tag": "Gameplay.Inventory.Decoration.19",
+    "name": "Ancient Marrow Bone",
+    "category": "Decoration",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_den/T_UI_Icon_Den_Decoration_NarrowBone_D.T_UI_Icon_Den_Decoration_NarrowBone_D",
+    "costs": [
+      {
+        "tag": "Gameplay.Inventory.Materials.Bone",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Bone_D.T_UI_Icon_Inventory_Bone_D",
+        "index": 159,
+        "name": "Bone"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Rock",
+        "quantity": 2,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Stone_D.T_UI_Icon_Inventory_Stone_D",
+        "index": 185,
+        "name": "Rock"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.DirtMound",
+        "quantity": 3,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Earth_D.T_UI_Icon_Inventory_Earth_D",
+        "index": 168,
+        "name": "Earth & Stones"
+      }
+    ],
+    "size": "Medium",
+    "buildTime": 172800,
+    "index": 107
+  },
+  {
+    "tag": "Gameplay.Inventory.Decoration.2",
+    "name": "Leaf-Fall Mat",
+    "category": "Decoration",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_den/T_UI_Icon_Den_Decoration_AutumnMat_D.T_UI_Icon_Den_Decoration_AutumnMat_D",
+    "costs": [
+      {
+        "tag": "Gameplay.Inventory.Materials.Leaves",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Leaves_D.T_UI_Icon_Inventory_Leaves_D",
+        "index": 180,
+        "name": "Dry Leaf"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Heather",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Flower_Heather_D.T_UI_Icon_Flower_Heather_D",
+        "index": 177,
+        "name": "Heather"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Ivy",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Ivy_D.T_UI_Icon_Inventory_Ivy_D",
+        "index": 178,
+        "name": "Ivy"
+      }
+    ],
+    "size": "Medium",
+    "buildTime": 0,
+    "index": 108
+  },
+  {
+    "tag": "Gameplay.Inventory.Decoration.20",
+    "name": "Lichen Crust Rock",
+    "category": "Decoration",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_den/T_UI_Icon_Den_Decoration_LichenRock_D.T_UI_Icon_Den_Decoration_LichenRock_D",
+    "costs": [
+      {
+        "tag": "Gameplay.Inventory.Materials.Rock",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Stone_D.T_UI_Icon_Inventory_Stone_D",
+        "index": 185,
+        "name": "Rock"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Moss",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Moss_D.T_UI_Icon_Inventory_Moss_D",
+        "index": 181,
+        "name": "Moss"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Cotton",
+        "quantity": 2,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Cotton_D.T_UI_Icon_Inventory_Cotton_D",
+        "index": 166,
+        "name": "Cotton"
+      }
+    ],
+    "size": "Medium",
+    "buildTime": 0,
+    "index": 109
+  },
+  {
+    "tag": "Gameplay.Inventory.Decoration.21",
+    "name": "Gnarly Root Block",
+    "category": "Decoration",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_den/T_UI_Icon_Den_Decoration_RootBlock_D.T_UI_Icon_Den_Decoration_RootBlock_D",
+    "costs": [
+      {
+        "tag": "Gameplay.Inventory.Materials.Oakgall",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Oakgall_D.T_UI_Icon_Inventory_Oakgall_D",
+        "index": 182,
+        "name": "Oak Gall"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.CattailReed",
+        "quantity": 3,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Reed_D.T_UI_Icon_Inventory_Reed_D",
+        "index": 163,
+        "name": "Reed"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.DirtMound",
+        "quantity": 3,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Earth_D.T_UI_Icon_Inventory_Earth_D",
+        "index": 168,
+        "name": "Earth & Stones"
+      }
+    ],
+    "size": "Medium",
+    "buildTime": 172800,
+    "index": 110
+  },
+  {
+    "tag": "Gameplay.Inventory.Decoration.22",
+    "name": "Pressed Earth Peat",
+    "category": "Decoration",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_den/T_UI_Icon_Den_Decoration_PressedEarthPeat_D.T_UI_Icon_Den_Decoration_PressedEarthPeat_D",
+    "costs": [
+      {
+        "tag": "Gameplay.Inventory.Materials.DirtMound",
+        "quantity": 2,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Earth_D.T_UI_Icon_Inventory_Earth_D",
+        "index": 168,
+        "name": "Earth & Stones"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Cotton",
+        "quantity": 4,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Cotton_D.T_UI_Icon_Inventory_Cotton_D",
+        "index": 166,
+        "name": "Cotton"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Birdnest",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_BirdNest_D.T_UI_Icon_Inventory_BirdNest_D",
+        "index": 158,
+        "name": "Bird Nest"
+      }
+    ],
+    "size": "Large",
+    "buildTime": 43200,
+    "index": 111
+  },
+  {
+    "tag": "Gameplay.Inventory.Decoration.23",
+    "name": "Primordial Fossil Stone",
+    "category": "Decoration",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_den/T_UI_Icon_Den_Decoration_PrimordialFossilStone_D.T_UI_Icon_Den_Decoration_PrimordialFossilStone_D",
+    "costs": [
+      {
+        "tag": "Gameplay.Inventory.Materials.Rock",
+        "quantity": 2,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Stone_D.T_UI_Icon_Inventory_Stone_D",
+        "index": 185,
+        "name": "Rock"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Oakgall",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Oakgall_D.T_UI_Icon_Inventory_Oakgall_D",
+        "index": 182,
+        "name": "Oak Gall"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Poppy",
+        "quantity": 7,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Poppy_D.T_UI_Icon_Inventory_Poppy_D",
+        "index": 184,
+        "name": "Poppy"
+      }
+    ],
+    "size": "Large",
+    "buildTime": 172800,
+    "index": 112
+  },
+  {
+    "tag": "Gameplay.Inventory.Decoration.24",
+    "name": "Great Hart Antler",
+    "category": "Decoration",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_den/T_UI_Icon_Den_Decoration_HartAntler_D.T_UI_Icon_Den_Decoration_HartAntler_D",
+    "costs": [
+      {
+        "tag": "Gameplay.Inventory.Materials.Bone",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Bone_D.T_UI_Icon_Inventory_Bone_D",
+        "index": 159,
+        "name": "Bone"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Rock",
+        "quantity": 2,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Stone_D.T_UI_Icon_Inventory_Stone_D",
+        "index": 185,
+        "name": "Rock"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Rope",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Rope_D.T_UI_Icon_Inventory_Rope_D",
+        "index": 186,
+        "name": "Rope"
+      }
+    ],
+    "size": "Large",
+    "buildTime": 172800,
+    "index": 113
+  },
+  {
+    "tag": "Gameplay.Inventory.Decoration.25",
+    "name": "Tough Canvas Scrub",
+    "category": "Decoration",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_den/T_UI_Icon_Den_Decoration_CanvasScrub_D.T_UI_Icon_Den_Decoration_CanvasScrub_D",
+    "costs": [
+      {
+        "tag": "Gameplay.Inventory.Materials.Fur",
+        "quantity": 2,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Fur_D.T_UI_Icon_Inventory_Fur_D",
+        "index": 175,
+        "name": "Fur"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Rope",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Rope_D.T_UI_Icon_Inventory_Rope_D",
+        "index": 186,
+        "name": "Rope"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Cotton",
+        "quantity": 5,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Cotton_D.T_UI_Icon_Inventory_Cotton_D",
+        "index": 166,
+        "name": "Cotton"
+      }
+    ],
+    "size": "Large",
+    "buildTime": 172800,
+    "index": 114
+  },
+  {
+    "tag": "Gameplay.Inventory.Decoration.26",
+    "name": "Plush Pillow Punch",
+    "category": "Decoration",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_den/T_UI_Icon_Den_Decoration_PillowPunch_D.T_UI_Icon_Den_Decoration_PillowPunch_D",
+    "costs": [
+      {
+        "tag": "Gameplay.Inventory.Materials.Cotton",
+        "quantity": 5,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Cotton_D.T_UI_Icon_Inventory_Cotton_D",
+        "index": 166,
+        "name": "Cotton"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Fur",
+        "quantity": 2,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Fur_D.T_UI_Icon_Inventory_Fur_D",
+        "index": 175,
+        "name": "Fur"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Rope",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Rope_D.T_UI_Icon_Inventory_Rope_D",
+        "index": 186,
+        "name": "Rope"
+      }
+    ],
+    "size": "Large",
+    "buildTime": 172800,
+    "index": 115
+  },
+  {
+    "tag": "Gameplay.Inventory.Decoration.27",
+    "name": "Seasoned Firewood Log",
+    "category": "Decoration",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_den/T_UI_Icon_Den_Decoration_FirewoodLog_D.T_UI_Icon_Den_Decoration_FirewoodLog_D",
+    "costs": [
+      {
+        "tag": "Gameplay.Inventory.Materials.SharpeningTreeBark",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_WoodBark_D.T_UI_Icon_Inventory_WoodBark_D",
+        "index": 187,
+        "name": "Bark"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.DirtMound",
+        "quantity": 2,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Earth_D.T_UI_Icon_Inventory_Earth_D",
+        "index": 168,
+        "name": "Earth & Stones"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Cobwebs",
+        "quantity": 2,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_CobWebs_D.T_UI_Icon_Inventory_CobWebs_D",
+        "index": 164,
+        "name": "Cobwebs"
+      }
+    ],
+    "size": "Large",
+    "buildTime": 14400,
+    "index": 116
+  },
+  {
+    "tag": "Gameplay.Inventory.Decoration.28",
+    "name": "Algae-Grip Stone",
+    "category": "Decoration",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_den/T_UI_Icon_Den_Decoration_AlgaeStone_D.T_UI_Icon_Den_Decoration_AlgaeStone_D",
+    "costs": [
+      {
+        "tag": "Gameplay.Inventory.Materials.Moss",
+        "quantity": 3,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Moss_D.T_UI_Icon_Inventory_Moss_D",
+        "index": 181,
+        "name": "Moss"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Rock",
+        "quantity": 2,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Stone_D.T_UI_Icon_Inventory_Stone_D",
+        "index": 185,
+        "name": "Rock"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Poppy",
+        "quantity": 7,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Poppy_D.T_UI_Icon_Inventory_Poppy_D",
+        "index": 184,
+        "name": "Poppy"
+      }
+    ],
+    "size": "Large",
+    "buildTime": 172800,
+    "index": 117
+  },
+  {
+    "tag": "Gameplay.Inventory.Decoration.29",
+    "name": "Charcoal Smudge Stick",
+    "category": "Decoration",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_den/T_UI_Icon_Den_Decoration_SmudgeStick_D.T_UI_Icon_Den_Decoration_SmudgeStick_D",
+    "costs": [
+      {
+        "tag": "Gameplay.Inventory.Materials.Rock",
+        "quantity": 2,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Stone_D.T_UI_Icon_Inventory_Stone_D",
+        "index": 185,
+        "name": "Rock"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.SharpeningTreeBark",
+        "quantity": 2,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_WoodBark_D.T_UI_Icon_Inventory_WoodBark_D",
+        "index": 187,
+        "name": "Bark"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Dandelion",
+        "quantity": 7,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Flower_Dandelion_D.T_UI_Icon_Flower_Dandelion_D",
+        "index": 167,
+        "name": "Dandelion"
+      }
+    ],
+    "size": "Large",
+    "buildTime": 43200,
+    "index": 118
+  },
+  {
+    "tag": "Gameplay.Inventory.Decoration.3",
+    "name": "Ivy Weave Basket",
+    "category": "Decoration",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_den/T_UI_Icon_Den_Decoration_IvyWBasket_D.T_UI_Icon_Den_Decoration_IvyWBasket_D",
+    "costs": [
+      {
+        "tag": "Gameplay.Inventory.Materials.Ivy",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Ivy_D.T_UI_Icon_Inventory_Ivy_D",
+        "index": 178,
+        "name": "Ivy"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Pine",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Pine_D.T_UI_Icon_Inventory_Pine_D",
+        "index": 183,
+        "name": "Pine"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Birdnest",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_BirdNest_D.T_UI_Icon_Inventory_BirdNest_D",
+        "index": 158,
+        "name": "Bird Nest"
+      }
+    ],
+    "size": "Medium",
+    "buildTime": 0,
+    "index": 119
+  },
+  {
+    "tag": "Gameplay.Inventory.Decoration.30",
+    "name": "Sturdy Wooden Post",
+    "category": "Decoration",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_den/T_UI_Icon_Den_Decoration_SturdyWoodenPost_D.T_UI_Icon_Den_Decoration_SturdyWoodenPost_D",
+    "costs": [
+      {
+        "tag": "Gameplay.Inventory.Materials.SharpeningTreeBark",
+        "quantity": 2,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_WoodBark_D.T_UI_Icon_Inventory_WoodBark_D",
+        "index": 187,
+        "name": "Bark"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Leaves",
+        "quantity": 2,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Leaves_D.T_UI_Icon_Inventory_Leaves_D",
+        "index": 180,
+        "name": "Dry Leaf"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Ivy",
+        "quantity": 2,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Ivy_D.T_UI_Icon_Inventory_Ivy_D",
+        "index": 178,
+        "name": "Ivy"
+      }
+    ],
+    "size": "Large",
+    "buildTime": 43200,
+    "index": 120
+  },
+  {
+    "tag": "Gameplay.Inventory.Decoration.31",
+    "name": "Moon-Polished Pebble",
+    "category": "Decoration",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_den/T_UI_Icon_Den_Decoration_MoonPolishedPebble_D.T_UI_Icon_Den_Decoration_MoonPolishedPebble_D",
+    "costs": [
+      {
+        "tag": "Gameplay.Inventory.Materials.Rock",
+        "quantity": 2,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Stone_D.T_UI_Icon_Inventory_Stone_D",
+        "index": 185,
+        "name": "Rock"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Dandelion",
+        "quantity": 7,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Flower_Dandelion_D.T_UI_Icon_Flower_Dandelion_D",
+        "index": 167,
+        "name": "Dandelion"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Poppy",
+        "quantity": 5,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Poppy_D.T_UI_Icon_Inventory_Poppy_D",
+        "index": 184,
+        "name": "Poppy"
+      }
+    ],
+    "size": "Tiny",
+    "buildTime": 43200,
+    "index": 121
+  },
+  {
+    "tag": "Gameplay.Inventory.Decoration.32",
+    "name": "Silver Song Bell",
+    "category": "Decoration",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_den/T_UI_Icon_Den_Decoration_SilverSongBell_D.T_UI_Icon_Den_Decoration_SilverSongBell_D",
+    "costs": [
+      {
+        "tag": "Gameplay.Inventory.Materials.Dandelion",
+        "quantity": 9,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Flower_Dandelion_D.T_UI_Icon_Flower_Dandelion_D",
+        "index": 167,
+        "name": "Dandelion"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Poppy",
+        "quantity": 7,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Poppy_D.T_UI_Icon_Inventory_Poppy_D",
+        "index": 184,
+        "name": "Poppy"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Cotton",
+        "quantity": 5,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Cotton_D.T_UI_Icon_Inventory_Cotton_D",
+        "index": 166,
+        "name": "Cotton"
+      }
+    ],
+    "size": "Pendant",
+    "buildTime": 172800,
+    "index": 122
+  },
+  {
+    "tag": "Gameplay.Inventory.Decoration.33",
+    "name": "Rainbow Jewelry Beads",
+    "category": "Decoration",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_den/T_UI_Icon_Den_Decoration_RainbowJewelryBeads_D.T_UI_Icon_Den_Decoration_RainbowJewelryBeads_D",
+    "costs": [
+      {
+        "tag": "Gameplay.Inventory.Materials.Rock",
+        "quantity": 2,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Stone_D.T_UI_Icon_Inventory_Stone_D",
+        "index": 185,
+        "name": "Rock"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Rope",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Rope_D.T_UI_Icon_Inventory_Rope_D",
+        "index": 186,
+        "name": "Rope"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.BerryFern",
+        "quantity": 2,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Fern_D.T_UI_Icon_Inventory_Fern_D",
+        "index": 157,
+        "name": "Fern"
+      }
+    ],
+    "size": "Pendant",
+    "buildTime": 172800,
+    "index": 123
+  },
+  {
+    "tag": "Gameplay.Inventory.Decoration.34",
+    "name": "Neon Tangle Laces",
+    "category": "Decoration",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_den/T_UI_Icon_Den_Decoration_NeonTangleLaces_D.T_UI_Icon_Den_Decoration_NeonTangleLaces_D",
+    "costs": [
+      {
+        "tag": "Gameplay.Inventory.Materials.Rope",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Rope_D.T_UI_Icon_Inventory_Rope_D",
+        "index": 186,
+        "name": "Rope"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Cobwebs",
+        "quantity": 3,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_CobWebs_D.T_UI_Icon_Inventory_CobWebs_D",
+        "index": 164,
+        "name": "Cobwebs"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Fur",
+        "quantity": 2,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Fur_D.T_UI_Icon_Inventory_Fur_D",
+        "index": 175,
+        "name": "Fur"
+      }
+    ],
+    "size": "Pendant",
+    "buildTime": 43200,
+    "index": 124
+  },
+  {
+    "tag": "Gameplay.Inventory.Decoration.35",
+    "name": "River Jewel Glass",
+    "category": "Decoration",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_den/T_UI_Icon_Den_Decoration_OceanJewelGlass_D.T_UI_Icon_Den_Decoration_OceanJewelGlass_D",
+    "costs": [
+      {
+        "tag": "Gameplay.Inventory.Materials.CattailReed",
+        "quantity": 3,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Reed_D.T_UI_Icon_Inventory_Reed_D",
+        "index": 163,
+        "name": "Reed"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Rock",
+        "quantity": 2,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Stone_D.T_UI_Icon_Inventory_Stone_D",
+        "index": 185,
+        "name": "Rock"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Rope",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Rope_D.T_UI_Icon_Inventory_Rope_D",
+        "index": 186,
+        "name": "Rope"
+      }
+    ],
+    "size": "Tiny",
+    "buildTime": 172800,
+    "index": 125
+  },
+  {
+    "tag": "Gameplay.Inventory.Decoration.36",
+    "name": "Badger Talon Relic",
+    "category": "Decoration",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_den/T_UI_Icon_Den_Decoration_BadgerTalonRelic_D.T_UI_Icon_Den_Decoration_BadgerTalonRelic_D",
+    "costs": [
+      {
+        "tag": "Gameplay.Inventory.Materials.Fur",
+        "quantity": 2,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Fur_D.T_UI_Icon_Inventory_Fur_D",
+        "index": 175,
+        "name": "Fur"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Rope",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Rope_D.T_UI_Icon_Inventory_Rope_D",
+        "index": 186,
+        "name": "Rope"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Bone",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Bone_D.T_UI_Icon_Inventory_Bone_D",
+        "index": 159,
+        "name": "Bone"
+      }
+    ],
+    "size": "Tiny",
+    "buildTime": 43200,
+    "index": 126
+  },
+  {
+    "tag": "Gameplay.Inventory.Decoration.37",
+    "name": "Wolf Tooth Charm",
+    "category": "Decoration",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_den/T_UI_Icon_Den_Decoration_WolfToothCharm_D.T_UI_Icon_Den_Decoration_WolfToothCharm_D",
+    "costs": [
+      {
+        "tag": "Gameplay.Inventory.Materials.Bone",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Bone_D.T_UI_Icon_Inventory_Bone_D",
+        "index": 159,
+        "name": "Bone"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Fur",
+        "quantity": 2,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Fur_D.T_UI_Icon_Inventory_Fur_D",
+        "index": 175,
+        "name": "Fur"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Rope",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Rope_D.T_UI_Icon_Inventory_Rope_D",
+        "index": 186,
+        "name": "Rope"
+      }
+    ],
+    "size": "Tiny",
+    "buildTime": 172800,
+    "index": 127
+  },
+  {
+    "tag": "Gameplay.Inventory.Decoration.38",
+    "name": "Shimmering Snake Skin",
+    "category": "Decoration",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_den/T_UI_Icon_Den_Decoration_ShimmeringSnakeSkin_D.T_UI_Icon_Den_Decoration_ShimmeringSnakeSkin_D",
+    "costs": [
+      {
+        "tag": "Gameplay.Inventory.Materials.Moss",
+        "quantity": 3,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Moss_D.T_UI_Icon_Inventory_Moss_D",
+        "index": 181,
+        "name": "Moss"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Rope",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Rope_D.T_UI_Icon_Inventory_Rope_D",
+        "index": 186,
+        "name": "Rope"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Oakgall",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Oakgall_D.T_UI_Icon_Inventory_Oakgall_D",
+        "index": 182,
+        "name": "Oak Gall"
+      }
+    ],
+    "size": "Tiny",
+    "buildTime": 43200,
+    "index": 128
+  },
+  {
+    "tag": "Gameplay.Inventory.Decoration.39",
+    "name": "Tiny Rat Skull",
+    "category": "Decoration",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_den/T_UI_Icon_Den_Decoration_TinyRatSkull_D.T_UI_Icon_Den_Decoration_TinyRatSkull_D",
+    "costs": [
+      {
+        "tag": "Gameplay.Inventory.Materials.Bone",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Bone_D.T_UI_Icon_Inventory_Bone_D",
+        "index": 159,
+        "name": "Bone"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Oakgall",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Oakgall_D.T_UI_Icon_Inventory_Oakgall_D",
+        "index": 182,
+        "name": "Oak Gall"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Dandelion",
+        "quantity": 7,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Flower_Dandelion_D.T_UI_Icon_Flower_Dandelion_D",
+        "index": 167,
+        "name": "Dandelion"
+      }
+    ],
+    "size": "Tiny",
+    "buildTime": 43200,
+    "index": 129
+  },
+  {
+    "tag": "Gameplay.Inventory.Decoration.4",
+    "name": "Pine Needle Cushion",
+    "category": "Decoration",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_den/T_UI_Icon_Den_Decoration_PineNCushion_D.T_UI_Icon_Den_Decoration_PineNCushion_D",
+    "costs": [
+      {
+        "tag": "Gameplay.Inventory.Materials.Pine",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Pine_D.T_UI_Icon_Inventory_Pine_D",
+        "index": 183,
+        "name": "Pine"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Cotton",
+        "quantity": 3,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Cotton_D.T_UI_Icon_Inventory_Cotton_D",
+        "index": 166,
+        "name": "Cotton"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Fur",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Fur_D.T_UI_Icon_Inventory_Fur_D",
+        "index": 175,
+        "name": "Fur"
+      }
+    ],
+    "size": "Medium",
+    "buildTime": 14400,
+    "index": 130
+  },
+  {
+    "tag": "Gameplay.Inventory.Decoration.40",
+    "name": "Glittering Creek Lure",
+    "category": "Decoration",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_den/T_UI_Icon_Den_Decoration_GlitteringCreekLure_D.T_UI_Icon_Den_Decoration_GlitteringCreekLure_D",
+    "costs": [
+      {
+        "tag": "Gameplay.Inventory.Materials.Rock",
+        "quantity": 2,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Stone_D.T_UI_Icon_Inventory_Stone_D",
+        "index": 185,
+        "name": "Rock"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Pine",
+        "quantity": 2,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Pine_D.T_UI_Icon_Inventory_Pine_D",
+        "index": 183,
+        "name": "Pine"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.CattailReed",
+        "quantity": 3,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Reed_D.T_UI_Icon_Inventory_Reed_D",
+        "index": 163,
+        "name": "Reed"
+      }
+    ],
+    "size": "Pendant",
+    "buildTime": 172800,
+    "index": 131
+  },
+  {
+    "tag": "Gameplay.Inventory.Decoration.41",
+    "name": "Spiral Sea Shell",
+    "category": "Decoration",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_den/T_UI_Icon_Den_Decoration_SeaShell_D.T_UI_Icon_Den_Decoration_SeaShell_D",
+    "costs": [
+      {
+        "tag": "Gameplay.Inventory.Materials.Bone",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Bone_D.T_UI_Icon_Inventory_Bone_D",
+        "index": 159,
+        "name": "Bone"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.CattailReed",
+        "quantity": 3,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Reed_D.T_UI_Icon_Inventory_Reed_D",
+        "index": 163,
+        "name": "Reed"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Oakgall",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Oakgall_D.T_UI_Icon_Inventory_Oakgall_D",
+        "index": 182,
+        "name": "Oak Gall"
+      }
+    ],
+    "size": "Tiny",
+    "buildTime": 172800,
+    "index": 132
+  },
+  {
+    "tag": "Gameplay.Inventory.Decoration.42",
+    "name": "Painted Wing Beauty",
+    "category": "Decoration",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_den/T_UI_Icon_Den_Decoration_WingBeauty_D.T_UI_Icon_Den_Decoration_WingBeauty_D",
+    "costs": [
+      {
+        "tag": "Gameplay.Inventory.Materials.Birdnest",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_BirdNest_D.T_UI_Icon_Inventory_BirdNest_D",
+        "index": 158,
+        "name": "Bird Nest"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Fur",
+        "quantity": 2,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Fur_D.T_UI_Icon_Inventory_Fur_D",
+        "index": 175,
+        "name": "Fur"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Cotton",
+        "quantity": 5,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Cotton_D.T_UI_Icon_Inventory_Cotton_D",
+        "index": 166,
+        "name": "Cotton"
+      }
+    ],
+    "size": "Pendant",
+    "buildTime": 172800,
+    "index": 133
+  },
+  {
+    "tag": "Gameplay.Inventory.Decoration.43",
+    "name": "Twin-Point Antler",
+    "category": "Decoration",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_den/T_UI_Icon_Den_Decoration_TwinPointAntler_D.T_UI_Icon_Den_Decoration_TwinPointAntler_D",
+    "costs": [
+      {
+        "tag": "Gameplay.Inventory.Materials.Bone",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Bone_D.T_UI_Icon_Inventory_Bone_D",
+        "index": 159,
+        "name": "Bone"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Fur",
+        "quantity": 2,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Fur_D.T_UI_Icon_Inventory_Fur_D",
+        "index": 175,
+        "name": "Fur"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Cobwebs",
+        "quantity": 3,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_CobWebs_D.T_UI_Icon_Inventory_CobWebs_D",
+        "index": 164,
+        "name": "Cobwebs"
+      }
+    ],
+    "size": "Tiny",
+    "buildTime": 172800,
+    "index": 134
+  },
+  {
+    "tag": "Gameplay.Inventory.Decoration.44",
+    "name": "Silk Weaver Spider",
+    "category": "Decoration",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_den/T_UI_Icon_Den_Decoration_SilkWeawer_D.T_UI_Icon_Den_Decoration_SilkWeawer_D",
+    "costs": [
+      {
+        "tag": "Gameplay.Inventory.Materials.Moss",
+        "quantity": 3,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Moss_D.T_UI_Icon_Inventory_Moss_D",
+        "index": 181,
+        "name": "Moss"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Bone",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Bone_D.T_UI_Icon_Inventory_Bone_D",
+        "index": 159,
+        "name": "Bone"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Ivy",
+        "quantity": 2,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Ivy_D.T_UI_Icon_Inventory_Ivy_D",
+        "index": 178,
+        "name": "Ivy"
+      }
+    ],
+    "size": "Pendant",
+    "buildTime": 172800,
+    "index": 135
+  },
+  {
+    "tag": "Gameplay.Inventory.Decoration.45",
+    "name": "Spiral Shell Traveler",
+    "category": "Decoration",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_den/T_UI_Icon_Den_Decoration_SpiralShellTraveler_D.T_UI_Icon_Den_Decoration_SpiralShellTraveler_D",
+    "costs": [
+      {
+        "tag": "Gameplay.Inventory.Materials.Bone",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Bone_D.T_UI_Icon_Inventory_Bone_D",
+        "index": 159,
+        "name": "Bone"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.CattailReed",
+        "quantity": 3,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Reed_D.T_UI_Icon_Inventory_Reed_D",
+        "index": 163,
+        "name": "Reed"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Rope",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Rope_D.T_UI_Icon_Inventory_Rope_D",
+        "index": 186,
+        "name": "Rope"
+      }
+    ],
+    "size": "Pendant",
+    "buildTime": 43200,
+    "index": 136
+  },
+  {
+    "tag": "Gameplay.Inventory.Decoration.46",
+    "name": "Crown Bottle Cap",
+    "category": "Decoration",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_den/T_UI_Icon_Den_Decoration_CrownBottleCap_D.T_UI_Icon_Den_Decoration_CrownBottleCap_D",
+    "costs": [
+      {
+        "tag": "Gameplay.Inventory.Materials.Rock",
+        "quantity": 2,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Stone_D.T_UI_Icon_Inventory_Stone_D",
+        "index": 185,
+        "name": "Rock"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Dandelion",
+        "quantity": 9,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Flower_Dandelion_D.T_UI_Icon_Flower_Dandelion_D",
+        "index": 167,
+        "name": "Dandelion"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Heather",
+        "quantity": 2,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Flower_Heather_D.T_UI_Icon_Flower_Heather_D",
+        "index": 177,
+        "name": "Heather"
+      }
+    ],
+    "size": "Tiny",
+    "buildTime": 172800,
+    "index": 137
+  },
+  {
+    "tag": "Gameplay.Inventory.Decoration.47",
+    "name": "Secret-Gate Key",
+    "category": "Decoration",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_den/T_UI_Icon_Den_Decoration_SecretGateKey_D.T_UI_Icon_Den_Decoration_SecretGateKey_D",
+    "costs": [
+      {
+        "tag": "Gameplay.Inventory.Materials.Rock",
+        "quantity": 2,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Stone_D.T_UI_Icon_Inventory_Stone_D",
+        "index": 185,
+        "name": "Rock"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Moss",
+        "quantity": 3,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Moss_D.T_UI_Icon_Inventory_Moss_D",
+        "index": 181,
+        "name": "Moss"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Birdnest",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_BirdNest_D.T_UI_Icon_Inventory_BirdNest_D",
+        "index": 158,
+        "name": "Bird Nest"
+      }
+    ],
+    "size": "Pendant",
+    "buildTime": 43200,
+    "index": 138
+  },
+  {
+    "tag": "Gameplay.Inventory.Decoration.48",
+    "name": "Wild Bird Feathers",
+    "category": "Decoration",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_den/T_UI_Icon_Den_Decoration_WildBirdFeathers_D.T_UI_Icon_Den_Decoration_WildBirdFeathers_D",
+    "costs": [
+      {
+        "tag": "Gameplay.Inventory.Materials.Birdnest",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_BirdNest_D.T_UI_Icon_Inventory_BirdNest_D",
+        "index": 158,
+        "name": "Bird Nest"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Fur",
+        "quantity": 2,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Fur_D.T_UI_Icon_Inventory_Fur_D",
+        "index": 175,
+        "name": "Fur"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Cobwebs",
+        "quantity": 3,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_CobWebs_D.T_UI_Icon_Inventory_CobWebs_D",
+        "index": 164,
+        "name": "Cobwebs"
+      }
+    ],
+    "size": "Tiny",
+    "buildTime": 172800,
+    "index": 139
+  },
+  {
+    "tag": "Gameplay.Inventory.Decoration.49",
+    "name": "Colorful Thread Snarl",
+    "category": "Decoration",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_den/T_UI_Icon_Den_Decoration_ColorfulThreadSnarl_D.T_UI_Icon_Den_Decoration_ColorfulThreadSnarl_D",
+    "costs": [
+      {
+        "tag": "Gameplay.Inventory.Materials.Rope",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Rope_D.T_UI_Icon_Inventory_Rope_D",
+        "index": 186,
+        "name": "Rope"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Poppy",
+        "quantity": 7,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Poppy_D.T_UI_Icon_Inventory_Poppy_D",
+        "index": 184,
+        "name": "Poppy"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Cobwebs",
+        "quantity": 3,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_CobWebs_D.T_UI_Icon_Inventory_CobWebs_D",
+        "index": 164,
+        "name": "Cobwebs"
+      }
+    ],
+    "size": "Tiny",
+    "buildTime": 172800,
+    "index": 140
+  },
+  {
+    "tag": "Gameplay.Inventory.Decoration.5",
+    "name": "Velvet Moss Mat",
+    "category": "Decoration",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_den/T_UI_Icon_Den_Decoration_MossMat_D.T_UI_Icon_Den_Decoration_MossMat_D",
+    "costs": [
+      {
+        "tag": "Gameplay.Inventory.Materials.Moss",
+        "quantity": 2,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Moss_D.T_UI_Icon_Inventory_Moss_D",
+        "index": 181,
+        "name": "Moss"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Fur",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Fur_D.T_UI_Icon_Inventory_Fur_D",
+        "index": 175,
+        "name": "Fur"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Heather",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Flower_Heather_D.T_UI_Icon_Flower_Heather_D",
+        "index": 177,
+        "name": "Heather"
+      }
+    ],
+    "size": "Medium",
+    "buildTime": 14400,
+    "index": 141
+  },
+  {
+    "tag": "Gameplay.Inventory.Decoration.50",
+    "name": "Giant’s Oak Marble",
+    "category": "Decoration",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_den/T_UI_Icon_Den_Decoration_GiantOakMarble_D.T_UI_Icon_Den_Decoration_GiantOakMarble_D",
+    "costs": [
+      {
+        "tag": "Gameplay.Inventory.Materials.Oakgall",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Oakgall_D.T_UI_Icon_Inventory_Oakgall_D",
+        "index": 182,
+        "name": "Oak Gall"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Rock",
+        "quantity": 2,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Stone_D.T_UI_Icon_Inventory_Stone_D",
+        "index": 185,
+        "name": "Rock"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Heather",
+        "quantity": 2,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Flower_Heather_D.T_UI_Icon_Flower_Heather_D",
+        "index": 177,
+        "name": "Heather"
+      }
+    ],
+    "size": "Tiny",
+    "buildTime": 43200,
+    "index": 142
+  },
+  {
+    "tag": "Gameplay.Inventory.Decoration.51",
+    "name": "Woody Oak Gall",
+    "category": "Decoration",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_den/T_UI_Icon_Den_Decoration_WoodyOakGall_D.T_UI_Icon_Den_Decoration_WoodyOakGall_D",
+    "costs": [
+      {
+        "tag": "Gameplay.Inventory.Materials.Oakgall",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Oakgall_D.T_UI_Icon_Inventory_Oakgall_D",
+        "index": 182,
+        "name": "Oak Gall"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.SharpeningTreeBark",
+        "quantity": 2,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_WoodBark_D.T_UI_Icon_Inventory_WoodBark_D",
+        "index": 187,
+        "name": "Bark"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Ivy",
+        "quantity": 2,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Ivy_D.T_UI_Icon_Inventory_Ivy_D",
+        "index": 178,
+        "name": "Ivy"
+      }
+    ],
+    "size": "Tiny",
+    "buildTime": 43200,
+    "index": 143
+  },
+  {
+    "tag": "Gameplay.Inventory.Decoration.52",
+    "name": "Glittering Moonstone Shard",
+    "category": "Decoration",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_den/T_UI_Icon_Den_Decoration_QuartzChunk_D.T_UI_Icon_Den_Decoration_QuartzChunk_D",
+    "costs": [
+      {
+        "tag": "Gameplay.Inventory.Materials.Rock",
+        "quantity": 2,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Stone_D.T_UI_Icon_Inventory_Stone_D",
+        "index": 185,
+        "name": "Rock"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Poppy",
+        "quantity": 7,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Poppy_D.T_UI_Icon_Inventory_Poppy_D",
+        "index": 184,
+        "name": "Poppy"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Birdnest",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_BirdNest_D.T_UI_Icon_Inventory_BirdNest_D",
+        "index": 158,
+        "name": "Bird Nest"
+      }
+    ],
+    "size": "Tiny",
+    "buildTime": 172800,
+    "index": 144
+  },
+  {
+    "tag": "Gameplay.Inventory.Decoration.53",
+    "name": "Dried Poppy Rattle",
+    "category": "Decoration",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_den/T_UI_Icon_Den_Decoration_PoppyRattle_D.T_UI_Icon_Den_Decoration_PoppyRattle_D",
+    "costs": [
+      {
+        "tag": "Gameplay.Inventory.Materials.Poppy",
+        "quantity": 5,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Poppy_D.T_UI_Icon_Inventory_Poppy_D",
+        "index": 184,
+        "name": "Poppy"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Oakgall",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Oakgall_D.T_UI_Icon_Inventory_Oakgall_D",
+        "index": 182,
+        "name": "Oak Gall"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Leaves",
+        "quantity": 2,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Leaves_D.T_UI_Icon_Inventory_Leaves_D",
+        "index": 180,
+        "name": "Dry Leaf"
+      }
+    ],
+    "size": "Tiny",
+    "buildTime": 43200,
+    "index": 145
+  },
+  {
+    "tag": "Gameplay.Inventory.Decoration.54",
+    "name": "Silken Streamer Ribbon",
+    "category": "Decoration",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_den/T_UI_Icon_Den_Decoration_SilkenStreamerRibbon_D.T_UI_Icon_Den_Decoration_SilkenStreamerRibbon_D",
+    "costs": [
+      {
+        "tag": "Gameplay.Inventory.Materials.Rope",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Rope_D.T_UI_Icon_Inventory_Rope_D",
+        "index": 186,
+        "name": "Rope"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Cotton",
+        "quantity": 5,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Cotton_D.T_UI_Icon_Inventory_Cotton_D",
+        "index": 166,
+        "name": "Cotton"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Poppy",
+        "quantity": 7,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Poppy_D.T_UI_Icon_Inventory_Poppy_D",
+        "index": 184,
+        "name": "Poppy"
+      }
+    ],
+    "size": "Pendant",
+    "buildTime": 172800,
+    "index": 146
+  },
+  {
+    "tag": "Gameplay.Inventory.Decoration.55",
+    "name": "Spiky Pine Cone",
+    "category": "Decoration",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_den/T_UI_Icon_Den_Decoration_SpikyPineCone_D.T_UI_Icon_Den_Decoration_SpikyPineCone_D",
+    "costs": [
+      {
+        "tag": "Gameplay.Inventory.Materials.Pine",
+        "quantity": 2,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Pine_D.T_UI_Icon_Inventory_Pine_D",
+        "index": 183,
+        "name": "Pine"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Leaves",
+        "quantity": 2,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Leaves_D.T_UI_Icon_Inventory_Leaves_D",
+        "index": 180,
+        "name": "Dry Leaf"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Ivy",
+        "quantity": 2,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Ivy_D.T_UI_Icon_Inventory_Ivy_D",
+        "index": 178,
+        "name": "Ivy"
+      }
+    ],
+    "size": "Interactable",
+    "buildTime": 43200,
+    "index": 147
+  },
+  {
+    "tag": "Gameplay.Inventory.Decoration.56",
+    "name": "Rolling Straw Ball",
+    "category": "Decoration",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_den/T_UI_Icon_Den_Decoration_RollingStrawBall_D.T_UI_Icon_Den_Decoration_RollingStrawBall_D",
+    "costs": [
+      {
+        "tag": "Gameplay.Inventory.Materials.Birdnest",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_BirdNest_D.T_UI_Icon_Inventory_BirdNest_D",
+        "index": 158,
+        "name": "Bird Nest"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Pine",
+        "quantity": 2,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Pine_D.T_UI_Icon_Inventory_Pine_D",
+        "index": 183,
+        "name": "Pine"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.BerryFern",
+        "quantity": 2,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Fern_D.T_UI_Icon_Inventory_Fern_D",
+        "index": 157,
+        "name": "Fern"
+      }
+    ],
+    "size": "Interactable",
+    "buildTime": 43200,
+    "index": 148
+  },
+  {
+    "tag": "Gameplay.Inventory.Decoration.57",
+    "name": "Amber Resin Globe",
+    "category": "Decoration",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_den/T_UI_Icon_Den_Decoration_ResinGlobe_D.T_UI_Icon_Den_Decoration_ResinGlobe_D",
+    "costs": [
+      {
+        "tag": "Gameplay.Inventory.Materials.Rock",
+        "quantity": 2,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Stone_D.T_UI_Icon_Inventory_Stone_D",
+        "index": 185,
+        "name": "Rock"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Oakgall",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Oakgall_D.T_UI_Icon_Inventory_Oakgall_D",
+        "index": 182,
+        "name": "Oak Gall"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Cobwebs",
+        "quantity": 3,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_CobWebs_D.T_UI_Icon_Inventory_CobWebs_D",
+        "index": 164,
+        "name": "Cobwebs"
+      }
+    ],
+    "size": "Interactable",
+    "buildTime": 172800,
+    "index": 149
+  },
+  {
+    "tag": "Gameplay.Inventory.Decoration.58",
+    "name": "Wild Briar Nest",
+    "category": "Decoration",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_den/T_UI_Icon_Den_Decoration_BriarNest_D.T_UI_Icon_Den_Decoration_BriarNest_D",
+    "costs": [
+      {
+        "tag": "Gameplay.Inventory.Materials.Birdnest",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_BirdNest_D.T_UI_Icon_Inventory_BirdNest_D",
+        "index": 158,
+        "name": "Bird Nest"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Rope",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Rope_D.T_UI_Icon_Inventory_Rope_D",
+        "index": 186,
+        "name": "Rope"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.BerryFern",
+        "quantity": 2,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Fern_D.T_UI_Icon_Inventory_Fern_D",
+        "index": 157,
+        "name": "Fern"
+      }
+    ],
+    "size": "Interactable",
+    "buildTime": 43200,
+    "index": 150
+  },
+  {
+    "tag": "Gameplay.Inventory.Decoration.59",
+    "name": "Fern Knot Tangle",
+    "category": "Decoration",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_den/T_UI_Icon_Den_Decoration_FernKnotTangle_D.T_UI_Icon_Den_Decoration_FernKnotTangle_D",
+    "costs": [
+      {
+        "tag": "Gameplay.Inventory.Materials.BerryFern",
+        "quantity": 2,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Fern_D.T_UI_Icon_Inventory_Fern_D",
+        "index": 157,
+        "name": "Fern"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Rope",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Rope_D.T_UI_Icon_Inventory_Rope_D",
+        "index": 186,
+        "name": "Rope"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Cobwebs",
+        "quantity": 3,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_CobWebs_D.T_UI_Icon_Inventory_CobWebs_D",
+        "index": 164,
+        "name": "Cobwebs"
+      }
+    ],
+    "size": "Interactable",
+    "buildTime": 43200,
+    "index": 151
+  },
+  {
+    "tag": "Gameplay.Inventory.Decoration.6",
+    "name": "River Reed Cradle",
+    "category": "Decoration",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_den/T_UI_Icon_Den_Decoration_RiverCradle_D.T_UI_Icon_Den_Decoration_RiverCradle_D",
+    "costs": [
+      {
+        "tag": "Gameplay.Inventory.Materials.CattailReed",
+        "quantity": 2,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Reed_D.T_UI_Icon_Inventory_Reed_D",
+        "index": 163,
+        "name": "Reed"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Birdnest",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_BirdNest_D.T_UI_Icon_Inventory_BirdNest_D",
+        "index": 158,
+        "name": "Bird Nest"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Oakgall",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Oakgall_D.T_UI_Icon_Inventory_Oakgall_D",
+        "index": 182,
+        "name": "Oak Gall"
+      }
+    ],
+    "size": "Medium",
+    "buildTime": 14400,
+    "index": 152
+  },
+  {
+    "tag": "Gameplay.Inventory.Decoration.60",
+    "name": "Sailor’s Rope Knot",
+    "category": "Decoration",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_den/T_UI_Icon_Den_Decoration_RopeKnot_D.T_UI_Icon_Den_Decoration_RopeKnot_D",
+    "costs": [
+      {
+        "tag": "Gameplay.Inventory.Materials.Rope",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Rope_D.T_UI_Icon_Inventory_Rope_D",
+        "index": 186,
+        "name": "Rope"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.CattailReed",
+        "quantity": 3,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Reed_D.T_UI_Icon_Inventory_Reed_D",
+        "index": 163,
+        "name": "Reed"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Birdnest",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_BirdNest_D.T_UI_Icon_Inventory_BirdNest_D",
+        "index": 158,
+        "name": "Bird Nest"
+      }
+    ],
+    "size": "Interactable",
+    "buildTime": 43200,
+    "index": 153
+  },
+  {
+    "tag": "Gameplay.Inventory.Decoration.7",
+    "name": "Fern Frond Bed",
+    "category": "Decoration",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_den/T_UI_Icon_Den_Decoration_FernBed_D.T_UI_Icon_Den_Decoration_FernBed_D",
+    "costs": [
+      {
+        "tag": "Gameplay.Inventory.Materials.BerryFern",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Fern_D.T_UI_Icon_Inventory_Fern_D",
+        "index": 157,
+        "name": "Fern"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Leaves",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Leaves_D.T_UI_Icon_Inventory_Leaves_D",
+        "index": 180,
+        "name": "Dry Leaf"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Cobwebs",
+        "quantity": 2,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_CobWebs_D.T_UI_Icon_Inventory_CobWebs_D",
+        "index": 164,
+        "name": "Cobwebs"
+      }
+    ],
+    "size": "Medium",
+    "buildTime": 14400,
+    "index": 154
+  },
+  {
+    "tag": "Gameplay.Inventory.Decoration.8",
+    "name": "Bog Cotton Cloud",
+    "category": "Decoration",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_den/T_UI_Icon_Den_Decoration_CottonCloud.T_UI_Icon_Den_Decoration_CottonCloud",
+    "costs": [
+      {
+        "tag": "Gameplay.Inventory.Materials.Cotton",
+        "quantity": 4,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Cotton_D.T_UI_Icon_Inventory_Cotton_D",
+        "index": 166,
+        "name": "Cotton"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Fur",
+        "quantity": 2,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Fur_D.T_UI_Icon_Inventory_Fur_D",
+        "index": 175,
+        "name": "Fur"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.CattailReed",
+        "quantity": 3,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Reed_D.T_UI_Icon_Inventory_Reed_D",
+        "index": 163,
+        "name": "Reed"
+      }
+    ],
+    "size": "Medium",
+    "buildTime": 43200,
+    "index": 155
+  },
+  {
+    "tag": "Gameplay.Inventory.Decoration.9",
+    "name": "Shadow Moss Braid",
+    "category": "Decoration",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_den/T_UI_Icon_Den_Decoration_ShadowMoss_D.T_UI_Icon_Den_Decoration_ShadowMoss_D",
+    "costs": [
+      {
+        "tag": "Gameplay.Inventory.Materials.Moss",
+        "quantity": 2,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Moss_D.T_UI_Icon_Inventory_Moss_D",
+        "index": 181,
+        "name": "Moss"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.Rope",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Rope_D.T_UI_Icon_Inventory_Rope_D",
+        "index": 186,
+        "name": "Rope"
+      },
+      {
+        "tag": "Gameplay.Inventory.Materials.BerryFern",
+        "quantity": 1,
+        "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Fern_D.T_UI_Icon_Inventory_Fern_D",
+        "index": 157,
+        "name": "Fern"
+      }
+    ],
+    "size": "Medium",
+    "buildTime": 14400,
+    "index": 156
+  },
+  {
+    "tag": "Gameplay.Inventory.Materials.BerryFern",
+    "name": "Fern",
+    "category": "Materials",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Fern_D.T_UI_Icon_Inventory_Fern_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 157
+  },
+  {
+    "tag": "Gameplay.Inventory.Materials.Birdnest",
+    "name": "Bird Nest",
+    "category": "Materials",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_BirdNest_D.T_UI_Icon_Inventory_BirdNest_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 158
+  },
+  {
+    "tag": "Gameplay.Inventory.Materials.Bone",
+    "name": "Bone",
+    "category": "Materials",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Bone_D.T_UI_Icon_Inventory_Bone_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 159
+  },
+  {
+    "tag": "Gameplay.Inventory.Materials.Borage",
+    "name": "Borage Flowers",
+    "category": "Materials",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Flower_Lavender_D.T_UI_Icon_Flower_Lavender_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 160
+  },
+  {
+    "tag": "Gameplay.Inventory.Materials.Broom",
+    "name": "Broom Flowers",
+    "category": "Materials",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Flower_Broom_D.T_UI_Icon_Flower_Broom_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 161
+  },
+  {
+    "tag": "Gameplay.Inventory.Materials.Burdock",
+    "name": "Burdock Root",
+    "category": "Materials",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Root_Burdock_D.T_UI_Icon_Inventory_Root_Burdock_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 162
+  },
+  {
+    "tag": "Gameplay.Inventory.Materials.CattailReed",
+    "name": "Reed",
+    "category": "Materials",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Reed_D.T_UI_Icon_Inventory_Reed_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 163
+  },
+  {
+    "tag": "Gameplay.Inventory.Materials.Cobwebs",
+    "name": "Cobwebs",
+    "category": "Materials",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_CobWebs_D.T_UI_Icon_Inventory_CobWebs_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 164
+  },
+  {
+    "tag": "Gameplay.Inventory.Materials.Comfrey",
+    "name": "Comfrey Leaves",
+    "category": "Materials",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Flower_Comfrey_D.T_UI_Icon_Flower_Comfrey_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 165
+  },
+  {
+    "tag": "Gameplay.Inventory.Materials.Cotton",
+    "name": "Cotton",
+    "category": "Materials",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Cotton_D.T_UI_Icon_Inventory_Cotton_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 166
+  },
+  {
+    "tag": "Gameplay.Inventory.Materials.Dandelion",
+    "name": "Dandelion",
+    "category": "Materials",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Flower_Dandelion_D.T_UI_Icon_Flower_Dandelion_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 167
+  },
+  {
+    "tag": "Gameplay.Inventory.Materials.DirtMound",
+    "name": "Earth & Stones",
+    "category": "Materials",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Earth_D.T_UI_Icon_Inventory_Earth_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 168
+  },
+  {
+    "tag": "Gameplay.Inventory.Materials.FreshKill.Bird",
+    "name": "Bird Fresh-kill",
+    "category": "Fresh-kill",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Bird_D.T_UI_Icon_Inventory_Bird_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 169
+  },
+  {
+    "tag": "Gameplay.Inventory.Materials.FreshKill.Fish",
+    "name": "Fish Fresh-kill",
+    "category": "Fresh-kill",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Fish_D.T_UI_Icon_Inventory_Fish_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 170
+  },
+  {
+    "tag": "Gameplay.Inventory.Materials.FreshKill.Mice",
+    "name": "Mouse Fresh-kill",
+    "category": "Fresh-kill",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Mice_D.T_UI_Icon_Inventory_Mice_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 171
+  },
+  {
+    "tag": "Gameplay.Inventory.Materials.FreshKill.Rabbit",
+    "name": "Rabbit Fresh-kill",
+    "category": "Fresh-kill",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Rabbit_D.T_UI_Icon_Inventory_Rabbit_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 172
+  },
+  {
+    "tag": "Gameplay.Inventory.Materials.FreshKill.Rat",
+    "name": "Rat Fresh-kill",
+    "category": "Fresh-kill",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Rat_D.T_UI_Icon_Inventory_Rat_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 173
+  },
+  {
+    "tag": "Gameplay.Inventory.Materials.FreshKill.Squirrel",
+    "name": "Squirrel Fresh-kill",
+    "category": "Fresh-kill",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Squirrel_D.T_UI_Icon_Inventory_Squirrel_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 174
+  },
+  {
+    "tag": "Gameplay.Inventory.Materials.Fur",
+    "name": "Fur",
+    "category": "Materials",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Fur_D.T_UI_Icon_Inventory_Fur_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 175
+  },
+  {
+    "tag": "Gameplay.Inventory.Materials.Goldenrod",
+    "name": "Goldenrod Flowers",
+    "category": "Materials",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Flower_Goldenrod_D.T_UI_Icon_Flower_Goldenrod_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 176
+  },
+  {
+    "tag": "Gameplay.Inventory.Materials.Heather",
+    "name": "Heather",
+    "category": "Materials",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Flower_Heather_D.T_UI_Icon_Flower_Heather_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 177
+  },
+  {
+    "tag": "Gameplay.Inventory.Materials.Ivy",
+    "name": "Ivy",
+    "category": "Materials",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Ivy_D.T_UI_Icon_Inventory_Ivy_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 178
+  },
+  {
+    "tag": "Gameplay.Inventory.Materials.Juniper",
+    "name": "Juniper Berries",
+    "category": "Materials",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Juniperberries_D.T_UI_Icon_Inventory_Juniperberries_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 179
+  },
+  {
+    "tag": "Gameplay.Inventory.Materials.Leaves",
+    "name": "Dry Leaf",
+    "category": "Materials",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Leaves_D.T_UI_Icon_Inventory_Leaves_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 180
+  },
+  {
+    "tag": "Gameplay.Inventory.Materials.Moss",
+    "name": "Moss",
+    "category": "Materials",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Moss_D.T_UI_Icon_Inventory_Moss_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 181
+  },
+  {
+    "tag": "Gameplay.Inventory.Materials.Oakgall",
+    "name": "Oak Gall",
+    "category": "Materials",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Oakgall_D.T_UI_Icon_Inventory_Oakgall_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 182
+  },
+  {
+    "tag": "Gameplay.Inventory.Materials.Pine",
+    "name": "Pine",
+    "category": "Materials",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Pine_D.T_UI_Icon_Inventory_Pine_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 183
+  },
+  {
+    "tag": "Gameplay.Inventory.Materials.Poppy",
+    "name": "Poppy",
+    "category": "Materials",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Poppy_D.T_UI_Icon_Inventory_Poppy_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 184
+  },
+  {
+    "tag": "Gameplay.Inventory.Materials.Rock",
+    "name": "Rock",
+    "category": "Materials",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Stone_D.T_UI_Icon_Inventory_Stone_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 185
+  },
+  {
+    "tag": "Gameplay.Inventory.Materials.Rope",
+    "name": "Rope",
+    "category": "Materials",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Rope_D.T_UI_Icon_Inventory_Rope_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 186
+  },
+  {
+    "tag": "Gameplay.Inventory.Materials.SharpeningTreeBark",
+    "name": "Bark",
+    "category": "Materials",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_WoodBark_D.T_UI_Icon_Inventory_WoodBark_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 187
+  },
+  {
+    "tag": "Gameplay.Inventory.Materials.Thyme",
+    "name": "Thyme Leaves",
+    "category": "Materials",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Inventory_Thyme_D.T_UI_Icon_Inventory_Thyme_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 188
+  },
+  {
+    "tag": "Gameplay.Inventory.Materials.Willow",
+    "name": "Willow Flowers",
+    "category": "Materials",
+    "icon": "/Game/Art/UXD/Textures/gui_icons/gui_icons_inventory/T_UI_Icon_Flower_WillowFlowers_D.T_UI_Icon_Flower_WillowFlowers_D",
+    "costs": [],
+    "size": "",
+    "buildTime": 0,
+    "index": 189
+  }
+]

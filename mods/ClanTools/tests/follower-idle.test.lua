@@ -1,0 +1,15 @@
+local M=dofile('mods/ClanTools/Scripts/follower_idle.lua')
+local function anim(id)return{GetAddress=function()return id end,TimeUntilNextBreak=5,IdleBreakDelayTime=5}end
+local a,b=M.new(104729),M.new(209458);local x,y=anim(1),anim(2)
+a.tick(x,false);b.tick(y,false)
+assert(x.TimeUntilNextBreak~=y.TimeUntilNextBreak)
+assert(x.TimeUntilNextBreak>=4.5 and x.TimeUntilNextBreak<=13)
+local first=x.TimeUntilNextBreak
+x.TimeUntilNextBreak=first-.2;a.tick(x,false);assert(x.TimeUntilNextBreak==first-.2,'Do not postpone the countdown')
+x.TimeUntilNextBreak=0;a.tick(x,false);x.TimeUntilNextBreak=5;a.tick(x,false)
+assert(x.TimeUntilNextBreak~=first,'Each native reset needs a fresh interval')
+a.tick(x,true);x.TimeUntilNextBreak=3;a.tick(x,true);assert(x.TimeUntilNextBreak==3,'Moving animation remains native')
+a.tick(x,false);assert(x.TimeUntilNextBreak~=3)
+local z=anim(3);a.tick(z,false);assert(z.TimeUntilNextBreak~=5)
+a.tick(nil,false);a.tick(z,false)
+print('PASS independent recurring idle intervals, countdown preservation, locomotion and instance replacement')
