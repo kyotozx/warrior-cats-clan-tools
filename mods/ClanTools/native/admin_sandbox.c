@@ -47,6 +47,12 @@ static int resource_ok(unsigned char*c,uintptr_t owner,uintptr_t cls,uintptr_t t
 static int bounds(float current,float maximum) {
  return isfinite(current)&&isfinite(maximum)&&maximum>0&&maximum<=10000000&&current>=0&&current<=maximum+.01f;
 }
+static int level_bounds(float current,float maximum,int level,int max_level) {
+ if(level<1||level>max_level||max_level>1000)return 0;
+ /* At the level cap the game clears both XP and the next-level threshold.
+    This is valid for the level component only, never health or stamina. */
+ return bounds(current,maximum)||(level==max_level&&current==0&&maximum==0);
+}
 typedef struct { uint64_t*data;int count,capacity; } TagArray;
 typedef struct { TagArray tags,parents; } TagContainer;
 typedef struct { wchar_t*data;int count,capacity; } Str;
@@ -112,7 +118,7 @@ static int run(void) {
   if((table!=0x9acb558&&table!=0x9b90318)||!resource_ok(c,(uintptr_t)owner,(uintptr_t)cls,table,0x120)||*(void**)(base+table+0x510)!=base+0x165b580){status="Stamina component owner or class mismatch";goto done;}
  }
  current=*(float*)(c+0x10c);maximum=*(float*)(c+(c[0x104]?0x100:0x110));
- if(!bounds(current,maximum)){status="Invalid resource bounds";goto done;}
+ if(!(xp||attack||stats_set?level_bounds(current,maximum,level,max_level):bounds(current,maximum))){status="Invalid resource bounds";goto done;}
  if(stats_set){
   float*value=(float*)(c+0x154+tag_index*4),before=*value;
   if(level!=expected_level||!isfinite(before)||fabs(before-expected)>.01){status="Stat preview is stale";goto done;}
@@ -151,7 +157,7 @@ static int run(void) {
   }else ((void(*)(void*,float))(base+0x165b580))(c,maximum);
  }
  after=*(float*)(c+0x10c);maximum=*(float*)(c+(c[0x104]?0x100:0x110));after_level=xp?*(int*)(c+0x120):0;
- if(!bounds(after,maximum)||(xp&&(after_level<level||after_level>max_level))){status="Resource readback mismatch";goto done;}
+ if(!(xp?level_bounds(after,maximum,after_level,max_level):bounds(after,maximum))||(xp&&after_level<level)){status="Resource readback mismatch";goto done;}
  if(apply&&stamina&&fabsf(after-maximum)>.01f){status="Stamina readback mismatch";goto done;}
  if(apply&&health&&fabs(maximum-amount)>.01){status="Health maximum readback mismatch";goto done;}
  if(xp)for(int i=0;i<6;i++){stats[i]=*(float*)(c+0x154+i*4);if(!isfinite(stats[i])){status="Invalid player stats";goto done;}}

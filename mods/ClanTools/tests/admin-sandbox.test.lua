@@ -18,6 +18,25 @@ test('XP bounds and max level fail before backup',function()
  local a,s,st,c=fixture();for _,n in ipairs({0,-1,100001,1.5,'100'})do assert(not a.preview_xp(n))end
  st.level=50;assert(not a.preview_xp(100));assert(c.backup==0 and c.add==0)
 end)
+
+test('capped zero XP reports maximum level without attempting a mutation',function()
+ local a,s,st,c=fixture();st.level=20;st.max_level=20;st.current=0;st.maximum=0
+ local ok,why=a.preview_xp(100)
+ assert(not ok and tostring(why):find('already at maximum level',1,true),tostring(why))
+ assert(c.backup==0 and c.add==0)
+end)
+
+test('XP grant reaching capped zero XP completes once',function()
+ local a,s,st,c,ctx,adapter=fixture();st.level=19;st.max_level=20;st.current=499
+ adapter.addXP=function(_,amount,p)
+  assert(amount==100 and p.level==19);c.add=c.add+1
+  return{after=0,after_level=20,maximum=0}
+ end
+ local ok,p=a.preview_xp(100);assert(ok)
+ local applied,r=a.apply_xp(p.token)
+ assert(applied and r.current==0 and r.level==20 and r.maximum==0)
+ assert(c.add==1 and c.backup==1);assert(not a.apply_xp(p.token));assert(c.add==1)
+end)
 test('stale XP or changed campaign invalidates preview',function()
  for _,change in ipairs({function(s,st)s.profile='b'end,function(s,st)st.current=170 end,function(s,st)s.combat=true end})do
   local a,s,st,c=fixture();local ok,p=a.preview_xp(100);assert(ok);change(s,st);assert(not a.apply_xp(p.token));assert(c.add==0 and c.backup==0)
