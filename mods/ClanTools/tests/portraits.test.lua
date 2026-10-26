@@ -59,3 +59,10 @@ current.worldId='world2';api:get({role=45},receive)
 assert(created==released,'World changes must release old-world targets')
 finish();api:clear();assert(created==released)
 print('PASS cache bounds, appearance invalidation and world changes release targets')
+api:get({role=1},receive);finish();local previous=api:get({role=1});local count=callbacks
+api:get({role=2},receive);api:tick();current.slot=3
+api:tick();assert(callbacks==count and created==released,'Changing character must cancel pending portraits even in the same world')
+api:get({role=1},receive);finish();assert(api:get({role=1})~=previous)
+current.slot=0;assert(api:get({role=1})==nil);finish();api:clear()
+assert(created==released)
+print('PASS same-profile, same-world character switches invalidate portraits and pending callbacks')

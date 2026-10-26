@@ -15,7 +15,9 @@ function M.new(ctx)
   assert(type(s.slot)=='number'and s.slot%1==0 and s.slot>=0,'Invalid save slot.')
   return s.profile..'_'..s.slot
  end
- local function path(id)return ctx.root..'state/cat-names-'..id..'.json'end
+ -- Pre-fix files cannot prove which character was renamed. Leave those files
+ -- intact, but never assign an ambiguous alias to the first character.
+ local function path(id)return ctx.root..'state/cat-names-character-'..id..'.json'end
  local function load(s)
   local id=identity(s);if cache[id]then return cache[id],id end
   local raw=ctx.read(path(id));local data=raw and ctx.json.decode(raw)or{version=1,names={}}

@@ -23,7 +23,8 @@ static DWORD owner_thread;
 static int active, applied, bound, have_pending, cancelled, have_editor_baseline;
 static unsigned char role, expected_clan;
 static void *manager, *save_game, *actor;
-static int32_t slot, actor_index;
+static int32_t slot, profile_index, actor_index;
+static void *flow_manager;
 static wchar_t gamer_id[1024];
 static wchar_t profile_id[1024];
 static Custom original, pending, preview_original, editor_baseline;
@@ -131,7 +132,7 @@ static int initialize(void) {
         const AppearanceGuard *g=&appearance_guards[i];
         if(g->rva>n->OptionalHeader.SizeOfImage-16||!readable(b+g->rva,16,b,1)||memcmp(b+g->rva,g->bytes,16)) return 0;
     }
-    if(!readable(b+0xa8a6e30,8,b,0)) return 0;
+    if(!readable(b+0xa8a6e30,8,b,0)||!readable(b+0xa8a6e08,8,b,0)) return 0;
     base=b;
     read_npc=(void*(*)(void*,Custom*,uint8_t,int32_t))(b+0x194a600);
     write_npc=(void(*)(uint8_t,const Custom*))(b+0x1949ee0);
@@ -143,15 +144,25 @@ static int initialize(void) {
     assign_string=(void*(*)(Str*,const wchar_t*,int32_t))(b+0x1981e50);
     return 1;
 }
+static int class_is(void *object,uint32_t class_rva);
+static int current_character_slot(void **flow,int32_t *selected) {
+    void *f=*(void**)(base+0xa8a6e08);
+    if(!object_ok(f,0x158)||!class_is(f,0x1613480))return 0;
+    int32_t value=*(int32_t*)((char*)f+0x154);
+    if(value<0)return 0;
+    *flow=f;*selected=value;return 1;
+}
 static int same_context(void) {
+    void *flow;int32_t selected;
     if(!active||GetCurrentThreadId()!=owner_thread||!object_ok(manager,0x170)||
        *(void**)(base+0xa8a6e30)!=manager||*(void**)((char*)manager+0x168)!=save_game||
-       !object_ok(save_game,0xa0)||*(int32_t*)((char*)save_game+0x78)!=slot) return 0;
+       !object_ok(save_game,0xa0)||*(int32_t*)((char*)save_game+0x78)!=profile_index||
+       !current_character_slot(&flow,&selected)||flow!=flow_manager||selected!=slot) return 0;
     Str *g=(Str*)((char*)save_game+0x30);
     Str *slots=*(Str**)((char*)save_game+0x68);
     int count=*(int*)((char*)save_game+0x70);
-    if(slot<0||slot>=count||count>128||!readable(slots,(size_t)count*sizeof(Str),NULL,0)) return 0;
-    Str *profile=&slots[slot];
+    if(profile_index<0||profile_index>=count||count>128||!readable(slots,(size_t)count*sizeof(Str),NULL,0)) return 0;
+    Str *profile=&slots[profile_index];
     return string_ok(g)&&g->count>1&&!wcscmp(gamer_id,g->data)&&
       string_ok(profile)&&profile->count>1&&!wcscmp(profile_id,profile->data);
 }
@@ -424,13 +435,14 @@ static const char *begin_edit(unsigned r,unsigned clan) {
     save_game=*(void**)((char*)manager+0x168);
     if(!object_ok(save_game,0xa0)) return "ERROR Save unavailable";
     Str *g=(Str*)((char*)save_game+0x30);
-    slot=*(int32_t*)((char*)save_game+0x78);
-    if(slot<0||!string_ok(g)||g->count<2) return "ERROR No active profile";
+    profile_index=*(int32_t*)((char*)save_game+0x78);
+    if(profile_index<0||!string_ok(g)||g->count<2) return "ERROR No active profile";
+    if(!current_character_slot(&flow_manager,&slot))return "ERROR No active character";
     Str *slots=*(Str**)((char*)save_game+0x68);
     int count=*(int*)((char*)save_game+0x70);
-    if(slot>=count||count>128||!readable(slots,(size_t)count*sizeof(Str),NULL,0)||
-       !string_ok(&slots[slot])||slots[slot].count<2) return "ERROR Profile unavailable";
-    wcscpy(profile_id,slots[slot].data);
+    if(profile_index>=count||count>128||!readable(slots,(size_t)count*sizeof(Str),NULL,0)||
+       !string_ok(&slots[profile_index])||slots[profile_index].count<2) return "ERROR Profile unavailable";
+    wcscpy(profile_id,slots[profile_index].data);
     wcscpy(gamer_id,g->data);owner_thread=GetCurrentThreadId();role=(uint8_t)r;expected_clan=(uint8_t)clan;
     int read_ok=read_target(&original);
     if(!read_ok||!custom_ok(&original)||original.b[0]!=expected_clan||((Str*)(original.b+0x70))->count<2) {
@@ -563,6 +575,7 @@ __declspec(dllexport) int ClanAppearance_dispatch(void *lua_state) {
     else if(!strcmp(command,"PORTRAIT")&&sscanf(line,"%u %23s %u %llx %c",&id,command,&r,&address,&tail)==4) result=portrait_preview(r,(uintptr_t)address);
     else if(!strcmp(command,"META")&&sscanf(line,"%u %23s %u %c",&id,command,&r,&tail)==3) result=cat_metadata(r);
     else if(!strcmp(command,"STATUS")) result="OK STATUS";
+    else if(!strcmp(command,"CONTEXT_LAYOUT")) result="OK CONTEXT_LAYOUT flow_slot=340";
     else if(!strcmp(command,"CAPTURE")) result=capture_preview();
     else if(!strcmp(command,"PLAYER_READ")) result=player_skin_read();
     else if(!strcmp(command,"PLAYER_REFRESH")&&sscanf(line,"%u %23s %llx %c",&id,command,&address,&tail)==3) result=player_skin_refresh((uintptr_t)address);

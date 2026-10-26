@@ -12,6 +12,9 @@ function M.new(ctx)
  local controllerFocus=true
  local activationPending=false
  local portraitGeneration=0
+ local openedSession
+ local function session(s)return s and table.concat({s.profile,tostring(s.slot),tostring(s.gs),tostring(s.worldId)},'|')end
+ local function currentSession()return openedSession and openedSession==session(ctx.snapshot())end
  local nativeBackground=dofile(folder..'native_background.lua').new(ctx)
  local backgroundReceipt,nativeFrame
  local tabs={{'party','Party'},{'appearance','Appearance'},{'feedback','Item feedback'},{'admin','Offline admin'},{'crafting','Den crafting'}}
@@ -42,9 +45,15 @@ function M.new(ctx)
   if ctx.valid(a)then o:SetBrushFromTexture(a,false)end;o:SetVisibility(3);put(o,x,y,size,size,20);return o
  end
  local function act(fn)
+  if api.opened and not currentSession()then api.close();return end
   local ok,r=pcall(fn);if not ok then api.notify(tostring(r))elseif type(r)=='string'then api.notify(r)end
  end
- local function defer(fn)ExecuteInGameThreadAfterFrames(1,function()if api.alive then fn()end end)end
+ local function defer(fn)
+  local expected=openedSession
+  ExecuteInGameThreadAfterFrames(1,function()
+   if api.alive and(not expected or(expected==openedSession and currentSession()))then fn()end
+  end)
+ end
  local function button(label,x,y,width,height,fn,selected,enabled)
   local b,skin=nativeSkin.createButton(ctx,root,pause,pause,label:upper(),x,y,width,height,scale,false)
   widgets[#widgets+1]=b;skin:setEnabled(enabled~=false)
@@ -234,6 +243,7 @@ function M.new(ctx)
  end
  function api.render()
   if not w or not ctx.valid(w)then return end
+  if not currentSession()then api.close();return end
   portraitGeneration=portraitGeneration+1
   if ctx.portraits then ctx.portraits:beginView()end
   local previousFocus=actions[focus]
@@ -259,7 +269,7 @@ function M.new(ctx)
   -- Pause footer labels describe its previous tab (for example Track Quest).
   -- Keep our binding-aware actions visible without borrowing that stale footer.
   text(hints.actions,430,1022,1000,19)
-  text(settingsMode and'F7: Controls   F8: Frame rate'or'F6: open / close Clan Tools',1100,1024,470,16,palette.muted)
+  text(settingsMode and'F7: Controls'or'F6: open / close Clan Tools',1100,1024,470,16,palette.muted)
   if previousFocus then for i,a in ipairs(actions)do if a.enabled and a.x==previousFocus.x and a.y==previousFocus.y then focus=i;break end end end
   if not actions[focus]or not actions[focus].enabled then for i,a in ipairs(actions)do if a.enabled then focus=i;break end end end
  end
@@ -313,6 +323,7 @@ function M.new(ctx)
  function api.open(nativePause)
   if api.opened or not api.alive or ctx.appearanceActive then return end
   pause=nativePause;local s=assert(ctx.snapshot(),'Load a campaign first.');assert(ctx.valid(pause),'Open the pause menu first.')
+  openedSession=session(s)
   titleFont=LoadAsset('/Game/Art/UXD/Fonts/Amarante/Amarante.Amarante')
   bodyFont=LoadAsset('/Game/Art/UXD/Fonts/Catamaran/Catamaran.Catamaran')
   bgClass=LoadAsset('/Game/Art/UXD/Blueprints/Controls/gui_common/WBP_GuiClanScreenBackground.WBP_GuiClanScreenBackground_C')
@@ -337,12 +348,12 @@ function M.new(ctx)
   if returnScreen and ctx.valid(returnScreen)then returnScreen:SetVisibility(returnVisibility or 0)end
   returnScreen=nil;returnVisibility=nil;pauseVisibility=nil
   if settingsMode then api.tab='party'end;settingsMode=false;settingsRenderer.reset()
-  api.opened=false;widgets={};actions={};w=nil
+  api.opened=false;activationPending=false;widgets={};actions={};w=nil;openedSession=nil;api.cats={};api.selection={};api.notice=nil;api.subtab=nil
  end
  function api.tick()
   progressionRenderer.tick()
   if toast and toastExpiry and os.time()>=toastExpiry then if ctx.valid(toast)then toast:RemoveFromParent()end;toast=nil end
-  if api.opened and(not ctx.valid(pause)or not pause:IsInViewport())then api.close()end
+  if api.opened and(not currentSession()or not ctx.valid(pause)or not pause:IsInViewport())then api.close()end
   if api.opened then for i,a in ipairs(actions)do a.skin:setSelected(controllerFocus and i==focus and a.enabled or false)end end
   if api.opened and api.tab=='crafting'and ctx.crafting and os.time()~=craftSecond then
    craftSecond=os.time();local current=ctx.crafting.status();local ids={}

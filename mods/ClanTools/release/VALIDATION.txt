@@ -2,6 +2,22 @@ CLAN TOOLS / CLAN LOADER - COMMUNITY ACCEPTANCE
 2026-10-25. Windows x64; Steam build 24847281.
 Release candidate; no Workshop integration.
 
+RC6 SAVE SELECTION UPDATE
+The active character index now comes from the live FlowManager, independently of
+the platform profile index. Native editor reads and writes use that same character;
+editor transactions reject a changed profile or character. The layout is enabled
+only after native game-build and function-signature checks pass.
+Automated checks cover character switches within one profile, stale disk selection,
+missing character data, portrait cancellation and separate party/name state.
+The full Lua, PowerShell and native harness run passed; all 14 native production
+sections matched a fresh source build.
+Live: the second local character loaded, its roster and portraits displayed, and
+the clanmate editor bound character slot 1 while the profile index remained 0.
+Cancel returned to the roster without applying the preview. The two local saves
+are clones, so distinct clan/name combinations are covered by automated fixtures,
+not a live visual comparison. A full in-process save-switch loop remains untested.
+Old ambiguous party/name files are retained but no longer loaded automatically.
+
 RC4 UPDATE
 77 Lua suites and four PowerShell suites passed. Native bridge sources are
 unchanged; the source/binary audit still matches all 14 packaged native bridges.

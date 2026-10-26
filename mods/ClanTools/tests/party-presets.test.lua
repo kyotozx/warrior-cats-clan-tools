@@ -21,6 +21,13 @@ end)
 test('profile and clan isolation prevent cross-save or cross-clan loads',function()
  local p,s=fixture();assert(p.save('Patrol',{7}));local id=p.list()[1].id;s.clan=2;assert(#p.list()==0 and not p.load(id));s.clan=1;s.profile='profileB';assert(#p.list()==0 and not p.load(id))
 end)
+test('same-clan characters have independent presets and ignore ambiguous legacy files',function()
+ local p,s,c,store=fixture();store['root/state/party-presets-profileA.json']='{"version":9}'
+ assert(p.save('Patrol',{7}));s.slot=3;assert(#p.list()==0 and not p.load(1))
+ assert(p.save('Patrol',{8}));assert(p.list()[1].roles[1]==8)
+ s.slot=0;assert(p.list()[1].roles[1]==7)
+ assert(store['root/state/party-presets-profileA.json']=='{"version":9}')
+end)
 test('dead absent or another-clan companions reject entire preset',function()
  for _,change in ipairs({function(c)c[2].living=false end,function(c)c[2].clan=2 end,function(c)c[2]=nil end})do
   local p,s,c,store,party,ctx,current=fixture();assert(p.save('Patrol'));change(c);assert(not p.load(1));local active,applied=current();assert(applied==0 and #active==2)
@@ -33,12 +40,12 @@ test('invalid names duplicate roles and oversized parties never write',function(
  assert(p.save('Équipe de caça',{7}))
 end)
 test('native apply failure leaves preset and selection untouched',function()
- local p,s,c,store,party,ctx,current=fixture();assert(p.save('Patrol'));local before=store['root/state/party-presets-profileA.json']
+ local p,s,c,store,party,ctx,current=fixture();assert(p.save('Patrol'));local before=store['root/state/party-presets-character-profileA_0.json']
  party.select=function()error('native readback failed; rollback restored')end
- assert(not p.load(1));assert(store['root/state/party-presets-profileA.json']==before);local active=current();assert(#active==2)
+ assert(not p.load(1));assert(store['root/state/party-presets-character-profileA_0.json']==before);local active=current();assert(#active==2)
 end)
 test('corrupt storage does not get overwritten',function()
- local p,s,c,store=fixture();local path='root/state/party-presets-profileA.json';store[path]='{"version":9}';assert(not p.save('Patrol'));assert(store[path]=='{"version":9}')
+ local p,s,c,store=fixture();local path='root/state/party-presets-character-profileA_0.json';store[path]='{"version":9}';assert(not p.save('Patrol'));assert(store[path]=='{"version":9}')
 end)
 test('roster session mismatch and online sessions fail before changes',function()
  local p,s,c,store,party,ctx=fixture();ctx.getCats=function()return c,{valid=true,profile='other',slot=0}end;assert(not p.save('Patrol'))

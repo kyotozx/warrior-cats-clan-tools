@@ -21,8 +21,10 @@ function M.new(ctx)
  local function guard()
   local s=assert(ctx.snapshot(),'Load an offline campaign first.');assert(s.offline and s.phase==4 and not s.combat,'Change companions during offline exploration.');return s
  end
- local function key(s)return root..'state/'..s.profile..'_'..s.slot..'_'..s.chapter end
- local function configPath(s)return root..'state/party-'..s.profile..'.json'end
+ -- Older files used a profile index as a character index. Their ownership is
+ -- ambiguous, so preserve them without replaying them into another campaign.
+ local function key(s)return root..'state/character-'..s.profile..'_'..s.slot..'_'..s.chapter end
+ local function configPath(s)return root..'state/party-character-'..s.profile..'_'..s.slot..'.json'end
  local function validateConfig(c)
   assert(type(c)=='table'and type(c.enabled)=='boolean'and type(c.roles)=='table','Invalid party settings')
   local seen,n={},0;for i,r in pairs(c.roles)do assert(type(i)=='number'and i%1==0 and i>=1 and i<=2 and type(r)=='number'and r%1==0 and r>=0 and not seen[r],'Invalid companion selection');seen[r]=true;n=n+1 end
@@ -68,9 +70,11 @@ function M.new(ctx)
   if last and story and current==last then ctx.backupSave(s);apply(decode(story))end
   write(configPath(s),ctx.json.encode({enabled=false,roles={}}));write(k..'.last.txt','');return true
  end
+ local lastSession
  function api.tick()
-  if api.error then return end
   local s=ctx.snapshot();if not s or not s.offline or s.phase~=4 or s.combat then return end
+  local session=configPath(s);if lastSession~=session then api.error=nil;lastSession=session end
+  if api.error then return end
   local ok,err=pcall(function()
    local c=config(s);if not c.enabled then return end
    local p=desired(s,c.roles,false)

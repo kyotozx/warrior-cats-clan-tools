@@ -33,6 +33,7 @@
     "appearance.lua",
     "cat_names.lua",
     "context.lua",
+    "save_identity.lua",
     "crafting.lua",
     "den_tools_ui.lua",
     "den_tools.lua",

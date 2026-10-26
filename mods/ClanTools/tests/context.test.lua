@@ -31,3 +31,12 @@ raw=M.json.encode({profile={['0']={NPCData={NarrativeRoles={}}}}})
 cats,metadata=M.getCats();eq(metadata.valid,true);eq(#cats,0)
 M.json.decode=decode
 print('PASS unchanged save bytes reuse parsing; changed, missing or partial files never return stale roster data')
+local function character(role)
+ return{NPCData={NarrativeRoles={[role]='(ClanType=WindClan,Role=Warrior)'}}}
+end
+raw=M.json.encode({profile={Shared={General={CurrentCatSlot=0}},['0']=character('WindClanKit'),['3']=character('WindClanMedicineCat')}})
+snapshot.slot=0;cats,metadata=M.getCats();eq(cats[1].roleName,'WindClanKit')
+snapshot.slot=3;cats,metadata=M.getCats();eq(cats[1].roleName,'WindClanMedicineCat');eq(metadata.slot,3)
+snapshot.slot=0;cats=M.getCats();eq(cats[1].roleName,'WindClanKit')
+snapshot.slot=8;cats,metadata=M.getCats();eq(metadata.valid,false);eq(#cats,0)
+print('PASS live character selection overrides stale disk CurrentCatSlot and never falls back to the first cat')

@@ -23,9 +23,10 @@ function M.new(ctx,party)
   assert(s.offline==true and s.phase==4 and not s.combat,'Manage party presets during offline exploration.')
   assert(type(s.profile)=='string'and s.profile:match('^[%w_%-]+$')and #s.profile<=128,'Invalid profile identity.')
   assert(type(s.clan)=='number'and s.clan>=1 and s.clan<=4,'Active clan unavailable.')
+  assert(type(s.slot)=='number'and s.slot%1==0 and s.slot>=0,'Active character unavailable.')
   return s
  end
- local function path(s)return ctx.root..'state/party-presets-'..s.profile..'.json'end
+ local function path(s)return ctx.root..'state/party-presets-character-'..s.profile..'_'..s.slot..'.json'end
  local function read(s)
   local raw=ctx.read(path(s));if not raw then return{version=1,nextId=1,entries={}}end
   local data=ctx.json.decode(raw)
@@ -58,7 +59,7 @@ function M.new(ctx,party)
    selected=roles(selected);eligible(s,selected)
    local entry
    for _,e in ipairs(data.entries)do if e.name==label and e.clan==s.clan then entry=e;break end end
-   if not entry then assert(#data.entries<12,'You can save up to 12 party presets per profile.');entry={id=data.nextId,name=label,clan=s.clan};data.nextId=data.nextId+1;data.entries[#data.entries+1]=entry end
+   if not entry then assert(#data.entries<12,'You can save up to 12 party presets per character.');entry={id=data.nextId,name=label,clan=s.clan};data.nextId=data.nextId+1;data.entries[#data.entries+1]=entry end
    entry.roles=copy(selected);ctx.write(path(s),ctx.json.encode(data));return'Party preset saved: '..label..'.'
   end)
   return ok,tostring(result)

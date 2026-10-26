@@ -45,3 +45,8 @@ test('override checks are cached and follow commits and profile switches',functi
  f.s.slot=1;assert(not f.api.hasOverrides(f.s));f.s.slot=0;assert(f.api.hasOverrides(f.s))
 end)
 print(passed..' cat name tests passed')
+test('ambiguous legacy aliases never rename the first character after upgrade',function()
+ local f=fixture();f.files['state/cat-names-abc_0.json']=json.encode({version=1,names={['77']='Other campaign'}})
+ assert(f.api.get(f.s,77,'Native name')=='Native name')
+ assert(f.files['state/cat-names-abc_0.json']~=nil)
+end)

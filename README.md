@@ -52,7 +52,7 @@ The installer checks the game executable before applying changes. Other builds a
 
 ## Install
 
-1. Download `ClanLoader-0.3.0-rc5.zip` from [Releases](https://github.com/kyotozx/warrior-cats-clan-tools/releases). Use this package, rather than GitHub's automatically generated source archives.
+1. Download `ClanLoader-0.3.0-rc6.zip` from [Releases](https://github.com/kyotozx/warrior-cats-clan-tools/releases). Use this package, rather than GitHub's automatically generated source archives.
 2. Save and close the game. Extract the entire ZIP to a writable folder.
 3. Open `ClanLoader.exe`. Check the detected game folder, then select **Install / update suite**.
 4. Start the game. Open **Mods** from the main or pause menu. In an offline campaign, open **Clan Tools** from pause.
@@ -62,6 +62,12 @@ The package includes the tested UE4SS runtime. Python and a separate mod loader 
 Game textures and fonts are loaded from your own installation. They are not included in this repository or the release package.
 
 ## Troubleshooting
+
+### Wrong clan or empty roster on another save
+
+Update to rc6 or newer and restart the game. Clan Tools now follows the selected character when you load or switch campaigns.
+
+Party selections, party presets and custom display names from older versions need to be set again once. Their old files are kept, but cannot be reliably assigned to a character. Your game saves and saved skin library are preserved.
 
 ### Loader cannot load ThemeAssets.dll (0x80131515)
 

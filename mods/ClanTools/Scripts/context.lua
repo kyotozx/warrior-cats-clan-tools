@@ -8,6 +8,12 @@ function M.log(s) print('[ClanTools] '..tostring(s)..'\n')end
 M.catalog=json.decode(assert(M.read(M.root..'data/catalog.json')))
 M.saveDir=(os.getenv('LOCALAPPDATA')or'')..'/Wrc/Saved/SaveGames/'
 local engine,gameStateClass,controllerClass,questLibrary,systemLibrary
+local identityTransport
+local characterSlot=dofile(dir..'save_identity.lua').new({valid=M.valid,verify=function()
+ if M.native then return M.native('CONTEXT_LAYOUT')end
+ if not identityTransport then identityTransport=dofile(dir..'appearance.lua').nativeTransport(M.root..'bin/')end
+ return identityTransport('CONTEXT_LAYOUT')
+end})
 local function snapshot()
  -- Only the engine singleton is cached. Follow its live viewport/world on
  -- every call so a still-valid actor from a departing world is never reused.
@@ -25,6 +31,7 @@ local function snapshot()
  local save=manager.SaveGame;if not M.valid(save)then return nil end
  local profile;save.saveSlots:ForEach(function(i,v)if i==save.CurrentSaveSlotIndex+1 then profile=v:get():ToString()end end)
  if not profile then return nil end
+ local slot=characterSlot(instance);if slot==nil then return nil end
  if not M.valid(questLibrary)then questLibrary=StaticFindObject('/Script/SwtQuest.Default__BFLSwtQuest')end
  local chapter={};questLibrary:GetChapter(gs,chapter)
  local pc=p.Controller;if not M.valid(pc)then return nil end
@@ -33,7 +40,7 @@ local function snapshot()
  if not M.valid(systemLibrary)then systemLibrary=StaticFindObject('/Script/Engine.Default__KismetSystemLibrary')end
  local standalone=systemLibrary:IsStandalone(gs)
  return {gs=gs:GetAddress(),gameState=gs,pawn=p,world=w,worldId=w:GetFullName(),phase=gs.CurrentPhase,
-  offline=standalone==true,combat=M.valid(gs.Director),profile=profile,slot=save.CurrentSaveSlotIndex,chapter=chapter.chapter:ToString(),
+  offline=standalone==true,combat=M.valid(gs.Director),profile=profile,profileIndex=save.CurrentSaveSlotIndex,slot=slot,chapter=chapter.chapter:ToString(),
   clan=p.MeshCustomizationComponent.CustomData.ClanType,pc=pc}
 end
 function M.snapshot()local ok,s=pcall(snapshot);if ok then return s end;return nil end
