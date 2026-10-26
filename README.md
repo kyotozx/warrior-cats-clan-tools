@@ -145,8 +145,6 @@ The loader and tools share one repository so related changes can be reviewed tog
 
 Read [BUILDING.md](docs/BUILDING.md) for prerequisites and build commands. Read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a PR. You can help with reproducible bug reports even without a development setup.
 
-![Clan emblems](docs/images/clan-emblems.png)
-
 ## Credits and license
 
 **Credits: kyotozx**
