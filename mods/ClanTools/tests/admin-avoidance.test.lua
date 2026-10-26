@@ -22,6 +22,10 @@ local function fixture()
   avoidanceAdapter={validate_world=function()return true end,supported=function(a)return a.supported end,actors=function()return enemies end,components=function(a)return a.components end}}
  return M.new(ctx),s,enemy,enemies,ctx,function()return touched end
 end
+test('disabled avoidance with nothing to restore performs no campaign discovery',function()
+ local a,s,make,list,ctx=fixture();ctx.snapshot=function()error('Disabled feature scanned campaign')end
+ for _=1,100 do assert(a.tick())end
+end)
 test('only supported enemies change and original query modes restore',function()
  local a,s,make,list=fixture();local e=make();local other=make();other.supported=false
  assert(a.set_enabled(true));assert(e.components[1].object.mode==0);assert(e.components[2].object.mode==0);assert(other.components[1].object.mode==1)

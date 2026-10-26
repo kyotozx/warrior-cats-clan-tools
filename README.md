@@ -48,7 +48,7 @@ The installer checks the game executable before applying changes. Other builds a
 
 ## Install
 
-1. Download `ClanLoader-0.3.0-rc3.zip` from [Releases](https://github.com/kyotozx/warrior-cats-clan-tools/releases). Use this package, rather than GitHub's automatically generated source archives.
+1. Download `ClanLoader-0.3.0-rc4.zip` from [Releases](https://github.com/kyotozx/warrior-cats-clan-tools/releases). Use this package, rather than GitHub's automatically generated source archives.
 2. Save and close the game. Extract the entire ZIP to a writable folder.
 3. Open `ClanLoader.exe`. Check the detected game folder, then select **Install / update suite**.
 4. Start the game. Open **Mods** from the main or pause menu. In an offline campaign, open **Clan Tools** from pause.

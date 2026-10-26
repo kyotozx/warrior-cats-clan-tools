@@ -18,9 +18,6 @@ local function safe(key,fn,...)
  local ok,a,b=pcall(fn,...);if not ok then report(key,a);return false,a end
  errors[key]=nil;return true,a,b
 end
-local function portraitReady()
- if not closing and ui and ui.opened then safe('Portrait refresh',ui.render)end
-end
 local function loadPortraits()
  if portraits then return portraits end
  local f=io.open(folder..'portraits.lua','rb');if not f then return nil end;f:close()
@@ -28,9 +25,9 @@ local function loadPortraits()
  if not ok then report('Portraits',p);return nil end
  portraits=p;ctx.portraits=p;return p
 end
-ctx.portrait=function(cat)
+ctx.portrait=function(cat,onReady)
  if closing then return nil end
- local p=loadPortraits();if p then return p:get(cat,portraitReady)end
+ local p=loadPortraits();if p then return p:get(cat,onReady)end
 end
 local function init()
  if not ctx.catNames then ctx.catNames=dofile(folder..'cat_names.lua').new(ctx)end
@@ -151,8 +148,8 @@ loopHandle=LoopInGameThreadWithDelay(100,function()
  if closing then cleanup();return stopped end
  tick=tick+1
  if not creatorSkins then local ok,r=pcall(function()return dofile(folder..'creator_skins.lua').new(ctx)end);if ok then creatorSkins=r else report('Creator skins init',r)end end
- if creatorSkins then safe('Creator skins',creatorSkins.tick)end
  local snapshotOK,s=safe('Campaign snapshot',ctx.snapshot);if not snapshotOK then s=nil end
+ if creatorSkins then safe('Creator skins',creatorSkins.tick,s,true)end
  lastSnapshot=s
  if appearance then safe('Appearance tick',appearance.tick)end
  if settings then safe('Video settings',settings.tick,s)end

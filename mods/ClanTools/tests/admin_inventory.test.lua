@@ -15,6 +15,15 @@ local function fixture()
  f.api=M.new(f.ctx);return f
 end
 do
+ local f=fixture();local scans=0;local snapshot=f.ctx.snapshot
+ f.ctx.snapshot=function()scans=scans+1;return snapshot()end
+ for _=1,100 do f.api.tick()end;assert(scans==0,'Idle inventory tools should not inspect the campaign')
+ local ok,p=f.api.preview(1,1);assert(ok);local before=scans
+ f.s.offline=false;f.api.tick();assert(scans>before)
+ f.s.offline=true;assert(not f.api.apply(p.token),'A preview invalidated by leaving offline play must stay invalid')
+ print('PASS inventory only polls pending previews and invalidates them across transitions')
+end
+do
  local f=fixture();assert(#f.api.catalog()==52 and #f.api.catalog('comfrey')==2 and #f.api.catalog('', 'Materials')==27)
  assert(#f.api.bundles()==4);assert(not f.api.preview(53,1));assert(not f.api.preview(1,0));assert(not f.api.preview(1,1000));assert(not f.api.preview(1,1.5))
  f.ctx.inventoryVerified=false;local ok,p=f.api.preview(1,10);assert(ok and not p.enabled and #f.adds==0)

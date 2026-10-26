@@ -255,6 +255,7 @@ function M.new(ctx)
     end
     function api.tick(now)
         if closed then return false,'Followers are shut down.'end
+        if #owned==0 then return not api.error,api.error end
         local ok,s=pcall(snapshot)
         if not ok or (session and identity(s)~=session)then return api.reset()end
         if api.error then return false,api.error end

@@ -18,6 +18,12 @@ local function fixture()
 end
 local n=0
 local function test(name,fn)fn();n=n+1;print('PASS '..name)end
+test('empty follower selection does not inspect the world or clan roster',function()
+    local f,c=fixture();assert(f.select({}))
+    c.snapshot=function()error('Empty followers queried the world')end
+    c.getCats=function()error('Empty followers read the roster')end
+    for i=1,100 do assert(f.tick(i))end
+end)
 test('unknown session and unverified navigation cannot spawn',function()
     local f,c,s,cats,made=fixture();s.offline=nil;eq(f.select({7}),false);eq(#made,0)
     s.offline=true;c.verified=false;eq(f.select({7}),false);eq(#made,0)

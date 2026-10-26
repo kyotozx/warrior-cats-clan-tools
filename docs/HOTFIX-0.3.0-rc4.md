@@ -1,6 +1,6 @@
 # Loader startup and idle-work investigation
 
-Local candidate: `0.3.0-rc4-local1`, 2026-10-25. Not published.
+Release candidate: `0.3.0-rc4`, 2026-10-25.
 
 ## Confirmed problems and changes
 
@@ -19,6 +19,19 @@ Local candidate: `0.3.0-rc4-local1`, 2026-10-25. Not published.
   widgets. Turning off the last extension still restores owned state immediately.
 - Disabled or unverified followers no longer acquire campaign snapshots. Pending
   actor cleanup continues to be retried.
+- Completed portraits now update only their image widgets, including duplicate
+  appearances of the same cat. They no longer rebuild the whole menu. Replaced
+  pages and closed menus cancel pending captures. Completed render targets use
+  a 32-entry cache; the private animated capture actor is destroyed when idle.
+- Campaign queries follow the engine's current viewport, world, game state,
+  possessed player and save manager instead of repeated global actor searches.
+  World, ownership, offline state and profile are still checked on every query.
+- Parsing the save snapshot is reused only while its exact bytes are unchanged.
+  Missing, partial and changed saves invalidate the parse immediately. Clan role
+  definitions are indexed once. No cached roster authorizes a mutation.
+- The creator reuses the current loop's campaign query; video settings cache the
+  engine singleton with validity checks. Empty follower selections, idle inventory
+  tools and disabled enemy avoidance skip work when there is nothing to restore.
 
 These changes remove unnecessary work. They do not establish the cause of every
 reported stutter or a measured FPS improvement. Clan Performance 0.1.0 is a
@@ -26,7 +39,7 @@ separate graphics-settings package and is unchanged by this candidate.
 
 ## Validation
 
-- 75 Lua suites and four PowerShell suites passed using `scripts/Test.ps1` with
+- 77 Lua suites and four PowerShell suites passed using `scripts/Test.ps1` with
   `-SkipNative`. No C sources changed in this hotfix.
 - The launcher regression first reproduced failure with the original runspace
   under Restricted policy. The production runspace then loaded a downloaded-file
@@ -48,7 +61,27 @@ separate graphics-settings package and is unchanged by this candidate.
   the map removed that preview without teleporting. F6 opened Clan Tools with
   its native roster and portraits. The test game then closed normally. No Lua
   errors from the affected routines appeared in the session log. All installed
-  Clan Tools program hashes matched the candidate manifest.
+  Clan Tools program hashes matched the first candidate manifest.
+- The second pass loaded the same separate test character, generated all eight
+  first-page portraits, switched to Appearance with cached portraits and returned
+  to the original pause menu and exploration without Lua errors. Additional model
+  tests cover duplicate image subscribers, cancellation, cache bounds, world
+  changes, direct context traversal and partial save snapshot writes.
+
+## Local profiling observation
+
+An instrumented session on this development PC compared the first idle-work fix
+with the additional context and portrait changes, using the same test save and
+graphics settings. The first eight-portrait page previously triggered eight full
+menu rebuilds. Their combined measured Lua time was 1,143 ms, with a 213 ms maximum
+for one rebuild. The containing portrait routine took 1,238 ms in that 10-second
+window. After the change it took 58 ms total, with a 23 ms maximum callback; there
+were no portrait-driven menu rebuilds. Opening the panel was measured separately.
+
+These are inclusive `os.clock` timings with a temporary local probe, not GPU frame
+times or an FPS benchmark. Nested timings must not be added together. The sample
+does not reproduce the affected users' machines or establish that every recurring
+exploration stutter is fixed. The probe and its logs are excluded from the release.
 
 ## Remaining investigation
 

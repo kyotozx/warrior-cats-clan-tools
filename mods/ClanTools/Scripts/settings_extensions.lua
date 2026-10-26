@@ -21,7 +21,7 @@ local function save(path,value)
  if old then assert(os.remove(backup))end
 end
 function M.new(ctx)
- ctx=ctx or{};local api={};local lastError;local sample,fps;local appliedEngine;local sharedVSync
+ ctx=ctx or{};local api={};local lastError;local sample,fps;local appliedEngine;local sharedVSync;local cachedEngine
  local path=(ctx.mod_root or ctx.root or directory..'../')..'settings-extensions.json'
  local pref={version=1,counter=false,custom_limit=false}
  local load=ctx.load_preferences or function()local raw=read(path);return raw and json.decode(raw)end
@@ -34,7 +34,8 @@ function M.new(ctx)
  local function valid(o)return o and(ctx.valid and ctx.valid(o)or not ctx.valid and runtimeValid(o))end
  local function backend()
   if ctx.video then return ctx.video end
-  local engine=FindFirstOf('GameEngine');assert(valid(engine),'Game engine unavailable')
+  if not valid(cachedEngine)then cachedEngine=FindFirstOf('GameEngine')end
+  local engine=cachedEngine;assert(valid(engine),'Game engine unavailable')
   local settings=engine.GameUserSettings;assert(valid(settings),'Game video settings unavailable')
   return {
    identity=engine:GetAddress(),

@@ -1,4 +1,4 @@
-CLAN TOOLS - 0.3.0-rc1
+CLAN TOOLS
 
 An unofficial offline mod for Warrior Cats: Clans of the Forest.
 Supported: Steam app 3960600, build 24847281, Windows x64.

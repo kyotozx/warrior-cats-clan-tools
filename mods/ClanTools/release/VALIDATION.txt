@@ -1,8 +1,21 @@
-CLAN TOOLS 0.3.0-rc1 / CLAN LOADER - COMMUNITY ACCEPTANCE
+CLAN TOOLS / CLAN LOADER - COMMUNITY ACCEPTANCE
 2026-10-25. Windows x64; Steam build 24847281.
-Local release candidate; no external publication or Workshop integration.
+Release candidate; no Workshop integration.
 
-CURRENT AUTOMATED COVERAGE
+RC4 UPDATE
+77 Lua suites and four PowerShell suites passed. Native bridge sources are
+unchanged; the source/binary audit still matches all 14 packaged native bridges.
+The loader execution-policy regression verifies the production runspace under
+Restricted process policy without changing persistent Windows policies.
+Portraits update individual images, cancel pending work on close and use a bounded
+cache. Repeated campaign searches and unchanged save parsing were reduced.
+The same test character loaded; Party and Appearance showed native portraits,
+and closing Clan Tools restored the original menu and exploration.
+Local timing identified expensive portrait-driven menu rebuilds and confirmed
+their removal. This is not proof that all reported stuttering is resolved, and
+no FPS improvement is claimed. Comparisons on affected PCs are still needed.
+
+ORIGINAL FEATURE ACCEPTANCE
 74 Lua suites (67 standalone + seven isolated native-guard suites) passed.
 Native appearance C harness: six groups passed, covering cosmetic field ownership,
 deep-copy lifetimes, stale UObject refusal, editor initialization and Cancel.

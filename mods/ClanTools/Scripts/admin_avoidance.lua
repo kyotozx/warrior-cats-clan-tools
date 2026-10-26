@@ -135,6 +135,7 @@ function M.new(ctx)
  end
  function api.tick()
   if closed then return false,'Enemy avoidance is shut down.'end
+  if not enabled and #records==0 then session=nil;return true end
   local s=context()
   local token=s and table.concat({s.worldId,s.profile or'',tostring(s.slot),tostring(id(s.pawn))},'|')
   if enabled and token~=session then enabled=false end

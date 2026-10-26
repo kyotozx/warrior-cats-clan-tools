@@ -20,3 +20,14 @@ local rank,clan=5,4
 M.native=function(cmd)local role=tonumber(cmd:match('META (%d+)'));return{action=string.format('META narrative=%d clan=%d rank=%d',role,clan,rank)}end
 eq(M.validateCat({role=82},snapshot),true);rank=12;eq(M.validateCat({role=82},snapshot),false);rank=9;eq(M.validateCat({role=82},snapshot),false);rank=5;clan=2;eq(M.validateCat({role=82},snapshot),false)
 print('PASS party eligibility checks current native rank and clan before mutation')
+local decode=M.json.decode;local parses=0
+M.json.decode=function(value)parses=parses+1;return decode(value)end
+raw=raw..' '
+for i=1,100 do cats,metadata=M.getCats();eq(metadata.valid,true)end
+eq(parses,1)
+raw='{partial';cats,metadata=M.getCats();eq(metadata.valid,false)
+raw=nil;cats,metadata=M.getCats();eq(metadata.valid,false)
+raw=M.json.encode({profile={['0']={NPCData={NarrativeRoles={}}}}})
+cats,metadata=M.getCats();eq(metadata.valid,true);eq(#cats,0)
+M.json.decode=decode
+print('PASS unchanged save bytes reuse parsing; changed, missing or partial files never return stale roster data')

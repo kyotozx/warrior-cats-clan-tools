@@ -11,6 +11,7 @@ function M.new(ctx)
  local widgets,actions,focus={}, {},1
  local controllerFocus=true
  local activationPending=false
+ local portraitGeneration=0
  local nativeBackground=dofile(folder..'native_background.lua').new(ctx)
  local backgroundReceipt,nativeFrame
  local tabs={{'party','Party'},{'appearance','Appearance'},{'feedback','Item feedback'},{'admin','Offline admin'},{'crafting','Den crafting'}}
@@ -77,8 +78,12 @@ function M.new(ctx)
  local function selected(role)for i,r in ipairs(api.selection)do if r==role then return i end end end
  local function catByRole(role)for _,c in ipairs(api.cats)do if c.role==role then return c end end end
  local function portrait(cat,x,y,size)
-  if ctx.portrait then local ok,a=pcall(ctx.portrait,cat);if ok and ctx.valid(a)then local im=construct('Image');im:SetBrushFromMaterial(a);im:SetVisibility(3);put(im,x,y,size,size,20);return end end
-  image('/Game/Art/UXD/Textures/gui_icons/gui_icons_clans/T_UI_Icon_Small_'..ctx.clans[cat.clan]:gsub('Clan','clan')..'.T_UI_Icon_Small_'..ctx.clans[cat.clan]:gsub('Clan','clan'),x,y,size)
+  local im=image('/Game/Art/UXD/Textures/gui_icons/gui_icons_clans/T_UI_Icon_Small_'..ctx.clans[cat.clan]:gsub('Clan','clan')..'.T_UI_Icon_Small_'..ctx.clans[cat.clan]:gsub('Clan','clan'),x,y,size)
+  local generation=portraitGeneration
+  local function ready(material)
+   if api.opened and generation==portraitGeneration and ctx.valid(im)and ctx.valid(material)then im:SetBrushFromMaterial(material)end
+  end
+  if ctx.portrait then local ok,a=pcall(ctx.portrait,cat,ready);if ok then ready(a)end end
  end
  local function roster(edit)
   local first=(api.page-1)*8+1
@@ -230,6 +235,8 @@ function M.new(ctx)
  end
  function api.render()
   if not w or not ctx.valid(w)then return end
+  portraitGeneration=portraitGeneration+1
+  if ctx.portraits then ctx.portraits:beginView()end
   local previousFocus=actions[focus]
   for _,o in ipairs(widgets)do if ctx.valid(o)then o:RemoveFromParent()end end;widgets={};actions={}
   palette=themes[ctx.settings.theme]or themes.dark
@@ -322,6 +329,8 @@ function M.new(ctx)
   controllerFocus=true;api.render();lib:SetInputMode_GameOnly(s.pc,false)
  end
  function api.close()
+  portraitGeneration=portraitGeneration+1
+  if ctx.portraits then ctx.portraits:cancelPending()end
   if ctx.textPrompt and ctx.textPrompt.active()then ctx.textPrompt.cancel()end
   if backgroundReceipt then nativeBackground.restore(backgroundReceipt);backgroundReceipt=nil end
   if w and ctx.valid(w)then w:RemoveFromParent()end

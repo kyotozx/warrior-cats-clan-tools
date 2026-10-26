@@ -149,7 +149,12 @@ function M.new(ctx)
  function api.cancelPreview()previews={};return true end
  function api.capabilities()return{enabled=enabled(),items=#catalog,quantityMaximum=999,lastResult=clone(lastResult)}end
  function api.reset()session=nil;previews={};return true end
- function api.tick()local ok=pcall(current);if not ok then api.reset()end end
+ function api.tick()
+  -- Preview/apply revalidate the current inventory themselves. Background
+  -- identity checks are needed only while there is an outstanding preview.
+  if next(previews)==nil then return end
+  local ok=pcall(current);if not ok then api.reset()end
+ end
  function api.shutdown()api.reset();closed=true;return true end
  return api
 end

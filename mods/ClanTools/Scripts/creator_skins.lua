@@ -28,9 +28,10 @@ function M.new(ctx)
  end)
  local clickPath='/Script/SwtEngine.GuiControl:OnControlClick'
  local cp,cq=RegisterHook(clickPath,function(o)if ctx.valid(button)and ctx.valid(o:get())and o:get():GetAddress()==button:GetAddress()then requested=true end end)
- function api.tick()
+ function api.tick(snapshot,snapshotKnown)
   panel.tick();local found
-  if not ctx.appearanceActive and not ctx.snapshot()then
+  if not snapshotKnown then snapshot=ctx.snapshot()end
+  if not ctx.appearanceActive and not snapshot then
    for _,screen in ipairs(FindAllOf('GuiScreenCustomization')or{})do if ctx.valid(screen)and screen:IsInViewport()and ctx.valid(screen.CatRef)and ctx.valid(screen.CurrentPanel)then found=screen;break end end
   end
   if not found or not ctx.valid(owner)or found:GetAddress()~=owner:GetAddress()then

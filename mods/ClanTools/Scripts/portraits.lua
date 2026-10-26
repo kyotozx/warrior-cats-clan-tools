@@ -8,6 +8,8 @@ function M.new(ctx)
     local function valid(o)return ctx.valid(o)end
     local command=ctx.native or appearance.nativeTransport(ctx.nativeDir or ctx.root..'bin/',ctx.appearanceDllName)
     local api={error=nil};local actor,profile,busy,retainer;local cache,queue,pending={},{},{}
+    local wanted,serial={},0
+    local cacheLimit=32
     local rendering=StaticFindObject('/Script/Engine.Default__KismetRenderingLibrary')
     local materials=StaticFindObject('/Script/Engine.Default__KismetMaterialLibrary')
     local gameplay=StaticFindObject('/Script/Engine.Default__GameplayStatics')
@@ -27,15 +29,33 @@ function M.new(ctx)
         retainer.WidgetTree.RootWidget:AddChild(image)
         entry.retainer=image
     end
-    local function token(s)return s.profile..':'..tostring(s.slot)..':'..tostring(s.gs)end
+    local function token(s)return s.profile..':'..tostring(s.slot)..':'..tostring(s.gs)..':'..tostring(s.worldId)end
     local function release(entry)
         if entry and valid(entry.retainer)then pcall(function()entry.retainer:RemoveFromParent()end)end
         if entry and valid(entry.target)then pcall(function()rendering:ReleaseRenderTarget2D(entry.target)end)end
     end
-    function api:clear()
-        for _,entry in pairs(cache)do release(entry)end
-        if busy then release(busy)end
+    local function destroyActor()
         if valid(actor)then pcall(function()actor:K2_DestroyActor()end)end
+        actor=nil
+    end
+    local function prune()
+        local count=0;local old={}
+        for key,entry in pairs(cache)do count=count+1;if not wanted[key]then old[#old+1]={key=key,entry=entry}end end
+        table.sort(old,function(a,b)return a.entry.used<b.entry.used end)
+        for _,row in ipairs(old)do if count<=cacheLimit then break end;release(row.entry);cache[row.key]=nil;count=count-1 end
+    end
+    function api:cancelPending()
+        -- Destroy the capture owner before releasing an in-flight target.
+        -- Completed textures stay retained for reopening the same page.
+        destroyActor()
+        if busy then release(busy)end
+        busy=nil;queue={};pending={};wanted={}
+        prune()
+    end
+    function api:beginView()self:cancelPending()end
+    function api:clear()
+        self:cancelPending()
+        for _,entry in pairs(cache)do release(entry)end
         if valid(retainer)then pcall(function()retainer:RemoveFromParent()end)end
         retainer=nil
         actor=nil;busy=nil;cache={};queue={};pending={};profile=nil;self.error=nil
@@ -70,15 +90,18 @@ function M.new(ctx)
         local s=ctx.snapshot();if not s then return nil end
         local current=token(s);if profile and current~=profile then self:clear()end;profile=current
         local key=current..':'..cat.role..':'..tostring(cat.custom or cat.revision or '')
+        wanted[key]=true;serial=serial+1
         local hit=cache[key]
-        if hit and valid(hit.material)and valid(hit.target)then return hit.material end
+        if hit and valid(hit.material)and valid(hit.target)then hit.used=serial;return hit.material end
         if hit then release(hit);cache[key]=nil end
         if not pending[key]then
-            local request={key=key,role=cat.role,skin=cat.skin,context=current,callback=onReady};pending[key]=request;queue[#queue+1]=request
+            local request={key=key,role=cat.role,skin=cat.skin,context=current,callbacks={},used=serial};pending[key]=request;queue[#queue+1]=request
         end
+        if onReady then pending[key].callbacks[#pending[key].callbacks+1]=onReady end
         return nil
     end
     function api:tick()
+        if not busy and #queue==0 then destroyActor();return end
         local s=ctx.snapshot();if not s then if profile then self:clear()end;return end
         if profile and token(s)~=profile then self:clear();return end
         if self.error then return end
@@ -113,16 +136,20 @@ function M.new(ctx)
                 busy.material:SetTextureParameterValue(FName('SampleRT'),busy.target)
                 retain(busy,s)
                 local done=busy;busy=nil;pending[done.key]=nil;cache[done.key]=done
-                if done.callback then pcall(done.callback,done.material)end
+                for _,callback in ipairs(done.callbacks)do pcall(callback,done.material)end
+                done.callbacks=nil;done.capture=nil
+                prune()
+                if #queue==0 then destroyActor()end
             end
         end)
         if not ok then
             self.error=tostring(err)
-            if busy then pending[busy.key]=nil;release(busy);busy=nil end
+            self:cancelPending()
             if ctx.log then ctx.log('Portrait rendering: '..self.error)end
         end
     end
     function api:invalidate(role)
+        self:cancelPending()
         for key,entry in pairs(cache)do if not role or entry.role==role then release(entry);cache[key]=nil end end
     end
     function api:retry()self.error=nil end
