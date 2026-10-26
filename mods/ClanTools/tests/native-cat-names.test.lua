@@ -54,4 +54,17 @@ end)
 test('name removal restores old caption while unchanged role remains owned',function()
  local f=fixture();f.a.tick();f.cats[1].name=f.cats[1].originalName;assert(f.a.tick());assert(f.name.value=='Hareblaze'and f.a.status().count==0)
 end)
+test('profiles without overrides skip save parsing and native discovery; removal restores labels',function()
+ local f=fixture();assert(f.a.tick());assert(f.name.value=='Willowmist')
+ f.ctx.catNames={hasOverrides=function(s)assert(s==f.s);return false end}
+ f.ctx.getCats=function()error('Full save must not be parsed without overrides')end
+ FindAllOf=function()error('Native objects must not be scanned without overrides')end
+ for i=1,100 do assert(f.a.tick())end
+ assert(f.name.value=='Hareblaze'and f.a.status().count==0)
+end)
+test('no applicable living aliases skip native discovery',function()
+ local f=fixture();f.cats[1].living=false
+ FindAllOf=function()error('No applicable alias requires widget discovery')end
+ assert(f.a.tick())
+end)
 print(n..' native cat label tests passed (reflected model; live widget acceptance pending).')

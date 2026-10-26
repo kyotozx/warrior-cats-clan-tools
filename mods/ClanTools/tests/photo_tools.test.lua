@@ -23,6 +23,16 @@ local function fixture()
  f.api=M.new(f.ctx);return f
 end
 do
+ local f=fixture();local discover=f.ctx.photoDiscover
+ f.ctx.snapshot=function()error('Default photo settings must not acquire campaign state')end
+ f.ctx.photoDiscover=function()error('Default photo settings must not scan native objects')end
+ for i=1,100 do assert(f.api.tick())end
+ f.ctx.snapshot=function()return f.s end;f.ctx.photoDiscover=discover
+ assert(f.api.configure('hideUI',true));assert(f.api.tick());assert(f.p.popup.opacity==0)
+ assert(f.api.configure('hideUI',false));assert(f.api.tick());assert(f.p.popup.opacity==.8 and not f.api.status().active)
+ print('PASS inactive photo extensions skip discovery and restore immediately when disabled')
+end
+do
  local f=fixture();assert(f.api.configure('fov',95));assert(f.api.configure('roll',12))
  assert(f.api.configure('hideUI',true));assert(f.api.configure('hideNames',true));assert(f.api.configure('freezeCharacters',true));assert(f.api.tick())
  assert(f.p.lens.FieldOfView==95 and f.p.lens.RelativeRotation.Roll==13)

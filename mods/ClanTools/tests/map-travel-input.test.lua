@@ -47,4 +47,18 @@ end)
 test('failed visible hint disables actions and shutdown removes only owned hint',function()
  local f=fixture();f.a.tick();f.failRender(true);f.keys.F9=true;assert(not f.a.tick());assert(f.calls.preview==0 and not f.a.state().active);assert(f.a.shutdown());assert(not f.a.tick())
 end)
+test('idle scheduling reduces campaign snapshots while active input remains responsive',function()
+ local f=fixture();local callback;local snapshots=0;local snapshot=f.ctx.snapshot
+ f.ctx.snapshot=function()snapshots=snapshots+1;return snapshot()end
+ LoopInGameThreadWithDelay=function(delay,fn)assert(delay==16);callback=fn;return 1 end
+ CancelDelayedAction=function(id)assert(id==1)end
+ f.visible(false);assert(f.a.start())
+ for i=1,160 do callback()end
+ assert(snapshots==10,'Inactive map should not acquire 160 campaign snapshots')
+ f.visible(true);f.keys.F9=true;callback();assert(f.a.state().active and f.calls.preview==0)
+ f.keys.F9=false;callback();f.keys.F9=true;callback();assert(f.calls.preview==1)
+ f.keys.F9=false;callback();f.s.combat=true;f.keys.F9=true;callback()
+ assert(not f.a.state().active and f.calls.travel==0,'Active safety checks cannot be throttled')
+ assert(f.a.shutdown());local before=snapshots;callback();assert(snapshots==before)
+end)
 print(n..' map input tests passed (model; native UI/geometry acceptance pending).')

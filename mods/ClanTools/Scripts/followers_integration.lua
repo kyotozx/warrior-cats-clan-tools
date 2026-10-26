@@ -114,9 +114,10 @@ function M.new(ctx,options)
  function api.tick(now)
   if closed then return false,'Follower integration is shut down.'end
   if options.updateGate then options.updateGate()end
+  if not enabled or not verified()then return reset()end
   local current=now or os.clock()
   local s=snapshot()
-  if not enabled or not verified()or not s then return reset()end
+  if not s then return reset()end
   if environment and current-environmentChecked>=0.5 then
    environmentChecked=current
    local ok,ready,reason=pcall(environment,s)

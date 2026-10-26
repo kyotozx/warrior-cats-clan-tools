@@ -93,9 +93,13 @@ function M.new(ctx)
   if closed then return false,'Native names are shut down.'end
   local s=ctx.snapshot()
   if not s or s.offline~=true or type(s.profile)~='string'or type(s.slot)~='number'or type(s.worldId)~='string'then return reset()end
+  -- The profile-scoped sidecar is cached. Avoid parsing the whole game save
+  -- and searching native widgets when this profile has no renamed cats.
+  if ctx.catNames and ctx.catNames.hasOverrides and not ctx.catNames.hasOverrides(s)then return reset()end
   local cats,meta=ctx.getCats();assert(type(cats)=='table'and(not meta or meta.valid~=false),'Clan names are unavailable.')
   local aliases={}
   for _,cat in ipairs(cats)do if cat.living==true and cat.clan==s.clan and type(cat.role)=='number'and type(cat.name)=='string'and cat.name~=cat.originalName then aliases[cat.role]=cat.name end end
+  if next(aliases)==nil then return reset()end
   local scope=s.profile..'|'..s.slot..'|'..s.worldId;local desired={}
   lastError=nil
   for _,target in ipairs(collect(s))do

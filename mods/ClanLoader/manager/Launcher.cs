@@ -8,13 +8,21 @@ using System.Windows.Forms;
 // Windows GUI host: the same reviewed PowerShell backend is used by the GUI
 // and automated installer tests. No terminal window or elevated token needed.
 internal static class ClanLoaderLauncher {
+    internal static Runspace CreateManagerRunspace() {
+        // Limit the policy to this host process. Domain Group Policy still wins;
+        // no machine/user policy changes or elevated permissions are required.
+        InitialSessionState state=InitialSessionState.CreateDefault();
+        state.ExecutionPolicy=Microsoft.PowerShell.ExecutionPolicy.Bypass;
+        Runspace runspace=RunspaceFactory.CreateRunspace(state);
+        runspace.ApartmentState=ApartmentState.STA;
+        runspace.ThreadOptions=PSThreadOptions.UseCurrentThread;
+        return runspace;
+    }
     [STAThread]
     private static void Main() {
         try {
             string root=AppDomain.CurrentDomain.BaseDirectory;
-            using (Runspace runspace=RunspaceFactory.CreateRunspace()) {
-                runspace.ApartmentState=ApartmentState.STA;
-                runspace.ThreadOptions=PSThreadOptions.UseCurrentThread;
+            using (Runspace runspace=CreateManagerRunspace()) {
                 runspace.Open();
                 using (PowerShell ps=PowerShell.Create()) {
                     ps.Runspace=runspace;

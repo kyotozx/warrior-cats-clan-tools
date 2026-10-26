@@ -8,6 +8,7 @@ function M.new(ctx)
  local active,handle,closed,running,lastError,lastLog=nil,nil,false,false,nil,nil
  local held,keys,conflicts={},{},{};local pending,message
  local eventHeld,edges={},{};local popupId;local keyHooks={}
+ local idleTicks=0
  local function key(name)if not keys[name]then keys[name]={KeyName=(ctx.make_name or FName)(name)}end;return keys[name]end
  local function clear()
   if active or pending then ctx.mapTravel.reset()end
@@ -121,7 +122,20 @@ function M.new(ctx)
     keyHooks[#keyHooks+1]={path,pre,post}
    end
   end
-  if not handle then handle=LoopInGameThreadWithDelay(16,function()if not closed then api.tick()end end)end
+  if not handle then
+   idleTicks=0
+   handle=LoopInGameThreadWithDelay(16,function()
+    if closed then return end
+    -- Only the open map needs frame-rate input. When inactive, discover it
+    -- once per 16 callbacks (about 256 ms), not on every engine frame.
+    -- Active ticks still obtain a fresh campaign snapshot before any action.
+    if not active then
+     if idleTicks>0 then idleTicks=idleTicks-1;return end
+     idleTicks=15
+    else idleTicks=0 end
+    api.tick()
+   end)
+  end
   return handle~=nil
  end
  function api.stop()if handle then CancelDelayedAction(handle);handle=nil end;clear();return true end

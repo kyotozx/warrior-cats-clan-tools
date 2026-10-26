@@ -7,7 +7,7 @@ local function fixture(persisted)
  local party={{role=2},{role=3}};local active={};local calls={select=0,reset=0,saves=0};local verified=true
  local driver={state=function()return{active=#active,roles=active}end,tick=function()if calls.navigationFailure then return false,'[FOLLOWER_NAVIGATION] No path'end;return true end,reset=function()calls.reset=calls.reset+1;if calls.cleanupFailure then return false,'Cleanup pending'end;active={};return true end,
  select=function(roles)calls.select=calls.select+1;if calls.spawnFailure then return false,'Spawn failed'end;active=roles;return true end,shutdown=function()if calls.cleanupFailure then return false,'Cleanup pending'end;active={};return true end}
- local api=M.new({snapshot=function()return s end,getCats=function()return cats,{valid=true,profile=s.profile,slot=s.slot}end,party={read=function()return party end}},
+ local api=M.new({snapshot=function()calls.snapshots=(calls.snapshots or 0)+1;return s end,getCats=function()return cats,{valid=true,profile=s.profile,slot=s.slot}end,party={read=function()return party end}},
  {driver=driver,environment=function()return not calls.housing,'Followers wait outside dens.'end,verified=function()return verified end,load=function()return persisted end,save=function(v)calls.saves=calls.saves+1;calls.persisted=v;return true end})
  return api,s,cats,party,calls,function(v)verified=v end
 end
@@ -52,5 +52,12 @@ test('distance storage failure restores the active controller setting',function(
  local ctx={snapshot=function()end,getCats=function()end,party={read=function()end}}
  local a=M.new(ctx,{driver=driver,load=function()return false end,save=function()error('disk unavailable')end})
  assert(not a.set_distance(350));assert(a.state().distance==150 and distance==150)
+end)
+test('disabled and unverified followers skip snapshots but retry pending cleanup',function()
+ local a,s,c,p,calls=fixture(false)
+ for i=1,100 do assert(a.tick(i))end;assert(not calls.snapshots)
+ local b,bs,bc,bp,counts,gate=fixture(true);b.tick(0);b.tick(1);local before=counts.snapshots
+ gate(false);counts.cleanupFailure=true;assert(not b.tick(2));assert(counts.snapshots==before)
+ counts.cleanupFailure=false;assert(b.tick(3));assert(b.state().active==0 and counts.snapshots==before)
 end)
 print(passed..' follower integration tests passed (mock lifecycle).')

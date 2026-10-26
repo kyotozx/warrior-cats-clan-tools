@@ -36,4 +36,12 @@ end)
 test('dead foreign and invalid profile identities are rejected',function()
  local f=fixture();f.cat.living=false;assert(not pcall(f.api.prepare,f.s,f.cat,'Cat'));f.cat.living=true;f.cat.clan=1;assert(not pcall(f.api.prepare,f.s,f.cat,'Cat'));f.s.profile='../bad';assert(not pcall(f.api.get,f.s,77,'Original'))
 end)
+test('override checks are cached and follow commits and profile switches',function()
+ local f=fixture();local reads=0;local read=f.ctx.read
+ f.ctx.read=function(path)reads=reads+1;return read(path)end
+ for i=1,100 do assert(not f.api.hasOverrides(f.s))end
+ assert(reads==1,'No repeated filesystem reads for an unchanged profile')
+ assert(f.api.commit(f.api.prepare(f.s,f.cat,'Moonlight')));assert(f.api.hasOverrides(f.s))
+ f.s.slot=1;assert(not f.api.hasOverrides(f.s));f.s.slot=0;assert(f.api.hasOverrides(f.s))
+end)
 print(passed..' cat name tests passed')

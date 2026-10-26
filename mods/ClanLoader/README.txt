@@ -1,4 +1,5 @@
-CLAN LOADER 0.3.0-rc3 + CLAN TOOLS 0.3.0-rc1
+CLAN LOADER + CLAN TOOLS
+See bundle-manifest.json and ClanTools/manifest.json for the bundled versions.
 
 Unofficial community mod suite for Warrior Cats: Clans of the Forest.
 Windows x64, Steam app 3960600, game build 24847281 only.
@@ -9,6 +10,10 @@ GET STARTED
 1. Save and close the game. Extract this entire ZIP to a normal writable folder.
 2. Open ClanLoader.exe. The installed Steam game should be detected automatically.
    Otherwise choose the folder containing Wrc, not Wrc/Binaries/Win64.
+   Use the EXE rather than opening Manager.ps1 directly. The EXE configures its
+   own PowerShell session; it does not change your Windows execution policy.
+   Organization-managed policies still apply. If blocked, share the exact error,
+   the file you opened and the version from bundle-manifest.json.
 3. Select Install / update suite. Nothing is downloaded. The bundled UE4SS
    bootstrap and native in-game Mods menu are installed with Clan Tools.
 4. Start the game. Open its main or pause menu and use Mods [F10 / R3].

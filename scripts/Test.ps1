@@ -9,7 +9,7 @@ try{
  Get-ChildItem mods/ClanTools/bin -Filter '*.dll' -File|Copy-Item -Destination $guardBin
  $suites=@(Get-ChildItem mods/ClanTools/tests,mods/ClanLoader/tests -File -Filter '*.test.lua'|Sort-Object FullName)
  foreach($test in $suites){& $lua $test.FullName ($guardBin.Replace('\','/')+'/');if($LASTEXITCODE -ne 0){throw "Failed: $($test.Name)"}}
- foreach($test in @('mods/ClanLoader/tests/manager.test.ps1','mods/ClanTools/tests/package.test.ps1','mods/ClanTools/tests/release-inputs.test.ps1')){
+ foreach($test in @('mods/ClanLoader/tests/launcher-policy.test.ps1','mods/ClanLoader/tests/manager.test.ps1','mods/ClanTools/tests/package.test.ps1','mods/ClanTools/tests/release-inputs.test.ps1')){
   & powershell.exe -NoProfile -ExecutionPolicy Bypass -File $test
   if($LASTEXITCODE -ne 0){throw "Failed: $test"}
  }
@@ -26,5 +26,5 @@ try{
    $nativeCount++
   }
  }
- Write-Output "PASS: $($suites.Count) Lua suites, 3 PowerShell suites, $nativeCount native harnesses. Live gameplay is a separate check."
+ Write-Output "PASS: $($suites.Count) Lua suites, 4 PowerShell suites, $nativeCount native harnesses. Live gameplay is a separate check."
 }finally{Pop-Location}

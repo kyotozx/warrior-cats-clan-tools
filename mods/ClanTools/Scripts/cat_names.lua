@@ -28,6 +28,9 @@ function M.new(ctx)
  function api.get(s,role,fallback)
   local data=load(s);return data.names[tostring(role)]or fallback
  end
+ function api.hasOverrides(s)
+  return next(load(s).names)~=nil
+ end
  function api.prepare(s,cat,value)
   local clean,why=M.validate(value);assert(clean,why)
   assert(cat and cat.living==true and cat.clan==s.clan and type(cat.role)=='number'and cat.role%1==0 and cat.role>0 and cat.role<255,'Choose a living clanmate.')

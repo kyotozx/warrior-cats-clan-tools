@@ -113,6 +113,9 @@ function M.new(ctx)
  function api.tick(s)
   if stopped then return end
   local ok,why=pcall(function()
+   if settings.fov==nil and settings.roll==0 and not settings.hideUI and not settings.hideNames and not settings.freezeCharacters then
+    assert(api.reset());return
+   end
    s=s or ctx.snapshot()
    if not s or not s.offline or s.combat or ctx.appearanceActive then assert(api.reset());return end
    local p=discover(s)
