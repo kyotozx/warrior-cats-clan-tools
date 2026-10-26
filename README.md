@@ -61,6 +61,19 @@ The package includes the tested UE4SS runtime. Python and a separate mod loader 
 
 Game textures and fonts are loaded from your own installation. They are not included in this repository or the release package.
 
+## Troubleshooting
+
+### Loader cannot load ThemeAssets.dll (0x80131515)
+
+Windows can mark downloaded files as blocked. If the loader reports that it cannot load `ThemeAssets.dll`, with “Operation is not supported” and error `0x80131515`:
+
+1. Close Clan Loader.
+2. Right-click the release ZIP you downloaded from this repository and select **Properties**.
+3. Under **General**, check **Unblock**, if shown, then click **Apply**.
+4. Extract the ZIP again into a new folder and open `ClanLoader.exe` from that folder.
+
+If the ZIP has no Unblock option, check **Properties > Unblock** on `ThemeAssets.dll` in the extracted folder. Keep the other extracted files alongside the launcher. This does not require administrator access or changing your system-wide PowerShell execution policy.
+
 ## Controls
 
 | Action | Keyboard | Controller |
