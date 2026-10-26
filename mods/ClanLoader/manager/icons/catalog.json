@@ -74,6 +74,13 @@
                                             "M22,49 L42,49 M24,43 L24,38 M32,43 L32,33 M40,43 L40,28"
                                         ]
                           },
+                  "performance":  {
+                                      "label":  "Performance",
+                                      "color":  "#9FCDBE",
+                                      "paths":  [
+                                                    "M19,46 A13,13 0 0 1 45,46 M19,46 L45,46 M32,33 L32,36 M22,36 L25,39 M42,36 L39,39 M32,43 L38,38"
+                                                ]
+                                  },
                   "player-skins":  {
                                        "label":  "Player skins",
                                        "color":  "#B9A6D4",

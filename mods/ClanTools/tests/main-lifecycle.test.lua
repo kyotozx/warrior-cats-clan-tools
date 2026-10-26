@@ -14,7 +14,7 @@ modules['input.lua']={new=function(options)
  return {tick=function()calls.inputTick=calls.inputTick+1 end,shutdown=function()return true end}
 end}
 modules['appearance_integration.lua']={new=function()return{tick=function()end,shutdown=function()return true end}end}
-modules['settings_extensions.lua']={new=function()return{tick=function()end,shutdown=function()return true end}end}
+modules['settings_extensions.lua']={new=function()error('FPS runtime belongs to Performance')end}
 modules['key_rebind.lua']={new=function()return{tick=function()end,shutdown=function()return true end}end}
 modules['admin_progression.lua']={nativeAdapter=function()return{}end,new=function()return{}end}
 modules['admin_enemy.lua']={spawn=function()end}
@@ -42,6 +42,7 @@ function FindAllOf()return{}end
 Key={F6=1,LEFT_MOUSE_BUTTON=2,F7=3,F8=4}
 local boot=assert(loadfile(source..'../Scripts/main.lua'))
 local result=boot();assert(result==ctx);assert(type(loop)=='function');loop()
+assert(keys[Key.F8]==nil and ctx.settings_extensions==nil,'Clan Tools must not own the Performance hotkey or runtime')
 keys[Key.F6]();keys[Key.LEFT_MOUSE_BUTTON]()
 assert(calls.close==0 and calls.pointer==0,'Key callback touched engine/UI outside game-thread loop')
 loop();assert(calls.close==1 and calls.pointer==1,'Game-thread loop did not consume key intents')

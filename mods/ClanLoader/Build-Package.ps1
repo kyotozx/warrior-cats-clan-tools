@@ -9,7 +9,7 @@ if(Test-Path -LiteralPath $stage){throw 'Release already exists.'}
 $ct=Read-PackageManifest $ClanToolsPackage
 $null=New-Item -ItemType Directory -Path $stage -Force
 foreach($name in @('ClanLoader.exe','Manager.ps1','Manager.Core.ps1','Package.Core.ps1','Manager.xaml','Theme.ps1','ThemeAssets.dll','theme-assets.json')){Copy-Item -LiteralPath (Join-Path $PSScriptRoot ('manager/'+$name)) -Destination $stage}
-$iconNames=@('loader','clan-tools','package','party','appearance','item-feedback','offline-admin','den-workshop','keybinds','fps','player-skins','sky')
+$iconNames=@('loader','clan-tools','package','party','appearance','item-feedback','offline-admin','den-workshop','keybinds','fps','performance','player-skins','sky')
 $supportFiles=@('icons/loader.ico','icons/catalog.json','theme-tools/ooz.exe','theme-tools/COPYING.txt','theme-tools/NOTICE.txt')
 foreach($icon in $iconNames){$supportFiles+=@(('icons/'+$icon+'.svg'),('icons/'+$icon+'.png'))}
 foreach($name in @('kraken.cpp','lzna.cpp','bitknit.cpp','stdafx.h','targetver.h','README.md')){$supportFiles+=('theme-tools/source/'+$name)}

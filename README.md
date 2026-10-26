@@ -33,6 +33,10 @@ Actual screenshots from the supported game build. The menus reuse the game's fon
 
 </details>
 
+## Performance and FPS
+
+Graphics presets, saved custom configurations, the frame limiter and FPS counter now live in [Performance](https://github.com/kyotozx/warrior-cats-performance), a separate optional mod. It uses Clan Loader and does not require Clan Tools. Open it from the game menus with F9 / L3.
+
 ## Compatibility
 
 | Requirement | Supported version |
@@ -48,7 +52,7 @@ The installer checks the game executable before applying changes. Other builds a
 
 ## Install
 
-1. Download `ClanLoader-0.3.0-rc4.zip` from [Releases](https://github.com/kyotozx/warrior-cats-clan-tools/releases). Use this package, rather than GitHub's automatically generated source archives.
+1. Download `ClanLoader-0.3.0-rc5.zip` from [Releases](https://github.com/kyotozx/warrior-cats-clan-tools/releases). Use this package, rather than GitHub's automatically generated source archives.
 2. Save and close the game. Extract the entire ZIP to a writable folder.
 3. Open `ClanLoader.exe`. Check the detected game folder, then select **Install / update suite**.
 4. Start the game. Open **Mods** from the main or pause menu. In an offline campaign, open **Clan Tools** from pause.
@@ -84,7 +88,7 @@ On-screen hints explain tool-specific actions and reflect supported remaps. All 
 | Clan upkeep | Fill or lock the fresh-kill pile, edit bonds, and complete quests. |
 | Den crafting | Accelerate crafting timers or finish projects. Craft supported decorations and inventory items with a free option. |
 | Den layout and photos | Preview decoration changes, use layout tools, adjust photo settings, and choose native day/night lighting presets. |
-| Settings | Edit keyboard/controller bindings, set a frame-rate limit or unlimited FPS, and enable an FPS counter. |
+| Settings | Edit keyboard/controller bindings with conflict detection and reset controls. |
 
 Some actions change saved progression. Read the confirmation shown by the tool and keep backups. See the [full feature guide](mods/ClanTools/release/README.txt) and [validation notes](mods/ClanTools/release/VALIDATION.txt) for tested behavior and limitations. Day/night is a lighting override, not a simulated clock or weather system. Map travel needs valid loaded ground. Story battles are not disabled by Ignore Enemies.
 

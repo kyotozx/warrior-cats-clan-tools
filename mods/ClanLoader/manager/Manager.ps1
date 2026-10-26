@@ -23,7 +23,7 @@ function Refresh-List{
  foreach($m in $script:rows){
   $enabled=$states.ContainsKey($m.id) -and $states[$m.id]
   $label=if($enabled){'Enabled'}else{'Disabled'};$color=if($enabled){'#8CD5AA'}else{'#9BA7A1'}
-  $iconName=if($m.id -eq 'ClanLoader'){'loader'}elseif($m.id -eq 'ClanTools'){'clan-tools'}else{'package'}
+  $iconName=if($m.id -eq 'ClanLoader'){'loader'}elseif($m.id -eq 'ClanTools'){'clan-tools'}elseif($m.id -eq 'ClanPerformance'){'performance'}else{'package'}
   $icon=[Windows.Media.Imaging.BitmapImage]::new([Uri]::new((Join-Path $PSScriptRoot ('icons/'+$iconName+'.png'))));$icon.Freeze()
   $null=$list.Items.Add([pscustomobject]@{DisplayName=$m.name;StateLabel=$label;StateBrush=$color;VersionLabel=$m.version;Enabled=$enabled;IconSource=$icon})
  }

@@ -5,7 +5,6 @@ local function keyLabel(key)
  if not key then return'Unrecognized native key'end
  return padNames[key]or key:gsub('Gamepad_DPad_','D-pad '):gsub('SpaceBar','Space'):gsub('LeftControl','Left Ctrl'):gsub('RightControl','Right Ctrl'):gsub('([a-z])([A-Z])','%1 %2')
 end
-local function limitLabel(n)return n==0 and'Unlimited'or tostring(math.floor(n+.5))..' FPS'end
 local function bindingLabel(row)
  local label=row.label or('Command '..row.command)
  if row.kind==1 and row.device=='keyboard'then
@@ -17,11 +16,10 @@ local function bindingLabel(row)
 end
 function M.new(ctx,p)
  assert(type(p)=='table'and p.text and p.button and p.panel and p.refresh and p.notify,'Settings UI primitives required')
- local api={};local state={device='keyboard',page=1,keyPage=1,customCap=120};local fpsLabel;local lastCounter
+ local api={};local state={device='keyboard',page=1,keyPage=1}
  local text,button,panel=p.text,p.button,p.panel
- local function refresh()fpsLabel=nil;p.refresh()end
+ local function refresh()p.refresh()end
  local function notice(message)p.notify(message)end
- local function video()return assert(ctx.settings_extensions,'Video settings backend is unavailable')end
  local function controls()return assert(ctx.keybinds,'Controls backend is unavailable')end
  local function invoke(fn,message,after)
   local ok,a,b=pcall(fn)
@@ -32,41 +30,6 @@ function M.new(ctx,p)
  local function note(message,y)text(message,450,y,1290,17)end
  local function header(title,subtitle)
   text(title,430,135,1340,31,nil,true);text(subtitle,432,192,1340,17)
- end
- function api.counterText()
-  local backend=ctx.settings_extensions;if not backend then return nil end
-  local s=backend.status();if not s.counter then return nil end
-  return s.fps and('FPS: '..math.floor(s.fps+.5))or'FPS: --'
- end
- function api.tick()
-  if not fpsLabel then return end
-  local label=api.counterText()or'FPS counter is off'
-  if lastCounter~=label and ctx.valid and ctx.valid(fpsLabel)and FText then fpsLabel:SetText(FText(label));lastCounter=label end
- end
- function api.videoPage()
-  header('Video settings','Changes apply to the game and are saved immediately.')
-  local backend=video();local s=backend.status();local v=s.video
-  if not v then panel(430,260,1350,180);note(s.error or'Video settings are unavailable.',290);button('Retry',450,350,240,62,refresh);return end
-  panel(430,250,1350,255);note('Frame limit: '..limitLabel(v.limit),268)
-  local limits={30,45,60,90,120,144,165,240,360,0}
-  for i,cap in ipairs(limits)do
-   local x=450+((i-1)%5)*262;local y=312+math.floor((i-1)/5)*84
-   button(limitLabel(cap),x,y,242,65,function()invoke(function()return backend.set_fps(cap)end,'Frame limit set to '..limitLabel(cap)..'.')end,v.limit==cap,not v.fixed)
-  end
-  panel(430,523,1350,135);text('Custom limit',450,535,270,18,nil,true)
-  local function change(delta)return function()state.customCap=math.max(15,math.min(1000,state.customCap+delta));refresh()end end
-  button('- 10',450,575,145,63,change(-10));button('- 1',610,575,145,63,change(-1))
-  text(state.customCap..' FPS',780,590,215,22,nil,true)
-  button('+ 1',1010,575,145,63,change(1));button('+ 10',1170,575,145,63,change(10))
-  button('Apply custom',1340,575,420,63,function()invoke(function()return backend.set_fps(state.customCap)end,'Custom frame limit saved.')end,false,not v.fixed)
-  panel(430,677,1350,167)
-  button('VSync: '..(v.vsync and'On'or'Off'),450,697,385,65,function()invoke(function()return backend.set_vsync(not v.vsync)end,'VSync updated.')end,v.vsync)
-  button('FPS counter: '..(s.counter and'On'or'Off'),860,697,420,65,function()invoke(function()return backend.set_counter(not s.counter)end)end,s.counter)
-  lastCounter=api.counterText()or'FPS counter is off';fpsLabel=text(lastCounter,1320,711,425,23,nil,true)
-  note(v.vsync and'VSync may limit output to your display refresh rate.'or'VSync is off. Unlimited removes the game frame limiter.',787)
-  text(v.fixed and'A fixed engine timestep is active; frame-limit controls are unavailable.'or s.custom_limit and'Custom frame limits replace the game\'s original 30–60 FPS smoothing.'or'The original game frame smoothing is currently in use.',450,862,1300,16)
-  button('Restore original video settings',450,914,625,62,function()invoke(backend.restore_video,'Original video settings restored.')end,false,s.can_restore)
-  if s.error then text(s.error:sub(1,110),1110,920,650,14)end
  end
  local function currentRows()
   local rows,err=controls().bindings(state.device)
@@ -113,7 +76,6 @@ function M.new(ctx,p)
   text('F6 remains available for recovery. Axis types and direction scales are preserved.',450,941,1300,15)
  end
  function api.keybindPage()
-  fpsLabel=nil
   if state.selected then picker();return end
   header('Game controls','Keyboard and controller mappings are saved for the active profile.')
   if state.resetAll then
@@ -147,7 +109,7 @@ function M.new(ctx,p)
   if state.resetAll then state.resetAll=nil;refresh();return true end
   return false
  end
- function api.reset()state.selected=nil;state.conflict=nil;state.resetAll=nil;state.page=1;state.keyPage=1;fpsLabel=nil end
+ function api.reset()state.selected=nil;state.conflict=nil;state.resetAll=nil;state.page=1;state.keyPage=1 end
  return api
 end
 return M

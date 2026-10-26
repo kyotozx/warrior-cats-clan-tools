@@ -70,7 +70,6 @@
     "pile_lock.lua",
     "portraits.lua",
     "runtime_valid.lua",
-    "settings_extensions.lua",
     "settings_ui.lua",
     "text_entry.lua",
     "text_prompt.lua",

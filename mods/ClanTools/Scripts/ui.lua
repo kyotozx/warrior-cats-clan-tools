@@ -15,10 +15,9 @@ function M.new(ctx)
  local nativeBackground=dofile(folder..'native_background.lua').new(ctx)
  local backgroundReceipt,nativeFrame
  local tabs={{'party','Party'},{'appearance','Appearance'},{'feedback','Item feedback'},{'admin','Offline admin'},{'crafting','Den crafting'}}
- local settingsTabs={{'keybinds','Game controls'},{'video','Frame rate'}}
+ local settingsTabs={{'keybinds','Game controls'}}
  local settingsMode,returnScreen,returnVisibility,pauseVisibility
  local settingsRenderer,progressionRenderer,travelRenderer,partyRenderer,inventoryRenderer,favoritesRenderer,sandboxRenderer
- local fpsWidget,fpsText,fpsSecond
  local function activeTabs()return settingsMode and settingsTabs or tabs end
  local entries={}
  local toast,toastExpiry
@@ -255,7 +254,7 @@ function M.new(ctx)
   text(hints.tabs..': tabs',65,837,320,14,palette.muted)
   button(ctx.settings.theme=='dark'and'Theme: Moonlight'or'Theme: Daylight',60,868,275,62,function()ctx.settings.theme=ctx.settings.theme=='dark'and'light'or'dark';ctx.saveSettings();refresh()end)
   button('Back to game menu',60,958,275,58,api.close)
-  if settingsMode then if api.tab=='keybinds'then settingsRenderer.keybindPage()else settingsRenderer.videoPage()end
+  if settingsMode then settingsRenderer.keybindPage()
   elseif api.tab=='party'then partyPage()elseif api.tab=='appearance'then appearancePage()elseif api.tab=='feedback'then feedbackPage()elseif api.tab=='admin'then adminPage()elseif api.tab=='crafting'then craftingPage()end
   -- Pause footer labels describe its previous tab (for example Track Quest).
   -- Keep our binding-aware actions visible without borrowing that stale footer.
@@ -341,23 +340,7 @@ function M.new(ctx)
   api.opened=false;widgets={};actions={};w=nil
  end
  function api.tick()
-  settingsRenderer.tick();progressionRenderer.tick()
-  if ctx.valid(fpsWidget)then fpsWidget:SetRenderOpacity(ctx.photoHideUI and 0 or 1)end
-  if os.time()~=fpsSecond then
-   fpsSecond=os.time();local label=settingsRenderer.counterText();local s=ctx.snapshot()
-   if not label or not s then if ctx.valid(fpsWidget)then fpsWidget:RemoveFromParent()end;fpsWidget=nil;fpsText=nil
-   else
-    if not ctx.valid(fpsWidget)then
-     local bc=LoadAsset('/Game/Art/UXD/Blueprints/Controls/gui_common/WBP_GuiClanScreenBackground.WBP_GuiClanScreenBackground_C')
-     fpsWidget=lib:Create(s.gameState,bc,s.pc);local r=fpsWidget.WidgetTree.RootWidget;r:GetChildAt(0):SetVisibility(2)
-     fpsText=StaticConstructObject(StaticFindObject('/Script/UMG.TextBlock'),fpsWidget.WidgetTree)
-     local dpi=layout:GetViewportScale(s.gameState);local sl=r:AddChild(fpsText);sl:SetPosition({X=22/dpi,Y=15/dpi});sl:SetSize({X=200/dpi,Y=40/dpi})
-     fpsText:SetFont({FontObject=LoadAsset('/Game/Art/UXD/Fonts/Catamaran/Catamaran.Catamaran'),Size=math.floor(21/dpi),TypefaceFontName=FName('Catamaran-Medium')});fpsText:SetColorAndOpacity({SpecifiedColor=color(themes.dark.text),ColorUseRule=0})
-     fpsWidget:SetVisibility(3);fpsWidget:SetRenderOpacity(ctx.photoHideUI and 0 or 1);fpsWidget:AddToViewport(1000002)
-    end
-    fpsText:SetText(FText(label))
-   end
-  end
+  progressionRenderer.tick()
   if toast and toastExpiry and os.time()>=toastExpiry then if ctx.valid(toast)then toast:RemoveFromParent()end;toast=nil end
   if api.opened and(not ctx.valid(pause)or not pause:IsInViewport())then api.close()end
   if api.opened then for i,a in ipairs(actions)do a.skin:setSelected(controllerFocus and i==focus and a.enabled or false)end end
@@ -382,13 +365,13 @@ function M.new(ctx)
   local id=screen:GetAddress();if entries[id]and ctx.valid(entries[id].button)then return end
   local s=ctx.snapshot();if not s then return end
   local dpi=layout:GetViewportScale(s.gameState);local viewport=layout:GetViewportSize(s.gameState)
-  local b,skin=nativeSkin.createButton(ctx,screen.WidgetTree.RootWidget,screen,p,'FRAME RATE  [F8 / Y]',viewport.X-465,32,400,70,dpi,true)
-  b.Slot:SetZOrder(999);entries[id]={button=b,pause=p,owner=screen,skin=skin,page='video'}
+  local b,skin=nativeSkin.createButton(ctx,screen.WidgetTree.RootWidget,screen,p,'EDIT KEYBINDS  [F7 / Y]',viewport.X-465,32,400,70,dpi,true)
+  b.Slot:SetZOrder(999);entries[id]={button=b,pause=p,owner=screen,skin=skin,page='keybinds'}
  end
  function api.openSettings(p,page,owner)
   if ctx.appearanceActive then return end
   if api.opened then api.close()end
-  settingsMode=true;api.tab=page=='keybinds'and'keybinds'or'video';api.subtab=nil
+  settingsMode=true;api.tab='keybinds';api.subtab=nil
   if owner and owner:GetAddress()~=p:GetAddress()then returnScreen=owner;returnVisibility=owner:GetVisibility();owner:SetVisibility(2)end
   api.open(p)
  end
@@ -462,7 +445,6 @@ function M.new(ctx)
  function api.shutdown()
   api.alive=false
   api.close();if toast and ctx.valid(toast)then toast:RemoveFromParent()end
-  if ctx.valid(fpsWidget)then fpsWidget:RemoveFromParent()end
   for _,e in pairs(entries)do if ctx.valid(e.button)then e.button:RemoveFromParent()end end;entries={}
   UnregisterHook('/Script/SwtEngine.GuiControl:OnControlClick',hookPre,hookPost)
   UnregisterHook('/Script/SwtEngine.SwtScreen:OnListenCommand',commandPre,commandPost)

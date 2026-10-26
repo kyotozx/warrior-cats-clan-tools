@@ -18,6 +18,7 @@ $catalog=[ordered]@{
  'den-workshop'=@{label='Den Workshop';color='#D3B17A';paths=@('M20,39 L32,28 L44,39 M24,36 L24,50 L40,50 L40,36 M29,50 L29,42 L35,42 L35,50')}
  'keybinds'=@{label='Keybinds';color='#95B4D5';paths=@('M22,30 L42,30 L42,50 L22,50 Z M27,39 L32,35 L37,39 M32,35 L32,45')}
  'fps'=@{label='FPS tools';color='#9FCDBE';paths=@('M22,49 L42,49 M24,43 L24,38 M32,43 L32,33 M40,43 L40,28')}
+ 'performance'=@{label='Performance';color='#9FCDBE';paths=@('M19,46 A13,13 0 0 1 45,46 M19,46 L45,46 M32,33 L32,36 M22,36 L25,39 M42,36 L39,39 M32,43 L38,38')}
  'player-skins'=@{label='Player skins';color='#B9A6D4';paths=@('M21,39 L21,28 L26,33 L32,33 L37,28 L37,43 L21,43 Z M27,49 L43,49 L43,35 M27,38 L28,38 M32,38 L33,38')}
  'sky'=@{label='Sky & lighting';color='#B9C7D3';paths=@('M35,28 C20,28 17,44 28,49 C35,52 42,47 43,42 C32,46 26,34 35,28 Z M42,28 L42,34 M39,31 L45,31')}
 }

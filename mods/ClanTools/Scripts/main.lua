@@ -3,7 +3,7 @@ local ctx=dofile(folder..'context.lua')
 ctx.appearanceDllName='clanappearance-skins-v8.dll'
 ctx.skins=dofile(folder..'skins.lua').new(ctx)
 local ready,stopped,closing=false,false,false
-local tick=0;local errors={};local ui,items,party,admin,crafting,portraits,input,appearance,settings,keybinds,progression,followers,flightInput;local portraitSession,lastSnapshot
+local tick=0;local errors={};local ui,items,party,admin,crafting,portraits,input,appearance,keybinds,progression,followers,flightInput;local portraitSession,lastSnapshot
 local healAdapter,adminVerified,progressionAdapter
 local cleanupDone={};local shutdownMessage
 local pendingToggle,pendingPointer=false,false
@@ -74,7 +74,6 @@ local function init()
  if not ctx.mapTravelInput then ctx.mapTravelInput=dofile(folder..'map_travel_input.lua').new(ctx);assert(ctx.mapTravelInput.start())end
  if not appearance then appearance=dofile(folder..'appearance_integration.lua').new(ctx)end
  if not flightInput then flightInput=dofile(folder..'flight_input.lua').new(ctx);ctx.flightInput=flightInput;assert(flightInput.start())end
- if not settings then settings=dofile(folder..'settings_extensions.lua').new(ctx);ctx.videoSettings=settings;ctx.settings_extensions=settings end
  if not keybinds then keybinds=dofile(folder..'key_rebind.lua').new(ctx);ctx.keybinds=keybinds end
  if not input then
   input=dofile(folder..'input.lua').new({valid=ctx.valid,log=ctx.log,native_commands=true,
@@ -103,7 +102,6 @@ local function cleanup()
  finish('appearance',appearance and appearance.shutdown,true)
  if appearance and not cleanupDone.appearance then return false,'Appearance cleanup is pending.'end
  finish('textPrompt',ctx.textPrompt and ctx.textPrompt.shutdown,true)
- finish('settings',settings and settings.shutdown,true)
  finish('keybinds',keybinds and keybinds.shutdown,true)
  finish('flightInput',flightInput and flightInput.shutdown,true)
  finish('sandbox',ctx.sandbox and ctx.sandbox.shutdown,true)
@@ -152,7 +150,6 @@ loopHandle=LoopInGameThreadWithDelay(100,function()
  if creatorSkins then safe('Creator skins',creatorSkins.tick,s,true)end
  lastSnapshot=s
  if appearance then safe('Appearance tick',appearance.tick)end
- if settings then safe('Video settings',settings.tick,s)end
  if keybinds then safe('Keybindings',keybinds.tick,s)end
  if followers then safe('Party followers',followers.tick,tick*0.1)end
  if ctx.sandbox then safe('Player sandbox',ctx.sandbox.tick,tick*0.1)end
@@ -200,7 +197,6 @@ RegisterKeyBind(Key.F6,function()
  if ready then pendingToggle=true end
 end)
 RegisterKeyBind(Key.F7,function()if ready and not closing then pendingSettings='keybinds'end end)
-RegisterKeyBind(Key.F8,function()if ready and not closing then pendingSettings='video'end end)
 -- Native pause menus route their custom pointer separately from UMG controls.
 RegisterKeyBind(Key.LEFT_MOUSE_BUTTON,function()if ready and not closing then pendingPointer=true end end)
 return ctx

@@ -11,7 +11,8 @@ INSTALL
    Install.cmd "D:\SteamLibrary\steamapps\common\Warrior Cats Clans of the Forest"
 3. Start the game and load an offline campaign.
    P: native pause menu. F6: Clan Tools. Controller: Y / Triangle in pause.
-   F7: Controls. F8: Frame Rate. Both also appear through native settings.
+   F7: Controls, also available through native settings.
+   FPS controls and the counter moved to the separate Performance mod (F9 / L3).
    Arrows / D-pad / left stick navigate. Enter / A (Cross) selects; Backspace /
    B (Circle) goes back. 1 / 2 or LB / RB switches tabs. On-screen menu hints
    follow your current bindings; each tool also explains its specific actions.
@@ -87,8 +88,9 @@ FEATURES
   Cancel and Undo. Layouts are stored by Clan Tools; copies have no collision.
 - Photo tools: original photo mode with FOV, roll, hide UI/names and freeze cats.
   Settings apply only during photo mode; changed runtime state restores on exit.
-- Keyboard/controller binding editor, conflicts/reset; custom/unlimited FPS and
-  optional counter. VSync may still cap output. Favorites and dark/light themes.
+- Keyboard/controller binding editor with conflicts/reset. Favorites and dark/light themes.
+- FPS controls and the optional counter: install Performance separately.
+  https://github.com/kyotozx/warrior-cats-performance
 
 Permanent progression, inventory and cosmetic actions use confirmations/backups.
 Move unlocks are profile-wide. The game may recalculate attributes on level-up.
