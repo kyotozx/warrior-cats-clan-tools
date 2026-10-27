@@ -1,4 +1,4 @@
-/* Steam 24847281 / UE5.7.4. Narrow housing timer adapter.
+/* Steam 26184573 / UE5.7.4. Narrow housing timer adapter.
  * Calls the original progress/completion method with a temporary duration.
  * Never writes timestamps, materials, inventory, save files or completion state.
  * All exports and callbacks must execute on the game thread. */
@@ -33,17 +33,17 @@ static int build(void){
  base=(unsigned char*)GetModuleHandleW(NULL);if(!readable(base,sizeof(IMAGE_DOS_HEADER),base,0))return 0;
  IMAGE_DOS_HEADER*d=(IMAGE_DOS_HEADER*)base;if(d->e_magic!=IMAGE_DOS_SIGNATURE||d->e_lfanew<64||d->e_lfanew>0x100000)return 0;
  IMAGE_NT_HEADERS64*n=(IMAGE_NT_HEADERS64*)(base+d->e_lfanew);
- if(!readable(n,sizeof(*n),base,0)||n->Signature!=IMAGE_NT_SIGNATURE||n->FileHeader.Machine!=IMAGE_FILE_MACHINE_AMD64||n->OptionalHeader.Magic!=IMAGE_NT_OPTIONAL_HDR64_MAGIC||n->OptionalHeader.SizeOfImage!=187576320u||n->FileHeader.TimeDateStamp!=141614920u)return 0;
+ if(!readable(n,sizeof(*n),base,0)||n->Signature!=IMAGE_NT_SIGNATURE||n->FileHeader.Machine!=IMAGE_FILE_MACHINE_AMD64||n->OptionalHeader.Magic!=IMAGE_NT_OPTIONAL_HDR64_MAGIC||n->OptionalHeader.SizeOfImage!=187576320u||n->FileHeader.TimeDateStamp!=3539680621u)return 0;
  static const unsigned char tick[]={0x40,0x53,0x48,0x83,0xec,0x40,0x48,0x8b,0xd9,0xc7,0x44,0x24,0x50,0,0,0,0};
  static const unsigned char get[]={0x48,0x89,0x5c,0x24,0x10,0x57,0x48,0x83,0xec,0x50};
  static const unsigned char time[]={0x48,0x89,0x5c,0x24,0x08,0x48,0x89,0x74,0x24,0x10,0x55,0x57,0x41,0x56};
- if(!readable(base+0x17842e0,sizeof(tick),base,1)||memcmp(base+0x17842e0,tick,sizeof(tick))||!readable(base+0x1786290,sizeof(get),base,1)||memcmp(base+0x1786290,get,sizeof(get))||!readable(base+0x1811600,sizeof(time),base,1)||memcmp(base+0x1811600,time,sizeof(time)))return 0;
- slots[0]=(void**)(base+0x9b49b60+0x760);slots[1]=(void**)(base+0x9c4cb90+0x760);for(int i=0;i<2;i++)if(!readable(slots[i],8,base,0))return 0;
- original=(Progress)(base+0x17842e0);state=(State)(base+0x1786290);elapsed=(Elapsed)(base+0x1811600);return 1;
+ if(!readable(base+0x17844f0,sizeof(tick),base,1)||memcmp(base+0x17844f0,tick,sizeof(tick))||!readable(base+0x17864a0,sizeof(get),base,1)||memcmp(base+0x17864a0,get,sizeof(get))||!readable(base+0x1811b80,sizeof(time),base,1)||memcmp(base+0x1811b80,time,sizeof(time)))return 0;
+ slots[0]=(void**)(base+0x9b49b28+0x760);slots[1]=(void**)(base+0x9c4e190+0x760);for(int i=0;i<2;i++)if(!readable(slots[i],8,base,0))return 0;
+ original=(Progress)(base+0x17844f0);state=(State)(base+0x17864a0);elapsed=(Elapsed)(base+0x1811b80);return 1;
 }
 static int valid(uintptr_t a,int32_t *id){
  if(!readable((void*)a,0x3f8,NULL,0)||(*(uint32_t*)(a+8)&0x60018000u))return 0;
- uintptr_t vt=*(uintptr_t*)a;if(vt!=(uintptr_t)(base+0x9b49b60)&&vt!=(uintptr_t)(base+0x9c4cb90))return 0;
+ uintptr_t vt=*(uintptr_t*)a;if(vt!=(uintptr_t)(base+0x9b49b28)&&vt!=(uintptr_t)(base+0x9c4e190))return 0;
  int32_t v=*(int32_t*)(a+12),duration=*(int32_t*)(a+0x3a0);
  if(v<0||v>100000000||duration<0||duration>31536000||!*(uint64_t*)(a+0x2f0)||*(int32_t*)(a+0x3f0)!=-1)return 0;
  if(id)*id=v;return 1;

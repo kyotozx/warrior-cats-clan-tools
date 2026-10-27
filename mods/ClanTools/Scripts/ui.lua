@@ -6,6 +6,7 @@ local navigationHints=dofile(folder..'navigation_hints.lua')
 local themes={dark={bg={.018,.044,.048,1},panel={.035,.077,.078,.96},card={.065,.115,.113,.98},text={.91,.94,.86,1},muted={.51,.66,.63,1},accent={.75,.83,.48,1},line={.14,.25,.23,1}},light={bg={.72,.76,.65,1},panel={.84,.85,.73,.96},card={.91,.91,.81,.98},text={.045,.095,.085,1},muted={.20,.31,.26,1},accent={.24,.40,.17,1},line={.49,.58,.44,1}}}
 local function color(c)return{R=c[1],G=c[2],B=c[3],A=c[4]or 1}end
 function M.new(ctx)
+ local iconTexture=dofile(folder..'menu_icons.lua').new(ctx.valid)
  local api={opened=false,alive=true,tab='party',page=1,selection={},notice=nil}
  local w,root,pause,scale= nil,nil,nil,1
  local widgets,actions,focus={}, {},1
@@ -64,6 +65,7 @@ function M.new(ctx)
  end
  local function refresh()if api.opened then api.render()end end
  local primitives={text=text,button=button,panel=panel,image=image,refresh=refresh,notify=function(message)api.notify(message)end}
+ primitives.icon=function(name,x,y,size)local texture=iconTexture(name,w);if texture then return image(texture,x,y,size)end end
  primitives.prompt=function(options)options.pause=pause;options.owner=pause;return ctx.textPrompt.open(options)end
  partyRenderer=dofile(folder..'party_tools_ui.lua').new(ctx,primitives)
  settingsRenderer=dofile(folder..'settings_ui.lua').new(ctx,primitives)
@@ -254,11 +256,18 @@ function M.new(ctx)
    if ctx.keybinds then local ok,rows=pcall(ctx.keybinds.bindings);if ok and type(rows)=='table'then hints=navigationHints.build(rows)end end
   end
   if ctx.settings.theme=='light'then rect(0,0,1920,1080,{.72,.76,.65,.82},-1)end
-  text(settingsMode and'SETTINGS'or'CLAN TOOLS',65,62,550,35,nil,true)
+  local mark=iconTexture(settingsMode and'keybinds'or'clan-tools',w)
+  if mark then image(mark,65,68,48)end
+  text(settingsMode and'SETTINGS'or'CLAN TOOLS',mark and 128 or 65,62,550,35,nil,true)
   local clan=ctx.clans[ctx.snapshot().clan];local emblem='T_UI_Icon_Small_'..clan:gsub('Clan','clan')
   image('/Game/Art/UXD/Textures/gui_icons/gui_icons_clans/'..emblem..'.'..emblem,65,222,60)
   text(ctx.playerName():upper(),145,217,220,23,nil,true);text(clan,145,257,210,18,palette.muted)
-  for i,t in ipairs(activeTabs())do button(t[2],60,342+(i-1)*84,275,66,function()api.tab=t[1];api.page=1;api.subtab=nil;settingsRenderer.reset();refresh()end,api.tab==t[1])end
+  local tabIcons={party='party',appearance='appearance',feedback='item-feedback',admin='offline-admin',crafting='den-workshop',keybinds='keybinds'}
+  for i,t in ipairs(activeTabs())do
+   local y=342+(i-1)*84
+   button(t[2],85,y,280,66,function()api.tab=t[1];api.page=1;api.subtab=nil;settingsRenderer.reset();refresh()end,api.tab==t[1])
+   local texture=iconTexture(tabIcons[t[1]],w);if texture then image(texture,58,y+17,32)end
+  end
   text('NAVIGATION',65,770,300,17,nil,true)
   text(hints.navigate,65,805,310,16,palette.muted)
   text(hints.tabs..': tabs',65,837,320,14,palette.muted)

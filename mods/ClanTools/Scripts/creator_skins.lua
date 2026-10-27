@@ -5,7 +5,8 @@ function M.new(ctx)
  local api={};local panel=dofile(dir..'native_panel.lua').new(ctx);local owner,button,visual;local requested=false;local page=1
  local lib=StaticFindObject('/Script/UMG.Default__WidgetBlueprintLibrary')
  local function render(p)
-  p.text('Your skins',110,100,1700,42,true)
+  if p.icon then p.icon('player-skins',110,104,56)end
+  p.text('Your skins',184,100,1620,42,true)
   p.text('Choose a saved look, then continue the original character creator. Your new cat gets its own save.',112,172,1670,21)
   local rows,why=ctx.skins.store.list();local pages=math.max(1,math.ceil(#rows/8));page=math.min(page,pages)
   for i=1,8 do local e=rows[(page-1)*8+i];if e then
@@ -20,11 +21,14 @@ function M.new(ctx)
   p.button('Save this preview',930,900,440,function()ctx.skins.store.save('Creator look '..os.date('%m-%d %H:%M'),ctx.skins.creatorRead(owner));p.notify('Preview saved to your shared skin library.')end)
   p.button('Back to creator',1400,900,410,p.close)
  end
- local function open()if panel.active()then panel.close()elseif ctx.valid(owner)then local ok,err=panel.open(owner,render);if not ok then ctx.log('Creator skins: '..err)end end end
- function api.request()if owner then requested=true;return true end;return false end
+ local function ownerReady()return ctx.valid(owner)and owner:IsInViewport()and ctx.valid(owner.CatRef)and ctx.valid(owner.CurrentPanel)end
+ local function open()if panel.active()then panel.close()elseif ownerReady()then local ok,err=panel.open(owner,render);if not ok then ctx.log('Creator skins: '..err)end end end
+ function api.request()if ownerReady()then requested=true;return true end;return false end
  local path='/Script/SwtEngine.SwtScreen:OnKeyPressed'
  local pre,post=RegisterHook(path,function(o,k)
-  if ctx.valid(owner)and ctx.valid(o:get())and o:get():GetAddress()==owner:GetAddress()and k:get().KeyName:ToString()=='Gamepad_FaceButton_Top'then requested=true end
+  -- Y / Triangle confirms the original creator. Keep that action exclusive to
+  -- the game, otherwise it can destroy the screen while our library opens.
+  if ownerReady()and ctx.valid(o:get())and o:get():GetAddress()==owner:GetAddress()and k:get().KeyName:ToString()=='Gamepad_LeftThumbstick'then requested=true end
  end)
  local clickPath='/Script/SwtEngine.GuiControl:OnControlClick'
  local cp,cq=RegisterHook(clickPath,function(o)if ctx.valid(button)and ctx.valid(o:get())and o:get():GetAddress()==button:GetAddress()then requested=true end end)
@@ -35,12 +39,12 @@ function M.new(ctx)
    for _,screen in ipairs(FindAllOf('GuiScreenCustomization')or{})do if ctx.valid(screen)and screen:IsInViewport()and ctx.valid(screen.CatRef)and ctx.valid(screen.CurrentPanel)then found=screen;break end end
   end
   if not found or not ctx.valid(owner)or found:GetAddress()~=owner:GetAddress()then
-   panel.close();if ctx.valid(button)then button:RemoveFromParent()end;button=nil;visual=nil;owner=found
+   requested=false;panel.close();if ctx.valid(button)then button:RemoveFromParent()end;button=nil;visual=nil;owner=found
   end
   if owner and not button then
    local pc=owner:GetOwningPlayer();local a=setmetatable({snapshot=function()return{gameState=owner,pc=pc}end,nativeButtonClass=LoadAsset('/Game/Art/UXD/Blueprints/Buttons/WBP_GuiButtonCommon1.WBP_GuiButtonCommon1_C')},{__index=ctx})
    local layout=StaticFindObject('/Script/UMG.Default__WidgetLayoutLibrary');local v=layout:GetViewportSize(owner);local scale=layout:GetViewportScale(owner)/(v.X/1920)
-   button,visual=nativeSkin.createButton(a,owner.WidgetTree.RootWidget,owner,nil,'Skins  [F6 / Y]',1420,25,390,64,scale,false);button.Slot:SetZOrder(999)
+   button,visual=nativeSkin.createButton(a,owner.WidgetTree.RootWidget,owner,nil,'Skins  [F6 / L3]',1420,25,390,64,scale,false);button.Slot:SetZOrder(999)
   end
   if visual then visual:tick()end
   if requested then requested=false;if owner then open()end end

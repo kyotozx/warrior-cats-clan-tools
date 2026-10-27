@@ -33,7 +33,7 @@ function Write-Utf8([string]$Path,[string]$Text){[IO.File]::WriteAllText($Path,$
 function Test-ClanToolsProgramPath([string]$Path){
  # Only immutable shipped catalogs are program data. Preferences, aliases,
  # presets, layouts, backups and native mailboxes must never become owned files.
- return $Path -cmatch '^(Scripts/[A-Za-z0-9_]+\.lua|data/(catalog|admin-moves|admin-inventory|workshop)\.json|bin/[A-Za-z0-9_-]+\.dll)$'
+ return $Path -cmatch '^(Scripts/[A-Za-z0-9_]+\.lua|assets/icons/[a-z][a-z-]*\.png|data/(catalog|admin-moves|admin-inventory|workshop)\.json|bin/[A-Za-z0-9_-]+\.dll)$'
 }
 function Assert-LuaReleaseDependencies([string]$Name,[string]$Lua,[string[]]$Scripts,[string[]]$Dlls,[string[]]$DataFiles=@()){
  foreach($match in [regex]::Matches($Lua,'[A-Za-z0-9_-]+\.dll')){

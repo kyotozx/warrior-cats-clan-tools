@@ -32,13 +32,13 @@ function Save-ModRegistry([string]$Mods,$Registry){
 }
 function Read-CommunityPackage([string]$Root){
  $m=Get-Content -LiteralPath (Get-ContainedPath $Root 'mod.json') -Raw|ConvertFrom-Json
- if($m.schema -ne 1 -or $m.loaderApi -ne 1 -or $m.gameBuild -cne '24847281' -or !(Test-ModId $m.id) -or $m.name.Length -gt 80 -or $m.description.Length -gt 200 -or $m.version -notmatch '^[0-9][A-Za-z0-9._-]{0,50}$'){throw 'Incompatible or invalid mod manifest.'}
+ if($m.schema -ne 1 -or $m.loaderApi -ne 1 -or $m.gameBuild -cne '26184573' -or !(Test-ModId $m.id) -or $m.name.Length -gt 80 -or $m.description.Length -gt 200 -or $m.version -notmatch '^[0-9][A-Za-z0-9._-]{0,50}$'){throw 'Incompatible or invalid mod manifest. Use a mod package updated for game patch 1.1.'}
  if(@($m.files).Count -lt 1 -or @($m.files).Count -gt 1000){throw 'Invalid package file count.'}
  foreach($dep in $m.dependencies){if(!(Test-ModId $dep) -or $dep -ceq $m.id){throw 'Invalid mod dependency.'}}
  $seen=@{};foreach($f in $m.files){
   # A package owns program files only. User saves, settings and personal skins
   # can never be claimed by an update or removed during uninstall.
-  if($f.path -cnotmatch '^(Scripts/[A-Za-z0-9_]+\.lua|bin/[A-Za-z0-9_-]+\.dll|data/[A-Za-z0-9_-]+\.json)$' -or $f.sha256 -notmatch '^[A-Fa-f0-9]{64}$'){throw 'Invalid program file path or hash.'}
+  if($f.path -cnotmatch '^(Scripts/[A-Za-z0-9_]+\.lua|assets/icons/[a-z][a-z-]*\.png|bin/[A-Za-z0-9_-]+\.dll|data/[A-Za-z0-9_-]+\.json)$' -or $f.sha256 -notmatch '^[A-Fa-f0-9]{64}$'){throw 'Invalid program file path or hash.'}
   if($seen.ContainsKey($f.path)){throw 'Duplicate program file.'};$seen[$f.path]=$true
   $p=Get-ContainedPath $Root ('payload/'+$m.id+'/'+$f.path)
   if(!(Test-Path -LiteralPath $p -PathType Leaf) -or (Get-FileHash -LiteralPath $p).Hash -ne $f.sha256){throw "Damaged package file: $($f.path)"}
@@ -54,7 +54,7 @@ function Expand-CommunityZip([string]$Zip,[string]$Destination){
   foreach($e in $archive.Entries){
    $name=$e.FullName
    if($name.EndsWith('/')){continue}
-   if($name -cnotmatch '^(mod\.json|README\.txt|LICENSE\.txt|payload/[A-Za-z][A-Za-z0-9_]{0,63}/(Scripts/[A-Za-z0-9_]+\.lua|bin/[A-Za-z0-9_-]+\.dll|data/[A-Za-z0-9_-]+\.json))$'){throw "Unsupported ZIP path: $name"}
+   if($name -cnotmatch '^(mod\.json|README\.txt|LICENSE\.txt|payload/[A-Za-z][A-Za-z0-9_]{0,63}/(Scripts/[A-Za-z0-9_]+\.lua|assets/icons/[a-z][a-z-]*\.png|bin/[A-Za-z0-9_-]+\.dll|data/[A-Za-z0-9_-]+\.json))$'){throw "Unsupported ZIP path: $name"}
    if((($e.ExternalAttributes -shr 16) -band 0xF000) -eq 0xA000){throw 'ZIP links are not supported.'}
    if($seen.ContainsKey($name)){throw 'Duplicate ZIP entry.'};$seen[$name]=$true
    $total+=$e.Length;if($e.Length -gt 32MB -or $total -gt 128MB){throw 'Package exceeds size limits.'}
@@ -127,7 +127,7 @@ function Remove-ManagedMod([string]$Mods,[string]$Id){
 function Import-PlayerSkin([string]$Path,[string]$Mods){
  $bytes=[IO.File]::ReadAllBytes($Path);if($bytes.Length -gt 8192){throw 'Skin file exceeds size limit.'}
  $text=[Text.Encoding]::UTF8.GetString($bytes);$s=$text|ConvertFrom-Json
- if($s.format -cne 'ClanTools.Skin' -or $s.schema -ne 1 -or $s.gameBuild -cne '24847281' -or $s.label.Length -lt 1 -or $s.label.Length -gt 40){throw 'Invalid skin format.'}
+ if($s.format -cne 'ClanTools.Skin' -or $s.schema -ne 1 -or $s.gameBuild -cnotin @('24847281','26184573') -or $s.label.Length -lt 1 -or $s.label.Length -gt 40){throw 'Invalid skin format.'}
  foreach($prop in $s.PSObject.Properties.Name){if($prop -notin @('format','schema','gameBuild','label','values')){throw 'Unexpected skin data.'}}
  $values=@($s.values -split '\s+'|Where-Object {$_ -ne ''});if($values.Count -ne 24){throw 'Invalid appearance fields.'}
  foreach($v in $values){if($v -notmatch '^\d{1,3}$' -or [int]$v -gt 255){throw 'Invalid appearance value.'}}

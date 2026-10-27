@@ -2,7 +2,8 @@
 local dir=debug.getinfo(1,'S').source:gsub('^@',''):match('^(.*[/\\])')
 local json=dofile(dir..'json.lua')
 local validate=dofile(dir..'appearance_library.lua').values
-local M={limit=128,build='24847281'}
+local M={limit=128,build='26184573'}
+local compatibleBuilds={['24847281']=true,['26184573']=true}
 local function copy(v)return json.decode(json.encode(v))end
 function M.label(s)
  if type(s)~='string' or not utf8.len(s)then return nil,'Enter a valid skin name.'end
@@ -50,7 +51,7 @@ function M.new(ctx)
  function api.import()
   local raw=assert(ctx.read(ctx.root..'skin-import.json'),'Place a skin in skin-import.json, or use the external manager to import it.')
   assert(#raw<=8192,'Skin import is too large.');local v=json.decode(raw)
-  assert(type(v)=='table'and v.format=='ClanTools.Skin'and v.schema==1 and v.gameBuild==M.build,'This skin is not compatible with this game build.')
+  assert(type(v)=='table'and v.format=='ClanTools.Skin'and v.schema==1 and compatibleBuilds[v.gameBuild],'This skin is not compatible with this game build.')
   for k in pairs(v)do assert(k=='format'or k=='schema'or k=='gameBuild'or k=='label'or k=='values','Unexpected skin data.')end
   return api.save(v.label,v.values)
  end

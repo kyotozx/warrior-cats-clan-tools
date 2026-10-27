@@ -7,7 +7,7 @@ local function copy(t)
 end
 local function same(a,b)
     return a and b and a.profile == b.profile and a.slot == b.slot
-        and a.chapter == b.chapter and a.gs == b.gs
+        and a.chapter == b.chapter and a.gs == b.gs and a.worldId == b.worldId
 end
 local function nativeTransport(directory,dllName)
     assert(type(directory) == "string", "appearance nativeDir is required")
@@ -57,6 +57,10 @@ function M.new(ctx)
     local self = { phase = "idle", target = nil, handle = nil, lastError = nil }
     local token, backup, closeRequested, epoch = nil,nil,false,0
     local pendingName
+    -- Sparse transaction breadcrumbs, without player names or save contents.
+    local function trace(stage)
+        if ctx.log then pcall(ctx.log,'Appearance apply: '..stage) end
+    end
     local function state()
         return {phase=self.phase,target=self.target and copy(self.target),lastError=self.lastError,backup=backup}
     end
@@ -231,6 +235,7 @@ function M.new(ctx)
         return true
     end
     function self:apply()
+        trace('validate')
         if self.phase~="editing" then return fail("Wait for the appearance preview to load") end
         if not contextValid() then self:cancel();return fail("The active cat or profile changed; changes were not applied") end
         if library then local editable,why=library.leaveComparison();if not editable then return fail(why)end end
@@ -239,19 +244,30 @@ function M.new(ctx)
             local prepared,result=pcall(ctx.catNames.prepare,ctx.snapshot(),self.target,pendingName)
             if not prepared then return fail(result)end;nameReceipt=result
         end
-        local ok,err=command("CAPTURE");if not ok then return fail(err) end
+        trace('capture preview')
+        local ok,err=command("CAPTURE");if not ok then trace('capture rejected');return fail(err) end
+        trace('commit appearance')
         ok,err=command("APPLY")
-        if not ok then return fail(err) end
+        if not ok then trace('appearance rejected');return fail(err) end
+        local appearanceChanged=ok.action~='UNCHANGED'
+        trace(appearanceChanged and 'appearance committed' or 'appearance unchanged')
         self.phase="applied";changed()
         if nameReceipt then
+            trace('save display name')
             local saved,nameError=pcall(ctx.catNames.commit,nameReceipt)
             if saved then self.target.name=pendingName
             elseif ctx.notify then pcall(ctx.notify,'Appearance saved, but the name could not be saved: '..tostring(nameError))end
+            trace(saved and 'display name saved' or 'display name failed')
         end
-        if ctx.refreshCat then
+        -- A display-name edit must not invoke the native NPC role/mesh refresh.
+        -- The normal name overlay picks up the committed alias after teardown.
+        if appearanceChanged and ctx.refreshCat then
+            trace('refresh world appearance')
             local refreshOK,refreshError=pcall(ctx.refreshCat,self.target)
             if not refreshOK and ctx.notify then pcall(ctx.notify,"Appearance saved. The world preview will refresh when reloaded: "..tostring(refreshError)) end
+            trace(refreshOK and 'world refreshed' or 'world refresh failed')
         end
+        trace('close editor')
         return close()
     end
     function self:cancel()
@@ -270,10 +286,12 @@ function M.new(ctx)
         self.phase="finishing";changed();local myEpoch=epoch
         ctx.defer(function() ctx.defer(function()
             if epoch~=myEpoch or self.phase~="finishing" then return end
+            trace('release transaction')
             local ok,err=command("END")
             if not ok then self.phase="guarded_error";fail(err);return end
             if ctx.releaseAppearanceEditor then pcall(ctx.releaseAppearanceEditor,self.handle)end
             self.phase="idle";self.target=nil;self.handle=nil;token=nil;closeRequested=false;changed()
+            trace('transaction closed')
         end) end)
         return true
     end

@@ -1,4 +1,4 @@
-/* Build-specific bridge for Wrc Steam build 24847281. Called on the game thread
+/* Build-specific bridge for Wrc Steam build 26184573. Called on the game thread
  * from UE4SS Lua, through package.loadlib. No Lua ABI or engine SDK dependency.
  * This uses the game's party reader/copy/writer; it never edits save files. */
 #define WIN32_LEAN_AND_MEAN
@@ -62,7 +62,7 @@ static void status(const char *message) {
 }
 static int initialize(void) {
     base=(unsigned char*)GetModuleHandleW(NULL);
-    const uint32_t offsets[]={0x16a6480,0x16b1360,0x16a6950,0x19db970};
+    const uint32_t offsets[]={0x16a6740,0x16b1620,0x16a6c10,0x19dd120};
     const unsigned char expected[4][16]={
       {0x40,0x55,0x53,0x57,0x41,0x54,0x41,0x56,0x48,0x8d,0x6c,0x24,0xf0,0x48,0x81,0xec},
       {0x48,0x89,0x5c,0x24,0x08,0x48,0x89,0x74,0x24,0x10,0x57,0x48,0x83,0xec,0x40,0x48},
@@ -79,7 +79,7 @@ static int initialize(void) {
        nt->OptionalHeader.Magic!=IMAGE_NT_OPTIONAL_HDR64_MAGIC) goto unsupported;
     const uint32_t image_size=nt->OptionalHeader.SizeOfImage;
     /* Exact build header plus code guards: reject before dereferencing any RVA. */
-    if(image_size!=187576320u || nt->FileHeader.TimeDateStamp!=141614920u ||
+    if(image_size!=187576320u || nt->FileHeader.TimeDateStamp!=3539680621u ||
        image_size<0xa8a6e30u+sizeof(void*)) goto unsupported;
     for(int i=0;i<4;i++) if(offsets[i]>image_size-16 ||
        !readable(base+offsets[i],16,base,1) || memcmp(base+offsets[i],expected[i],16)) goto unsupported;

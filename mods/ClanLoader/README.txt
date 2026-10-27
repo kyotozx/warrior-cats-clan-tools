@@ -2,7 +2,7 @@ CLAN LOADER + CLAN TOOLS
 See bundle-manifest.json and ClanTools/manifest.json for the bundled versions.
 
 Unofficial community mod suite for Warrior Cats: Clans of the Forest.
-Windows x64, Steam app 3960600, game build 24847281 only.
+Windows x64, Steam app 3960600, game build 26184573 only.
 Local release candidate, prepared for community testing. Not published to Steam
 Workshop and not an official Workshop subscription manager.
 
@@ -37,7 +37,7 @@ portraits, favorites, rename, delete, preview and applying all/coat/eyes/shape.
 Applying opens the original appearance editor: Apply commits, Cancel discards.
 Name, clan, rank, XP, quests and inventory are not copied by a skin.
 To create another player cat with the same appearance, choose an empty save slot,
-select a clan, and use Skins [F6 / Y] in the original appearance creator. Select a
+select a clan, and use Skins [F6 / L3] in the original appearance creator. Select a
 saved look, continue editing, then finish the original creator normally.
 Skins do not copy accessories/scars. The original creator still owns the new save.
 

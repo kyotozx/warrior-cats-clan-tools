@@ -17,7 +17,7 @@ local function axis(key)
 end
 function M.new(ctx)
  ctx=ctx or{};local root=ctx.mod_root or ctx.root or dir..'../';if not root:match('[/\\]$')then root=root..'/'end
- local api={};local config={version=1,profiles={}};local current,attached,lastError;local generation=0;local native=ctx.remap_native
+ local api={};local config={version=2,profiles={}};local current,attached,lastError;local generation=0;local native=ctx.remap_native
  local names,indexes={},{};local path=root..'keybinds.json'
  local function persist(value)
   if ctx.save_keybinds then return assert(ctx.save_keybinds(value)~=false,'Keybind save failed')end
@@ -28,11 +28,19 @@ function M.new(ctx)
  end
  local function allowed(key,device)return type(key)=='string'and((device=='keyboard'and keyboard[key]~=nil)or(device=='gamepad'and gamepad[key]~=nil))end
  local function validate_rule(r)
-  return type(r)=='table'and(r.device=='keyboard'or r.device=='gamepad')and integer(r.command)and r.command>=1 and r.command<=108 and(r.kind==0 or r.kind==1)
+  return type(r)=='table'and(r.device=='keyboard'or r.device=='gamepad')and integer(r.command)and r.command>=1 and r.command<110 and(r.kind==0 or r.kind==1)
    and integer(r.scale_bits)and r.scale_bits>=0 and r.scale_bits<=4294967295 and allowed(r.original,r.device)and allowed(r.key,r.device)and r.key~='F6'
  end
  local loadedOK,loaded=pcall(function()if ctx.load_keybinds then return ctx.load_keybinds()end;local raw=read(path);return raw and json.decode(raw)end)
+ -- Patch 1.1 inserted two mouse-camera commands before customization yaw.
+ -- Migrate in memory; persist only after a successful user edit.
  if loadedOK and type(loaded)=='table'and loaded.version==1 and type(loaded.profiles)=='table'then
+  loaded=clone(loaded);loaded.version=2
+  for _,list in pairs(loaded.profiles)do if type(list)=='table'then for _,rule in pairs(list)do
+   if type(rule)=='table'and integer(rule.command)and rule.command>=64 then rule.command=rule.command+2 end
+  end end end
+ end
+ if loadedOK and type(loaded)=='table'and loaded.version==2 and type(loaded.profiles)=='table'then
   local valid=true;for profile,list in pairs(loaded.profiles)do if type(profile)~='string'or type(list)~='table'or #list>192 then valid=false;break end;local seen={};for _,r in ipairs(list)do if not validate_rule(r)then valid=false;break end;local id=identity(r);if seen[id]then valid=false;break end;seen[id]=true end end
   if valid then config=loaded else lastError='Invalid saved keybindings; no overrides loaded'end
  elseif not loadedOK then lastError='Could not read keybindings: '..tostring(loaded)end
@@ -84,11 +92,11 @@ function M.new(ctx)
   for _,r in ipairs(rows)do
    if r.original then r.id=identity(r);seen[r.id]=(seen[r.id]or 0)+1 end
    r.label=(commands[r.command]or('Command '..r.command)):gsub('^Player_',''):gsub('_',' '):gsub('([a-z])([A-Z])','%1 %2')
-   r.editable=r.original~=nil and r.key~=nil and r.command>=1 and r.command<=108 and axis(r.original)~='vector'and not(r.device=='gamepad'and(r.command==89 or r.command==24))
+   r.editable=r.original~=nil and r.key~=nil and r.command>=1 and r.command<110 and axis(r.original)~='vector'and not(r.device=='gamepad'and(r.command==91 or r.command==24))
    r.scope=r.command<60 and'Menu / interface'or'Gameplay'
    r.custom=r.original~=r.key
    r.icon=r.device=='keyboard'and keyboard[r.key]or gamepad[r.key]and gamepad[r.key][ctx.controller_family or'xbox']
-   if r.device=='gamepad'and(r.command==89 or r.command==24)then r.reason='The controller pause button is retained as a recovery control.'end
+   if r.device=='gamepad'and(r.command==91 or r.command==24)then r.reason='The controller pause button is retained as a recovery control.'end
   end
   for _,r in ipairs(rows)do if r.id and seen[r.id]>1 then r.editable=false;r.reason='Ambiguous duplicate native binding'end end
   return rows

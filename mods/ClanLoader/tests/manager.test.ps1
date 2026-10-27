@@ -8,7 +8,7 @@ $fixture=Join-Path ([IO.Path]::GetFullPath((Join-Path $PSScriptRoot '../../../an
 $mods=Join-Path $fixture 'Mods';$pkg=Join-Path $fixture 'package';$null=New-Item -ItemType Directory -Path $mods,(Join-Path $pkg 'payload/TestMod/Scripts') -Force
 Write-Utf8 (Join-Path $mods 'mods.txt') "OtherMod : 1`r`n"
 Write-Utf8 (Join-Path $pkg 'payload/TestMod/Scripts/main.lua') "print('Example')"
-$m=[ordered]@{schema=1;loaderApi=1;gameBuild='24847281';id='TestMod';name='Test mod';version='1.0.0';description='Fixture';dependencies=@();files=@(@{path='Scripts/main.lua';sha256=(Get-FileHash (Join-Path $pkg 'payload/TestMod/Scripts/main.lua')).Hash})}
+$m=[ordered]@{schema=1;loaderApi=1;gameBuild='26184573';id='TestMod';name='Test mod';version='1.0.0';description='Fixture';dependencies=@();files=@(@{path='Scripts/main.lua';sha256=(Get-FileHash (Join-Path $pkg 'payload/TestMod/Scripts/main.lua')).Hash})}
 Write-Utf8 (Join-Path $pkg 'mod.json') ($m|ConvertTo-Json -Depth 8)
 $null=Install-CommunityPackage $pkg $mods
 Check (Test-Path (Join-Path $mods 'TestMod/Scripts/main.lua')) 'Install failed'

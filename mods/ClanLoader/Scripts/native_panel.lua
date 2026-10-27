@@ -3,6 +3,7 @@ local dir=debug.getinfo(1,'S').source:gsub('^@',''):match('^(.*[/\\])')
 local skin=dofile(dir..'native_skin.lua')
 local M={}
 function M.new(ctx)
+ local iconTexture=dofile(dir..'menu_icons.lua').new(ctx.valid)
  local api={};local h;local lib=StaticFindObject('/Script/UMG.Default__WidgetBlueprintLibrary')
  local layout=StaticFindObject('/Script/UMG.Default__WidgetLayoutLibrary')
  local function later(fn)ExecuteInGameThreadAfterFrames(1,fn)end
@@ -37,6 +38,13 @@ function M.new(ctx)
    t:SetText(FText(tostring(value)));t:SetAutoWrapText(true);t:SetFont({FontObject=LoadAsset(heading and'/Game/Art/UXD/Fonts/Amarante/Amarante.Amarante'or'/Game/Art/UXD/Fonts/Catamaran/Catamaran.Catamaran'),Size=size/h.scale,TypefaceFontName=FName(heading and'Regular'or'Catamaran-Medium')})
    t:SetColorAndOpacity({SpecifiedColor={R=.91,G=.94,B=.86,A=1},ColorUseRule=0});t:SetVisibility(3)
    local slot=h.root:AddChild(t);slot:SetPosition({X=x/h.scale,Y=y/h.scale});slot:SetSize({X=width/h.scale,Y=size*2.2/h.scale});slot:SetZOrder(20);h.widgets[#h.widgets+1]=t
+  end
+  function p.icon(name,x,y,size)
+   local texture=iconTexture(name,h.widget);if not texture then return end
+   local icon=StaticConstructObject(StaticFindObject('/Script/UMG.Image'),h.widget.WidgetTree)
+   icon:SetBrushFromTexture(texture,false);icon:SetVisibility(3)
+   local slot=h.root:AddChild(icon);slot:SetPosition({X=x/h.scale,Y=y/h.scale});slot:SetSize({X=size/h.scale,Y=size/h.scale});slot:SetZOrder(20)
+   h.widgets[#h.widgets+1]=icon
   end
   function p.button(label,x,y,width,fn,enabled)
    local b,s=skin.createButton(h.context,h.root,h.owner,nil,label,x,y,width,66,h.scale,false);s:setEnabled(enabled~=false)

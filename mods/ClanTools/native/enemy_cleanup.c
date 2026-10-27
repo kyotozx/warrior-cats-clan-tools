@@ -65,12 +65,12 @@ static int build_functions(char (**valid)(const Weak*),void*(**get)(const Weak*)
     IMAGE_NT_HEADERS64*n=(IMAGE_NT_HEADERS64*)(b+d->e_lfanew);
     if(!readable(n,sizeof(*n))||n->Signature!=IMAGE_NT_SIGNATURE||
        n->FileHeader.Machine!=IMAGE_FILE_MACHINE_AMD64||n->OptionalHeader.Magic!=IMAGE_NT_OPTIONAL_HDR64_MAGIC||
-       n->OptionalHeader.SizeOfImage!=187576320u||n->FileHeader.TimeDateStamp!=141614920u)return 0;
+       n->OptionalHeader.SizeOfImage!=187576320u||n->FileHeader.TimeDateStamp!=3539680621u)return 0;
     const unsigned char valid_bytes[]={0x44,0x8b,0x41,0x04,0x45,0x85,0xc0,0x74,0x46,0x8b,0x01,0x85,0xc0,0x78,0x40,0x3b};
     const unsigned char get_bytes[]={0x44,0x8b,0x49,0x04,0x45,0x85,0xc9,0x74,0x48,0x8b,0x01,0x85,0xc0,0x78,0x42,0x3b};
-    if(!readable(b+0x1d16540,16)||!readable(b+0x1d133d0,16)||
-       memcmp(b+0x1d16540,valid_bytes,16)||memcmp(b+0x1d133d0,get_bytes,16))return 0;
-    *valid=(char(*)(const Weak*))(b+0x1d16540);*get=(void*(*)(const Weak*))(b+0x1d133d0);return 1;
+    if(!readable(b+0x1d17ca0,16)||!readable(b+0x1d14b30,16)||
+       memcmp(b+0x1d17ca0,valid_bytes,16)||memcmp(b+0x1d14b30,get_bytes,16))return 0;
+    *valid=(char(*)(const Weak*))(b+0x1d17ca0);*get=(void*(*)(const Weak*))(b+0x1d14b30);return 1;
 }
 __declspec(dllexport) int ClanEnemy_cleanup_probe(void *unused){
     (void)unused;unsigned long long nonce=0,g=0,gc=0,p=0,ec=0;

@@ -1,4 +1,4 @@
-/* Game-thread-only health setter adapter, exact Steam build 24847281.
+/* Game-thread-only health setter adapter, exact Steam build 26184573.
  * Calls the game's resource setter so HUD/delegates are notified. No save edit.
  * Lua supplies the live main-player health component, class and owner pointers.
  * A read-only probe must precede use. All pointer/class/code guards fail closed.
@@ -42,8 +42,8 @@ static int build_ok(void) {
     if(dos->e_magic!=IMAGE_DOS_SIGNATURE||dos->e_lfanew<(LONG)sizeof(*dos)||dos->e_lfanew>0x100000)return 0;
     IMAGE_NT_HEADERS64 *nt=(IMAGE_NT_HEADERS64*)(base+dos->e_lfanew);
     if(!readable(nt,sizeof(*nt),base,0)||nt->Signature!=IMAGE_NT_SIGNATURE||nt->FileHeader.Machine!=IMAGE_FILE_MACHINE_AMD64||
-       nt->OptionalHeader.Magic!=IMAGE_NT_OPTIONAL_HDR64_MAGIC||nt->OptionalHeader.SizeOfImage!=187576320u||nt->FileHeader.TimeDateStamp!=141614920u)return 0;
-    return readable(base+0x1655300,sizeof(code),base,1)&&memcmp(base+0x1655300,code,sizeof(code))==0;
+       nt->OptionalHeader.Magic!=IMAGE_NT_OPTIONAL_HDR64_MAGIC||nt->OptionalHeader.SizeOfImage!=187576320u||nt->FileHeader.TimeDateStamp!=3539680621u)return 0;
+    return readable(base+0x16554f0,sizeof(code),base,1)&&memcmp(base+0x16554f0,code,sizeof(code))==0;
 }
 static int run(int apply) {
     unsigned long long nonce=0,c=0,owner=0,cls=0;
@@ -69,7 +69,7 @@ static int run(int apply) {
     if(!readable(vt,0x518,base,0)){message="Invalid resource vtable";goto done;}
     uintptr_t setter=*(uintptr_t*)((unsigned char*)vt+0x510);
     setter_rva=setter-(uintptr_t)base;
-    if(setter!=(uintptr_t)(base+0x1655300)){message="Unsupported resource setter";goto done;}
+    if(setter!=(uintptr_t)(base+0x16554f0)){message="Unsupported resource setter";goto done;}
     if(component[0x104]>1){message="Invalid resource maximum mode";goto done;}
     memcpy(&current,component+0x10c,4);
     /* Health's override clamps to the computed maximum at +0x110, independently

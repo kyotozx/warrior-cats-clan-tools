@@ -7,7 +7,8 @@ local registry=dofile(dir..'registry.lua').new(ctx)
 local panel,owner,button,visual;local requested=false;local selected,page=1,1;local lastError
 local function render(p)
  local rows=registry.list();selected=math.max(1,math.min(selected,#rows));local current=rows[selected]
- p.text('Mods',110,95,1000,48,true)
+ p.icon('loader',110,100,64)
+ p.text('Mods',196,95,914,48,true)
  p.text('Manage your community mods',112,175,1600,23)
  local pages=math.max(1,math.ceil(#rows/6));page=math.max(1,math.min(page,pages))
  for i=1,6 do local m=rows[(page-1)*6+i];if m then

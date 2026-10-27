@@ -1,121 +1,121 @@
 {
   "finalized": true,
-  "preparedUtc": "2026-10-26T01:59:11.5810514Z",
+  "preparedUtc": "2026-10-27T00:50:37.6578143Z",
   "blockers": [],
   "files": [
     {
       "destination": "clanparty.dll",
       "source": "clanparty.dll",
-      "sha256": "4A82C0299AE562D7447422F1F440AC53C564629D94A4A37CD580D62FFD044482",
-      "acceptance": "Final source/binary audit and isolated native guards passed. See VALIDATION.txt for feature-specific live coverage and limitations."
+      "sha256": "71A159653C4561C56A80CD3D111A0F87C06F91FE30C9FB62E868F9FBC2DF11BC",
+      "acceptance": "Patch 1.1 source/binary audit passed. See VALIDATION.txt for live coverage and remaining limits."
     },
     {
       "destination": "clanappearance.dll",
       "source": "clanappearance-skins-v8.dll",
-      "sha256": "92BBDE35E4B2C729CA8394C90591E6C0AD7015F229F360CEE66655B88342A389",
-      "acceptance": "Native source audit and isolated harness passed. Live second-character editor opened with slot=1 and Cancel returned to the correct roster. See VALIDATION.txt for scope."
+      "sha256": "9DA75336401F01B48262423DEF3446117B2E212F5B7A7C55C8A8615B7A25C8E4",
+      "acceptance": "Patch 1.1 source/binary audit passed. See VALIDATION.txt for live coverage and remaining limits."
     },
     {
       "destination": "clanappearance-skins-v8.dll",
       "source": "clanappearance-skins-v8.dll",
-      "sha256": "92BBDE35E4B2C729CA8394C90591E6C0AD7015F229F360CEE66655B88342A389",
-      "acceptance": "Native source audit and isolated harness passed. Live second-character editor opened with slot=1 and Cancel returned to the correct roster. See VALIDATION.txt for scope."
+      "sha256": "9DA75336401F01B48262423DEF3446117B2E212F5B7A7C55C8A8615B7A25C8E4",
+      "acceptance": "Patch 1.1 source/binary audit passed. See VALIDATION.txt for live coverage and remaining limits."
     },
     {
       "destination": "item-feedback.dll",
       "source": "item-feedback-v5.dll",
-      "sha256": "4294075D68098C9FA2D6264AB5828C5D5DE4EDB6BC42FA4B738C71BFECDFA0D8",
-      "acceptance": "Final source/binary audit and isolated native guards passed. See VALIDATION.txt for feature-specific live coverage and limitations."
+      "sha256": "D05086819553566BB9041B9D0DD86B6D420D943CC91423A76F3D2118267DE528",
+      "acceptance": "Patch 1.1 source/binary audit passed. See VALIDATION.txt for live coverage and remaining limits."
     },
     {
       "destination": "crafting-v4.dll",
       "source": "crafting-v4.dll",
-      "sha256": "32557E0FB5B23087E1ECA654EE45395E79AE54EEAA011171D55677E5BB74788F",
-      "acceptance": "Final source/binary audit and isolated native guards passed. See VALIDATION.txt for feature-specific live coverage and limitations."
+      "sha256": "83C7E9AD04336D958C01366E71C3AF555397A1C0970E76C2DC21EEC0DD6098A2",
+      "acceptance": "Patch 1.1 source/binary audit passed. See VALIDATION.txt for live coverage and remaining limits."
     },
     {
       "destination": "admin-heal.dll",
       "source": "admin-heal.dll",
-      "sha256": "34EDED3315EA91F4F7D8373561E3289B0420566BA959C38B9BD1567C7C89607B",
-      "acceptance": "Final source/binary audit and isolated native guards passed. See VALIDATION.txt for feature-specific live coverage and limitations."
+      "sha256": "8C317C5CD383490334D351D40E8AA339DF97CB3938532FEC839C453913D69D13",
+      "acceptance": "Patch 1.1 source/binary audit passed. See VALIDATION.txt for live coverage and remaining limits."
     },
     {
       "destination": "admin-progression.dll",
       "source": "admin-progression-v2.dll",
-      "sha256": "AD7ECEA55B748A37E1B7EBE15E84E83A122873B56CF7BCC2DE37F275413D46C8",
-      "acceptance": "Final source/binary audit and isolated native guards passed. See VALIDATION.txt for feature-specific live coverage and limitations."
+      "sha256": "4B05823751857E2D907500AE4064E77DE6100B6BCA3DD231CF9707043F0A2565",
+      "acceptance": "Patch 1.1 source/binary audit passed. See VALIDATION.txt for live coverage and remaining limits."
     },
     {
       "destination": "admin-quests.dll",
       "source": "admin-quests-v5.dll",
-      "sha256": "5E20EA76CAE4A6464CC9A4BAF56457EDD54A949293833B9822CB1E47CF27E540",
-      "acceptance": "Final source/binary audit and isolated native guards passed. See VALIDATION.txt for feature-specific live coverage and limitations."
+      "sha256": "5F1145F22DFF062C4D21007B48105DEED493AAA51E48FA8DCD24A914E12F999F",
+      "acceptance": "Patch 1.1 source/binary audit passed. See VALIDATION.txt for live coverage and remaining limits."
     },
     {
       "destination": "follower-appearance.dll",
       "source": "follower-appearance-v4.dll",
-      "sha256": "C0323ADAB2D66CA7C1B6BE5FE1BAD501B523870BB4767B33801C56AED97E5603",
-      "acceptance": "Final source/binary audit and isolated native guards passed. See VALIDATION.txt for feature-specific live coverage and limitations."
+      "sha256": "3A501A1F8A1F5ABAA45D82B470E4D8E9CAAE0C2235E9861B154AE66A1DE473AD",
+      "acceptance": "Patch 1.1 source/binary audit passed. See VALIDATION.txt for live coverage and remaining limits."
     },
     {
       "destination": "follower-appearance-v4.dll",
       "source": "follower-appearance-v4.dll",
-      "sha256": "C0323ADAB2D66CA7C1B6BE5FE1BAD501B523870BB4767B33801C56AED97E5603",
-      "acceptance": "Final source/binary audit and isolated native guards passed. See VALIDATION.txt for feature-specific live coverage and limitations."
+      "sha256": "3A501A1F8A1F5ABAA45D82B470E4D8E9CAAE0C2235E9861B154AE66A1DE473AD",
+      "acceptance": "Patch 1.1 source/binary audit passed. See VALIDATION.txt for live coverage and remaining limits."
     },
     {
       "destination": "settings-bridge-v2.dll",
       "source": "settings-bridge-v2.dll",
-      "sha256": "9E2BDCF77F169B4F0EB584C0852721397DD6FC050CE78196A531588EC296FF40",
-      "acceptance": "Final source/binary audit and isolated native guards passed. See VALIDATION.txt for feature-specific live coverage and limitations."
+      "sha256": "F4F33D4E0CC374DC0FEC01549D155AE17AF1E39263866F3946772ADC97278357",
+      "acceptance": "Patch 1.1 source/binary audit passed. See VALIDATION.txt for live coverage and remaining limits."
     },
     {
       "destination": "settings-remap-v3.dll",
       "source": "settings-remap-v3.dll",
-      "sha256": "DB36448169A3A147EEE4ACC08C16836DCC71CAC5B79C0AB3C68CED61E77CA293",
-      "acceptance": "Final source/binary audit and isolated native guards passed. See VALIDATION.txt for feature-specific live coverage and limitations."
+      "sha256": "379397A9E0BADBC5E4B0A34A205A4DDA569593F775FE0263E700D3763E8292BD",
+      "acceptance": "Patch 1.1 source/binary audit passed. See VALIDATION.txt for live coverage and remaining limits."
     },
     {
       "destination": "admin-quests-v5.dll",
       "source": "admin-quests-v5.dll",
-      "sha256": "5E20EA76CAE4A6464CC9A4BAF56457EDD54A949293833B9822CB1E47CF27E540",
-      "acceptance": "Final source/binary audit and isolated native guards passed. See VALIDATION.txt for feature-specific live coverage and limitations."
+      "sha256": "5F1145F22DFF062C4D21007B48105DEED493AAA51E48FA8DCD24A914E12F999F",
+      "acceptance": "Patch 1.1 source/binary audit passed. See VALIDATION.txt for live coverage and remaining limits."
     },
     {
       "destination": "item-feedback-v5.dll",
       "source": "item-feedback-v5.dll",
-      "sha256": "4294075D68098C9FA2D6264AB5828C5D5DE4EDB6BC42FA4B738C71BFECDFA0D8",
-      "acceptance": "Final source/binary audit and isolated native guards passed. See VALIDATION.txt for feature-specific live coverage and limitations."
+      "sha256": "D05086819553566BB9041B9D0DD86B6D420D943CC91423A76F3D2118267DE528",
+      "acceptance": "Patch 1.1 source/binary audit passed. See VALIDATION.txt for live coverage and remaining limits."
     },
     {
       "destination": "enemy-cleanup.dll",
       "source": "enemy-cleanup.dll",
-      "sha256": "D8268BA7145AB7E6B4DD11776182D5A2314E56F3B2009476048C794BDEBA6131",
-      "acceptance": "Final source/binary audit and isolated native guards passed. See VALIDATION.txt for feature-specific live coverage and limitations."
+      "sha256": "EA2313A44CE2E8DB25C51F12C5BA3C0F2F032FF97F52D292E08AD7FD57254D9C",
+      "acceptance": "Patch 1.1 source/binary audit passed. See VALIDATION.txt for live coverage and remaining limits."
     },
     {
       "destination": "admin-progression-v2.dll",
       "source": "admin-progression-v2.dll",
-      "sha256": "AD7ECEA55B748A37E1B7EBE15E84E83A122873B56CF7BCC2DE37F275413D46C8",
-      "acceptance": "Final source/binary audit and isolated native guards passed. See VALIDATION.txt for feature-specific live coverage and limitations."
+      "sha256": "4B05823751857E2D907500AE4064E77DE6100B6BCA3DD231CF9707043F0A2565",
+      "acceptance": "Patch 1.1 source/binary audit passed. See VALIDATION.txt for live coverage and remaining limits."
     },
     {
       "destination": "admin-sandbox.dll",
       "source": "admin-sandbox.dll",
-      "sha256": "2E49F26D5FBFBD06A9095DE7DBC69C2921C0B9CC9352D5009F3B077EBF183CED",
-      "acceptance": "Final source/binary audit and isolated native guards passed. See VALIDATION.txt for feature-specific live coverage and limitations."
+      "sha256": "B9B77526EC9939ED56555BD95A3105E5AE1D5F6FAD85287B78426920795D4AF3",
+      "acceptance": "Patch 1.1 source/binary audit passed. See VALIDATION.txt for live coverage and remaining limits."
     },
     {
       "destination": "admin-inventory.dll",
       "source": "admin-inventory.dll",
-      "sha256": "8A2DD88CB322DD878822CE7C784E27659E88257ECE1C6A10B583EB8B862EE7CE",
-      "acceptance": "Final source/binary audit and isolated native guards passed. See VALIDATION.txt for feature-specific live coverage and limitations."
+      "sha256": "C7012F5CD935EB7A66FE0BC4041AACB37B4B585E085BC3FBA6FE915FF3468AFC",
+      "acceptance": "Patch 1.1 source/binary audit passed. See VALIDATION.txt for live coverage and remaining limits."
     },
     {
       "destination": "workshop.dll",
       "source": "workshop.dll",
-      "sha256": "6405CD6B59BCC3C170E88B59CBCDEB0F22783E9959B7ABC08A9CE1219B88FE05",
-      "acceptance": "Exact build guards and fresh native section comparison passed; live workshop validation recorded in VALIDATION.txt."
+      "sha256": "06FDEDF2FE836A49B2D4F4E06A60B76E71C1E57CEA8EE1AC9FCEA46FD9694F77",
+      "acceptance": "Patch 1.1 source/binary audit passed. See VALIDATION.txt for live coverage and remaining limits."
     }
   ]
 }

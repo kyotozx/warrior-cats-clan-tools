@@ -40,13 +40,13 @@ static int build_ok(void) {
     if(dos->e_magic!=IMAGE_DOS_SIGNATURE||dos->e_lfanew<64||dos->e_lfanew>0x100000)return 0;
     IMAGE_NT_HEADERS64 *nt=(IMAGE_NT_HEADERS64*)(base+dos->e_lfanew);
     if(!readable(nt,sizeof(*nt),base,0)||nt->Signature!=IMAGE_NT_SIGNATURE||nt->FileHeader.Machine!=IMAGE_FILE_MACHINE_AMD64||
-       nt->OptionalHeader.Magic!=IMAGE_NT_OPTIONAL_HDR64_MAGIC||nt->OptionalHeader.SizeOfImage!=187576320u||nt->FileHeader.TimeDateStamp!=141614920u)return 0;
+       nt->OptionalHeader.Magic!=IMAGE_NT_OPTIONAL_HDR64_MAGIC||nt->OptionalHeader.SizeOfImage!=187576320u||nt->FileHeader.TimeDateStamp!=3539680621u)return 0;
     for(unsigned i=0;i<sizeof(guards)/sizeof(guards[0]);i++)if(!readable(base+guards[i].rva,16,base,1)||memcmp(base+guards[i].rva,guards[i].code,16))return 0;
     return 1;
 }
 static int manager_ok(void *supplied) {
     if(!readable(base+0xa8a6e30,8,base,0)||*(void**)(base+0xa8a6e30)!=supplied||!readable(supplied,0x248,NULL,0))return 0;
-    return *(void**)supplied==base+0x9c5a7f0;
+    return *(void**)supplied==base+0x9c5a928;
 }
 
 static int item_count(uintptr_t component,uint64_t tag,int *value){

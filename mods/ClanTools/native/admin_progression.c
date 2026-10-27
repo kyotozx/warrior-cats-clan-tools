@@ -38,13 +38,13 @@ static int build_ok(void) {
     if(dos->e_magic!=IMAGE_DOS_SIGNATURE||dos->e_lfanew<64||dos->e_lfanew>0x100000)return 0;
     IMAGE_NT_HEADERS64 *nt=(IMAGE_NT_HEADERS64*)(base+dos->e_lfanew);
     if(!readable(nt,sizeof(*nt),base,0)||nt->Signature!=IMAGE_NT_SIGNATURE||nt->FileHeader.Machine!=IMAGE_FILE_MACHINE_AMD64||
-       nt->OptionalHeader.Magic!=IMAGE_NT_OPTIONAL_HDR64_MAGIC||nt->OptionalHeader.SizeOfImage!=187576320u||nt->FileHeader.TimeDateStamp!=141614920u)return 0;
+       nt->OptionalHeader.Magic!=IMAGE_NT_OPTIONAL_HDR64_MAGIC||nt->OptionalHeader.SizeOfImage!=187576320u||nt->FileHeader.TimeDateStamp!=3539680621u)return 0;
     for(unsigned i=0;i<sizeof(guards)/sizeof(guards[0]);i++)if(!readable(base+guards[i].rva,16,base,1)||memcmp(base+guards[i].rva,guards[i].code,16))return 0;
     return 1;
 }
 static int manager_ok(void *supplied) {
     if(!readable(base+0xa8a6e30,8,base,0)||*(void**)(base+0xa8a6e30)!=supplied||!readable(supplied,0x248,NULL,0))return 0;
-    return *(void**)supplied==base+0x9c5a7f0;
+    return *(void**)supplied==base+0x9c5a928;
 }
 static int run(void) {
     unsigned long long nonce=0,object=0,owner=0,cls=0,manager=0;
@@ -64,7 +64,7 @@ static int run(void) {
     if(pile) {
         unsigned char *component=(void*)(uintptr_t)object,*state=(void*)(uintptr_t)owner;
         if(!readable(component,0x198,NULL,0)||!readable(state,0x520,NULL,0)||!readable((void*)(uintptr_t)cls,0x40,NULL,0)) {message="Invalid pile mappings";goto done;}
-        if(*(uintptr_t*)(component+0x10)!=(uintptr_t)cls||*(void**)(component+0x20)!=state||*(void**)(state+0x508)!=component||*(void**)component!=base+0x9b3a9e0) {message="Pile class or owner mismatch";goto done;}
+        if(*(uintptr_t*)(component+0x10)!=(uintptr_t)cls||*(void**)(component+0x20)!=state||*(void**)(state+0x508)!=component||*(void**)component!=base+0x9b3a860) {message="Pile class or owner mismatch";goto done;}
         if(component[0x104]>1){message="Invalid capacity mode";goto done;}
         current=*(float*)(component+0x10c);maximum=*(float*)(component+(component[0x104]?0x100:0x110));
         float scale=*(float*)(component+0x114),offset=*(float*)(component+0x118),elapsed=*(float*)(component+0x130);int cycles=*(int*)(component+0x13c);
@@ -74,11 +74,11 @@ static int run(void) {
             if(fabs(current-target)>0.01) {
                 float delta=((float)target-current-offset)/scale;
                 if(!isfinite(delta)||fabsf(delta)>1000000||(current<=0&&delta<=0)||(current>=maximum&&delta>0)){message="Unsupported pile modifiers";goto done;}
-                ((void(*)(void*,float))(base+0x17c1980))(component,delta);
+                ((void(*)(void*,float))(base+0x17c1be0))(component,delta);
                 after=*(float*)(component+0x10c);
                 if(!isfinite(after)||fabsf(after-(float)target)>0.01f){message="Pile readback mismatch";goto done;}
                 /* Preserve decay cycle/timer, serialize via the game's own save path. */
-                ((void(*)(float,int,float))(base+0x180fe50))(after,cycles,elapsed);
+                ((void(*)(float,int,float))(base+0x18103d0))(after,cycles,elapsed);
             }
         }
         after=*(float*)(component+0x10c);
@@ -86,16 +86,16 @@ static int run(void) {
         /* Gallery callback requires the active NPC manager; reject uninitialized saves. */
         void *npcs=*(void**)(base+0xa8b73e8);
         if(!readable(npcs,0x28,NULL,0)){message="NPC manager unavailable";goto done;}
-        int value=((int(*)(uint8_t,int))(base+0x16a0ef0))((uint8_t)role,-1);
+        int value=((int(*)(uint8_t,int))(base+0x16a11b0))((uint8_t)role,-1);
         if(value<0||value>100){message="Invalid bond bounds";goto done;}
         current=(float)value;maximum=100;
-        before_rank=((uint8_t(*)(int))(base+0x168f5e0))(value);
+        before_rank=((uint8_t(*)(int))(base+0x168f870))(value);
         if(apply) {
             if(value!=(int)expected){message="Bond preview is stale";goto done;}
-            if(value!=(int)target)((void(*)(uint8_t,int))(base+0x16a0bd0))((uint8_t)role,(int)target-value);
+            if(value!=(int)target)((void(*)(uint8_t,int))(base+0x16a0e90))((uint8_t)role,(int)target-value);
         }
-        after=(float)((int(*)(uint8_t,int))(base+0x16a0ef0))((uint8_t)role,-1);
-        after_rank=((uint8_t(*)(int))(base+0x168f5e0))((int)after);
+        after=(float)((int(*)(uint8_t,int))(base+0x16a11b0))((uint8_t)role,-1);
+        after_rank=((uint8_t(*)(int))(base+0x168f870))((int)after);
         if(apply&&after!=(float)target){message="Bond readback mismatch";goto done;}
     }
     message=apply?"APPLIED":"READY";

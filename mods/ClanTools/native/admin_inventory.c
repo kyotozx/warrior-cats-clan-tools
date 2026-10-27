@@ -15,21 +15,21 @@ static int run(void) {
  if(!manager_ok((void*)(uintptr_t)manager)){message="Save manager changed";goto done;}
  unsigned char*c=(void*)(uintptr_t)object,*state=(void*)(uintptr_t)owner;
  if(!readable(c,0x390,NULL,0)||!readable(state,0x3c0,NULL,0)||!readable((void*)(uintptr_t)cls,0x40,NULL,0)){message="Invalid inventory mappings";goto done;}
- if(*(void**)c!=base+0x9c4c508||*(uintptr_t*)(c+0x10)!=cls||*(void**)(c+0x20)!=state||*(void**)(state+0x388)!=c){message="Inventory class or owner changed";goto done;}
+ if(*(void**)c!=base+0x9c4b220||*(uintptr_t*)(c+0x10)!=cls||*(void**)(c+0x20)!=state||*(void**)(state+0x388)!=c){message="Inventory class or owner changed";goto done;}
  if(*(int*)(c+0x25c)!=-1){message="Temporary inventories are unsupported";goto done;}
- if(*(void**)(base+0x9c4c508+0x4f0)!=base+0x17c3dc0||*(void**)(base+0x9c4c508+0x508)!=base+0x1657570||*(void**)(base+0x9c4c508+0x500)!=base+0x17c5160){message="Inventory callbacks changed";goto done;}
+ if(*(void**)(base+0x9c4b220+0x4f0)!=base+0x17c4020||*(void**)(base+0x9c4b220+0x508)!=base+0x1657760||*(void**)(base+0x9c4b220+0x500)!=base+0x17c53c0){message="Inventory callbacks changed";goto done;}
  uint64_t name=0,tag=0;
- ((void*(*)(void*,const char*))(base+0x1b0f4d0))(&name,inventory_tags[index-1]);
- ((void*(*)(void*,const void*,int))(base+0x3cd9110))(&tag,&name,0);
+ ((void*(*)(void*,const char*))(base+0x1b10c80))(&name,inventory_tags[index-1]);
+ ((void*(*)(void*,const void*,int))(base+0x3cda1c0))(&tag,&name,0);
  if(!name||tag!=name){message="Unknown inventory tag";goto done;}
  if(!item_count(object,tag,&current)){message="Invalid inventory map";goto done;}
  after=current;
  if(current>100000000-quantity){message="Inventory quantity overflow";goto done;}
- allowed=((uint8_t(*)(void*,uint64_t,int))(base+0x17c3dc0))(c,tag,quantity)!=0;
+ allowed=((uint8_t(*)(void*,uint64_t,int))(base+0x17c4020))(c,tag,quantity)!=0;
  if(apply){
   if(current!=expected){message="Inventory preview is stale";goto done;}
   if(!allowed){message="Your inventory has no room for this amount";goto done;}
-  ((void(*)(void*,uint64_t,int,uint8_t))(base+0x1655aa0))(c,tag,quantity,1);
+  ((void(*)(void*,uint64_t,int,uint8_t))(base+0x1655c90))(c,tag,quantity,1);
   if(!item_count(object,tag,&after)||after!=current+quantity){message="Inventory readback mismatch; do not repeat without refreshing";goto done;}
  }
  message=apply?"APPLIED":"READY";

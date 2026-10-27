@@ -30,6 +30,7 @@ function Refresh-List{
  $window.FindName('ModCount').Text=('{0} INSTALLED' -f $script:rows.Count)
  if($script:rows.Count){$index=0;for($i=0;$i -lt $script:rows.Count;$i++){if($script:rows[$i].id -eq $selectedId){$index=$i}};$list.SelectedIndex=$index}
  Update-Details
+ if(Get-Command Refresh-UpdateNotice -ErrorAction SilentlyContinue){Refresh-UpdateNotice}
 }
 function Update-Details{
  $selected=$list.SelectedIndex -ge 0 -and $list.SelectedIndex -lt $script:rows.Count
@@ -44,6 +45,7 @@ function Update-Details{
 }
 $list.Add_SelectionChanged({Update-Details})
 . (Join-Path $PSScriptRoot 'Theme.ps1')
+. (Join-Path $PSScriptRoot 'Updates.ps1')
 function Selected-Mod{if($list.SelectedIndex -lt 0){throw 'Select a mod first.'};return $script:rows[$list.SelectedIndex]}
 function Select-File([string]$Filter){$d=[Microsoft.Win32.OpenFileDialog]::new();$d.Filter=$Filter;if($d.ShowDialog($window)){return $d.FileName}}
 $window.FindName('Browse').Add_Click({$d=[Windows.Forms.FolderBrowserDialog]::new();$d.Description='Choose the Warrior Cats Steam folder';if($d.ShowDialog() -eq 'OK'){$pathBox.Text=$d.SelectedPath;Show-Result {Refresh-List;Start-GameTheme;'Game folder selected.'}};$d.Dispose()})

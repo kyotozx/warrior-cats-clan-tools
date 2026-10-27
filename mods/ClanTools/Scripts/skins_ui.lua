@@ -4,7 +4,8 @@ function M.new(ctx,p)
  local function store()return ctx.skins.store end
  local function change(fn)local ok,why=pcall(fn);p.notify(ok and'Skin library updated.'or tostring(why):gsub('^.-:%d+: ',''));p.refresh()end
  function api.page()
-  p.text('Your skins',430,135,1350,38,nil,true)
+  if p.icon then p.icon('player-skins',430,140,48)end
+  p.text('Your skins',494,135,1286,38,nil,true)
   p.text('Share your cat\'s appearance between characters. Names, clans and progress stay with each save.',432,202,1335,18)
   p.button('Save current look',430,275,430,64,function()p.prompt({title='Name your skin',value=ctx.playerName(),maxLength=40,accept=function(v)change(function()ctx.skins.save(v)end);return true end})end)
   p.button('Edit your cat',890,275,430,64,function()local ok,why=ctx.appearance.player();if not ok then p.notify(why)end end)

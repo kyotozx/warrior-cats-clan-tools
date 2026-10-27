@@ -49,14 +49,14 @@ static int panel_methods(void **panels,void **refresh,void **randomize) {
     /* The native creator's command27 uses these exact four v580 callbacks.
        Each panel must still refer to our owned preview. */
     if(!object_ok(screen,0x6a0)||*(int32_t*)((char*)screen+0xc)!=screen_index||!preview_valid())return 0;
-    static const unsigned random_rvas[]={0x18c20e0,0x18c2df0,0x18c3950,0x18c4650};
+    static const unsigned random_rvas[]={0x18c27e0,0x18c34f0,0x18c4050,0x18c4d50};
     void *current=*(void**)((char*)screen+0x568);int found=0;
     for(unsigned i=0;i<4;i++) {
         void *p=*(void**)((char*)screen+0x4e8+i*8);
         if(!object_ok(p,0x3c8)||*(void**)((char*)p+0x3b0)!=actor)return 0;
         void **v=*(void***)p;
         if(!readable(v,0x588,base,0)||!readable(v[0x578/8],1,base,1)||!readable(v[0x580/8],1,base,1))return 0;
-        if(v[0x578/8]!=base+0x18c1cb0||v[0x580/8]!=base+random_rvas[i])return 0;
+        if(v[0x578/8]!=base+0x18c23b0||v[0x580/8]!=base+random_rvas[i])return 0;
         panels[i]=p;refresh[i]=v[0x578/8];randomize[i]=v[0x580/8];
         if(p==current)found=1;
     }
@@ -124,14 +124,14 @@ static int cosmetic_sync_controls(void *editor,void *preview) {
     for(unsigned i=0;i<5;i++){color_options[i]=*(void**)((char*)colors+color_offsets[i]);if(!object_ok(color_options[i],0x490))return 0;}
     Custom keep;copy_custom(&keep,(Custom*)((char*)mesh+0x118));int32_t v[COSMETIC_COUNT];cosmetic_read(&keep,v);
     int indices[]={v[7]-v[0],v[9]-v[2],0,0,v[10]-v[5],v[8]-v[1]};
-    indices[2]=((int(*)(const void*))(base+0x17b4290))(keep.b+0x3c)-v[3];
-    indices[3]=((int(*)(const void*))(base+0x17b4380))(keep.b+0x40)-v[4];
+    indices[2]=((int(*)(const void*))(base+0x17b44f0))(keep.b+0x3c)-v[3];
+    indices[3]=((int(*)(const void*))(base+0x17b45e0))(keep.b+0x40)-v[4];
     for(unsigned i=0;i<6;i++){
         int count=*(int*)((char*)options[i]+0x468),index=indices[i];
         if(count>0){if(index<0)index=0;if(index>=count)index=count-1;((void(*)(void*,int))setters[i])(options[i],index);}
     }
     static const unsigned color_values[]={15,16,17,20,21};
-    for(unsigned i=0;i<5;i++)((void(*)(void*,int))(base+0x18c1580))(color_options[i],v[color_values[i]]);
+    for(unsigned i=0;i<5;i++)((void(*)(void*,int))(base+0x18c1c80))(color_options[i],v[color_values[i]]);
     for(unsigned k=0;k<2;k++) {
         void *p=*(void**)((char*)editor+0x4f0+k*8);
         if(!object_ok(p,0x430))continue;

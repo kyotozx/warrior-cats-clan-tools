@@ -21,7 +21,9 @@ local function root()
 end
 local style=obj({Font={},ColorAndOpacity={}})
 local skin={find=function()return style end,cloneImage=function()end}
-function skin.createButton(_,r,_,_,label)
+function skin.createButton(context,r,owner,template,label)
+ assert(context.nativeButtonClass and context.nativeButtonClass.path:find('WBP_GuiButtonCommon1',1,true),'Footer requires its own native button class')
+ assert(template==nil,'Footer must not borrow a pause child on page changes')
  local b=obj({label=label});r.children[#r.children+1]=b
  local c={click=b,setSelected=function(self,v)self.selected=v end,tick=function()end,setLabel=function(_,v)b.label=v end}
  return b,c
@@ -38,7 +40,7 @@ function StaticFindObject(path)
  return obj()
 end
 function StaticConstructObject()return obj()end
-function LoadAsset()return obj()end
+function LoadAsset(path)return obj({path=path})end
 local pause=obj({mcGuiTabParty=obj(),WidgetTree={RootWidget=root()},mcGuiFooter={WidgetTree={RootWidget=root()}},mcGuiPanelGeneral={WidgetTree={RootWidget=root()}}})
 function FindAllOf()return{pause}end
 local textActive=false
@@ -62,6 +64,17 @@ command(25);assert(h.page=='main')
 command(4);command(4);command(26);assert(h.page=='library')
 api:tick();assert(h.status.text:find('Saved look',1,true))
 command(25);assert(h.page=='main')
+-- The pause children may be reconstructed while the editor stays open. More
+-- and Back must not dereference the old Resume widget during those transitions.
+pause.mcGuiPanelGeneral=nil
+local oldButton=h.buttons[4].object
+for i=1,30 do
+ command(4);command(26);assert(h.page=='tools'and #h.buttons==5)
+ command(25);assert(h.page=='main'and #h.buttons==6)
+end
+local count=#calls
+hooks['/Script/SwtEngine.GuiControl:OnControlClick']({get=function()return oldButton end});flush()
+assert(#calls==count and h.page=='main','Retired footer buttons must not dispatch')
 textActive=true;local n=#calls;assert(command(27)==0 and calls[n+1]=='text:27')
 textActive=false;h.close();api:shutdown();assert(h.closed)
 print('PASS native footer pages, pending-name header, semantic randomize, preset status, Back and exclusive text-prompt routing')

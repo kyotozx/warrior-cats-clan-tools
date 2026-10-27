@@ -1,4 +1,4 @@
-﻿param([Parameter(Mandatory=$true)][string]$Version,[Parameter(Mandatory=$true)][string]$NativeSelection,[string]$OutputRoot,[string]$NativeAudit,[switch]$ValidateOnly,[string]$UE4SSDirectory)
+param([Parameter(Mandatory=$true)][string]$Version,[Parameter(Mandatory=$true)][string]$NativeSelection,[string]$OutputRoot,[string]$NativeAudit,[switch]$ValidateOnly,[string]$UE4SSDirectory)
 $ErrorActionPreference='Stop'
 . (Join-Path $PSScriptRoot 'Package.Core.ps1')
 if($Version -notmatch '^[0-9][A-Za-z0-9._-]{0,50}$'){throw 'Invalid release version.'}
@@ -29,6 +29,10 @@ function Add-Input([string]$Source,[string]$Destination,[string]$Area){
 foreach($name in $allow.scripts){
  if($name -notmatch '^[A-Za-z0-9_]+\.lua$'){throw "Invalid script allowlist entry: $name"}
  Add-Input (Get-ContainedPath $modRoot ('Scripts/'+$name)) ('payload/ClanTools/Scripts/'+$name) 'mod'
+}
+foreach($name in $allow.icons){
+ if($name -cnotmatch '^[a-z][a-z-]*\.png$'){throw "Invalid icon: $name"}
+ Add-Input (Get-ContainedPath $modRoot ('assets/icons/'+$name)) ('payload/ClanTools/assets/icons/'+$name) 'mod'
 }
 foreach($name in $allow.data){
  if(!(Test-ClanToolsProgramPath ('data/'+$name))){throw "Invalid static data allowlist entry: $name"}
@@ -61,7 +65,7 @@ foreach($name in @('dwmapi.dll','ue4ss/UE4SS.dll','ue4ss/LICENSE','ue4ss/UE4SS-s
 if($ValidateOnly){Write-Output "Validated $($inputs.Count) allowlisted package inputs, source/binary audit, and dependency closure. No files staged; pending runtime acceptance is unchanged.";return}
 $null=New-Item -ItemType Directory -Path $stage -Force
 foreach($f in $inputs){$dest=Get-ContainedPath $stage $f.path;$null=New-Item -ItemType Directory -Path (Split-Path $dest -Parent) -Force;Copy-Item -LiteralPath $f.source -Destination $dest}
-$manifest=[ordered]@{schema=1;name='ClanTools';version=$Version;gameBuild='24847281';steamApp='3960600';gameSha256='F50EB374F8611E4EB6796A33218E4A11DD83B408B3D4687F23C9E80EDB6EBFB2';loaderRelease='UE4SS_v3.0.1-1181-g83330635';createdUtc=[DateTime]::UtcNow.ToString('o');files=@($inputs|ForEach-Object {[ordered]@{path=$_.path;area=$_.area;sha256=$_.sha256}})}
+$manifest=[ordered]@{schema=1;name='ClanTools';version=$Version;gameBuild='26184573';steamApp='3960600';gameSha256='CD8AAFB4D2A423BD8D4A4CCD3325590EDE61C97702D595C944D18F5B3984A995';loaderRelease='UE4SS_v3.0.1-1181-g83330635';createdUtc=[DateTime]::UtcNow.ToString('o');files=@($inputs|ForEach-Object {[ordered]@{path=$_.path;area=$_.area;sha256=$_.sha256}})}
 Write-Utf8 (Join-Path $stage 'manifest.json') ($manifest|ConvertTo-Json -Depth 6)
 $null=Read-PackageManifest $stage
 Compress-Archive -LiteralPath $stage -DestinationPath $zip -CompressionLevel Optimal

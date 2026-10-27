@@ -82,7 +82,8 @@
     "skins_ui.lua",
     "creator_skins.lua",
     "native_panel.lua",
-    "sky_tools.lua"
+    "sky_tools.lua",
+    "menu_icons.lua"
   ],
   "nativeSources": [
     "admin_heal.c",
@@ -105,6 +106,7 @@
     "follower_guards.h",
     "item_feedback.c",
     "settings_bridge.c",
+    "player_settings_layout.h",
     "settings_menu_catalog.h",
     "settings_remap.c",
     "workshop.c",
@@ -129,5 +131,15 @@
     "admin-moves.json",
     "admin-inventory.json",
     "workshop.json"
+  ],
+  "icons": [
+    "clan-tools.png",
+    "party.png",
+    "appearance.png",
+    "item-feedback.png",
+    "offline-admin.png",
+    "den-workshop.png",
+    "keybinds.png",
+    "player-skins.png"
   ]
 }

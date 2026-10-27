@@ -19,6 +19,11 @@ foreach($name in $allow.data){
  if(!(Test-ClanToolsProgramPath ('data/'+$name))){throw "Unsupported metadata: $name"}
  $null=Get-Content -LiteralPath (Get-ContainedPath $root ('data/'+$name)) -Raw|ConvertFrom-Json
 }
+foreach($name in $allow.icons){
+ if(!(Test-ClanToolsProgramPath ('assets/icons/'+$name))){throw "Unsupported icon: $name"}
+ $bytes=[IO.File]::ReadAllBytes((Get-ContainedPath $root ('assets/icons/'+$name)))
+ if($bytes.Length -lt 24 -or [BitConverter]::ToString($bytes,0,8) -ne '89-50-4E-47-0D-0A-1A-0A'){throw "Invalid PNG: $name"}
+}
 foreach($name in $allow.documentation){if(!(Test-Path -LiteralPath (Get-ContainedPath (Join-Path $root 'release') $name) -PathType Leaf)){throw "Missing release documentation: $name"}}
 foreach($name in @('Build-Package.ps1','Package.Core.ps1','Install.ps1','Uninstall.ps1')){
  $parseErrors=$null;$tokens=$null

@@ -37,7 +37,7 @@ static int build_ok(void) {
  IMAGE_DOS_HEADER*d=(void*)base;
  if(d->e_magic!=IMAGE_DOS_SIGNATURE||d->e_lfanew<64||d->e_lfanew>0x100000)return 0;
  IMAGE_NT_HEADERS64*n=(void*)(base+d->e_lfanew);
- if(!readable(n,sizeof(*n),base,0)||n->Signature!=IMAGE_NT_SIGNATURE||n->FileHeader.Machine!=IMAGE_FILE_MACHINE_AMD64||n->OptionalHeader.Magic!=IMAGE_NT_OPTIONAL_HDR64_MAGIC||n->OptionalHeader.SizeOfImage!=187576320u||n->FileHeader.TimeDateStamp!=141614920u)return 0;
+ if(!readable(n,sizeof(*n),base,0)||n->Signature!=IMAGE_NT_SIGNATURE||n->FileHeader.Machine!=IMAGE_FILE_MACHINE_AMD64||n->OptionalHeader.Magic!=IMAGE_NT_OPTIONAL_HDR64_MAGIC||n->OptionalHeader.SizeOfImage!=187576320u||n->FileHeader.TimeDateStamp!=3539680621u)return 0;
  for(unsigned i=0;i<sizeof(sandbox_guards)/sizeof(sandbox_guards[0]);i++)if(!readable(base+sandbox_guards[i].rva,16,base,1)||memcmp(base+sandbox_guards[i].rva,sandbox_guards[i].code,16))return 0;
  return 1;
 }
@@ -57,28 +57,28 @@ typedef struct { uint64_t*data;int count,capacity; } TagArray;
 typedef struct { TagArray tags,parents; } TagContainer;
 typedef struct { wchar_t*data;int count,capacity; } Str;
 static int save_stats(unsigned char*c) {
- if(!readable(base+0xa8ba6e8,8,base,0))return 0;
- void*script=*(void**)(base+0xa8ba6e8);if(!readable(script,0x40,NULL,0))return 0;
+ if(!readable(base+0xa8ba7c0,8,base,0))return 0;
+ void*script=*(void**)(base+0xa8ba7c0);if(!readable(script,0x40,NULL,0))return 0;
  Str out={0},key={L"Stats",6,6};
- ((void(*)(void*,Str*,const void*,const void*,void*,int,void*,int))(base+0x1beb200))(script,&out,c+0x138,NULL,NULL,0x20805,NULL,1);
+ ((void(*)(void*,Str*,const void*,const void*,void*,int,void*,int))(base+0x1bec9b0))(script,&out,c+0x138,NULL,NULL,0x20805,NULL,1);
  int ok=out.count>1&&out.count<=8192&&out.capacity>=out.count&&readable(out.data,(size_t)out.count*2,NULL,0)&&out.data[out.count-1]==0;
- if(ok)((void(*)(const Str*,const Str*))(base+0x16af790))(&out,&key);
- if(out.data)((void(*)(void*))(base+0x19db970))(out.data);
+ if(ok)((void(*)(const Str*,const Str*))(base+0x16afa50))(&out,&key);
+ if(out.data)((void(*)(void*))(base+0x19dd120))(out.data);
  if(!ok)return 0;
  union {uint64_t align;unsigned char b[0x38];} reread={0};
- ((void*(*)(void*))(base+0x180f450))(&reread);
+ ((void*(*)(void*))(base+0x180f9d0))(&reread);
  ok=memcmp(reread.b+0x1c,c+0x154,24)==0;
- Str*type=(Str*)(reread.b+8);if(type->data)((void(*)(void*))(base+0x19db970))(type->data);
+ Str*type=(Str*)(reread.b+8);if(type->data)((void(*)(void*))(base+0x19dd120))(type->data);
  return ok;
 }
 static int move_list(uint64_t*out,int*count) {
  TagContainer list={0};int ok=1;
- ((void*(*)(void*))(base+0x16a3930))(&list);
+ ((void*(*)(void*))(base+0x16a3bf0))(&list);
  if(list.tags.count<0||list.tags.count>512||list.tags.capacity<list.tags.count||list.tags.capacity>4096||list.parents.count<0||list.parents.count>512||list.parents.capacity<list.parents.count||list.parents.capacity>4096)ok=0;
  if(ok&&list.tags.count&&!readable(list.tags.data,(size_t)list.tags.count*8,NULL,0))ok=0;
  if(ok){*count=list.tags.count;if(*count)memcpy(out,list.tags.data,(size_t)*count*8);}
- if(list.tags.data)((void(*)(void*))(base+0x19db970))(list.tags.data);
- if(list.parents.data)((void(*)(void*))(base+0x19db970))(list.parents.data);
+ if(list.tags.data)((void(*)(void*))(base+0x19dd120))(list.tags.data);
+ if(list.parents.data)((void(*)(void*))(base+0x19dd120))(list.parents.data);
  return ok;
 }
 static int run(void) {
@@ -103,19 +103,19 @@ static int run(void) {
  if(!build_ok()){status="Unsupported game build";goto done;}
  unsigned char*c=(void*)(uintptr_t)cptr;
  if(xp||attack||stats_set) {
-  if(!resource_ok(c,(uintptr_t)owner,(uintptr_t)cls,0x9b5a6c0,0x170)||!readable((void*)(uintptr_t)owner,0x398,NULL,0)||*(void**)((uintptr_t)owner+0x390)!=c){status="Level component owner or class mismatch";goto done;}
-  if(!readable(base+0xa8a6e30,8,base,0)||*(uintptr_t*)(base+0xa8a6e30)!=(uintptr_t)manager||!readable((void*)(uintptr_t)manager,0x248,NULL,0)||*(void**)(void*)(uintptr_t)manager!=base+0x9c5a7f0){status="Save manager changed";goto done;}
-  if(*(void**)(base+0x9b5a6c0+0x508)!=base+0x165b460||*(void**)(base+0x9b5a6c0+0x510)!=base+0x16588a0){status="Level handler changed";goto done;}
+  if(!resource_ok(c,(uintptr_t)owner,(uintptr_t)cls,0x9b5a4b0,0x170)||!readable((void*)(uintptr_t)owner,0x398,NULL,0)||*(void**)((uintptr_t)owner+0x390)!=c){status="Level component owner or class mismatch";goto done;}
+  if(!readable(base+0xa8a6e30,8,base,0)||*(uintptr_t*)(base+0xa8a6e30)!=(uintptr_t)manager||!readable((void*)(uintptr_t)manager,0x248,NULL,0)||*(void**)(void*)(uintptr_t)manager!=base+0x9c5a928){status="Save manager changed";goto done;}
+  if(*(void**)(base+0x9b5a4b0+0x508)!=base+0x165b650||*(void**)(base+0x9b5a4b0+0x510)!=base+0x1658a90){status="Level handler changed";goto done;}
   level=*(int*)(c+0x120);max_level=*(int*)(c+0x124);
   if(level<1||level>max_level||max_level>1000){status="Invalid level bounds";goto done;}
  }else if(health){
   if(!readable(c,0x128,NULL,0)||!readable((void*)(uintptr_t)owner,0x28,NULL,0)||!readable((void*)(uintptr_t)cls,0x40,NULL,0)||*(uintptr_t*)(c+0x10)!=(uintptr_t)cls||*(uintptr_t*)(c+0x20)!=(uintptr_t)owner||c[0x104]>1){status="Invalid health component owner";goto done;}
   void**vt=*(void***)c;
-  if(!readable(vt,0x518,base,0)||*(void**)((char*)vt+0x4f0)!=base+0x16554c0||*(void**)((char*)vt+0x510)!=base+0x1655300){status="Invalid health resource handlers";goto done;}
+  if(!readable(vt,0x518,base,0)||*(void**)((char*)vt+0x4f0)!=base+0x16556b0||*(void**)((char*)vt+0x510)!=base+0x16554f0){status="Invalid health resource handlers";goto done;}
   if(c[0x104]){status="Temporary health maximum override active";goto done;}
  }else{
   uintptr_t table=readable(c,8,NULL,0)?(uintptr_t)*(void**)c-(uintptr_t)base:0;
-  if((table!=0x9acb558&&table!=0x9b90318)||!resource_ok(c,(uintptr_t)owner,(uintptr_t)cls,table,0x120)||*(void**)(base+table+0x510)!=base+0x165b580){status="Stamina component owner or class mismatch";goto done;}
+  if((table!=0x9acb0c0&&table!=0x9b901c0)||!resource_ok(c,(uintptr_t)owner,(uintptr_t)cls,table,0x120)||*(void**)(base+table+0x510)!=base+0x165b770){status="Stamina component owner or class mismatch";goto done;}
  }
  current=*(float*)(c+0x10c);maximum=*(float*)(c+(c[0x104]?0x100:0x110));
  if(!(xp||attack||stats_set?level_bounds(current,maximum,level,max_level):bounds(current,maximum))){status="Invalid resource bounds";goto done;}
@@ -132,10 +132,10 @@ static int run(void) {
   if(!move_list(moves,&move_count)){status="Invalid unlocked move list";goto done;}
   if(apply){
    uint64_t tag=0,name=(uint64_t)tag_index;
-   ((void*(*)(void*,const void*,int))(base+0x3cd9110))(&tag,&name,0);
+   ((void*(*)(void*,const void*,int))(base+0x3cda1c0))(&tag,&name,0);
    if(tag!=name){status="Unknown gameplay move tag";goto done;}
    for(int i=0;i<move_count;i++)if(moves[i]==tag){status="Move already unlocked";goto done;}
-   ((void(*)(const void*,int))(base+0x16a3470))(&tag,0);
+   ((void(*)(const void*,int))(base+0x16a3730))(&tag,0);
    if(!move_list(moves,&move_count)){status="Move readback unavailable";goto done;}
    int found=0;for(int i=0;i<move_count;i++)if(moves[i]==tag)found=1;
    if(!found){status="Move unlock readback mismatch";goto done;}
@@ -150,11 +150,11 @@ static int run(void) {
    if(level>=max_level){status="Maximum level reached";goto done;}
    /* Same virtual add-resource path as the game's GainXP item effect. It
       dispatches native level-up, stat updates, HUD events and serialization. */
-   ((void(*)(void*,float))(base+0x165b460))(c,(float)amount);
+   ((void(*)(void*,float))(base+0x165b650))(c,(float)amount);
   }else if(health){
-   ((void(*)(void*,float))(base+0x16554c0))(c,(float)amount);
-   ((void(*)(void*,float))(base+0x1655300))(c,current);
-  }else ((void(*)(void*,float))(base+0x165b580))(c,maximum);
+   ((void(*)(void*,float))(base+0x16556b0))(c,(float)amount);
+   ((void(*)(void*,float))(base+0x16554f0))(c,current);
+  }else ((void(*)(void*,float))(base+0x165b770))(c,maximum);
  }
  after=*(float*)(c+0x10c);maximum=*(float*)(c+(c[0x104]?0x100:0x110));after_level=xp?*(int*)(c+0x120):0;
  if(!(xp?level_bounds(after,maximum,after_level,max_level):bounds(after,maximum))||(xp&&after_level<level)){status="Resource readback mismatch";goto done;}

@@ -44,7 +44,7 @@ Graphics presets, saved custom configurations, the frame limiter and FPS counter
 | Platform | Windows x64, Steam |
 | Game | Warrior Cats: Clans of the Forest |
 | Steam app | `3960600` |
-| Game build | `24847281` |
+| Game build | `26184573` |
 | Status | Release candidate |
 | Gameplay tools | Offline campaigns |
 
@@ -52,7 +52,9 @@ The installer checks the game executable before applying changes. Other builds a
 
 ## Install
 
-1. Download `ClanLoader-0.3.0-rc6.zip` from [Releases](https://github.com/kyotozx/warrior-cats-clan-tools/releases). Use this package, rather than GitHub's automatically generated source archives.
+Patch 1.1 support is currently on `main`, pending the rc7 download. The older rc6 package does not support the updated executable.
+
+1. Download the Clan Loader ZIP for your game build from [Releases](https://github.com/kyotozx/warrior-cats-clan-tools/releases). Use this package, rather than GitHub's automatically generated source archives.
 2. Save and close the game. Extract the entire ZIP to a writable folder.
 3. Open `ClanLoader.exe`. Check the detected game folder, then select **Install / update suite**.
 4. Start the game. Open **Mods** from the main or pause menu. In an offline campaign, open **Clan Tools** from pause.
@@ -61,11 +63,13 @@ The package includes the tested UE4SS runtime. Python and a separate mod loader 
 
 Game textures and fonts are loaded from your own installation. They are not included in this repository or the release package.
 
+The loader checks GitHub for new Clan Loader, Clan Tools and Performance releases in the background. Choose **View update** to open the download page. Updates are installed manually; checking does not change your game or send saves.
+
 ## Troubleshooting
 
 ### Wrong clan or empty roster on another save
 
-Update to rc6 or newer and restart the game. Clan Tools now follows the selected character when you load or switch campaigns.
+The rc6 update corrected character selection, but some players still report mixed names or rosters after switching saves. Restart before loading the affected character. If the issue persists, report which save is affected and attach your UE4SS.log.
 
 Party selections, party presets and custom display names from older versions need to be set again once. Their old files are kept, but cannot be reliably assigned to a character. Your game saves and saved skin library are preserved.
 

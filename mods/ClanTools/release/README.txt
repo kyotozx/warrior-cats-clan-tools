@@ -1,7 +1,7 @@
 CLAN TOOLS
 
 An unofficial offline mod for Warrior Cats: Clans of the Forest.
-Supported: Steam app 3960600, build 24847281, Windows x64.
+Supported: Steam app 3960600, build 26184573, Windows x64.
 This is a local release candidate for user testing. It has not been uploaded to
 Steam Workshop. Read VALIDATION.txt for tested behavior and remaining coverage.
 
@@ -10,7 +10,7 @@ INSTALL
 2. Run Install.cmd. For a custom Steam library:
    Install.cmd "D:\SteamLibrary\steamapps\common\Warrior Cats Clans of the Forest"
 3. Start the game and load an offline campaign.
-   P: native pause menu. F6: Clan Tools. Controller: Y / Triangle in pause.
+   Esc: native pause menu. F6: Clan Tools. Controller: Y / Triangle in pause.
    F7: Controls, also available through native settings.
    FPS controls and the counter moved to the separate Performance mod (F9 / L3).
    Arrows / D-pad / left stick navigate. Enter / A (Cross) selects; Backspace /
@@ -37,7 +37,7 @@ Game saves and the shared skin library are preserved.
 - Player skins: Appearance > Your cat / Skins. Shared named library with portraits,
   favorites, rename, delete, import/export and all/coat/eyes/shape previews.
   Apply uses the original editor; Cancel preserves your current appearance.
-  In the original new-player creator, F6 / Y opens the same shared skin library.
+  In the original new-player creator, F6 / L3 opens the same shared skin library.
   Name, clan, rank and progression are never copied. Accessories/scars are excluded.
   Export writes skin-export.json; place a shared JSON at skin-import.json and choose
   Import skin, or use the external Clan Loader app for file selection.

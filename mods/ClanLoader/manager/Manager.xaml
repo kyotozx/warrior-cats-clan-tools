@@ -34,7 +34,14 @@
   </Grid>
   <Viewbox Stretch="Uniform"><Grid Width="1320" Height="840" Margin="0">
    <Grid Margin="64,42,64,0" Height="112" VerticalAlignment="Top">
-    <StackPanel Orientation="Horizontal" VerticalAlignment="Center"><Image Name="AppMark" Width="48" Height="48" Margin="0,0,20,0"/><TextBlock Text="Clan Loader" FontFamily="{DynamicResource HeadingFont}" FontSize="50" VerticalAlignment="Center"/></StackPanel>
+    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left"><Image Name="AppMark" Width="48" Height="48" Margin="0,0,20,0"/><TextBlock Text="Clan Loader" FontFamily="{DynamicResource HeadingFont}" FontSize="50" VerticalAlignment="Center"/></StackPanel>
+    <StackPanel Width="570" HorizontalAlignment="Right" VerticalAlignment="Center">
+     <TextBlock Name="UpdateNotice" Text="" FontSize="17" Foreground="#C9DCC2" TextAlignment="Right" TextTrimming="CharacterEllipsis"/>
+     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,6,0,0">
+      <Button Name="CheckUpdates" Content="Check for updates" Style="{StaticResource Quiet}" Height="38" FontSize="16"/>
+      <Button Name="OpenUpdate" Content="View update" Style="{StaticResource Quiet}" Height="38" FontSize="16" Visibility="Collapsed"/>
+     </StackPanel>
+    </StackPanel>
 
    </Grid>
    <Rectangle Fill="{DynamicResource Accent}" OpacityMask="{DynamicResource LineMask}" Height="12" Margin="42,160,42,0" VerticalAlignment="Top" Opacity="0.35"/>

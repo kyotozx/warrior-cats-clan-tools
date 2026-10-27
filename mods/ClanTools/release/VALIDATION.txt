@@ -1,6 +1,25 @@
 CLAN TOOLS / CLAN LOADER - COMMUNITY ACCEPTANCE
-2026-10-25. Windows x64; Steam build 24847281.
+2026-10-26. Windows x64; Steam patch 1.1, build 26184573.
 Release candidate; no Workshop integration.
+
+PATCH 1.1 UPDATE
+Native addresses, function guards, theme extraction and the expanded 16-byte
+player-settings layout were updated for this executable. The command catalog
+includes the two new mouse-camera commands; old custom keybindings migrate once.
+79 Lua suites, five PowerShell suites and seven native harnesses passed. All 14
+native production binaries matched independent builds from the committed sources.
+Live: the second local character loaded; Party and Appearance showed 22 cats and
+portraits. The clanmate editor opened, More and Back worked, and Rename followed
+by Apply saved the original display name and returned to the roster without a
+crash. The log confirmed the unchanged-appearance path skipped world mesh refresh
+and released its transaction. This does not reproduce every reported Apply crash.
+The existing custom emblems displayed in Clan Tools, Mods and Performance.
+The external loader opened, remained responsive and checked both GitHub release
+feeds. Update comparison, known repository URLs and package filtering passed tests.
+Reports of incorrect names/rosters after switching distinct saves still need
+community reproduction. The two local saves are clones. Physical controllers and
+all gameplay features have not been re-tested on patch 1.1. Older checks below are
+historical coverage, not a claim that every feature was exercised on this build.
 
 RC6 SAVE SELECTION UPDATE
 The active character index now comes from the live FlowManager, independently of

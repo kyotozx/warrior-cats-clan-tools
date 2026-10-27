@@ -4,11 +4,11 @@ local function clone(t)local o={};for k,v in pairs(t)do o[k]=type(v)=='table'and
 local base={
  {device='keyboard',command=60,kind=1,original='W',key='W',scale_bits=1065353216},
  {device='keyboard',command=60,kind=1,original='S',key='S',scale_bits=3212836864},
- {device='keyboard',command=65,kind=0,original='E',key='E',scale_bits=1065353216},
- {device='keyboard',command=89,kind=0,original='Enter',key='Enter',scale_bits=1065353216},
+ {device='keyboard',command=67,kind=0,original='E',key='E',scale_bits=1065353216},
+ {device='keyboard',command=91,kind=0,original='Enter',key='Enter',scale_bits=1065353216},
  {device='gamepad',command=60,kind=1,original='Gamepad_LeftY',key='Gamepad_LeftY',scale_bits=1065353216},
- {device='gamepad',command=70,kind=0,original='Gamepad_LeftShoulder',key='Gamepad_LeftShoulder',scale_bits=1065353216},
- {device='gamepad',command=89,kind=0,original='Gamepad_Special_Right',key='Gamepad_Special_Right',scale_bits=1065353216},
+ {device='gamepad',command=72,kind=0,original='Gamepad_LeftShoulder',key='Gamepad_LeftShoulder',scale_bits=1065353216},
+ {device='gamepad',command=91,kind=0,original='Gamepad_Special_Right',key='Gamepad_Special_Right',scale_bits=1065353216},
 }
 local function id(r)return table.concat({r.device,r.command,r.kind,r.original,r.scale_bits},':')end
 local current={input=1,pc=2,world='world1',profile='profile1',object_index='Input1'};local active={};local persisted;local saveFail=false;local removeFail=false;local applyFail=false;local removed=0
@@ -45,3 +45,11 @@ local menus=Module.new(ctx);local menuRows=menus.bindings();assert(menuRows[8].e
 assert(menus.rebind(menuRows[8].id,'F'));assert(menus.bindings()[8].key=='F');assert(menus.shutdown())
 local reloaded=Module.new(ctx);assert(reloaded.tick(current));assert(reloaded.bindings()[8].key=='F');assert(reloaded.reset_all());assert(reloaded.shutdown())
 print('PASS native menu Confirm binding persists and reloads; controller Start recovery is protected')
+persisted={version=1,profiles={profile1={{device='keyboard',command=65,kind=0,original='E',key='F',scale_bits=1065353216}}}}
+local migrated=Module.new(ctx);assert(migrated.tick(current));assert(active[1].command==67 and active[1].key=='F')
+assert(persisted.version==1,'Loading must not rewrite personal settings')
+assert(migrated.rebind(migrated.bindings()[3].id,'G'));assert(persisted.version==2 and persisted.profiles.profile1[1].command==67)
+assert(migrated.shutdown());local again=Module.new(ctx);assert(again.tick(current));assert(active[1].command==67,'Do not migrate twice');assert(again.shutdown())
+local commands=dofile(directory..'../Scripts/input_commands.lua')
+assert(commands[66]=='Player_Customization_Yaw' and commands[91]=='Player_Pause' and commands[109]=='Map_Axis_Zoom')
+print('PASS patch 1.1 command migration preserves old controls and protects the new pause command')

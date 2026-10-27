@@ -1,5 +1,5 @@
 -- Rotate only the transaction's private preview, including while the campaign
--- is paused. Read command 64 so custom Q/E/right-stick mappings remain valid.
+-- is paused. Read command 66 so custom Q/E/right-stick mappings remain valid.
 local M={}
 function M.new(ctx)
  local api={};local handle,preview;local keys,rows,blocked={},{},{}
@@ -45,7 +45,7 @@ function M.new(ctx)
   local bindings=ctx.keybinds and ctx.keybinds.bindings()
   assert(type(bindings)=='table','Appearance rotation bindings are unavailable.')
   local seen,keyboard={},{}
-  for _,r in ipairs(bindings)do if r.command==64 and r.kind==1 and r.key then
+  for _,r in ipairs(bindings)do if r.command==66 and r.kind==1 and r.key then
    local id=r.key..':'..r.scale_bits
    if not seen[id]then
     local scale=string.unpack('<f',string.pack('<I4',r.scale_bits))

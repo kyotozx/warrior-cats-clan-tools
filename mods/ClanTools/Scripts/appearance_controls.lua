@@ -8,7 +8,6 @@ local hookPath='/Script/SwtEngine.GuiControl:OnControlClick'
 function M.new(ctx)
     assert(type(ctx.valid)=='function','Appearance controls require ctx.valid')
     local api={};local handles,actions={},{};local stopped=false
-    local skinContext=setmetatable({nativeFocusable=false},{__index=ctx})
     local lib=StaticFindObject('/Script/UMG.Default__WidgetBlueprintLibrary')
     local layout=StaticFindObject('/Script/UMG.Default__WidgetLayoutLibrary')
     local function later(fn)
@@ -89,6 +88,12 @@ function M.new(ctx)
             if ctx.valid(p)and ctx.valid(p.mcGuiTabParty)then pause=p;break end
         end
         assert(pause,'Open the pause menu before editing appearances')
+        -- Footer pages outlive the pause menu's original child widgets. Create
+        -- buttons from their asset class instead of borrowing Resume again on
+        -- every More/Back transition.
+        local buttonClass=LoadAsset('/Game/Art/UXD/Blueprints/Buttons/WBP_GuiButtonCommon1.WBP_GuiButtonCommon1_C')
+        assert(ctx.valid(buttonClass),'Native appearance button class is unavailable')
+        local skinContext=setmetatable({nativeFocusable=false,nativeButtonClass=buttonClass},{__index=ctx})
         local class=LoadAsset('/Game/Art/UXD/Blueprints/Controls/gui_common/WBP_GuiClanScreenBackground.WBP_GuiClanScreenBackground_C')
         local w=lib:Create(s.gameState,class,s.pc);assert(ctx.valid(w),'Could not create appearance controls')
         local root=w.WidgetTree.RootWidget
@@ -113,9 +118,9 @@ function M.new(ctx)
             return put(t,x,y,ww,size*2,3)
         end
         local function button(value,x,ww,fn,accent)
-            local b,skin=nativeSkin.createButton(skinContext,root,editor,pause,value,x,height-91,ww,66,1/unit,false)
+            local b,skin=nativeSkin.createButton(skinContext,root,editor,nil,value,x,height-91,ww,66,1/unit,false)
             skin:setSelected(accent==true)
-            local a={object=b,click=skin.click,skin=skin,handle=h,fn=fn};actions[b:GetAddress()]=a;h.buttons[#h.buttons+1]=a
+            local a={object=b,address=b:GetAddress(),click=skin.click,skin=skin,handle=h,fn=fn};actions[a.address]=a;h.buttons[#h.buttons+1]=a
             return skin.click
         end
         local showPage
@@ -139,7 +144,7 @@ function M.new(ctx)
             h.deleteArmed=false;return invokeAndRefresh('deletePreset')
         end
         showPage=function(page)
-            for _,a in ipairs(h.buttons)do actions[a.object:GetAddress()]=nil;if ctx.valid(a.object)then a.object:RemoveFromParent()end end
+            for _,a in ipairs(h.buttons)do actions[a.address]=nil;if ctx.valid(a.object)then a.object:RemoveFromParent()end end
             h.buttons={};h.footerActions={};h.page=page;h.message=nil;h.deleteArmed=false
             local specs
             if page=='library'then
@@ -173,7 +178,7 @@ function M.new(ctx)
         function h.close()
             if h.closed then return true end
             h.closed=true
-            for _,a in ipairs(h.buttons)do if a.object then actions[a.object:GetAddress()]=nil end end
+            for _,a in ipairs(h.buttons)do actions[a.address]=nil end
             if ctx.valid(w)then w:RemoveFromParent()end
             handles[h]=nil;return true
         end
