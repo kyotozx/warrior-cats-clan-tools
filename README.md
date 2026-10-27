@@ -52,7 +52,7 @@ The installer checks the game executable before applying changes. Other builds a
 
 ## Install
 
-Use [Clan Loader rc8](https://github.com/kyotozx/warrior-cats-clan-tools/releases/tag/v0.3.0-rc8) for game patch 1.1. The older rc6 package does not support the updated executable.
+Use [Clan Loader rc9](https://github.com/kyotozx/warrior-cats-clan-tools/releases/tag/v0.3.0-rc9) for game patch 1.1. The older rc6 package does not support the updated executable.
 
 1. Download the Clan Loader ZIP for your game build from [Releases](https://github.com/kyotozx/warrior-cats-clan-tools/releases). Use this package, rather than GitHub's automatically generated source archives.
 2. Save and close the game. Extract the entire ZIP to a writable folder.
@@ -71,7 +71,7 @@ The loader checks GitHub for new Clan Loader, Clan Tools and Performance release
 
 The published rc6 and rc7 packages can read the wrong character slot, causing mixed names, portraits or an empty roster. Restarting does not reliably resolve this. The rc8 update corrects the selected-character reader and passed local tests with two different campaigns, including switching between them without restarting. See [known bugs](KNOW-BUGS.md) for status. Reports with the affected save and your UE4SS.log are welcome.
 
-After updating to rc8, party selections, party presets and custom display names from rc7 and earlier need to be set again once. Their old files are kept, but cannot be reliably assigned to a character. Your game saves and saved skin library are preserved.
+After updating to rc9, set your party selections, party presets and custom display names again. Character-specific settings now follow the actual character, including when a deleted character's slot is reused. Older settings, original-appearance snapshots, den layouts and waypoints remain on disk but are not reapplied because their ownership is uncertain. Your game saves, shared appearance presets and saved skin library are preserved.
 
 ### Loader cannot load ThemeAssets.dll (0x80131515)
 

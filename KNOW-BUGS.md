@@ -1,10 +1,10 @@
-Status for rc8, October 27, 2026.
+Status for rc9, October 27, 2026.
 
 1. Rename Apply crash: fixed the unavailable button template and removed the unnecessary native appearance refresh for name-only edits. A local Rename / Apply test passed. Reports on other saves still need confirmation.
 2. Save loading and switching: reproduced in rc7 and corrected in rc8. The selected character was being read from FlowManager instead of GameConfig, silently returning slot 0 for other characters. Two distinct campaigns passed a ThunderClan → WindClan → ThunderClan test without restarting: correct player names, 24/22 clan rosters and matching native cat data. A renamed cat retained its name in the correct campaign after returning. Confirmation on affected players' installations is still welcome. Older party settings, party presets and display names are preserved but not reused because their character ownership is uncertain. Game saves and saved skins are unaffected.
 3. Character creation shortcut conflict: fixed in rc7. Skins now uses F6 / L3, leaving Y / Triangle for the game's confirmation.
 
-Fixed in source after rc8, not yet included in a release ZIP:
+Also fixed in rc9:
 
 - Reusing a deleted character slot could inherit its old mod settings. Character-specific names, party selections, party presets, original appearances, den layouts and waypoints now use the game's character identity. Older ambiguous settings remain on disk but are not reapplied. Shared appearance presets and player skins remain available.
 - A temporary character-identity lookup failure no longer leaves the Party Manager blocked after loading finishes.
