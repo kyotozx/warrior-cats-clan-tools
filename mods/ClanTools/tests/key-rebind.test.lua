@@ -53,3 +53,13 @@ assert(migrated.shutdown());local again=Module.new(ctx);assert(again.tick(curren
 local commands=dofile(directory..'../Scripts/input_commands.lua')
 assert(commands[66]=='Player_Customization_Yaw' and commands[91]=='Player_Pause' and commands[109]=='Map_Axis_Zoom')
 print('PASS patch 1.1 command migration preserves old controls and protects the new pause command')
+persisted={version=2,profiles={profile1={clone(base[1]),clone(base[3])}}}
+persisted.profiles.profile1[1].key='Up';persisted.profiles.profile1[2].key='F7'
+local reserved=Module.new(ctx);assert(reserved.tick(current));assert(#active==1 and active[1].key=='Up')
+assert(#persisted.profiles.profile1==2,'Loading must not rewrite personal settings')
+local row=reserved.bindings()[3];local choices={};for _,key in ipairs(reserved.available_keys(row))do choices[key]=true end
+for _,key in ipairs({'F6','F7','F8','F9','F10'})do
+ assert(not choices[key],key..' must not be offered');assert(not reserved.rebind(row.id,key,{allow_conflict=true}))
+end
+assert(reserved.shutdown())
+print('PASS suite shortcuts are reserved and old conflicts do not discard unrelated bindings')

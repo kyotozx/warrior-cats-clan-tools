@@ -148,6 +148,12 @@ function M.spawn_probe(snapshot,cat,index,applyAppearance,createNameplate)
     local planner=motion.new(index);local peers={};local lastGoal,lastTime,lastRequest;local waiting=false
     function owned:set_peers(list)peers=list end
     function owned:IsValid()return valid(actor)end
+    function owned:update_appearance(s,currentCat)
+        assert(valid(actor)and valid(controller),'Follower controller unavailable.')
+        controllerOwned(controller);assert(same(controller.Pawn,actor),'Follower AI possession changed.')
+        assert(currentCat.role==self.role,'Follower role changed.')
+        return applyAppearance(s,actor,self.role)
+    end
     function owned:update_label(s,currentCat)if nameplate then return nameplate.update(s,currentCat)end;return true end
     function owned:stay()
         assert(valid(actor)and valid(controller),'Follower controller unavailable.')
@@ -200,6 +206,7 @@ end
 function M.new(ctx)
     assert(type(ctx.snapshot)=='function'and type(ctx.getCats)=='function'and type(ctx.spawn)=='function','Follower context is required.')
     local owned,roles,session,lastUpdate={}, {},nil,-math.huge
+    local appearances={}
     local api={error=nil};local closed=false
     local mode,distance,regroupDeadline='follow',150,nil
     local function snapshot()
@@ -211,7 +218,7 @@ function M.new(ctx)
     function api.reset()
         local retained,errors={},{}
         for _,f in ipairs(owned)do local ok,e=pcall(function()assert(f:destroy()~=false)end);if not ok then retained[#retained+1]=f;errors[#errors+1]=tostring(e)end end
-        owned=retained;roles={};session=nil;mode='follow';regroupDeadline=nil
+        owned=retained;roles={};appearances={};session=nil;mode='follow';regroupDeadline=nil
         if #errors>0 then api.error=table.concat(errors,'; ');return false,api.error end
         api.error=nil;return true,'Exploration followers dismissed.'
     end
@@ -226,6 +233,7 @@ function M.new(ctx)
             assert(api.reset());session=identity(s)
             for i,cat in ipairs(selected)do
                 local follower=assert(ctx.spawn(s,cat,i));owned[#owned+1]=follower;roles[#roles+1]=cat.role
+                appearances[cat.role]=cat.custom
                 assert(follower:IsValid(),'Follower initialization failed.')
                 if mode=='stay'then follower:stay()else follower:follow(s.pawn,mode=='regroup'and 60 or distance)end
             end
@@ -268,6 +276,11 @@ function M.new(ctx)
         for i,f in ipairs(owned)do
             if not eligible[roles[i]]or not f:IsValid()then return api.reset()end
             local moved,err=pcall(function()
+                local cat=eligible[roles[i]]
+                if type(cat.custom)=='string'and cat.custom~=appearances[cat.role]and f.update_appearance then
+                    assert(f:update_appearance(s,cat)==true,'Follower appearance refresh failed.')
+                    appearances[cat.role]=cat.custom
+                end
                 if f.update_idle then f:update_idle()end
                 if f.update_label then assert(f:update_label(s,eligible[roles[i]])~=false,'Follower nameplate unavailable.')end
                 if mode=='stay'then return f:stay()end

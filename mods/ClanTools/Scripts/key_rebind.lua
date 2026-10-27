@@ -4,6 +4,7 @@ local dir=debug.getinfo(1,'S').source:gsub('^@',''):match('^(.*[/\\])')
 local json=dofile(dir..'json.lua');local keyboard=dofile(dir..'keyboard_keys.lua');local gamepad=dofile(dir..'gamepad_keys.lua');local commands=dofile(dir..'input_commands.lua')
 local runtimeValid=dofile(dir..'runtime_valid.lua').valid
 local M={}
+local reserved={F6=true,F7=true,F8=true,F9=true,F10=true}
 local function clone(t)local c={};for k,v in pairs(t)do c[k]=type(v)=='table'and clone(v)or v end;return c end
 local function integer(n)return type(n)=='number'and n==math.floor(n)end
 local function identity(r)return table.concat({r.device,r.command,r.kind,r.original,r.scale_bits},':')end
@@ -42,7 +43,14 @@ function M.new(ctx)
  end
  if loadedOK and type(loaded)=='table'and loaded.version==2 and type(loaded.profiles)=='table'then
   local valid=true;for profile,list in pairs(loaded.profiles)do if type(profile)~='string'or type(list)~='table'or #list>192 then valid=false;break end;local seen={};for _,r in ipairs(list)do if not validate_rule(r)then valid=false;break end;local id=identity(r);if seen[id]then valid=false;break end;seen[id]=true end end
-  if valid then config=loaded else lastError='Invalid saved keybindings; no overrides loaded'end
+  if valid then
+   config=clone(loaded)
+   -- Keep unrelated bindings when older configurations used a suite shortcut.
+   for profile,list in pairs(config.profiles)do
+    local kept={};for _,rule in ipairs(list)do if not reserved[rule.key]then kept[#kept+1]=rule end end
+    config.profiles[profile]=kept
+   end
+  else lastError='Invalid saved keybindings; no overrides loaded'end
  elseif not loadedOK then lastError='Could not read keybindings: '..tostring(loaded)end
  local function index(key)
   if not indexes[key]then local n=ctx.key_index and ctx.key_index(key)or FName(key):GetComparisonIndex();assert(integer(n)and n>0,'Unknown native key '..key);indexes[key]=n;names[n]=key end;return indexes[key]
@@ -117,7 +125,7 @@ function M.new(ctx)
  end
  function api.available_keys(row)
   local out={};for key in pairs(row.device=='gamepad'and gamepad or keyboard)do
-   if key~='F6'and not key:find('Mouse')and axis(key)==axis(row.original)then out[#out+1]=key end
+   if not reserved[key]and not key:find('Mouse')and axis(key)==axis(row.original)then out[#out+1]=key end
   end;table.sort(out);return out
  end
  local function transaction(id,key,reset,options)
@@ -125,7 +133,7 @@ function M.new(ctx)
   for _,r in ipairs(list)do if r.id==id then selected=r;break end end
   assert(selected and selected.editable,selected and selected.reason or'Binding unavailable')
   if not reset then
-   assert(allowed(key,selected.device)and key~='F6'and not key:find('Mouse'),'Unsupported or reserved recovery key')
+   assert(allowed(key,selected.device)and not reserved[key]and not key:find('Mouse'),'Unsupported key or reserved mod shortcut (F6-F10)')
    assert(axis(key)==axis(selected.original),'Choose the same input type (button, stick axis, or trigger axis)')
    if not(options and options.allow_conflict)then for _,r in ipairs(list)do
     if r.device==selected.device and r.id~=id and r.key==key and r.command~=selected.command then error('Key already used by '..r.label..'; explicit conflict confirmation required')end

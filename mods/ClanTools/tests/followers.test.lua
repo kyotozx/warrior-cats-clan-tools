@@ -11,6 +11,7 @@ local function fixture()
         function f:follow(target,distance)eq(target,pawn);self.moves=self.moves+1;self.distance=distance;return true end
         function f:stay()self.stops=(self.stops or 0)+1;return true end
         function f:distance_to()return self.currentDistance or 400 end
+        function f:update_appearance(_,cat)self.appearanceUpdates=(self.appearanceUpdates or 0)+1;self.custom=cat.custom;return true end
         function f:destroy()self.alive=false;return true end
         made[#made+1]=f;return f
     end
@@ -72,5 +73,17 @@ test('commands refuse missing followers and unsafe sessions; distance is bounded
     local f,c,s,cats,made=fixture();eq(f.command('stay'),false);f.select({7});s.offline=false;eq(f.command('stay'),false)
     for _,v in ipairs({0,99,601,200.5,'200'})do eq(f.set_distance(v),false)end
     eq(f.set_distance(600),true);eq(f.state().distance,600)
+end)
+test('appearance edits refresh owned followers without respawning or losing Stay',function()
+    local f,c,s,cats,made=fixture();cats[1].custom='coat=old';assert(f.select({7}));assert(f.command('stay'))
+    assert(f.tick(1));eq(made[1].appearanceUpdates,nil)
+    cats[1].custom='coat=new';assert(f.tick(2));eq(made[1].appearanceUpdates,1);eq(made[1].custom,'coat=new')
+    eq(#made,1);eq(made[1].alive,true);eq(f.state().mode,'stay')
+    assert(f.tick(3));eq(made[1].appearanceUpdates,1)
+end)
+test('failed appearance refresh dismisses owned actors safely',function()
+    local f,c,s,cats,made=fixture();cats[1].custom='old';assert(f.select({7}))
+    made[1].update_appearance=function()return false end;cats[1].custom='new'
+    eq(f.tick(1),false);eq(made[1].alive,false);eq(f.state().active,0)
 end)
 print(n..' follower model tests passed.')
