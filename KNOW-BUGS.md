@@ -1,3 +1,5 @@
-1. Game crashes when hitting "apply" from cat rename menu. Error: "Mods\ClanTools\Scripts\native_skin:lua83: Native pause button template is unavailable."
-2. Save loading issue: Sometimes it shows only one cat to customize and the wrong clan.
-3. Confirmation button in cat creation is the same one that opens the skin loader menu.
+Changes on `main` are pending the rc7 download.
+
+1. Rename Apply crash: fixed the unavailable button template and removed the unnecessary native appearance refresh for name-only edits. A local Rename / Apply test passed. Reports on other saves still need confirmation.
+2. Save loading issue: sometimes the wrong clan, names or roster appear. Still under investigation.
+3. Character creation shortcut conflict: fixed on `main`. Skins now uses F6 / L3, leaving Y / Triangle for the game's confirmation.
