@@ -28,8 +28,14 @@ function Read-ModRegistry([string]$Mods){
 }
 function Test-ManagedModEnabled([string]$Mods,$States,[string]$Id){
  if(!(Test-ModId $Id)){throw 'Invalid mod ID.'}
+ # A dependency may use another spelling, but UE4SS matches the actual folder
+ # name against mods.txt exactly. Hashtable lookup alone is case-insensitive.
+ $canonical=$Id
+ $folder=@(if(Test-Path -LiteralPath $Mods -PathType Container){Get-ChildItem -LiteralPath $Mods -Directory -Force|Where-Object {$_.Name -ieq $Id}})
+ if($folder.Count -eq 1){$canonical=$folder[0].Name}
+ $listed=@($States.Keys|Where-Object {$_ -ceq $canonical})
  # UE4SS processes enabled.txt after mods.txt, even when the list says disabled.
- return ($States.ContainsKey($Id) -and $States[$Id]) -or (Test-Path -LiteralPath (Get-ContainedPath $Mods ($Id+'/enabled.txt')))
+ return ($listed.Count -eq 1 -and $States[$listed[0]]) -or (Test-Path -LiteralPath (Get-ContainedPath $Mods ($Id+'/enabled.txt')))
 }
 function Remove-ModEnableMarker([string]$Mods,[string]$Id){
  $marker=Get-ContainedPath $Mods ($Id+'/enabled.txt')

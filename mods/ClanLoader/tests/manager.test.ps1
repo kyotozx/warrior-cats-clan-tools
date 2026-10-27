@@ -86,6 +86,15 @@ $m.dependencies=@();Write-Utf8 (Join-Path $pkg 'mod.json') ($m|ConvertTo-Json -D
 $normalized=Set-ModStateText "testmod : 0`nOther : 1`n" TestMod $true
 Check ((Get-ModStates $normalized).TestMod -and (Get-ModStates $normalized).Other) 'Case-insensitive replacement lost entries'
 Check ($normalized -cnotmatch 'testmod :') 'Replacement retained wrong-cased duplicate'
+Check (!(Test-ManagedModEnabled $mods (Get-ModStates "testmod : 1`n") TestMod)) 'Wrong-cased entry was shown enabled despite UE4SS rejecting it'
+Check (Test-ManagedModEnabled $mods (Get-ModStates "TestMod : 1`n") testmod) 'Dependency spelling did not resolve the actual folder name'
+Check (!(Test-ManagedModEnabled (Join-Path $fixture 'not-installed') @{} ClanLoader)) 'Fresh setup must not require an existing Mods directory'
+$beforeCaseRepair=[IO.File]::ReadAllText($list)
+Write-Utf8 $list (Set-ModStateText $beforeCaseRepair testmod $true)
+Set-ManagedModEnabled $mods TestMod $true
+Check ([IO.File]::ReadAllText($list) -cmatch 'TestMod : 1') 'Enabling did not repair the folder spelling'
+Check ([IO.File]::ReadAllText($list) -cnotmatch 'testmod :') 'Enabling retained the wrong-cased entry'
+Write-Utf8 $list $beforeCaseRepair
 
 # Fault after truncating mods.txt: restore exact previous bytes and marker.
 Write-Utf8 $marker 'marker bytes';$oldList=[IO.File]::ReadAllText($list)

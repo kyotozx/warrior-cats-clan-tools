@@ -3,12 +3,12 @@ local M=dofile(d..'../Scripts/registry.lua');local json=dofile(d..'../Scripts/js
 local files={['root/../mods.txt']='Other : 1\r\nClanLoader : 1\r\nClanTools : 1\r\n',['root/registry.json']=json.encode({schema=1,mods={{id='ClanLoader',name='Loader',version='1'},{id='ClanTools',name='Tools',version='1'}}})}
 local a=M.new({root='root/',read=function(p)return files[p]end,write=function(p,s)files[p]=s end})
 assert(not a.list()[2].restart);a.toggle('ClanTools');local m=a.list()[2];assert(m.restart and not m.enabled and m.atStartup)
-assert(M.states(files['root/../mods.txt']).other);a.toggle('ClanTools');assert(not a.list()[2].restart)
+assert(M.states(files['root/../mods.txt']).Other);a.toggle('ClanTools');assert(not a.list()[2].restart)
 assert(not pcall(a.toggle,'ClanLoader'));assert(not pcall(a.toggle,'unknown'));assert(not pcall(M.states,'X : 1\nX : 0\n'))
 assert(not pcall(M.update,'','../X',true))
 assert(not pcall(M.states,'Example : 1\nexample : 0\n'))
 local canonical=M.update('clantools : 0\nOther : 1\n','ClanTools',true)
-assert(M.states(canonical).clantools and M.states(canonical).other)
+assert(M.states(canonical).ClanTools and M.states(canonical).Other)
 assert(not canonical:find('clantools :',1,true))
 
 local function fixture(failure,dependent)
@@ -33,8 +33,8 @@ local b,f,list,marker=fixture()
 assert(b.list()[2].enabled and b.list()[2].atStartup and not b.list()[2].restart)
 b.toggle('ClanTools')
 assert(f[marker]==nil and f[marker..'.clanloader-backup']=='marker bytes')
-assert(not M.states(f[list]).clantools and b.list()[2].restart and b.list()[2].atStartup)
-b.toggle('ClanTools');assert(M.states(f[list]).clantools and f[marker]==nil and not b.list()[2].restart)
+assert(not M.states(f[list]).ClanTools and b.list()[2].restart and b.list()[2].atStartup)
+b.toggle('ClanTools');assert(M.states(f[list]).ClanTools and f[marker]==nil and not b.list()[2].restart)
 for _,failure in ipairs({'write','remove','after-remove','noop'})do
  local c,g,lp,mp=fixture(failure);local original=g[lp]
  assert(not pcall(c.toggle,'ClanTools'))
@@ -44,4 +44,12 @@ end
 local c,g,lp,mp=fixture(nil,true);local original=g[lp]
 assert(not pcall(c.toggle,'ClanTools'));assert(g[lp]==original and g[mp]=='marker bytes')
 c.toggle('Dependent');c.toggle('ClanTools');assert(not c.list()[2].enabled and not c.list()[3].enabled)
+-- Wrong-cased entries do not start the canonical folder in UE4SS. Enabling
+-- through the menu repairs the spelling and requires a restart.
+files['root/../mods.txt']='ClanLoader : 1\nclantools : 1\n'
+local wrongCase=M.new({root='root/',read=function(p)return files[p]end,write=function(p,s)files[p]=s end})
+assert(not wrongCase.list()[2].enabled and not wrongCase.list()[2].atStartup)
+wrongCase.toggle('ClanTools')
+assert(wrongCase.list()[2].enabled and wrongCase.list()[2].restart)
+assert(files['root/../mods.txt']:find('ClanTools : 1',1,true)and not files['root/../mods.txt']:find('clantools :',1,true))
 print('PASS manager restart state, marker activation, transactional rollback, dependencies and ID casing')

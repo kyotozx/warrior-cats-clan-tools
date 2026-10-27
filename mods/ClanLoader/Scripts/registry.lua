@@ -2,7 +2,7 @@ local dir=debug.getinfo(1,'S').source:gsub('^@',''):match('^(.*[/\\])')
 local json=dofile(dir..'json.lua');local M={}
 function M.validId(id)return type(id)=='string'and id:match('^[A-Za-z][A-Za-z0-9_]*$')and #id<=64 end
 function M.states(text)
- local result={};for line in (text..'\n'):gmatch('(.-)\r?\n')do local id,n=line:match('^%s*([%w_]+)%s*:%s*([01])%s*$');if id then id=id:lower();assert(result[id]==nil,'Duplicate mod entry: '..id);result[id]=n=='1'end end
+ local result,seen={},{};for line in (text..'\n'):gmatch('(.-)\r?\n')do local id,n=line:match('^%s*([%w_]+)%s*:%s*([01])%s*$');if id then assert(not seen[id:lower()],'Duplicate mod entry: '..id);seen[id:lower()]=true;result[id]=n=='1'end end
  return result
 end
 function M.update(text,id,enabled)
@@ -11,15 +11,18 @@ function M.update(text,id,enabled)
  while rows[#rows]==''do table.remove(rows)end;rows[#rows+1]=id..' : '..(enabled and'1'or'0');return table.concat(rows,nl)..nl
 end
 function M.new(ctx)
- local api={};local listPath=ctx.root..'../mods.txt';local startup=M.states(assert(ctx.read(listPath),'Mod list unavailable.'))
+ local api={};local listPath=ctx.root..'../mods.txt';local startupStates=M.states(assert(ctx.read(listPath),'Mod list unavailable.'));local startup={}
  local function registry()
   local raw=assert(ctx.read(ctx.root..'registry.json'),'Run the external manager to register your installed mods.')
   local r=json.decode(raw);assert(r.schema==1 and type(r.mods)=='table','Invalid mod registry.');return r
  end
  local function marker(id)return ctx.root..'../'..id..'/enabled.txt'end
- local function enabled(states,id)return states[id:lower()]==true or ctx.read(marker(id))~=nil end
+ -- UE4SS resolves mods.txt names case-sensitively, even on Windows. Only
+ -- writes normalize an old spelling; displaying it as active would hide a
+ -- mod that the runtime never started.
+ local function enabled(states,id)return states[id]==true or ctx.read(marker(id))~=nil end
  -- Capture marker activation now, before any toggles change files for next launch.
- for _,m in ipairs(registry().mods)do assert(M.validId(m.id),'Invalid registered mod.');startup[m.id:lower()]=enabled(startup,m.id)end
+ for _,m in ipairs(registry().mods)do assert(M.validId(m.id),'Invalid registered mod.');startup[m.id:lower()]=enabled(startupStates,m.id)end
  function api.list()
   local r=registry();local states=M.states(assert(ctx.read(listPath)));local rows={};local seen={}
   for _,m in ipairs(r.mods)do
