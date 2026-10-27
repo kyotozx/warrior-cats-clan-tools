@@ -26,7 +26,7 @@ function M.new(ctx,party)
   assert(type(s.slot)=='number'and s.slot%1==0 and s.slot>=0,'Active character unavailable.')
   return s
  end
- local function path(s)return ctx.root..'state/party-presets-character-'..s.profile..'_'..s.slot..'.json'end
+ local function path(s)return ctx.root..'state/party-presets-character-v2-'..s.profile..'_'..s.slot..'.json'end
  local function read(s)
   local raw=ctx.read(path(s));if not raw then return{version=1,nextId=1,entries={}}end
   local data=ctx.json.decode(raw)

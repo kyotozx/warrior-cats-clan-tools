@@ -24,7 +24,7 @@ static int active, applied, bound, have_pending, cancelled, have_editor_baseline
 static unsigned char role, expected_clan;
 static void *manager, *save_game, *actor;
 static int32_t slot, profile_index, actor_index;
-static void *flow_manager;
+static void *game_config;
 static wchar_t gamer_id[1024];
 static wchar_t profile_id[1024];
 static Custom original, pending, preview_original, editor_baseline;
@@ -145,19 +145,20 @@ static int initialize(void) {
     return 1;
 }
 static int class_is(void *object,uint32_t class_rva);
-static int current_character_slot(void **flow,int32_t *selected) {
+static int current_character_slot(void **config,int32_t *selected) {
+    /* SwtAdventureGameConfig owns this field, not SwtAdventureFlowManager. */
     void *f=*(void**)(base+0xa8a6e08);
     if(!object_ok(f,0x158)||!class_is(f,0x1613580))return 0;
     int32_t value=*(int32_t*)((char*)f+0x154);
     if(value<0)return 0;
-    *flow=f;*selected=value;return 1;
+    *config=f;*selected=value;return 1;
 }
 static int same_context(void) {
-    void *flow;int32_t selected;
+    void *config;int32_t selected;
     if(!active||GetCurrentThreadId()!=owner_thread||!object_ok(manager,0x170)||
        *(void**)(base+0xa8a6e30)!=manager||*(void**)((char*)manager+0x168)!=save_game||
        !object_ok(save_game,0xa0)||*(int32_t*)((char*)save_game+0x78)!=profile_index||
-       !current_character_slot(&flow,&selected)||flow!=flow_manager||selected!=slot) return 0;
+       !current_character_slot(&config,&selected)||config!=game_config||selected!=slot) return 0;
     Str *g=(Str*)((char*)save_game+0x30);
     Str *slots=*(Str**)((char*)save_game+0x68);
     int count=*(int*)((char*)save_game+0x70);
@@ -437,7 +438,7 @@ static const char *begin_edit(unsigned r,unsigned clan) {
     Str *g=(Str*)((char*)save_game+0x30);
     profile_index=*(int32_t*)((char*)save_game+0x78);
     if(profile_index<0||!string_ok(g)||g->count<2) return "ERROR No active profile";
-    if(!current_character_slot(&flow_manager,&slot))return "ERROR No active character";
+    if(!current_character_slot(&game_config,&slot))return "ERROR No active character";
     Str *slots=*(Str**)((char*)save_game+0x68);
     int count=*(int*)((char*)save_game+0x70);
     if(profile_index>=count||count>128||!readable(slots,(size_t)count*sizeof(Str),NULL,0)||
@@ -575,7 +576,7 @@ __declspec(dllexport) int ClanAppearance_dispatch(void *lua_state) {
     else if(!strcmp(command,"PORTRAIT")&&sscanf(line,"%u %23s %u %llx %c",&id,command,&r,&address,&tail)==4) result=portrait_preview(r,(uintptr_t)address);
     else if(!strcmp(command,"META")&&sscanf(line,"%u %23s %u %c",&id,command,&r,&tail)==3) result=cat_metadata(r);
     else if(!strcmp(command,"STATUS")) result="OK STATUS";
-    else if(!strcmp(command,"CONTEXT_LAYOUT")) result="OK CONTEXT_LAYOUT flow_slot=340";
+    else if(!strcmp(command,"CONTEXT_LAYOUT")) result="OK CONTEXT_LAYOUT config_slot=340";
     else if(!strcmp(command,"CAPTURE")) result=capture_preview();
     else if(!strcmp(command,"PLAYER_READ")) result=player_skin_read();
     else if(!strcmp(command,"PLAYER_REFRESH")&&sscanf(line,"%u %23s %llx %c",&id,command,&address,&tail)==3) result=player_skin_refresh((uintptr_t)address);

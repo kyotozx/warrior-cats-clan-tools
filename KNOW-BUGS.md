@@ -1,5 +1,5 @@
-Status for rc7.
+Status for rc8, October 27, 2026.
 
 1. Rename Apply crash: fixed the unavailable button template and removed the unnecessary native appearance refresh for name-only edits. A local Rename / Apply test passed. Reports on other saves still need confirmation.
-2. Save loading and switching: the wrong character or clan name, mixed portraits, or an empty clan roster can still appear on other saves. This issue remains under investigation and is not confirmed fixed in rc7. The rc6 changes did not resolve all reported cases.
+2. Save loading and switching: reproduced in rc7 and corrected in rc8. The selected character was being read from FlowManager instead of GameConfig, silently returning slot 0 for other characters. Two distinct campaigns passed a ThunderClan → WindClan → ThunderClan test without restarting: correct player names, 24/22 clan rosters and matching native cat data. A renamed cat retained its name in the correct campaign after returning. Confirmation on affected players' installations is still welcome. Older party settings, party presets and display names are preserved but not reused because their character ownership is uncertain. Game saves and saved skins are unaffected. See [investigation notes](docs/SAVE-IDENTITY-FIX.md).
 3. Character creation shortcut conflict: fixed in rc7. Skins now uses F6 / L3, leaving Y / Triangle for the game's confirmation.

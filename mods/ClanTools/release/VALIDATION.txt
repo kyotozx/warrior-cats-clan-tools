@@ -1,3 +1,16 @@
+RC8 SAVE IDENTITY CORRECTION - 2026-10-27
+The selected character is read from GameConfig, not FlowManager. The old reader
+could silently return slot 0 for other saves. Ambiguous old party/name state is
+preserved without reuse; game saves and the skin library are unaffected.
+Live: a new ThunderClan character (24 cats) and a WindClan character (22 cats)
+passed a ThunderClan / WindClan / ThunderClan loop without restarting. Native
+validation matched all 24/22 roster entries. Rename / Apply completed without a
+crash, and the alias persisted in the correct campaign after returning.
+79 Lua suites, five PowerShell suites and seven native harnesses passed. All 14
+native bridges passed their production-section audit. Community confirmation is
+still welcome; this does not establish the cause of every reported Apply crash.
+
+HISTORICAL VALIDATION (superseded where noted above)
 CLAN TOOLS / CLAN LOADER - COMMUNITY ACCEPTANCE
 2026-10-26. Windows x64; Steam patch 1.1, build 26184573.
 Release candidate; no Workshop integration.

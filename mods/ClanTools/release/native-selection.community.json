@@ -12,13 +12,13 @@
     {
       "destination": "clanappearance.dll",
       "source": "clanappearance-skins-v8.dll",
-      "sha256": "9DA75336401F01B48262423DEF3446117B2E212F5B7A7C55C8A8615B7A25C8E4",
+      "sha256": "9C2D209AB8B9581D2F10DDDF0209FFF2C32F6A2B91DC678547FA05F6892D45AF",
       "acceptance": "Patch 1.1 source/binary audit passed. See VALIDATION.txt for live coverage and remaining limits."
     },
     {
       "destination": "clanappearance-skins-v8.dll",
       "source": "clanappearance-skins-v8.dll",
-      "sha256": "9DA75336401F01B48262423DEF3446117B2E212F5B7A7C55C8A8615B7A25C8E4",
+      "sha256": "9C2D209AB8B9581D2F10DDDF0209FFF2C32F6A2B91DC678547FA05F6892D45AF",
       "acceptance": "Patch 1.1 source/binary audit passed. See VALIDATION.txt for live coverage and remaining limits."
     },
     {

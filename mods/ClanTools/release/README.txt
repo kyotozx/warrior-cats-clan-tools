@@ -27,10 +27,11 @@ For a read-only installation check:
  powershell.exe -NoProfile -File Install.ps1 -GameDirectory "YOUR GAME FOLDER" -ValidateOnly
 
 FEATURES
-SAVE SELECTION UPDATE (RC6)
-Clan Tools now reads the active character separately from the account profile.
+SAVE SELECTION UPDATE (RC8)
+Clan Tools now reads the active character from GameConfig, correcting the wrong
+character selection in rc6 and rc7.
 Party selections, party presets and custom display names are stored per character.
-Set those preferences again after upgrading from older versions. Old preference
+Set those preferences again after upgrading from rc7 or earlier. Old preference
 files are kept, but are not reused because their character cannot be identified.
 Game saves and the shared skin library are preserved.
 
