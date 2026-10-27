@@ -6,7 +6,7 @@ Community mods and a mod manager for **Warrior Cats: Clans of the Forest**. Cust
 
 **Pull requests are welcome.** Bug fixes, new features, documentation improvements, and compatibility work are all welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) to get started.
 
-[Download the release candidate](https://github.com/kyotozx/warrior-cats-clan-tools/releases) · [Report a bug](https://github.com/kyotozx/warrior-cats-clan-tools/issues/new?template=bug_report.yml) · [Suggest a feature](https://github.com/kyotozx/warrior-cats-clan-tools/issues/new?template=feature_request.yml)
+[Download the latest release](https://github.com/kyotozx/warrior-cats-clan-tools/releases/latest) · [Report a bug](https://github.com/kyotozx/warrior-cats-clan-tools/issues/new?template=bug_report.yml) · [Suggest a feature](https://github.com/kyotozx/warrior-cats-clan-tools/issues/new?template=feature_request.yml)
 
 ![Clan Loader desktop manager](docs/images/loader.jpg)
 
@@ -64,6 +64,15 @@ The package includes the tested UE4SS runtime. Python and a separate mod loader 
 Game textures and fonts are loaded from your own installation. They are not included in this repository or the release package.
 
 The loader checks GitHub for new Clan Loader, Clan Tools and Performance releases in the background. Choose **View update** to open the download page. Updates are installed manually; checking does not change your game or send saves.
+
+## Update
+
+Save and close the game before updating.
+
+- **Clan Loader and Clan Tools:** close the old desktop loader, extract the latest Clan Loader ZIP into a new folder and open `ClanLoader.exe` from that folder. Select **Install / update suite**. An older desktop copy does not update itself when you install newer in-game mods.
+- **Performance:** download the latest [Performance ZIP](https://github.com/kyotozx/warrior-cats-performance/releases/latest), keep it intact and import it through **Add mod package**. This updates the existing installation and preserves your presets and settings. **Install / update suite** does not update Performance.
+
+Restart the game to load the updated mods. With rc11 or newer, the loader handles its downloaded theme DLL automatically; no manual unblocking is needed.
 
 ## Troubleshooting
 
