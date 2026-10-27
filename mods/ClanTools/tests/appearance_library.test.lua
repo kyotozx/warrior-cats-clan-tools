@@ -15,6 +15,16 @@ local function fixture(existing)
  f.api=M.new(f.ctx);return f
 end
 do
+ local legacy=json.encode({schema=1,presets={{label='Shared look',values=edited}},originals={['A:0:Chapter00:77']={label='Another character',values=edited}}})
+ local f=fixture(legacy)
+ assert(f.api.begin());assert(f.calls[1]=='ORIGINAL_READ')
+ assert(f.api.restoreOriginal());assert(f.calls[#f.calls]=='PREVIEW_LOAD '..original)
+ assert(#f.api.presets()==1,'Shared cosmetic presets survive the migration')
+ local saved=json.decode(f.files['memory/appearance-presets.json'])
+ assert(saved.originals['A:0:Chapter00:77'].values==edited,'Legacy originals remain preserved')
+ print('PASS ambiguous pre-fix originals are preserved but never restored onto another character')
+end
+do
  assert(M.values(edited)==edited);assert(not M.values(edited..' 9'));assert(not M.values(edited:gsub('4','-1',1)))
  assert(not M.values(edited:gsub('4','1e2',1)));assert(not M.values(edited:gsub('4','256',1)))
  local f=fixture();assert(f.api.begin());local first=f.files['memory/appearance-presets.json']

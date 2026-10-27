@@ -65,7 +65,9 @@ function M.new(ctx)
  local function key()
   local s=ctx.snapshot and ctx.snapshot();local t=ctx.target()
   if not s or not t or type(s.profile)~='string'or type(t.role)~='number'then return nil end
-  return s.profile..':'..tostring(s.slot)..':'..tostring(s.chapter)..':'..tostring(t.role)
+  -- Earlier originals used the wrong character-slot reader. Keep those entries
+  -- and shared presets intact, but never restore an unproven legacy original.
+  return 'v3:'..s.profile..':'..tostring(s.slot)..':'..tostring(s.chapter)..':'..tostring(t.role)
  end
  local function edited()
   if not comparing then return true end
