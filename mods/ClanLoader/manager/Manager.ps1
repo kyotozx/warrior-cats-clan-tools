@@ -66,7 +66,7 @@ $window.FindName('Setup').Add_Click({Show-Result {
  }finally{
   if(Test-Path -LiteralPath $listPath){$finalText=[IO.File]::ReadAllText($listPath);foreach($id in @('ClanTools','ClanLoader')){if($priorStates.ContainsKey($id)){$finalText=Set-ModStateText $finalText $id $priorStates[$id]}};Write-Utf8 $listPath $finalText}
  }
- 'Suite installed. Start the game and choose Mods from the original menu.'
+ 'Clan Loader and Clan Tools installed. Update Performance separately with Add mod package.'
 }})
 $window.FindName('ImportMod').Add_Click({$file=Select-File 'ClanLoader mod package (*.zip)|*.zip';if($file){Show-Result {
  $root=Get-ModsRoot $pathBox.Text -RequireSupportedBuild;Assert-GameClosed;$temp=Join-Path $env:LOCALAPPDATA ('ClanTools/PackageCache/'+[guid]::NewGuid().ToString('N'))

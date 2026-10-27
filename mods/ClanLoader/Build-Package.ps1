@@ -1,4 +1,4 @@
-param([string]$Version='0.3.0-rc10',[Parameter(Mandatory=$true)][string]$ClanToolsPackage,[string]$OutputRoot)
+param([string]$Version='0.3.0-rc11',[Parameter(Mandatory=$true)][string]$ClanToolsPackage,[string]$OutputRoot)
 $ErrorActionPreference='Stop'
 . (Join-Path $PSScriptRoot 'manager/Manager.Core.ps1')
 $workspace=Split-Path (Split-Path $PSScriptRoot -Parent) -Parent

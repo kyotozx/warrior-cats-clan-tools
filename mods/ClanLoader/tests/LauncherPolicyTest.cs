@@ -43,7 +43,20 @@ internal static class LauncherPolicyTest {
                 }
                 if (Policy(manager,"CurrentUser")!=user || Policy(manager,"LocalMachine")!=machine)
                     throw new Exception("Persistent execution policy changed.");
+                // Exercise the actual theme bootstrap with a downloaded DLL.
+                // Run twice to cover first launch and an already unblocked copy.
+                for (int attempt=0;attempt<2;attempt++) {
+                    using (PowerShell ps=PowerShell.Create()) {
+                        ps.Runspace=manager; ps.AddCommand(args[1]);
+                        var result=ps.Invoke();
+                        if (ps.HadErrors || result.Count!=1 || result[0].ToString()!="theme-loaded")
+                            throw new Exception("Downloaded theme bootstrap failed: "+ps.Streams.Error.ToString());
+                    }
+                }
+                if (Policy(manager,"CurrentUser")!=user || Policy(manager,"LocalMachine")!=machine)
+                    throw new Exception("Theme bootstrap changed persistent execution policy.");
             }
+            Console.WriteLine("PASS downloaded theme DLL loads automatically on first and repeat launch");
             Console.WriteLine("PASS manager host runs marked downloaded scripts and resolves PSScriptRoot");
             Console.WriteLine("PASS CurrentUser and LocalMachine policies unchanged");
         }

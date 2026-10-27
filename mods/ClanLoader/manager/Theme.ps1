@@ -1,5 +1,8 @@
 ﻿Add-Type -AssemblyName System.Web.Extensions
-Add-Type -Path (Join-Path $PSScriptRoot 'ThemeAssets.dll')
+# Only our bundled theme helper needs its download marker removed for .NET.
+$themeAssembly=Join-Path $PSScriptRoot 'ThemeAssets.dll'
+Unblock-File -LiteralPath $themeAssembly -ErrorAction Stop
+Add-Type -Path $themeAssembly
 $script:themeRoot=$PSScriptRoot
 $script:themeTask=$null
 $script:themeCache=$null

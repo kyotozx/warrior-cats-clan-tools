@@ -52,7 +52,7 @@ The installer checks the game executable before applying changes. Other builds a
 
 ## Install
 
-Use [Clan Loader rc10](https://github.com/kyotozx/warrior-cats-clan-tools/releases/tag/v0.3.0-rc10) for game patch 1.1. Earlier loaders can reject manual mod imports with an unsupported-build error even when the game is up to date.
+Use [Clan Loader rc11](https://github.com/kyotozx/warrior-cats-clan-tools/releases/tag/v0.3.0-rc11) for game patch 1.1. It includes the manual package import fixes and automatically handles the Windows download block on its theme DLL.
 
 1. Download the Clan Loader ZIP for your game build from [Releases](https://github.com/kyotozx/warrior-cats-clan-tools/releases). Use this package, rather than GitHub's automatically generated source archives.
 2. Save and close the game. Extract the entire ZIP to a writable folder.
@@ -75,14 +75,13 @@ After updating to rc9, set your party selections, party presets and custom displ
 
 ### Loader cannot load ThemeAssets.dll (0x80131515)
 
-Windows can mark downloaded files as blocked. If the loader reports that it cannot load `ThemeAssets.dll`, with “Operation is not supported” and error `0x80131515`:
+Windows can mark downloaded DLLs as blocked. Starting with rc11, the loader automatically removes that marker from its bundled `ThemeAssets.dll` before loading it. No manual DLL changes, administrator access or system-wide execution policy changes are needed.
 
-1. Close Clan Loader.
-2. Right-click the release ZIP you downloaded from this repository and select **Properties**.
-3. Under **General**, check **Unblock**, if shown, then click **Apply**.
-4. Extract the ZIP again into a new folder and open `ClanLoader.exe` from that folder.
+If you see this error in an older copy, close it, extract the latest loader ZIP into a new folder and open `ClanLoader.exe` from that folder. Keep all extracted files together.
 
-If the ZIP has no Unblock option, check **Properties > Unblock** on `ThemeAssets.dll` in the extracted folder. Keep the other extracted files alongside the launcher. This does not require administrator access or changing your system-wide PowerShell execution policy.
+### Performance did not update with the suite
+
+**Install / update suite** updates Clan Loader and Clan Tools from the downloaded bundle. Performance is separate: download its current ZIP and import it through **Add mod package** with the game closed. Existing Performance presets and settings are preserved.
 
 ## Controls
 

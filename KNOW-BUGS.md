@@ -1,4 +1,6 @@
-Status for rc10, October 27, 2026.
+Status for rc11, October 26, 2026.
+
+- Downloaded theme DLL: fixed in rc11. Windows could block `ThemeAssets.dll` with error `0x80131515` on startup. The loader now removes the download marker from its bundled theme helper automatically, without changing system execution policies.
 
 - Manual package import: fixed in rc10. "Add mod package" still checked the old executable hash in rc7 through rc9, rejecting Performance and other packages on the supported game build. Open the rc10 desktop loader to import packages; updating the in-game mods alone does not update an older desktop copy.
 - Windows ZIP paths: fixed in rc10. Packages created with Windows path separators, including the published Performance ZIP, are now accepted. Undeclared files, duplicate paths and traversal paths are still rejected.
