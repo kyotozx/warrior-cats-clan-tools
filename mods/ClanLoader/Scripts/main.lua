@@ -2,6 +2,7 @@ local dir=debug.getinfo(1,'S').source:gsub('^@',''):match('^(.*[/\\])')
 local ctx={root=dir..'../',valid=dofile(dir..'runtime_valid.lua').valid}
 function ctx.read(p)local f=io.open(p,'rb');if not f then return end;local s=f:read('*a');f:close();return s end
 function ctx.write(p,s)local f=assert(io.open(p,'wb'));assert(f:write(s));f:close()end
+function ctx.remove(p)assert(os.remove(p))end
 function ctx.log(s)print('[ClanLoader] '..tostring(s)..'\n')end
 local registry=dofile(dir..'registry.lua').new(ctx)
 local panel,owner,button,visual;local requested=false;local selected,page=1,1;local lastError

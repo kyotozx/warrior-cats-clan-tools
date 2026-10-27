@@ -21,7 +21,7 @@ function Refresh-List{
  $root=Current-Mods;$r=Read-ModRegistry $root;$script:rows=@($r.mods);$list.Items.Clear();$states=@{};$p=Get-ContainedPath $root 'mods.txt'
  if(Test-Path -LiteralPath $p){$states=Get-ModStates ([IO.File]::ReadAllText($p))}
  foreach($m in $script:rows){
-  $enabled=$states.ContainsKey($m.id) -and $states[$m.id]
+  $enabled=Test-ManagedModEnabled $root $states $m.id
   $label=if($enabled){'Enabled'}else{'Disabled'};$color=if($enabled){'#8CD5AA'}else{'#9BA7A1'}
   $iconName=if($m.id -eq 'ClanLoader'){'loader'}elseif($m.id -eq 'ClanTools'){'clan-tools'}elseif($m.id -eq 'ClanPerformance'){'performance'}else{'package'}
   $icon=[Windows.Media.Imaging.BitmapImage]::new([Uri]::new((Join-Path $PSScriptRoot ('icons/'+$iconName+'.png'))));$icon.Freeze()
@@ -57,6 +57,7 @@ $window.FindName('Setup').Add_Click({Show-Result {
  $null=Read-CommunityPackage (Join-Path $PSScriptRoot 'packages/ClanTools')
  $listPath=Join-Path $root 'mods.txt';$priorStates=@{}
  if(Test-Path -LiteralPath $listPath){$priorStates=Get-ModStates ([IO.File]::ReadAllText($listPath))}
+ foreach($id in @('ClanTools','ClanLoader')){if(Test-ManagedModEnabled $root $priorStates $id){$priorStates[$id]=$true}}
  try{
   & (Join-Path $suite 'Install.ps1') -GameDirectory $pathBox.Text
   Install-CommunityPackage (Join-Path $PSScriptRoot 'packages/ClanLoader') $root
@@ -71,7 +72,7 @@ $window.FindName('ImportMod').Add_Click({$file=Select-File 'ClanLoader mod packa
  $root=Get-ModsRoot $pathBox.Text -RequireSupportedBuild;Assert-GameClosed;$temp=Join-Path $env:LOCALAPPDATA ('ClanTools/PackageCache/'+[guid]::NewGuid().ToString('N'))
  $null=Expand-CommunityZip $file $temp;Install-CommunityPackage $temp $root
 }}})
-$window.FindName('Toggle').Add_Click({Show-Result {$m=Selected-Mod;$root=Current-Mods;$states=Get-ModStates ([IO.File]::ReadAllText((Join-Path $root 'mods.txt')));$enabled=$states.ContainsKey($m.id) -and $states[$m.id];Set-ManagedModEnabled $root $m.id (!$enabled);'Mod preference saved for the next launch.'}})
+$window.FindName('Toggle').Add_Click({Show-Result {$m=Selected-Mod;$root=Current-Mods;$states=Get-ModStates ([IO.File]::ReadAllText((Join-Path $root 'mods.txt')));$enabled=Test-ManagedModEnabled $root $states $m.id;Set-ManagedModEnabled $root $m.id (!$enabled);'Mod preference saved for the next launch.'}})
 $window.FindName('Remove').Add_Click({try{$m=Selected-Mod;if([Windows.MessageBox]::Show($window,"Uninstall $($m.name)? Personal data will be kept.",'Uninstall mod','YesNo','Question') -eq 'Yes'){Show-Result {Remove-ManagedMod (Current-Mods) $m.id}}}catch{$status.Text=$_.Exception.Message}})
 $window.FindName('ImportSkin').Add_Click({$file=Select-File 'Player skin (*.json)|*.json';if($file){Show-Result {Import-PlayerSkin $file (Current-Mods)}}})
 $window.FindName('ExportSkin').Add_Click({Show-Result {

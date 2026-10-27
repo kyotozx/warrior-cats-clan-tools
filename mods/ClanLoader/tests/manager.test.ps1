@@ -5,6 +5,7 @@ function Check($Value,[string]$Message){if(!$Value){throw $Message};$script:chec
 function Reject([scriptblock]$Fn){$failed=$false;try{& $Fn|Out-Null}catch{$failed=$true};Check $failed 'Expected rejection'}
 $script:checks=0
 $fixture=Join-Path ([IO.Path]::GetFullPath((Join-Path $PSScriptRoot '../../../analysis/community'))) ('manager-test-'+[guid]::NewGuid().ToString('N'))
+$env:LOCALAPPDATA=Join-Path $fixture 'LocalAppData'
 $mods=Join-Path $fixture 'Mods';$pkg=Join-Path $fixture 'package';$null=New-Item -ItemType Directory -Path $mods,(Join-Path $pkg 'payload/TestMod/Scripts') -Force
 Write-Utf8 (Join-Path $mods 'mods.txt') "OtherMod : 1`r`n"
 Write-Utf8 (Join-Path $pkg 'payload/TestMod/Scripts/main.lua') "print('Example')"
@@ -51,4 +52,88 @@ Set-ManagedModEnabled $mods ClanLoader $false
 Check (!((Get-ModStates ([IO.File]::ReadAllText((Join-Path $mods 'mods.txt')))).ClanLoader)) 'External recovery could not disable manager'
 $null=Remove-ManagedMod $mods ClanLoader
 Check (@((Read-ModRegistry $mods).mods|Where-Object {$_.id -eq 'ClanLoader'}).Count -eq 0) 'Manager uninstall kept registry entry'
+
+# Existing UE4SS marker activation must be visible and actually disabled.
+$list=Join-Path $mods 'mods.txt';$marker=Join-Path $mods 'TestMod/enabled.txt';$entry=Join-Path $mods 'TestMod/Scripts/main.lua'
+Write-Utf8 $list (Set-ModStateText ([IO.File]::ReadAllText($list)) TestMod $false)
+Write-Utf8 $marker 'marker bytes'
+Check (Test-ManagedModEnabled $mods (Get-ModStates ([IO.File]::ReadAllText($list))) TestMod) 'Marker activation was not detected'
+Set-ManagedModEnabled $mods TestMod $false
+Check (!(Test-Path -LiteralPath $marker)) 'Disable retained enabled.txt'
+Check (!(Test-ManagedModEnabled $mods (Get-ModStates ([IO.File]::ReadAllText($list))) TestMod)) 'Disable left effective activation'
+Write-Utf8 $marker 'marker bytes'
+$null=Install-CommunityPackage $pkg $mods
+Check ((Get-ModStates ([IO.File]::ReadAllText($list))).TestMod) 'Upgrade did not preserve marker activation'
+Check (!(Test-Path -LiteralPath $marker)) 'Upgrade did not migrate marker activation'
+
+# Marker-only dependents must block disabling their dependency, including casing.
+$dependentMarker=Join-Path $mods 'Dependent/enabled.txt';$null=New-Item -ItemType Directory -Path (Split-Path $dependentMarker) -Force
+$r=Read-ModRegistry $mods;($r.mods|Where-Object {$_.id -eq 'Dependent'}).dependencies=@('testmod');Save-ModRegistry $mods $r
+Write-Utf8 $dependentMarker ''
+Reject {Set-ManagedModEnabled $mods TestMod $false}
+Set-ManagedModEnabled $mods Dependent $false
+Check (!(Test-Path -LiteralPath $dependentMarker)) 'Dependent marker survived disable'
+
+# Reject package identity changes before touching payload, registry or mod order.
+$oldList=[IO.File]::ReadAllText($list);$oldRegistry=[IO.File]::ReadAllText((Join-Path $mods 'ClanLoader/registry.json'));$oldHash=(Get-FileHash $entry).Hash
+$m.id='testmod';Write-Utf8 (Join-Path $pkg 'mod.json') ($m|ConvertTo-Json -Depth 8)
+Reject {Install-CommunityPackage $pkg $mods}
+Check ([IO.File]::ReadAllText($list) -ceq $oldList) 'Case-only ID changed load order'
+Check ([IO.File]::ReadAllText((Join-Path $mods 'ClanLoader/registry.json')) -ceq $oldRegistry) 'Case-only ID changed registry'
+Check ((Get-FileHash $entry).Hash -eq $oldHash) 'Case-only ID changed payload'
+$m.id='TestMod';$m.dependencies=@('testmod');Write-Utf8 (Join-Path $pkg 'mod.json') ($m|ConvertTo-Json -Depth 8);Reject {Read-CommunityPackage $pkg}
+$m.dependencies=@();Write-Utf8 (Join-Path $pkg 'mod.json') ($m|ConvertTo-Json -Depth 8)
+$normalized=Set-ModStateText "testmod : 0`nOther : 1`n" TestMod $true
+Check ((Get-ModStates $normalized).TestMod -and (Get-ModStates $normalized).Other) 'Case-insensitive replacement lost entries'
+Check ($normalized -cnotmatch 'testmod :') 'Replacement retained wrong-cased duplicate'
+
+# Fault after truncating mods.txt: restore exact previous bytes and marker.
+Write-Utf8 $marker 'marker bytes';$oldList=[IO.File]::ReadAllText($list)
+$script:realWrite=${function:Write-Utf8};$script:failList=$list;$script:failWrite=$true
+function Write-Utf8([string]$Path,[string]$Text){if($script:failWrite -and $Path -eq $script:failList){$script:failWrite=$false;[IO.File]::WriteAllText($Path,'partial');throw 'Injected write failure'};& $script:realWrite $Path $Text}
+try{Reject {Set-ManagedModEnabled $mods TestMod $false}}finally{Set-Item Function:Write-Utf8 $script:realWrite}
+Check ([IO.File]::ReadAllText($list) -ceq $oldList) 'Toggle write failure did not restore mods.txt'
+Check ([IO.File]::ReadAllText($marker) -ceq 'marker bytes') 'Toggle write failure lost marker'
+
+# Fault after deleting marker: restore both activation sources.
+$script:realRemove=${function:Remove-ModEnableMarker}
+function Remove-ModEnableMarker([string]$Mods,[string]$Id){& $script:realRemove $Mods $Id;throw 'Injected marker removal failure'}
+try{Reject {Set-ManagedModEnabled $mods TestMod $false}}finally{Set-Item Function:Remove-ModEnableMarker $script:realRemove}
+Check ([IO.File]::ReadAllText($list) -ceq $oldList) 'Marker failure did not restore mods.txt'
+Check ([IO.File]::ReadAllText($marker) -ceq 'marker bytes') 'Marker failure did not restore enabled.txt'
+
+# Uninstall must restore files, registry and activation if its final write fails.
+$oldRegistry=[IO.File]::ReadAllText((Join-Path $mods 'ClanLoader/registry.json'));$oldBody=[IO.File]::ReadAllText($entry)
+$script:realSave=${function:Save-ModRegistry}
+function Save-ModRegistry([string]$Mods,$Registry){Write-Utf8 (Join-Path $Mods 'ClanLoader/registry.json') 'partial';throw 'Injected registry failure'}
+try{Reject {Remove-ManagedMod $mods TestMod}}finally{Set-Item Function:Save-ModRegistry $script:realSave}
+Check ([IO.File]::ReadAllText($entry) -ceq $oldBody) 'Failed uninstall did not restore owned code'
+Check ([IO.File]::ReadAllText($marker) -ceq 'marker bytes') 'Failed uninstall did not restore marker'
+Check ([IO.File]::ReadAllText($list) -ceq $oldList) 'Failed uninstall did not restore load order'
+Check ([IO.File]::ReadAllText((Join-Path $mods 'ClanLoader/registry.json')) -ceq $oldRegistry) 'Failed uninstall did not restore registry'
+
+# Upgrade rollback must also restore marker after payload and registry changes.
+Write-Utf8 (Join-Path $pkg 'payload/TestMod/Scripts/main.lua') "print('updated')"
+$m.version='2.0.0';$m.files[0].sha256=(Get-FileHash (Join-Path $pkg 'payload/TestMod/Scripts/main.lua')).Hash
+Write-Utf8 (Join-Path $pkg 'mod.json') ($m|ConvertTo-Json -Depth 8)
+function Remove-ModEnableMarker([string]$Mods,[string]$Id){& $script:realRemove $Mods $Id;throw 'Injected marker removal failure'}
+try{Reject {Install-CommunityPackage $pkg $mods}}finally{Set-Item Function:Remove-ModEnableMarker $script:realRemove}
+Check ([IO.File]::ReadAllText($entry) -ceq $oldBody) 'Failed update did not restore owned code'
+Check ([IO.File]::ReadAllText($marker) -ceq 'marker bytes') 'Failed update did not restore marker'
+Check ([IO.File]::ReadAllText($list) -ceq $oldList) 'Failed update did not restore load order'
+Check ([IO.File]::ReadAllText((Join-Path $mods 'ClanLoader/registry.json')) -ceq $oldRegistry) 'Failed update did not restore registry'
+
+# Preserve a user's modified entry point without leaving it enabled after removal.
+Write-Utf8 $entry "print('personal edit')";$null=Remove-ManagedMod $mods TestMod
+Check (Test-Path -LiteralPath $entry) 'Uninstall deleted a modified entry point'
+Check (!(Test-Path -LiteralPath $marker)) 'Uninstall left preserved code enabled'
+Check (!(Get-ModStates ([IO.File]::ReadAllText($list))).TestMod) 'Uninstall left load order enabled'
+Check (@((Read-ModRegistry $mods).mods|Where-Object {$_.id -eq 'TestMod'}).Count -eq 0) 'Uninstall kept registry entry'
+# An unregistered directory must not be adopted with a differently cased ID.
+Copy-Item -LiteralPath (Join-Path $pkg 'payload/TestMod/Scripts/main.lua') -Destination $entry -Force
+$m.id='testmod';Write-Utf8 (Join-Path $pkg 'mod.json') ($m|ConvertTo-Json -Depth 8)
+$beforeAdoption=[IO.File]::ReadAllText($list)
+Reject {Install-CommunityPackage $pkg $mods}
+Check ([IO.File]::ReadAllText($list) -ceq $beforeAdoption) 'Rejected folder casing changed activation'
+Check (@((Read-ModRegistry $mods).mods|Where-Object {$_.id -ieq 'TestMod'}).Count -eq 0) 'Wrong-cased folder was registered'
 Write-Output "PASS $script:checks manager lifecycle, dependency and package-boundary checks. Fixture: $fixture"
