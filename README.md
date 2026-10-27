@@ -52,7 +52,7 @@ The installer checks the game executable before applying changes. Other builds a
 
 ## Install
 
-Patch 1.1 support is currently on `main`, pending the rc7 download. The older rc6 package does not support the updated executable.
+Use [Clan Loader rc7](https://github.com/kyotozx/warrior-cats-clan-tools/releases/tag/v0.3.0-rc7) for game patch 1.1. The older rc6 package does not support the updated executable.
 
 1. Download the Clan Loader ZIP for your game build from [Releases](https://github.com/kyotozx/warrior-cats-clan-tools/releases). Use this package, rather than GitHub's automatically generated source archives.
 2. Save and close the game. Extract the entire ZIP to a writable folder.
