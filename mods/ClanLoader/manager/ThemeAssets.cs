@@ -47,7 +47,7 @@ public static class ClanThemeAssets {
      foreach(Block b in a.blocks){
       Require(b.offset>=0&&b.size>0&&b.size<=1024*1024&&b.raw>0&&b.raw<=1024*1024&&b.offset+b.size<=source.Length,"Invalid asset block.");
       source.Position=b.offset;byte[] data=new byte[b.size];int got=0;while(got<data.Length){int read=source.Read(data,got,data.Length-got);if(read==0)throw new EndOfStreamException();got+=read;}
-      Require(Hash(data)==b.sha256,"Game artwork differs from supported build 24847281.");
+      Require(Hash(data)==b.sha256,"Game artwork differs from the supported build. Update Clan Loader and verify your game installation.");
       if(b.compressed){
        string input=Path.Combine(scratch,"block.ooz"),output=Path.Combine(scratch,"block.raw");
        using(var writer=new BinaryWriter(File.Create(input))){writer.Write((long)b.raw);writer.Write(data);}
