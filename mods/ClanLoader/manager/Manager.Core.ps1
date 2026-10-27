@@ -1,7 +1,7 @@
 Set-StrictMode -Version Latest
 $ErrorActionPreference='Stop'
 . (Join-Path $PSScriptRoot 'Package.Core.ps1')
-$script:SupportedGameHash='F50EB374F8611E4EB6796A33218E4A11DD83B408B3D4687F23C9E80EDB6EBFB2'
+$script:SupportedGameHash='CD8AAFB4D2A423BD8D4A4CCD3325590EDE61C97702D595C944D18F5B3984A995'
 function Get-ModsRoot([string]$Game,[switch]$RequireSupportedBuild){
  if([string]::IsNullOrWhiteSpace($Game)){throw 'Choose the game installation folder first.'}
  $win=Get-ContainedPath $Game 'Wrc/Binaries/Win64'
@@ -76,20 +76,20 @@ function Expand-CommunityZip([string]$Zip,[string]$Destination){
  try{
   if($archive.Entries.Count -gt 1100){throw 'Too many ZIP entries.'};$total=0L;$seen=@{};$entries=@()
   foreach($e in $archive.Entries){
-   $name=$e.FullName
+   $name=$e.FullName.Replace('\','/')
    if($name.EndsWith('/')){continue}
    if($name -cnotmatch '^(mod\.json|README\.txt|LICENSE\.txt|payload/[A-Za-z][A-Za-z0-9_]{0,63}/(Scripts/[A-Za-z0-9_]+\.lua|assets/icons/[a-z][a-z-]*\.png|bin/[A-Za-z0-9_-]+\.dll|data/[A-Za-z0-9_-]+\.json))$'){throw "Unsupported ZIP path: $name"}
    if((($e.ExternalAttributes -shr 16) -band 0xF000) -eq 0xA000){throw 'ZIP links are not supported.'}
    if($seen.ContainsKey($name)){throw 'Duplicate ZIP entry.'};$seen[$name]=$true
    $total+=$e.Length;if($e.Length -gt 32MB -or $total -gt 128MB){throw 'Package exceeds size limits.'}
-   $entries+=@{entry=$e;path=(Get-ContainedPath $Destination $name)}
+   $entries+=@{entry=$e;name=$name;path=(Get-ContainedPath $Destination $name)}
   }
   if(!$seen.ContainsKey('mod.json')){throw 'Select a ClanLoader package containing mod.json at the ZIP root.'}
   $null=New-Item -ItemType Directory -Path $Destination
   foreach($item in $entries){$null=New-Item -ItemType Directory -Path (Split-Path $item.path) -Force;[IO.Compression.ZipFileExtensions]::ExtractToFile($item.entry,$item.path,$false)}
   $m=Read-CommunityPackage $Destination
-  foreach($item in $entries){if($item.entry.FullName.StartsWith('payload/')){
-   $expected=@($m.files|ForEach-Object {'payload/'+$m.id+'/'+$_.path});if($item.entry.FullName -cnotin $expected){throw 'ZIP contains undeclared payload files.'}
+  foreach($item in $entries){if($item.name.StartsWith('payload/')){
+   $expected=@($m.files|ForEach-Object {'payload/'+$m.id+'/'+$_.path});if($item.name -cnotin $expected){throw 'ZIP contains undeclared payload files.'}
   }}
   return $m
  }finally{$archive.Dispose()}

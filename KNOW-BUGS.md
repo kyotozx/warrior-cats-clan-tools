@@ -1,4 +1,7 @@
-Status for rc9, October 27, 2026.
+Status for rc10, October 27, 2026.
+
+- Manual package import: fixed in rc10. "Add mod package" still checked the old executable hash in rc7 through rc9, rejecting Performance and other packages on the supported game build. Open the rc10 desktop loader to import packages; updating the in-game mods alone does not update an older desktop copy.
+- Windows ZIP paths: fixed in rc10. Packages created with Windows path separators, including the published Performance ZIP, are now accepted. Undeclared files, duplicate paths and traversal paths are still rejected.
 
 1. Rename Apply crash: fixed the unavailable button template and removed the unnecessary native appearance refresh for name-only edits. A local Rename / Apply test passed. Reports on other saves still need confirmation.
 2. Save loading and switching: reproduced in rc7 and corrected in rc8. The selected character was being read from FlowManager instead of GameConfig, silently returning slot 0 for other characters. Two distinct campaigns passed a ThunderClan → WindClan → ThunderClan test without restarting: correct player names, 24/22 clan rosters and matching native cat data. A renamed cat retained its name in the correct campaign after returning. Confirmation on affected players' installations is still welcome. Older party settings, party presets and display names are preserved but not reused because their character ownership is uncertain. Game saves and saved skins are unaffected.

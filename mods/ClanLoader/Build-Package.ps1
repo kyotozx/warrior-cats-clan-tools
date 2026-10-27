@@ -1,4 +1,4 @@
-param([string]$Version='0.3.0-rc9',[Parameter(Mandatory=$true)][string]$ClanToolsPackage,[string]$OutputRoot)
+param([string]$Version='0.3.0-rc10',[Parameter(Mandatory=$true)][string]$ClanToolsPackage,[string]$OutputRoot)
 $ErrorActionPreference='Stop'
 . (Join-Path $PSScriptRoot 'manager/Manager.Core.ps1')
 $workspace=Split-Path (Split-Path $PSScriptRoot -Parent) -Parent
@@ -7,6 +7,7 @@ if($Version -notmatch '^[0-9][A-Za-z0-9._-]{0,50}$'){throw 'Invalid version.'}
 $stage=Get-ContainedPath $OutputRoot ('ClanLoader-'+$Version)
 if(Test-Path -LiteralPath $stage){throw 'Release already exists.'}
 $ct=Read-PackageManifest $ClanToolsPackage
+if($ct.gameSha256 -ne $script:SupportedGameHash){throw 'The manager and suite target different game executables.'}
 $null=New-Item -ItemType Directory -Path $stage -Force
 foreach($name in @('ClanLoader.exe','Manager.ps1','Updates.ps1','Updates.Core.ps1','Manager.Core.ps1','Package.Core.ps1','Manager.xaml','Theme.ps1','ThemeAssets.dll','theme-assets.json')){Copy-Item -LiteralPath (Join-Path $PSScriptRoot ('manager/'+$name)) -Destination $stage}
 $iconNames=@('loader','clan-tools','package','party','appearance','item-feedback','offline-admin','den-workshop','keybinds','fps','performance','player-skins','sky')

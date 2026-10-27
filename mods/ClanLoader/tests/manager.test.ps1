@@ -7,6 +7,21 @@ $script:checks=0
 $fixture=Join-Path ([IO.Path]::GetFullPath((Join-Path $PSScriptRoot '../../../analysis/community'))) ('manager-test-'+[guid]::NewGuid().ToString('N'))
 $env:LOCALAPPDATA=Join-Path $fixture 'LocalAppData'
 $mods=Join-Path $fixture 'Mods';$pkg=Join-Path $fixture 'package';$null=New-Item -ItemType Directory -Path $mods,(Join-Path $pkg 'payload/TestMod/Scripts') -Force
+# Both installation entry points must support the same executable.
+$builder=[IO.File]::ReadAllText((Join-Path $PSScriptRoot '../../ClanTools/release/Build-Package.ps1'))
+$suiteHash=[regex]::Match($builder,"gameSha256='([A-Fa-f0-9]{64})'").Groups[1].Value
+Check ($suiteHash -eq $script:SupportedGameHash) 'Add mod package and suite installer target different game builds'
+$game=Join-Path $fixture 'Game';$exe=Join-Path $game 'Wrc/Binaries/Win64/Wrc-Win64-ShippingDRM.exe'
+$null=New-Item -ItemType Directory -Path (Split-Path $exe) -Force
+Write-Utf8 $exe 'Supported executable fixture'
+$productionHash=$script:SupportedGameHash
+try{
+ $script:SupportedGameHash=(Get-FileHash -LiteralPath $exe).Hash
+ Check ((Get-ModsRoot $game -RequireSupportedBuild) -eq (Join-Path (Split-Path $exe) 'ue4ss/Mods')) 'Supported executable rejected by manual import gate'
+ Write-Utf8 $exe 'Different executable fixture'
+ Reject {Get-ModsRoot $game -RequireSupportedBuild}
+ Check (!(Test-Path -LiteralPath (Join-Path (Split-Path $exe) 'ue4ss'))) 'Build check modified the game fixture'
+}finally{$script:SupportedGameHash=$productionHash}
 Write-Utf8 (Join-Path $mods 'mods.txt') "OtherMod : 1`r`n"
 Write-Utf8 (Join-Path $pkg 'payload/TestMod/Scripts/main.lua') "print('Example')"
 $m=[ordered]@{schema=1;loaderApi=1;gameBuild='26184573';id='TestMod';name='Test mod';version='1.0.0';description='Fixture';dependencies=@();files=@(@{path='Scripts/main.lua';sha256=(Get-FileHash (Join-Path $pkg 'payload/TestMod/Scripts/main.lua')).Hash})}
@@ -36,6 +51,24 @@ $m.files[0].path='Scripts/main.lua';$m.files[0].sha256='0'*64;Write-Utf8 (Join-P
 Add-Type -AssemblyName System.IO.Compression.FileSystem
 function Bad-Zip([string]$Name){$p=Join-Path $fixture ([guid]::NewGuid().ToString('N')+'.zip');$a=[IO.Compression.ZipFile]::Open($p,'Create');try{$e=$a.CreateEntry($Name);$w=[IO.StreamWriter]::new($e.Open());$w.Write('bad');$w.Dispose()}finally{$a.Dispose()};return $p}
 foreach($name in @('../escape.lua','C:/escape.lua','payload/TestMod/Scripts/../../save.sav','payload/TestMod/skins.json')){Reject {Expand-CommunityZip (Bad-Zip $name) (Join-Path $fixture ([guid]::NewGuid().ToString('N')))}}
+# Windows .NET ZIP writers use backslashes; normalize before every path check.
+function Import-ZipFixture([string]$Separator,[string[]]$Extras=@()){
+ $zip=Join-Path $fixture ([guid]::NewGuid().ToString('N')+'.zip')
+ $valid=[ordered]@{schema=1;loaderApi=1;gameBuild='26184573';id='TestMod';name='Test mod';version='1.0';description='ZIP fixture';dependencies=@();files=@()}
+ $contents=@{'Scripts/main.lua'="print('Example')";'assets/icons/performance.png'='Icon fixture'}
+ $sha=[Security.Cryptography.SHA256]::Create()
+ try{foreach($path in $contents.Keys){$valid.files+=@{path=$path;sha256=[BitConverter]::ToString($sha.ComputeHash([Text.Encoding]::UTF8.GetBytes($contents[$path]))).Replace('-','')}}}finally{$sha.Dispose()}
+ $entries=@{'mod.json'=($valid|ConvertTo-Json -Depth 8)}
+ foreach($path in $contents.Keys){$entries[('payload/TestMod/'+$path).Replace('/',$Separator)]=$contents[$path]}
+ foreach($path in $Extras){$entries[$path]='extra'}
+ $a=[IO.Compression.ZipFile]::Open($zip,'Create')
+ try{foreach($name in $entries.Keys){$e=$a.CreateEntry($name);$w=[IO.StreamWriter]::new($e.Open(),[Text.UTF8Encoding]::new($false));try{$w.Write($entries[$name])}finally{$w.Dispose()}}}finally{$a.Dispose()}
+ return Expand-CommunityZip $zip (Join-Path $fixture ([guid]::NewGuid().ToString('N')))
+}
+foreach($separator in @('/','\')){Check ((Import-ZipFixture $separator).id -eq 'TestMod') 'Valid ZIP paths or packaged icon rejected'}
+Reject {Import-ZipFixture '\' @('payload\TestMod\Scripts\undeclared.lua')}
+Reject {Import-ZipFixture '\' @('payload/TestMod/Scripts/main.lua')}
+Reject {Import-ZipFixture '\' @('payload\TestMod\Scripts\..\..\save.sav')}
 # Upgrade retires unchanged old code while preserving local edits and state.
 $m.files[0].sha256=(Get-FileHash (Join-Path $pkg 'payload/TestMod/Scripts/main.lua')).Hash
 $extra=Join-Path $pkg 'payload/TestMod/Scripts/retired.lua';Write-Utf8 $extra "return 'old'"

@@ -52,7 +52,7 @@ The installer checks the game executable before applying changes. Other builds a
 
 ## Install
 
-Use [Clan Loader rc9](https://github.com/kyotozx/warrior-cats-clan-tools/releases/tag/v0.3.0-rc9) for game patch 1.1. The older rc6 package does not support the updated executable.
+Use [Clan Loader rc10](https://github.com/kyotozx/warrior-cats-clan-tools/releases/tag/v0.3.0-rc10) for game patch 1.1. Earlier loaders can reject manual mod imports with an unsupported-build error even when the game is up to date.
 
 1. Download the Clan Loader ZIP for your game build from [Releases](https://github.com/kyotozx/warrior-cats-clan-tools/releases). Use this package, rather than GitHub's automatically generated source archives.
 2. Save and close the game. Extract the entire ZIP to a writable folder.
