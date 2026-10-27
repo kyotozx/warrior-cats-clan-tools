@@ -17,11 +17,29 @@ end
 local function fixture()
  local f={files={},s={profile='A',slot=0,chapter=0,clan=1,offline=true},copies={}}
  f.source=mesh(object());f.actor=object({DecorationComponent=f.source,UniqueHotspotTag={TagName={ToString=function()return'Den.Test'end}}})
- f.ctx={root='memory/',valid=function(o)return type(o)=='table'and not o.dead end,snapshot=function()return f.s end,
+ f.ctx={characterKey=function(s)return s.profile..'_'..s.slot..'_'..(s.generation or'generation1')end,root='memory/',valid=function(o)return type(o)=='table'and not o.dead end,snapshot=function()return f.s end,
   denDiscover=function()if f.outside then return end;return{session='session',actors={f.actor}}end,
   denClone=function(_,source)local c=mesh(source.StaticMesh);f.copies[#f.copies+1]=c;return c end,
   read=function(p)return f.files[p]end,write=function(p,v)if f.failWrite and p=='memory/den-layouts.json'then error('disk full')end;f.files[p]=v end}
  f.api=M.new(f.ctx);assert(f.api.tick());return f
+end
+do
+ local f=fixture();assert(f.api.begin('Den.Test'));assert(f.api.move(40,0,0));assert(f.api.apply())
+ local previous=f.files['memory/den-layouts.json'];f.s.generation='new';assert(f.api.tick())
+ assert(f.source.RelativeLocation.X==10,'Recreated character cannot automatically inherit another den layout')
+ assert(f.files['memory/den-layouts.json']==previous,'Previous character layout remains untouched')
+ f.s.generation=nil;assert(f.api.tick());assert(f.source.RelativeLocation.X==50)
+ f.ctx.characterKey=function()return nil,'Missing generation'end;assert(not f.api.tick())
+ assert(f.source.RelativeLocation.X==10 and f.files['memory/den-layouts.json']==previous)
+ print('PASS reused slot never restores another character den layout; unavailable identity restores native placement')
+end
+do
+ local f=fixture();assert(f.api.begin('Den.Test'));assert(f.api.move(40,0,0));assert(f.api.apply());assert(f.api.reset())
+ local json=dofile('mods/ClanTools/Scripts/json.lua');local data=json.decode(f.files['memory/den-layouts.json'])
+ local scoped='v2:A_0_generation1:0:1';data.layouts['A:0:0:1']=data.layouts[scoped];data.layouts[scoped]=nil
+ f.files['memory/den-layouts.json']=json.encode(data);local previous=f.files['memory/den-layouts.json']
+ f.api=M.new(f.ctx);assert(f.api.tick());assert(f.source.RelativeLocation.X==10 and f.files['memory/den-layouts.json']==previous)
+ print('PASS ambiguous legacy den layout is preserved without automatic restoration')
 end
 do
  local f=fixture();assert(#f.api.status().rows==1);assert(f.api.begin('Den.Test'))

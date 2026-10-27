@@ -1,4 +1,6 @@
 local M={}
+local dir=debug.getinfo(1,'S').source:gsub('^@',''):match('^(.*[/\\])')
+local fileKey=dofile(dir..'character_identity.lua').fileKey
 function M.new(ctx)
  local root=ctx.root;local read=ctx.read;local write=ctx.write
  local nativeRead=assert(package.loadlib(root..'bin/clanparty.dll','ClanParty_read'))
@@ -23,21 +25,21 @@ function M.new(ctx)
  end
  -- Older readers used the profile index, then the wrong runtime object, for
  -- character identity. Preserve their ambiguous files without replaying them.
- local function key(s)return root..'state/character-v2-'..s.profile..'_'..s.slot..'_'..s.chapter end
- local function configPath(s)return root..'state/party-character-v2-'..s.profile..'_'..s.slot..'.json'end
+ local function key(s)return root..'state/story-v3-'..fileKey(assert(ctx.characterKey(s)))..'_'..s.chapter end
+ local function configPath(s)return root..'state/party-v3-'..fileKey(assert(ctx.characterKey(s)))..'.json'end
  local function validateConfig(c)
   assert(type(c)=='table'and type(c.enabled)=='boolean'and type(c.roles)=='table','Invalid party settings')
   local seen,n={},0;for i,r in pairs(c.roles)do assert(type(i)=='number'and i%1==0 and i>=1 and i<=2 and type(r)=='number'and r%1==0 and r>=0 and not seen[r],'Invalid companion selection');seen[r]=true;n=n+1 end
   assert(n==#c.roles and n<=2,'Invalid companion selection');return c
  end
  local function config(s)local r=read(configPath(s));return validateConfig(r and ctx.json.decode(r)or{enabled=false,roles={}})end
- local function roster()
-  local cats,metadata=ctx.getCats();assert(type(cats)=='table'and(not metadata or metadata.valid~=false),metadata and metadata.reason or'Clan roster unavailable')
+ local function roster(s)
+  local cats,metadata=ctx.getCats(s);assert(type(cats)=='table'and(not metadata or metadata.valid~=false),metadata and metadata.reason or'Clan roster unavailable')
   local allowed={};for _,cat in ipairs(cats)do allowed[cat.role]=cat end;return allowed
  end
  local function desired(s,roles,strict)
   if #roles==0 then return {}end
-  local allowed=roster();local result={};local clan=assert(ctx.clans[s.clan],'Clan unavailable')
+  local allowed=roster(s);local result={};local clan=assert(ctx.clans[s.clan],'Clan unavailable')
   for _,role in ipairs(roles)do
    if allowed[role]then
     if ctx.validateCat then local ok,why=ctx.validateCat(allowed[role],s);assert(ok,why or'Clanmate data changed')end
@@ -70,12 +72,23 @@ function M.new(ctx)
   if last and story and current==last then ctx.backupSave(s);apply(decode(story))end
   write(configPath(s),ctx.json.encode({enabled=false,roles={}}));write(k..'.last.txt','');return true
  end
- local lastSession
+ local lastSession,identityError
  function api.tick()
   local s=ctx.snapshot();if not s or not s.offline or s.phase~=4 or s.combat then return end
-  local session=configPath(s);if lastSession~=session then api.error=nil;lastSession=session end
-  if api.error then return end
+  local identityOK,session=pcall(configPath,s)
+  if not identityOK then
+   -- Identity can be temporarily unavailable while the game changes context.
+   -- Do not turn that into a permanent party failure or hide a native failure.
+   if not api.error or api.error==identityError then
+    local reason=tostring(session);if api.error~=reason then ctx.log(reason)end
+    identityError=reason;api.error=reason
+   end
+   return
+  end
+  if identityError and api.error==identityError then api.error=nil end;identityError=nil
   local ok,err=pcall(function()
+   if lastSession~=session then api.error=nil;lastSession=session end
+   if api.error then return end
    local c=config(s);if not c.enabled then return end
    local p=desired(s,c.roles,false)
    local k=key(s);local current=encode(api.read());local text=encode(p)

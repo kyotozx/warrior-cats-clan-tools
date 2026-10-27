@@ -5,7 +5,7 @@ local original,edited=vector(2),vector(4)
 local function fixture(existing)
  local f={files={},calls={},editable=true,target={role=77,name='Cloudflower'},snapshot={profile='A',slot=0,chapter='Chapter00'}}
  if existing then f.files['memory/appearance-presets.json']=existing end
- f.ctx={root='memory/',read=function(p)return f.files[p]end,write=function(p,s)if f.writeFailure then error('disk full')end;f.files[p]=s end,
+ f.ctx={characterKey=function(s)return s.profile..'_'..s.slot..'_'..(s.generation or'generation1')end,root='memory/',read=function(p)return f.files[p]end,write=function(p,s)if f.writeFailure then error('disk full')end;f.files[p]=s end,
   ensureEditable=function()return f.editable end,target=function()return f.target end,snapshot=function()return f.snapshot end,
   native=function(command)
    f.calls[#f.calls+1]=command
@@ -13,6 +13,16 @@ local function fixture(existing)
    return {action=command=='ORIGINAL_READ'and'COSMETICS '..original or command=='PREVIEW_READ'and'COSMETICS '..edited or command}
   end}
  f.api=M.new(f.ctx);return f
+end
+do
+ local f=fixture();f.snapshot.generation='old';assert(f.api.begin());assert(f.api.savePreset('Shared'))
+ f.snapshot.generation='new';local count=#f.calls;assert(not f.api.restoreOriginal()and #f.calls==count)
+ assert(f.api.begin()and f.calls[#f.calls]=='ORIGINAL_READ');assert(f.api.restoreOriginal())
+ f.ctx.characterKey=function()return nil,'Missing generation'end
+ local previous=f.files['memory/appearance-presets.json'];assert(not f.api.begin());count=#f.calls
+ assert(not f.api.restoreOriginal()and #f.calls==count);assert(f.files['memory/appearance-presets.json']==previous)
+ assert(#f.api.presets()==1 and f.api.loadPreset(),'Intentional shared presets are still usable')
+ print('PASS reused slot has independent originals; missing generation cannot restore or persist originals')
 end
 do
  local legacy=json.encode({schema=1,presets={{label='Shared look',values=edited}},originals={['A:0:Chapter00:77']={label='Another character',values=edited}}})

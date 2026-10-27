@@ -1,6 +1,8 @@
 -- Presets contain narrative-role IDs, never actor pointers or save data. Loading
 -- delegates to party.select's existing backup, validation and rollback path.
 local M={}
+local dir=debug.getinfo(1,'S').source:gsub('^@',''):match('^(.*[/\\])')
+local fileKey=dofile(dir..'character_identity.lua').fileKey
 local function copy(a)local b={};for i,v in ipairs(a)do b[i]=v end;return b end
 local function roles(value)
  assert(type(value)=='table'and #value<=2,'A party preset can contain up to two companions.')
@@ -26,7 +28,7 @@ function M.new(ctx,party)
   assert(type(s.slot)=='number'and s.slot%1==0 and s.slot>=0,'Active character unavailable.')
   return s
  end
- local function path(s)return ctx.root..'state/party-presets-character-v2-'..s.profile..'_'..s.slot..'.json'end
+ local function path(s)return ctx.root..'state/party-presets-v3-'..fileKey(assert(ctx.characterKey(s)))..'.json'end
  local function read(s)
   local raw=ctx.read(path(s));if not raw then return{version=1,nextId=1,entries={}}end
   local data=ctx.json.decode(raw)
@@ -39,7 +41,7 @@ function M.new(ctx,party)
   return data
  end
  local function eligible(s,selected)
-  local cats,meta=ctx.getCats();assert(type(cats)=='table'and meta and meta.valid==true and meta.profile==s.profile and meta.slot==s.slot,'Clan roster belongs to another session.')
+  local cats,meta=ctx.getCats(s);assert(type(cats)=='table'and meta and meta.valid==true and meta.profile==s.profile and meta.slot==s.slot,'Clan roster belongs to another session.')
   local available={};for _,c in ipairs(cats)do if c.living==true and c.clan==s.clan then available[c.role]=c end end
   for _,r in ipairs(selected)do
    local cat=assert(available[r],'A saved companion is unavailable in your current clan. Edit or replace this preset.')

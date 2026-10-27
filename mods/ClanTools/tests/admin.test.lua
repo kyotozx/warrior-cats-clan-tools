@@ -29,7 +29,7 @@ local function fixture()
     local state={offline=true,phase=4,worldId='WorldA',profile='test-profile',slot=0,pawn=pawn}
     local made={}
     local waypointBytes
-    local ctx={waypoint_read=function()return waypointBytes end,waypoint_write=function(raw)waypointBytes=raw;return true end,snapshot=function() return state end,
+    local ctx={characterKey=function(s)return s.profile..'_'..s.slot..'_'..(s.generation or'generation1')end,waypoint_read=function()return waypointBytes end,waypoint_write=function(raw)waypointBytes=raw;return true end,snapshot=function() return state end,
         verified={movement=true,collision=true,teleport=true,spawn_item=true},
         adapters={validate_world=function()return true end,teleport_clearance=function()return true end,spawn_item=function(_,entry,pos)
             local actor=object{entry=entry,pos=pos};made[#made+1]=actor;return actor

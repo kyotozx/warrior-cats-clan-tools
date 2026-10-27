@@ -122,7 +122,7 @@ function M.new(ctx)
   if not s or not s.offline or s.combat or ctx.appearanceActive then return nil end
   if ctx.denDiscover then return ctx.denDiscover(s)end;return crafting.discover(s)
  end
- local function scopeKey(s)return table.concat({tostring(s.profile),tostring(s.slot),tostring(s.chapter),tostring(s.clan)},':')end
+ local function scopeKey(s)return table.concat({'v2',assert(ctx.characterKey(s)),tostring(s.chapter),tostring(s.clan)},':')end
  local function scan(s)
   local c=discover(s)
   if not c then assert(api.reset());return false end

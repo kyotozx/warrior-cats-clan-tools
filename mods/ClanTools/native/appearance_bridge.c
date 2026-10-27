@@ -153,6 +153,7 @@ static int current_character_slot(void **config,int32_t *selected) {
     if(value<0)return 0;
     *config=f;*selected=value;return 1;
 }
+#include "appearance_generation.h"
 static int same_context(void) {
     void *config;int32_t selected;
     if(!active||GetCurrentThreadId()!=owner_thread||!object_ok(manager,0x170)||
@@ -565,6 +566,7 @@ __declspec(dllexport) int ClanAppearance_dispatch(void *lua_state) {
     char line[1024];if(!fgets(line,sizeof(line),f)){fclose(f);report(0,"ERROR Empty request");return 0;}fclose(f);
     if(sscanf(line,"%u %23s",&id,command)!=2){report(id,"ERROR Invalid request");return 0;}
     if(!initialize()){report(id,"ERROR Unsupported executable");return 0;}
+    generation_key_hash=(uint32_t(*)(int32_t,const wchar_t*))(base+0x11a1ff0);
     const char *result="ERROR Unknown command";
     if(!strcmp(command,"BEGIN")&&sscanf(line,"%u %23s %u %u %c",&id,command,&r,&clan,&tail)==4) result=begin_edit(r,clan);
     else if(!strcmp(command,"BIND")&&sscanf(line,"%u %23s %llx %c",&id,command,&address,&tail)==3) result=bind_preview((uintptr_t)address);
@@ -577,6 +579,7 @@ __declspec(dllexport) int ClanAppearance_dispatch(void *lua_state) {
     else if(!strcmp(command,"META")&&sscanf(line,"%u %23s %u %c",&id,command,&r,&tail)==3) result=cat_metadata(r);
     else if(!strcmp(command,"STATUS")) result="OK STATUS";
     else if(!strcmp(command,"CONTEXT_LAYOUT")) result="OK CONTEXT_LAYOUT config_slot=340";
+    else if(!strcmp(command,"GENERATION")&&sscanf(line,"%u %23s %c",&id,command,&tail)==2) result=character_generation();
     else if(!strcmp(command,"CAPTURE")) result=capture_preview();
     else if(!strcmp(command,"PLAYER_READ")) result=player_skin_read();
     else if(!strcmp(command,"PLAYER_REFRESH")&&sscanf(line,"%u %23s %llx %c",&id,command,&address,&tail)==3) result=player_skin_refresh((uintptr_t)address);

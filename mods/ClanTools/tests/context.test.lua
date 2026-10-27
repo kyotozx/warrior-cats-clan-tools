@@ -11,9 +11,11 @@ live=false;eq(M.valid(object),false)
 print('PASS Lua ownership wrappers retain their explicit lifetime checks')
 local snapshot={profile='profile',slot=0,clan=4,offline=true}
 M.snapshot=function()return snapshot end
+local generation=string.rep('a',64)
+M.characterKey=function(s)return s.profile..'_'..s.slot..'_'..generation end
 local raw='{broken';M.read=function()return raw end
 local cats,metadata=M.getCats();eq(#cats,0);eq(metadata.valid,false)
-raw=M.json.encode({profile={['0']={NPCData={NarrativeRoles={WindClanKit='(ClanType=WindClan,Role=Kit)',WindClanMedicineCat='(ClanType=WindClan,Role=Dead)'}}}}})
+raw=M.json.encode({profile={['0']={Meta={Hash=string.rep('a',64)},NPCData={NarrativeRoles={WindClanKit='(ClanType=WindClan,Role=Kit)',WindClanMedicineCat='(ClanType=WindClan,Role=Dead)'}}}}})
 cats,metadata=M.getCats();eq(#cats,1);eq(metadata.valid,true);eq(cats[1].role,M.catalog.Enums.WindClanKit)
 print('PASS incomplete saved snapshot is unavailable rather than an empty eligible clan')
 local rank,clan=5,4
@@ -27,12 +29,12 @@ for i=1,100 do cats,metadata=M.getCats();eq(metadata.valid,true)end
 eq(parses,1)
 raw='{partial';cats,metadata=M.getCats();eq(metadata.valid,false)
 raw=nil;cats,metadata=M.getCats();eq(metadata.valid,false)
-raw=M.json.encode({profile={['0']={NPCData={NarrativeRoles={}}}}})
+raw=M.json.encode({profile={['0']={Meta={Hash=string.rep('a',64)},NPCData={NarrativeRoles={}}}}})
 cats,metadata=M.getCats();eq(metadata.valid,true);eq(#cats,0)
 M.json.decode=decode
 print('PASS unchanged save bytes reuse parsing; changed, missing or partial files never return stale roster data')
 local function character(role)
- return{NPCData={NarrativeRoles={[role]='(ClanType=WindClan,Role=Warrior)'}}}
+ return{Meta={Hash=string.rep('a',64)},NPCData={NarrativeRoles={[role]='(ClanType=WindClan,Role=Warrior)'}}}
 end
 raw=M.json.encode({profile={Shared={General={CurrentCatSlot=0}},['0']=character('WindClanKit'),['3']=character('WindClanMedicineCat')}})
 snapshot.slot=0;cats,metadata=M.getCats();eq(cats[1].roleName,'WindClanKit')
@@ -40,3 +42,10 @@ snapshot.slot=3;cats,metadata=M.getCats();eq(cats[1].roleName,'WindClanMedicineC
 snapshot.slot=0;cats=M.getCats();eq(cats[1].roleName,'WindClanKit')
 snapshot.slot=8;cats,metadata=M.getCats();eq(metadata.valid,false);eq(#cats,0)
 print('PASS live character selection overrides stale disk CurrentCatSlot and never falls back to the first cat')
+
+snapshot.slot=0;generation=string.rep('b',64)
+cats,metadata=M.getCats();eq(metadata.valid,false);eq(#cats,0);eq(M.playerName(),'Your cat')
+assert(metadata.reason:find('earlier character',1,true))
+raw=M.json.encode({profile={['0']={Meta={Hash=generation},NPCData={NarrativeRoles={WindClanMedicineCat='(ClanType=WindClan,Role=Warrior)'}}}}})
+cats,metadata=M.getCats();eq(metadata.valid,true);eq(cats[1].roleName,'WindClanMedicineCat')
+print('PASS reused slot cannot display stale disk roster or player name under a new live generation')

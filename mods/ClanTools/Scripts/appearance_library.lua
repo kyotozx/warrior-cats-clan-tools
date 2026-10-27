@@ -67,7 +67,8 @@ function M.new(ctx)
   if not s or not t or type(s.profile)~='string'or type(t.role)~='number'then return nil end
   -- Earlier originals used the wrong character-slot reader. Keep those entries
   -- and shared presets intact, but never restore an unproven legacy original.
-  return 'v3:'..s.profile..':'..tostring(s.slot)..':'..tostring(s.chapter)..':'..tostring(t.role)
+  local identity,why=ctx.characterKey(s);if not identity then return nil,why end
+  return 'v3:'..identity..':'..tostring(s.chapter)..':'..tostring(t.role)
  end
  local function edited()
   if not comparing then return true end
@@ -76,7 +77,7 @@ function M.new(ctx)
  function api.comparisonActive()return comparing end
  function api.leaveComparison()return edited()end
  function api.begin()
-  comparing=false;local k=key();if not k or data.originals[k]then return true end
+  comparing=false;local k,why=key();if not k then return nil,why or'Character identity is unavailable.'end;if data.originals[k]then return true end
   local v,err=export('ORIGINAL_READ');if not v then return nil,err end
   local nextData=clone();nextData.originals[k]={values=v,label=cleanLabel(ctx.target().name)}
   return persist(nextData)

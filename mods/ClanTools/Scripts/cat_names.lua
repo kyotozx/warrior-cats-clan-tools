@@ -1,5 +1,7 @@
 -- Character-scoped display names. Narrative role and native name IDs stay intact.
 local M={}
+local dir=debug.getinfo(1,'S').source:gsub('^@',''):match('^(.*[/\\])')
+local fileKey=dofile(dir..'character_identity.lua').fileKey
 function M.validate(value)
  if type(value)~='string'then return nil,'Enter a name.'end
  value=value:gsub('^%s+',''):gsub('%s+$','')
@@ -10,16 +12,16 @@ function M.validate(value)
 end
 function M.new(ctx)
  local api={};local cache={}
- local function identity(s)
+ local function identity(s,optional)
   assert(s and s.offline==true and type(s.profile)=='string'and s.profile:match('^[%w_-]+$'),'Load an offline campaign.')
   assert(type(s.slot)=='number'and s.slot%1==0 and s.slot>=0,'Invalid save slot.')
-  return s.profile..'_'..s.slot
+  local key,why=ctx.characterKey(s);if optional then return key end;return assert(key,why)
  end
  -- Pre-fix files cannot prove which character was renamed. Leave those files
  -- intact, but never assign an ambiguous alias to the first character.
- local function path(id)return ctx.root..'state/cat-names-character-v2-'..id..'.json'end
- local function load(s)
-  local id=identity(s);if cache[id]then return cache[id],id end
+ local function path(id)return ctx.root..'state/names-v3-'..fileKey(id)..'.json'end
+ local function load(s,optional)
+  local id=identity(s,optional);if not id then return nil end;if cache[id]then return cache[id],id end
   local raw=ctx.read(path(id));local data=raw and ctx.json.decode(raw)or{version=1,names={}}
   assert(type(data)=='table'and data.version==1 and type(data.names)=='table','Invalid saved cat names.')
   for role,value in pairs(data.names)do
@@ -28,10 +30,10 @@ function M.new(ctx)
   cache[id]=data;return data,id
  end
  function api.get(s,role,fallback)
-  local data=load(s);return data.names[tostring(role)]or fallback
+  local data=load(s,true);return data and data.names[tostring(role)]or fallback
  end
  function api.hasOverrides(s)
-  return next(load(s).names)~=nil
+  local data=load(s,true);return data~=nil and next(data.names)~=nil
  end
  function api.prepare(s,cat,value)
   local clean,why=M.validate(value);assert(clean,why)

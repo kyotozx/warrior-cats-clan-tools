@@ -5,7 +5,7 @@ local function fixture()
     local f={calls={},queue={},s={profile='profile-A',slot=0,chapter='Chapter00',gs=17,clan=4,offline=true},
       cats={{role=77,clan=4,living=true,name='Darkfeather'},{role=78,clan=4,living=false,name='Dead'},
       {role=45,clan=1,living=true,name='Other clan'}},backup=true}
-    f.ctx={snapshot=function() return f.s end,getCats=function() return f.cats end,
+    f.ctx={characterKey=function(s)return s.profile..'_'..s.slot..'_'..(s.generation or string.rep('a',64))end,snapshot=function() return f.s end,getCats=function() return f.cats end,
       backupSave=function() return f.backup end,
       native=function(cmd) f.calls[#f.calls+1]=cmd;if f.fail==cmd then return nil,'Rejected '..cmd end;return {action=cmd=='APPLY'and f.applyResult or cmd} end,
       openAppearanceEditor=function(cat,callbacks) f.callbacks=callbacks;return 'editor' end,
@@ -68,7 +68,7 @@ test('name-only Apply saves alias without native world role refresh',function()
     assert(f.mod:begin(77));assert(f.callbacks.ready(4096))
     assert(f.mod:setName('Moonlight'));assert(f.callbacks.apply())
     eq(f.ctx.catNames.get(f.s,77,'Original'),'Moonlight')
-    assert(files['state/cat-names-character-v2-profile-A_0.json'])
+    assert(files['state/names-v3-profile-A_0_vkvkvkvkvkvkvkvkvkvkvkvkvkvkvkvkvkvkvkvkvkvkvkvkvkva.json'])
     assert(not table.concat(logs,'\n'):find('refresh world appearance',1,true))
     f.callbacks.closed();f:tick();f:tick();eq(f.mod.phase,'idle')
     eq(logs[#logs],'Appearance apply: transaction closed')

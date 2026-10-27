@@ -33,7 +33,9 @@ function M.new(ctx)
  end
  local function scope(s)
   assert(s and type(s.profile)=='string'and #s.profile>0 and type(s.slot)=='number'and s.slot>=0 and s.slot%1==0 and type(s.worldId)=='string'and #s.worldId>0,'Waypoint profile, slot and world are unavailable.')
-  load();return s.profile,tostring(s.slot),s.worldId
+  -- Keep old profile/slot entries untouched. A recycled slot must not acquire
+  -- another character's travel bookmarks.
+  local identity=assert(ctx.characterKey(s));load();return 'v2_'..identity,tostring(s.slot),s.worldId
  end
  local function persist(nextState)
   local raw=json.encode(nextState)

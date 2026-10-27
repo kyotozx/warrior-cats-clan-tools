@@ -2,7 +2,7 @@ local M=dofile('mods/ClanTools/Scripts/appearance.lua')
 local function fixture()
  local f={files={},calls={},queue={},commits=0,s={profile='profile-A',slot=0,chapter='Chapter00',gs=17,clan=4,offline=true},cat={role=77,clan=4,living=true,name='Cloudflower'}}
  local a={};for i=1,24 do a[i]=1 end;local cosmetics=table.concat(a,' ')
- f.ctx={root='memory/',read=function(p)return f.files[p]end,write=function(p,s)f.files[p]=s end,
+ f.ctx={characterKey=function(s)return s.profile..'_'..s.slot..'_'..(s.generation or'generation1')end,root='memory/',read=function(p)return f.files[p]end,write=function(p,s)f.files[p]=s end,
   snapshot=function()return f.s end,getCats=function()return{f.cat}end,backupSave=function()return true end,
   native=function(cmd)f.calls[#f.calls+1]=cmd;if f.fail==cmd then return nil,'Rejected '..cmd end;return{action=(cmd=='ORIGINAL_READ'or cmd=='PREVIEW_READ')and'COSMETICS '..cosmetics or cmd}end,
   openAppearanceEditor=function(_,callbacks)f.callbacks=callbacks;return'editor'end,

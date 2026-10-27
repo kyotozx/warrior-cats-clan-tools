@@ -3,7 +3,7 @@ local json=dofile('mods/ClanTools/Scripts/json.lua')
 local passed=0;local function test(name,fn)fn();passed=passed+1;print('PASS '..name)end
 local function fixture()
  local f={files={},s={profile='abc',slot=0,offline=true,clan=4},cat={role=77,clan=4,living=true,rank='Warrior'}}
- f.ctx={root='',json=json,read=function(p)return f.files[p]end,write=function(p,s)if f.fail then error('disk failed')end;f.files[p]=s end,
+ f.ctx={characterKey=function(s)return s.profile..'_'..s.slot..'_'..(s.generation or string.rep('a',64))end,root='',json=json,read=function(p)return f.files[p]end,write=function(p,s)if f.fail then error('disk failed')end;f.files[p]=s end,
   snapshot=function()return f.s end,validateCat=function()return true end,catalog={Names={STR_CAT_NAME1_PAW='Woodpaw',STR_CAT_NAME1_KIT='Woodkit',STR_CAT_NAME1_WING='Woodwing',STR_CAT_NAME2_FUR='Emberfur',STR_CAT_NAME2_STAR='Emberstar'}}}
  f.api=module.new(f.ctx);return f
 end
@@ -13,6 +13,15 @@ end)
 test('prepare is preview-only and commit survives a fresh module',function()
  local f=fixture();local receipt=f.api.prepare(f.s,f.cat,'Moonlight');assert(next(f.files)==nil)
  assert(f.api.get(f.s,77,'Original')=='Original');assert(f.api.commit(receipt));assert(module.new(f.ctx).get(f.s,77,'Original')=='Moonlight')
+end)
+
+test('rename and backup fit the default Steam path including Scripts parent traversal',function()
+ local f=fixture();f.s.profile=string.rep('a',32)
+ f.ctx.root='C:/Program Files (x86)/Steam/steamapps/common/Warrior Cats Clans of the Forest/Wrc/Binaries/Win64/ue4ss/Mods/ClanTools/Scripts/../'
+ local write=f.ctx.write;local backups=0
+ f.ctx.write=function(path,bytes)assert(#path<260,'Windows filename is too long: '..#path);if path:match('%.previous.txt$')then backups=backups+1 end;write(path,bytes)end
+ f.api=module.new(f.ctx);assert(f.api.commit(f.api.prepare(f.s,f.cat,'Moonlight')))
+ assert(backups==1 and module.new(f.ctx).get(f.s,77,'Original')=='Moonlight')
 end)
 test('names remain scoped to profile and slot',function()
  local f=fixture();assert(f.api.commit(f.api.prepare(f.s,f.cat,'One')));f.s.slot=1;assert(f.api.get(f.s,77,'Original')=='Original')
@@ -45,9 +54,23 @@ test('override checks are cached and follow commits and profile switches',functi
  f.s.slot=1;assert(not f.api.hasOverrides(f.s));f.s.slot=0;assert(f.api.hasOverrides(f.s))
 end)
 print(passed..' cat name tests passed')
+test('deleted and recreated character cannot inherit aliases or finish old rename',function()
+ local f=fixture();f.s.generation=string.rep('a',64);assert(f.api.commit(f.api.prepare(f.s,f.cat,'Old alias')))
+ local receipt=f.api.prepare(f.s,f.cat,'Pending alias');f.s.generation=string.rep('b',64)
+ assert(f.api.get(f.s,77,'Native name')=='Native name'and not f.api.hasOverrides(f.s))
+ assert(not pcall(f.api.commit,receipt))
+ assert(f.api.commit(f.api.prepare(f.s,f.cat,'New alias')))
+ f.s.generation=string.rep('a',64);assert(f.api.get(f.s,77,'Native name')=='Old alias')
+end)
+test('missing generation keeps native names visible and refuses persistence',function()
+ local f=fixture();f.ctx.characterKey=function()return nil,'Missing generation'end
+ assert(f.api.get(f.s,77,'Native name')=='Native name'and not f.api.hasOverrides(f.s))
+ assert(not pcall(f.api.prepare,f.s,f.cat,'Alias')and next(f.files)==nil)
+end)
 test('ambiguous legacy aliases never rename the first character after upgrade',function()
  local f=fixture();f.files['state/cat-names-abc_0.json']=json.encode({version=1,names={['77']='Other campaign'}})
  f.files['state/cat-names-character-abc_0.json']=json.encode({version=1,names={['77']='Wrong owner before GameConfig fix'}})
+ f.files['state/cat-names-character-v2-abc_0.json']=json.encode({version=1,names={['77']='Deleted character alias'}})
  assert(f.api.get(f.s,77,'Native name')=='Native name')
  assert(f.files['state/cat-names-abc_0.json']~=nil)
  assert(f.files['state/cat-names-character-abc_0.json']~=nil)

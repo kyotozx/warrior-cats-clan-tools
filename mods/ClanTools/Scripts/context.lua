@@ -44,6 +44,11 @@ local function snapshot()
   clan=p.MeshCustomizationComponent.CustomData.ClanType,pc=pc}
 end
 function M.snapshot()local ok,s=pcall(snapshot);if ok then return s end;return nil end
+M.characterKey=dofile(dir..'character_identity.lua').new(function()
+ if M.native then return M.native('GENERATION')end
+ if not identityTransport then identityTransport=dofile(dir..'appearance.lua').nativeTransport(M.root..'bin/')end
+ return identityTransport('GENERATION')
+end)
 local function field(s,key) if type(s)~='string'then return ''end;return s:match(key..'="([^"]*)"')or s:match(key..'=([^,()]*)')or'' end
 local function name(custom,definition,fallback)
  local prefix,suffix=field(custom,'PrefixNameId'),field(custom,'SuffixNameId')
@@ -64,6 +69,9 @@ local function savedProfile(s)
  end
  local profile=all[s.profile];local data=type(profile)=='table'and profile[tostring(s.slot)]
  if type(data)~='table'then return nil,'Active profile is missing from save snapshot'end
+ local identity,why=M.characterKey(s);if not identity then return nil,why end
+ local hash=type(data.Meta)=='table'and data.Meta.Hash
+ if type(hash)~='string'or hash:lower()~=identity:match('_(%x+)$')then return nil,'Save snapshot belongs to an earlier character. Wait for the game to save.'end
  return data
 end
 local roleDefinitions={}
@@ -71,8 +79,8 @@ for _,definition in ipairs(M.catalog.Roles)do
  local clan=definition.CampaignClan;roleDefinitions[clan]=roleDefinitions[clan]or{}
  if not roleDefinitions[clan][definition.NarrativeRole]then roleDefinitions[clan][definition.NarrativeRole]=definition end
 end
-function M.getCats()
- local s=M.snapshot();if not s then return {},{valid=false,reason='No active campaign'}end
+function M.getCats(s)
+ s=s or M.snapshot();if not s then return {},{valid=false,reason='No active campaign'}end
  local data,why=savedProfile(s);if not data then return {},{valid=false,reason=why}end
  if type(data.NPCData)~='table'or type(data.NPCData.NarrativeRoles)~='table'then return {},{valid=false,reason='Roster is missing from save snapshot'}end
  local out={};local clan=M.clans[s.clan];if not clan then return {},{valid=false,reason='Active clan unavailable'}end
