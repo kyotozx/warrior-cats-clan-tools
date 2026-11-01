@@ -188,7 +188,7 @@ function M.new(ctx)
         return true
     end
     function self:setName(value)
-        if self.phase~='editing'or not contextValid()or not ctx.catNames then return fail('No editable clanmate name.')end
+        if self.phase~='editing'or not contextValid()or not ctx.catNames then return fail('No editable cat name.')end
         local ok,receipt=pcall(ctx.catNames.prepare,ctx.snapshot(),self.target,value)
         if not ok then return fail(receipt)end
         pendingName=receipt.name;changed();return true
@@ -240,7 +240,7 @@ function M.new(ctx)
         if not contextValid() then self:cancel();return fail("The active cat or profile changed; changes were not applied") end
         if library then local editable,why=library.leaveComparison();if not editable then return fail(why)end end
         local nameReceipt
-        if pendingName and ctx.catNames and not self.target.player then
+        if pendingName and ctx.catNames then
             local prepared,result=pcall(ctx.catNames.prepare,ctx.snapshot(),self.target,pendingName)
             if not prepared then return fail(result)end;nameReceipt=result
         end

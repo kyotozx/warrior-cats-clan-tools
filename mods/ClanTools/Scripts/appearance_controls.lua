@@ -151,7 +151,7 @@ function M.new(ctx)
                 specs={{'previousPreset','Previous'},{'nextPreset','Next'},{'loadPreset','Preview preset'},{'savePreset','Save preview'},{'deletePreset','Delete'},{'editor','Back'}}
                 h.footerDefault=6;h.backAction='editor'
             elseif page=='tools'then
-                specs=cat.player and {{'restoreOriginal','Restore original'},{'reset','Reset preview'},{'editor','Back'}} or {{'renameName','Rename'},{'generateName','Generate name'},{'restoreOriginal','Restore original'},{'reset','Reset preview'},{'editor','Back'}}
+                specs={{'renameName','Rename'},{'generateName','Generate name'},{'restoreOriginal','Restore original'},{'reset','Reset preview'},{'editor','Back'}}
                 h.footerDefault=#specs;h.backAction='editor'
             else
                 specs={{'randomize','Randomize'},{'compare','Compare'},{'library','Presets'},{'tools','More'},{'cancel','Cancel'},{'apply','Apply'}}

@@ -217,8 +217,8 @@ transitions, sustained gameplay, every appearance preset combination, all items,
 all quests/enemies, skeletal den assets, other resolutions and other-mod
 compatibility have not been exhaustively tested. Native bindings and controller
 routing have model coverage; do not equate that with a physical-controller test.
-Some native name lists (including combat turn order), bonds lists and authored
-dialogue text retain the original name. There are two companion slots. Followers
+Save selection, bonds lists and authored dialogue text retain the original name.
+Combat character slots and turn order support display aliases. There are two companion slots. Followers
 can wait at obstacles where native navigation is absent. Crafting acceleration
 is active inside the den. Offline-only tools do not modify network sessions.
 

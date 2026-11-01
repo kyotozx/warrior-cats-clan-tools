@@ -11,6 +11,7 @@ function M.new(ctx)
  assert(ctx.snapshot and ctx.valid and ctx.getCats,'Native names require the current campaign context.')
  local api={};local records={};local closed=false;local lastError;local classes={}
  local makeText=ctx.make_text or FText
+ local snapshot=ctx.namesSnapshot or ctx.snapshot
  local function class(name)if not ctx.valid(classes[name])then classes[name]=StaticFindObject(name)end;return classes[name]end
  local function sameWorld(o,s)
   if not ctx.valid(o)then return false end
@@ -23,6 +24,7 @@ function M.new(ctx)
  end
  local function combatRole(actor,s)
   if not sameWorld(actor,s)or not actor:IsA(class('/Script/SwtAdventure.SwtAdventureCharacter'))or(actor.CharacterType~=1 and actor.CharacterType~=2)then return nil end
+  if ctx.valid(s.pawn)and actor:GetAddress()==s.pawn:GetAddress()then return 0 end
   local mesh=actor.MeshCustomizationComponent;if not ctx.valid(mesh)or mesh.CustomData.ClanType~=s.clan or not livingRank(mesh.CustomData.Role)then return nil end
   return M.roleFromIdentifier(actor.ActorIdentifier,ctx.catalog.Enums)
  end
@@ -52,13 +54,47 @@ function M.new(ctx)
    local function identity()
     if not ctx.valid(screen)then return nil end
     local node=screen.CurrentDialogueNode
-    if not ctx.valid(node)or not node:IsA(class('/Script/SwtQuest.QuestDialogueTalkingNode'))or node.TalkingSource~=0 then return nil end
+    if not ctx.valid(node)or not node:IsA(class('/Script/SwtQuest.QuestDialogueTalkingNode'))then return nil end
+    if node.TalkingSource==1 and ctx.valid(s.pawn)then return 0 end
+    if node.TalkingSource~=0 then return nil end
     return npcRole(screen.NpcRef,s)
    end
    if ctx.valid(screen.mcGuiDialogueTalker)then add(screen.mcGuiDialogueTalker.mcGuiTextName,screen,identity,'dialogue')end
   end)
   each('GuiCombatCharacterSlot',function(slot)
    if sameWorld(slot,s)and slot:IsVisible()then add(slot.mcGuiTextCatName,slot,function()return ctx.valid(slot)and combatRole(slot.CharacterRef,s)or nil end,'combat')end
+  end)
+  if s.combat and ctx.valid(s.gameState)and ctx.valid(s.gameState.Director)then
+   local director=s.gameState.Director
+   each('GuiHudCombatTurnsList',function(grid)
+    if not sameWorld(grid,s)or not grid:IsVisible()then return end
+    local order={};director.TurnOrder:ForEach(function(i,v)order[i]=v:get()end)
+    grid.Items:ForEach(function(i,v)
+     local row=v:get();local actor=order[i]
+     if not ctx.valid(row)or not row:IsVisible()or not ctx.valid(actor)then return end
+     local function identity()
+      if not ctx.valid(director)or not ctx.valid(s.gameState.Director)or s.gameState.Director:GetAddress()~=director:GetAddress()then return nil end
+      local current;director.TurnOrder:ForEach(function(j,item)if j==i then current=item:get()end end)
+      if not ctx.valid(current)or current:GetAddress()~=actor:GetAddress()then return nil end
+      return combatRole(actor,s)
+     end
+     add(row.mcGuiTextNormal,row,identity,'turns')
+     add(row.mcGuiTextSelected,row,identity,'turns')
+    end)
+   end)
+  end
+  each('GuiHudWrc',function(hud)
+   if sameWorld(hud,s)and hud:IsInViewport()and hud:IsVisible()and ctx.valid(hud.mcGuiHudCharacter)then
+    add(hud.mcGuiHudCharacter.mcGuiTextName,hud,function()return ctx.valid(s.pawn)and 0 or nil end,'player')
+   end
+  end)
+  each('GuiScreenPause',function(pause)
+   if not sameWorld(pause,s)or not pause:IsInViewport()or not pause:IsVisible()then return end
+   local function player()return ctx.valid(s.pawn)and 0 or nil end
+   local general=pause.mcGuiPanelGeneral
+   if ctx.valid(general)and ctx.valid(general.mcGuiCatInfo)then add(general.mcGuiCatInfo.mcGuiTextName,pause,player,'player')end
+   local party=pause.mcGuiPanelParty
+   if ctx.valid(party)and ctx.valid(party.mcGuiCatParty1)then add(party.mcGuiCatParty1.mcGuiTextName,pause,player,'player')end
   end)
   if ctx.party and ctx.party.read then each('GuiScreenPause',function(pause)
    if not sameWorld(pause,s)or not pause:IsInViewport()or not pause:IsVisible()or not ctx.valid(pause.mcGuiPanelParty)or not pause.mcGuiPanelParty:IsVisible()then return end
@@ -76,8 +112,8 @@ function M.new(ctx)
  end
  local function restore(record)
   if not ctx.valid(record.widget)or not ctx.valid(record.owner)then return true end
-  local s=ctx.snapshot()
-  if not s or s.profile~=record.profile or s.slot~=record.slot or s.worldId~=record.world then return true end
+  local s=snapshot()
+  if not s or s.profile~=record.profile or s.slot~=record.slot or s.worldId~=record.world or (ctx.characterKey and ctx.characterKey(s)~=record.generation)then return true end
   local ok,why=pcall(function()
    -- A recycled widget or a newer native caption belongs to the game again.
    if record.identity()==record.role and stringValue(record.widget:GetText())==record.written then record.widget:SetText(makeText(record.original))end
@@ -91,16 +127,18 @@ function M.new(ctx)
  end
  local function tick()
   if closed then return false,'Native names are shut down.'end
-  local s=ctx.snapshot()
+  local s=snapshot()
   if not s or s.offline~=true or type(s.profile)~='string'or type(s.slot)~='number'or type(s.worldId)~='string'then return reset()end
   -- The profile-scoped sidecar is cached. Avoid parsing the whole game save
   -- and searching native widgets when this profile has no renamed cats.
   if ctx.catNames and ctx.catNames.hasOverrides and not ctx.catNames.hasOverrides(s)then return reset()end
-  local cats,meta=ctx.getCats();assert(type(cats)=='table'and(not meta or meta.valid~=false),'Clan names are unavailable.')
+  local cats,meta=ctx.getCats(s);assert(type(cats)=='table'and(not meta or meta.valid~=false),'Clan names are unavailable.')
   local aliases={}
   for _,cat in ipairs(cats)do if cat.living==true and cat.clan==s.clan and type(cat.role)=='number'and type(cat.name)=='string'and cat.name~=cat.originalName then aliases[cat.role]=cat.name end end
+  if ctx.catNames and ctx.catNames.get then aliases[0]=ctx.catNames.get(s,0,nil)end
   if next(aliases)==nil then return reset()end
-  local scope=s.profile..'|'..s.slot..'|'..s.worldId;local desired={}
+  local generation=ctx.characterKey and assert(ctx.characterKey(s),'Character identity is unavailable.')or nil
+  local scope=s.profile..'|'..s.slot..'|'..s.worldId..'|'..tostring(generation);local desired={}
   lastError=nil
   for _,target in ipairs(collect(s))do
    local alias=aliases[target.role]
@@ -116,7 +154,7 @@ function M.new(ctx)
   end
   for id,d in pairs(desired)do
    local t=d.target;local current=stringValue(t.widget:GetText());local r=records[id]
-   if not r then r={widget=t.widget,owner=t.owner,role=t.role,identity=t.identity,key=d.identity,original=current,kind=t.kind,profile=s.profile,slot=s.slot,world=s.worldId};records[id]=r
+   if not r then r={widget=t.widget,owner=t.owner,role=t.role,identity=t.identity,key=d.identity,original=current,kind=t.kind,profile=s.profile,slot=s.slot,world=s.worldId,generation=generation};records[id]=r
    elseif current~=r.written then r.original=current end -- the game refreshed its localized name
    if current~=d.alias then t.widget:SetText(makeText(d.alias))end
    r.written=d.alias;r.identity=t.identity
@@ -130,7 +168,7 @@ function M.new(ctx)
  end
  function api.reset()return reset()end
  function api.shutdown()local ok,why=reset();if ok then closed=true end;return ok,why end
- function api.status()local count=0;for _ in pairs(records)do count=count+1 end;return{count=count,error=lastError,coverage='Nearby NPCs, NPC dialogue speakers, combat slots and pause party slots. Bonds and embedded dialogue text are unchanged.'}end
+ function api.status()local count=0;for _ in pairs(records)do count=count+1 end;return{count=count,error=lastError,coverage='Nearby NPCs, dialogue speakers, combat slots and turns, exploration HUD and pause party slots. Bonds, save selection and embedded dialogue text are unchanged.'}end
  return api
 end
 return M

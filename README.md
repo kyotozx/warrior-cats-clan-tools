@@ -52,7 +52,7 @@ The installer checks the game executable before applying changes. Other builds a
 
 ## Install
 
-Use [Clan Loader rc11](https://github.com/kyotozx/warrior-cats-clan-tools/releases/tag/v0.3.0-rc11) for game patch 1.1. It includes the manual package import fixes and automatically handles the Windows download block on its theme DLL.
+Use [Clan Loader rc12](https://github.com/kyotozx/warrior-cats-clan-tools/releases/tag/v0.3.0-rc12) for game patch 1.1. It includes combat name fixes and player renaming, along with the package import and downloaded theme DLL fixes.
 
 1. Download the Clan Loader ZIP for your game build from [Releases](https://github.com/kyotozx/warrior-cats-clan-tools/releases). Use this package, rather than GitHub's automatically generated source archives.
 2. Save and close the game. Extract the entire ZIP to a writable folder.
@@ -112,7 +112,7 @@ On-screen hints explain tool-specific actions and reflect supported remaps. All 
 | Party Manager | Choose up to two living clanmates, remove forced companions, save party presets, and restore the story party. |
 | Exploration followers | Follow, stay, and regroup controls, nearby name/rank labels, smoother spacing, and independent idle timing. |
 | Clan appearance | Use the native appearance editor, rotate and randomize cats, edit names, generate names, and save cosmetic presets. |
-| Player skins | Save, preview, favorite, and share looks. Reuse a saved look in the original new-player creator without copying progression. |
+| Player skins | Edit your cat's display name or generate one. Save, preview, favorite, and share looks. Reuse a saved look in the original new-player creator without copying progression. |
 | Item feedback | See consumption, remaining quantity, actual health/stamina changes, and hear feedback. |
 | Offline Admin | Flight, noclip, speed, healing, invulnerability, item and enemy spawning, XP, move unlocks, damage controls, and infinite stamina. |
 | Travel and exploration | Choose a destination on the original map, save waypoints, return to previous positions, and suppress ordinary enemy detection. |
@@ -120,6 +120,8 @@ On-screen hints explain tool-specific actions and reflect supported remaps. All 
 | Den crafting | Accelerate crafting timers or finish projects. Craft supported decorations and inventory items with a free option. |
 | Den layout and photos | Preview decoration changes, use layout tools, adjust photo settings, and choose native day/night lighting presets. |
 | Settings | Edit keyboard/controller bindings with conflict detection and reset controls. |
+
+To rename your own cat, open **Appearance > Your cat / Skins > Edit your cat > More > Rename**, enter a name and choose **Apply**. **Generate name** is available beside Rename. Display names stay with each character and appear in supported campaign menus, HUD labels and combat, including turn order. Save selection, bonds lists and authored dialogue text retain the original names.
 
 Some actions change saved progression. Read the confirmation shown by the tool and keep backups. See the [full feature guide](mods/ClanTools/release/README.txt) and [validation notes](mods/ClanTools/release/VALIDATION.txt) for tested behavior and limitations. Day/night is a lighting override, not a simulated clock or weather system. Map travel needs valid loaded ground. Story battles are not disabled by Ignore Enemies.
 

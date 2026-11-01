@@ -23,7 +23,7 @@ local function fixture()
  local cats={{role=7,name='Willowmist',originalName='Hareblaze',living=true,clan=1}}
  ctx.getCats=function()return cats,{valid=true}end
  local a=M.new(ctx)
- return{a=a,s=s,ctx=ctx,cats=cats,name=name,role=role,npc=npc,dialog=dialog,node=node,dialogueText=dialogueText,combat=combat,combatText=combatText,party=party,partyText=partyText,playerText=playerText,all=all}
+ return{a=a,s=s,ctx=ctx,cats=cats,name=name,role=role,npc=npc,dialog=dialog,node=node,dialogueText=dialogueText,combat=combat,combatText=combatText,party=party,partyText=partyText,playerText=playerText,all=all,object=object,text=text}
 end
 test('exact enum identifiers only, unknown names and display text are rejected',function()
  assert(M.roleFromIdentifier('ENarrativeRole::ClanCat7',{ClanCat7=7})==7);assert(M.roleFromIdentifier('ClanCat7',{ClanCat7=7})==7)
@@ -67,4 +67,44 @@ test('no applicable living aliases skip native discovery',function()
  FindAllOf=function()error('No applicable alias requires widget discovery')end
  assert(f.a.tick())
 end)
-print(n..' native cat label tests passed (reflected model; live widget acceptance pending).')
+test('combat names use the read-only campaign snapshot when gameplay possession is unavailable',function()
+ local f=fixture();f.ctx.snapshot=function()return nil end;f.ctx.namesSnapshot=function()return f.s end
+ f.ctx.getCats=function(s)assert(s==f.s);return f.cats,{valid=true}end
+ local a=M.new(f.ctx);assert(a.tick());assert(f.combatText.value=='Willowmist')
+ assert(a.shutdown());assert(f.combatText.value=='Hareblaze')
+end)
+
+test('player alias follows explicit player ownership, HUD, pause and dialogue',function()
+ local f=fixture();local pawn=f.object({class='/Script/SwtAdventure.SwtAdventureCharacter',CharacterType=1,ActorIdentifier='Gameplay.Combat.Character.Cat.Player'})
+ f.s.pawn=pawn
+ f.ctx.catNames={get=function(s,role)assert(s==f.s and role==0);return 'Moonrise'end}
+ local playerCombat=f.text('Skywing');f.all.GuiCombatCharacterSlot[#f.all.GuiCombatCharacterSlot+1]=f.object({CharacterRef=pawn,mcGuiTextCatName=playerCombat})
+ local hudName=f.text('Skywing');f.all.GuiHudWrc={f.object({mcGuiHudCharacter=f.object({mcGuiTextName=hudName})})}
+ f.node.TalkingSource=1
+ assert(f.a.tick());assert(f.playerText.value=='Moonrise'and playerCombat.value=='Moonrise'and hudName.value=='Moonrise'and f.dialogueText.value=='Moonrise')
+ f.node.TalkingSource=3;f.dialogueText.value='Custom speaker';assert(f.a.tick());assert(f.dialogueText.value=='Custom speaker')
+ f.ctx.catNames.get=function()return nil end;assert(f.a.tick());assert(playerCombat.value=='Skywing'and hudName.value=='Skywing'and f.playerText.value=='Player')
+ assert(f.combatText.value=='Willowmist')
+end)
+
+test('turn list labels track actor order, selected variants and recycled rows without renaming enemies',function()
+ local f=fixture();local function array(rows)return{ForEach=function(_,fn)for i,v in ipairs(rows)do fn(i,{get=function()return v end})end end}end
+ local enemy=f.object({class='/Script/SwtAdventure.SwtAdventureCharacter',CharacterType=21})
+ local order={f.combat,enemy};local director=f.object({TurnOrder=array(order)})
+ f.s.combat=true;f.s.gameState=f.object({Director=director})
+ local rows={f.object({mcGuiTextNormal=f.text('Hareblaze'),mcGuiTextSelected=f.text('Hareblaze')}),f.object({mcGuiTextNormal=f.text('Fox 1'),mcGuiTextSelected=f.text('Fox 1')})}
+ f.all.GuiHudCombatTurnsList={f.object({Items=array(rows)})}
+ assert(f.a.tick());assert(rows[1].mcGuiTextNormal.value=='Willowmist'and rows[1].mcGuiTextSelected.value=='Willowmist'and rows[2].mcGuiTextNormal.value=='Fox 1')
+ order[1],order[2]=enemy,f.combat
+ rows[1].mcGuiTextNormal.value='Fox 1';rows[1].mcGuiTextSelected.value='Fox 1'
+ rows[2].mcGuiTextNormal.value='Hareblaze';rows[2].mcGuiTextSelected.value='Hareblaze'
+ assert(f.a.tick());assert(rows[1].mcGuiTextNormal.value=='Fox 1'and rows[2].mcGuiTextNormal.value=='Willowmist')
+ assert(f.a.shutdown());assert(rows[2].mcGuiTextNormal.value=='Hareblaze')
+end)
+
+test('reused slots cannot restore captions from an earlier character generation',function()
+ local f=fixture();local generation='first';f.ctx.characterKey=function()return generation end
+ assert(f.a.tick());generation='second';f.ctx.getCats=function()return{}end
+ assert(f.a.tick());assert(f.name.value=='Willowmist'and f.a.status().count==0)
+end)
+print(n..' native cat label tests passed.')

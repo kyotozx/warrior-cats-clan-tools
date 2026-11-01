@@ -9,9 +9,17 @@ local function fixture()
   closeAppearanceEditor=function()return true end,defer=function(fn)f.queue[#f.queue+1]=fn end,
   catNames={prepare=function(s,c,value)return{name=value}end,commit=function(r)f.commits=f.commits+1;f.savedName=r.name end,generate=function()return'Sunleaf'end}}
  f.mod=M.new(f.ctx)
- function f:open()assert(self.mod:begin(77));assert(self.callbacks.ready(4096));assert(self.callbacks.initializeScreen(8192))end
+ function f:open()assert(self.mod:begin(self.cat.role));assert(self.callbacks.ready(4096));assert(self.callbacks.initializeScreen(8192))end
  function f:close()self.callbacks.closed();for _=1,2 do local q=self.queue;self.queue={};for _,fn in ipairs(q)do fn()end end end
  return f
+end
+do
+ local f=fixture();f.cat.role=0;f.cat.player=true;f:open()
+ assert(f.mod:setName('Player Custom Name'));assert(f.callbacks.apply())
+ assert(f.commits==1 and f.savedName=='Player Custom Name');f:close()
+ local canceled=fixture();canceled.cat.role=0;canceled.cat.player=true;canceled:open()
+ assert(canceled.mod:setName('Not saved'));assert(canceled.callbacks.cancel());canceled:close();assert(canceled.commits==0)
+ print('PASS player names use the same Apply and Cancel transaction as clanmate names')
 end
 do
  local f=fixture();f:open();assert(f.mod:setName('Free Name'));assert(f.callbacks.getName()=='Free Name')

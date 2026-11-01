@@ -1,4 +1,6 @@
-Status for rc11, October 26, 2026.
+Status for rc12, November 1, 2026.
+
+- Custom names in battle: fixed in rc12. Starting combat temporarily changes who controls the player cat, which stopped the name overlay. Renamed clanmates now keep their display names in combat character panels and the turn list. Player display names are also supported. Save selection, bonds lists and authored dialogue text still use the game's original names.
 
 - Downloaded theme DLL: fixed in rc11. Windows could block `ThemeAssets.dll` with error `0x80131515` on startup. The loader now removes the download marker from its bundled theme helper automatically, without changing system execution policies.
 

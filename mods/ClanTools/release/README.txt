@@ -61,7 +61,12 @@ Game saves and the shared skin library are preserved.
   Tab / Y (Triangle) switches between editor controls and the bottom actions.
   R / X (Square) randomizes; Apply saves, Cancel discards the preview.
   Aliases appear on supported NPC labels, dialogue headings, combat character
-  labels and pause party slots. Some native lists and authored text retain names.
+  labels, turn order and pause party slots.
+- Your cat's name: Appearance > Your cat / Skins > Edit your cat > More > Rename.
+  Choose a free name or Generate name, then Apply. Cancel discards the change.
+  The alias appears in Clan Tools, the exploration HUD, pause panels, supported
+  dialogue headings and combat. Names stay with each character, not shared skins.
+  Save selection, bonds lists and authored dialogue text keep native names.
 - Item feedback: actual consumption, remaining count, resource change and sound.
 - Offline admin: flight, noclip, speed, heal, invulnerability, item/enemy spawns,
   owned-spawn cleanup, XP, profile-wide individual move unlocks, attributes,

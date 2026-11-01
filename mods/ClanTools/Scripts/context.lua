@@ -14,7 +14,7 @@ local characterSlot=dofile(dir..'save_identity.lua').new({valid=M.valid,verify=f
  if not identityTransport then identityTransport=dofile(dir..'appearance.lua').nativeTransport(M.root..'bin/')end
  return identityTransport('CONTEXT_LAYOUT')
 end})
-local function snapshot()
+local function snapshot(namesOnly)
  -- Only the engine singleton is cached. Follow its live viewport/world on
  -- every call so a still-valid actor from a departing world is never reused.
  if not M.valid(engine)then engine=FindFirstOf('GameEngine')end
@@ -34,9 +34,18 @@ local function snapshot()
  local slot=characterSlot(instance);if slot==nil then return nil end
  if not M.valid(questLibrary)then questLibrary=StaticFindObject('/Script/SwtQuest.Default__BFLSwtQuest')end
  local chapter={};questLibrary:GetChapter(gs,chapter)
- local pc=p.Controller;if not M.valid(pc)then return nil end
+ local controlled=p
+ -- Combat temporarily gives the exploration cat to an AI controller. Only
+ -- display-name reads may follow the possessed combat director instead.
+ if namesOnly and M.valid(gs.Director)then
+  local director=gs.Director
+  local combatWorld=director:GetWorld()
+  if not M.valid(combatWorld)or combatWorld:GetAddress()~=w:GetAddress()or not M.valid(director.MainPlayerCharacter)or director.MainPlayerCharacter:GetAddress()~=p:GetAddress()then return nil end
+  controlled=director
+ end
+ local pc=controlled.Controller;if not M.valid(pc)then return nil end
  if not M.valid(controllerClass)then controllerClass=StaticFindObject('/Script/Wrc.WrcGameplayPlayerController')end
- if not M.valid(controllerClass)or not pc:IsA(controllerClass)or not M.valid(pc.Pawn)or pc.Pawn:GetAddress()~=p:GetAddress()then return nil end
+ if not M.valid(controllerClass)or not pc:IsA(controllerClass)or not M.valid(pc.Pawn)or pc.Pawn:GetAddress()~=controlled:GetAddress()then return nil end
  if not M.valid(systemLibrary)then systemLibrary=StaticFindObject('/Script/Engine.Default__KismetSystemLibrary')end
  local standalone=systemLibrary:IsStandalone(gs)
  return {gs=gs:GetAddress(),gameState=gs,pawn=p,world=w,worldId=w:GetFullName(),phase=gs.CurrentPhase,
@@ -44,6 +53,7 @@ local function snapshot()
   clan=p.MeshCustomizationComponent.CustomData.ClanType,pc=pc}
 end
 function M.snapshot()local ok,s=pcall(snapshot);if ok then return s end;return nil end
+function M.namesSnapshot()local ok,s=pcall(snapshot,true);if ok then return s end;return nil end
 M.characterKey=dofile(dir..'character_identity.lua').new(function()
  if M.native then return M.native('GENERATION')end
  if not identityTransport then identityTransport=dofile(dir..'appearance.lua').nativeTransport(M.root..'bin/')end
@@ -98,11 +108,13 @@ end
 function M.playerName()
  local s=M.snapshot();if not s then return 'Clan Tools'end
  local d=savedProfile(s);d=d and d.GameplayProgression and d.GameplayProgression['Gameplay.Combat.Character.Cat.Player']
- return d and name(d.Customization,nil,'Your cat')or'Your cat'
+ local original=d and name(d.Customization,nil,'Your cat')or'Your cat'
+ return M.catNames and M.catNames.get(s,0,original)or original
 end
 local metadataTransport
 function M.validateCat(cat,s)
  s=s or M.snapshot()
+ if s and s.offline and type(cat)=='table'and cat.role==0 and cat.player==true and cat.clan==s.clan and M.valid(s.pawn)then return true end
  if not s or not s.offline or type(cat)~='table'or type(cat.role)~='number'or cat.role%1~=0 or cat.role<=0 or cat.role>=255 then return false,'Load an offline clan and choose a named clanmate.'end
  if not metadataTransport then metadataTransport=M.native or dofile(dir..'appearance.lua').nativeTransport(M.root..'bin/')end
  local result,why=metadataTransport('META '..cat.role)

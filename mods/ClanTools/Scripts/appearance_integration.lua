@@ -51,7 +51,8 @@ function M.new(ctx)
  adapters.promptAppearanceName=function(value,accept)
   local h=editor:state();assert(h and not h.closed and ctx.textPrompt,'Name editor unavailable.')
   local pause=findPause();assert(pause,'Native menu unavailable.')
-  return ctx.textPrompt.open({title='Clanmate name',value=value,maxLength=40,pause=pause,owner=h.widget,
+  local target=controller:state().target
+  return ctx.textPrompt.open({title=target and target.player and 'Your cat\'s name'or'Clanmate name',value=value,maxLength=40,pause=pause,owner=h.widget,
    validate=dofile(folder..'cat_names.lua').validate,accept=accept})
  end
  adapters.attachAppearanceControls=function(widget,cat,callbacks)return controls:attach(widget,cat,callbacks)end

@@ -48,6 +48,17 @@ standalone=false;assert(M.snapshot().offline==false);standalone=true
 gs.Director=object();assert(M.snapshot().combat);gs.Director=nil
 pc.Pawn=object();assert(M.snapshot()==nil);pc.Pawn=pawn
 pc.kind='foreign';assert(M.snapshot()==nil);pc.kind='controller'
+local director=object({MainPlayerCharacter=pawn,Controller=pc})
+function director:GetWorld()return world end
+gs.Director=director;pc.Pawn=director;pawn.Controller=object({kind='ai',Pawn=pawn})
+assert(M.snapshot()==nil,'Gameplay mutation context must stay unavailable during combat possession')
+local names=assert(M.namesSnapshot());assert(names.pawn==pawn and names.pc==pc and names.combat)
+director.MainPlayerCharacter=object();assert(M.namesSnapshot()==nil)
+director.MainPlayerCharacter=pawn;pc.Pawn=pawn;assert(M.namesSnapshot()==nil)
+pc.Pawn=director;standalone=false;assert(M.namesSnapshot().offline==false);standalone=true
+function director:GetWorld()return object()end;assert(M.namesSnapshot()==nil)
+gs.Director=nil;pawn.Controller=pc;pc.Pawn=pawn;assert(M.namesSnapshot())
+print('PASS combat labels follow the possessed director without enabling gameplay edits or accepting foreign owners')
 viewport.World=object({GameState=object({kind='menu'})});assert(M.snapshot()==nil)
 viewport.World=world;assert(M.snapshot())
 local other,otherPawn,otherPC=scene('second');viewport.World=other

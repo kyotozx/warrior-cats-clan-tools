@@ -25,7 +25,7 @@ function M.new(ctx)
   local raw=ctx.read(path(id));local data=raw and ctx.json.decode(raw)or{version=1,names={}}
   assert(type(data)=='table'and data.version==1 and type(data.names)=='table','Invalid saved cat names.')
   for role,value in pairs(data.names)do
-   assert(type(role)=='string'and role:match('^%d+$')and tonumber(role)>0 and tonumber(role)<255 and M.validate(value)==value,'Invalid saved cat name.')
+   assert(type(role)=='string'and role:match('^%d+$')and tonumber(role)>=0 and tonumber(role)<255 and M.validate(value)==value,'Invalid saved cat name.')
   end
   cache[id]=data;return data,id
  end
@@ -37,15 +37,15 @@ function M.new(ctx)
  end
  function api.prepare(s,cat,value)
   local clean,why=M.validate(value);assert(clean,why)
-  assert(cat and cat.living==true and cat.clan==s.clan and type(cat.role)=='number'and cat.role%1==0 and cat.role>0 and cat.role<255,'Choose a living clanmate.')
+  assert(cat and cat.living==true and cat.clan==s.clan and type(cat.role)=='number'and cat.role%1==0 and cat.role>=0 and cat.role<255 and (cat.role~=0 or cat.player==true),'Choose a living clanmate or your own cat.')
   if ctx.validateCat then local good,reason=ctx.validateCat(cat,s);assert(good,reason)end
   local data,id=load(s);local before=data.names[tostring(cat.role)]
-  return{profile=s.profile,slot=s.slot,clan=s.clan,id=id,role=cat.role,name=clean,before=before,committed=false}
+  return{profile=s.profile,slot=s.slot,clan=s.clan,id=id,role=cat.role,player=cat.player==true,name=clean,before=before,committed=false}
  end
  function api.commit(receipt)
   local s=ctx.snapshot();assert(identity(s)==receipt.id and s.clan==receipt.clan,'The active profile changed.')
   assert(not receipt.committed,'Name was already saved.')
-  if ctx.validateCat then local good,why=ctx.validateCat({role=receipt.role,clan=s.clan,living=true},s);assert(good,why)end
+  if ctx.validateCat then local good,why=ctx.validateCat({role=receipt.role,player=receipt.player,clan=s.clan,living=true},s);assert(good,why)end
   local data,id=load(s);assert(data.names[tostring(receipt.role)]==receipt.before,'Name changed while editing.')
   local names={};for k,v in pairs(data.names)do names[k]=v end;names[tostring(receipt.role)]=assert(M.validate(receipt.name))
   local serialized=ctx.json.encode({version=1,names=names});local target=path(id)

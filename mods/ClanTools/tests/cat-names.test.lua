@@ -23,6 +23,16 @@ test('rename and backup fit the default Steam path including Scripts parent trav
  f.api=module.new(f.ctx);assert(f.api.commit(f.api.prepare(f.s,f.cat,'Moonlight')))
  assert(backups==1 and module.new(f.ctx).get(f.s,77,'Original')=='Moonlight')
 end)
+test('player names survive reload without colliding with clanmates or new characters',function()
+ local f=fixture();local player={role=0,player=true,clan=4,living=true,rank='Warrior'}
+ f.ctx.validateCat=function(cat)assert(cat.role~=0 or cat.player==true);return true end
+ assert(f.api.commit(f.api.prepare(f.s,player,'My Own Cat')))
+ assert(f.api.commit(f.api.prepare(f.s,f.cat,'Clanmate')))
+ f.api=module.new(f.ctx);assert(f.api.get(f.s,0,'Original')=='My Own Cat'and f.api.get(f.s,77,'Original')=='Clanmate')
+ f.s.generation=string.rep('b',64);assert(f.api.get(f.s,0,'New player')=='New player')
+ player.player=false;assert(not pcall(f.api.prepare,f.s,player,'Invalid'))
+end)
+
 test('names remain scoped to profile and slot',function()
  local f=fixture();assert(f.api.commit(f.api.prepare(f.s,f.cat,'One')));f.s.slot=1;assert(f.api.get(f.s,77,'Original')=='Original')
  f.s.slot=0;f.s.profile='other';assert(f.api.get(f.s,77,'Original')=='Original')
