@@ -9,8 +9,9 @@ move/zoom sensitivity and the follow-camera flag), five ECommands were inserted
 and the native menu map gained right-click back. Loader theme offsets were
 regenerated; texture and font contents are unchanged.
 80 Lua suites, five PowerShell suites and eight native harnesses passed. All 14
-native bridges built and passed their section audit. Live gameplay on 1.2 has
-NOT been validated yet.
+native bridges built and passed their section audit. The mods loaded at the
+main menu on 1.2 without errors. Released as rc13 for community testing before
+in-campaign validation.
 
 RC8 SAVE IDENTITY CORRECTION - 2026-10-27
 The selected character is read from GameConfig, not FlowManager. The old reader

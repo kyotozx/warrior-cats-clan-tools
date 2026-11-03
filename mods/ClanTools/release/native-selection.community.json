@@ -1,123 +1,121 @@
 {
-  "finalized": false,
+  "finalized": true,
   "preparedUtc": "2026-11-03T22:28:53.3184275Z",
-  "blockers": [
-    "Patch 1.2 (build 26337109) live gameplay validation pending."
-  ],
+  "blockers": [],
   "files": [
     {
       "destination": "clanparty.dll",
       "source": "clanparty.dll",
       "sha256": "C6BA002144B0496701237D5FD86FC9B11AF335F33FC50969CF78F64C7C493CF8",
-      "acceptance": "Patch 1.2 fresh local build and executable-section audit passed. Live gameplay validation pending; see VALIDATION.txt."
+      "acceptance": "Patch 1.2 fresh build and executable-section audit passed; static guard and vtable checks passed. Released for community testing before in-campaign validation; see VALIDATION.txt."
     },
     {
       "destination": "clanappearance.dll",
       "source": "clanappearance-skins-v8.dll",
       "sha256": "B6C86B782711799960FB3E61AB9EAC8FB1F5B3C7EAE412C25C1C0E066305E518",
-      "acceptance": "Patch 1.2 fresh local build and executable-section audit passed. Live gameplay validation pending; see VALIDATION.txt."
+      "acceptance": "Patch 1.2 fresh build and executable-section audit passed; static guard and vtable checks passed. Released for community testing before in-campaign validation; see VALIDATION.txt."
     },
     {
       "destination": "clanappearance-skins-v8.dll",
       "source": "clanappearance-skins-v8.dll",
       "sha256": "B6C86B782711799960FB3E61AB9EAC8FB1F5B3C7EAE412C25C1C0E066305E518",
-      "acceptance": "Patch 1.2 fresh local build and executable-section audit passed. Live gameplay validation pending; see VALIDATION.txt."
+      "acceptance": "Patch 1.2 fresh build and executable-section audit passed; static guard and vtable checks passed. Released for community testing before in-campaign validation; see VALIDATION.txt."
     },
     {
       "destination": "item-feedback.dll",
       "source": "item-feedback-v5.dll",
       "sha256": "CCBCDD160CDFEE378BE36094A63CC6A816EE96214B743C72213A218448D4652F",
-      "acceptance": "Patch 1.2 fresh local build and executable-section audit passed. Live gameplay validation pending; see VALIDATION.txt."
+      "acceptance": "Patch 1.2 fresh build and executable-section audit passed; static guard and vtable checks passed. Released for community testing before in-campaign validation; see VALIDATION.txt."
     },
     {
       "destination": "crafting-v4.dll",
       "source": "crafting-v4.dll",
       "sha256": "29F6689F0E5497FD0EF9DD0A85AB0A49D1CD8AA2AF3CD258BC6D17C271412FAB",
-      "acceptance": "Patch 1.2 fresh local build and executable-section audit passed. Live gameplay validation pending; see VALIDATION.txt."
+      "acceptance": "Patch 1.2 fresh build and executable-section audit passed; static guard and vtable checks passed. Released for community testing before in-campaign validation; see VALIDATION.txt."
     },
     {
       "destination": "admin-heal.dll",
       "source": "admin-heal.dll",
       "sha256": "224D1C34425C18693E31E5D050334EEB12CD61A4603C19982071483B24D28D26",
-      "acceptance": "Patch 1.2 fresh local build and executable-section audit passed. Live gameplay validation pending; see VALIDATION.txt."
+      "acceptance": "Patch 1.2 fresh build and executable-section audit passed; static guard and vtable checks passed. Released for community testing before in-campaign validation; see VALIDATION.txt."
     },
     {
       "destination": "admin-progression.dll",
       "source": "admin-progression-v2.dll",
       "sha256": "CDAD58DE911AF7F483FF1FA7B077EBAB84DC1BED9E1EA214714B288ADF6B9F96",
-      "acceptance": "Patch 1.2 fresh local build and executable-section audit passed. Live gameplay validation pending; see VALIDATION.txt."
+      "acceptance": "Patch 1.2 fresh build and executable-section audit passed; static guard and vtable checks passed. Released for community testing before in-campaign validation; see VALIDATION.txt."
     },
     {
       "destination": "admin-quests.dll",
       "source": "admin-quests-v5.dll",
       "sha256": "3D71B9383C6A9715EA1B99E3CC880B05E75DEC20037351B848E97EAD69EC4F0E",
-      "acceptance": "Patch 1.2 fresh local build and executable-section audit passed. Live gameplay validation pending; see VALIDATION.txt."
+      "acceptance": "Patch 1.2 fresh build and executable-section audit passed; static guard and vtable checks passed. Released for community testing before in-campaign validation; see VALIDATION.txt."
     },
     {
       "destination": "follower-appearance.dll",
       "source": "follower-appearance-v4.dll",
       "sha256": "0781CA63537A457BC50851B436777022F17BC22C198C72685D1DD489E6559C75",
-      "acceptance": "Patch 1.2 fresh local build and executable-section audit passed. Live gameplay validation pending; see VALIDATION.txt."
+      "acceptance": "Patch 1.2 fresh build and executable-section audit passed; static guard and vtable checks passed. Released for community testing before in-campaign validation; see VALIDATION.txt."
     },
     {
       "destination": "follower-appearance-v4.dll",
       "source": "follower-appearance-v4.dll",
       "sha256": "0781CA63537A457BC50851B436777022F17BC22C198C72685D1DD489E6559C75",
-      "acceptance": "Patch 1.2 fresh local build and executable-section audit passed. Live gameplay validation pending; see VALIDATION.txt."
+      "acceptance": "Patch 1.2 fresh build and executable-section audit passed; static guard and vtable checks passed. Released for community testing before in-campaign validation; see VALIDATION.txt."
     },
     {
       "destination": "settings-bridge-v2.dll",
       "source": "settings-bridge-v2.dll",
       "sha256": "DC7915172EAEDEABAF67D855B9A73E865055B5C925A58456A5AF44EFA65DB261",
-      "acceptance": "Patch 1.2 fresh local build and executable-section audit passed. Live gameplay validation pending; see VALIDATION.txt."
+      "acceptance": "Patch 1.2 fresh build and executable-section audit passed; static guard and vtable checks passed. Released for community testing before in-campaign validation; see VALIDATION.txt."
     },
     {
       "destination": "settings-remap-v3.dll",
       "source": "settings-remap-v3.dll",
       "sha256": "0064880079D8770DBD5A1E27BE9DE7702D7EC833C31712FF554275A06F535867",
-      "acceptance": "Patch 1.2 fresh local build and executable-section audit passed. Live gameplay validation pending; see VALIDATION.txt."
+      "acceptance": "Patch 1.2 fresh build and executable-section audit passed; static guard and vtable checks passed. Released for community testing before in-campaign validation; see VALIDATION.txt."
     },
     {
       "destination": "admin-quests-v5.dll",
       "source": "admin-quests-v5.dll",
       "sha256": "3D71B9383C6A9715EA1B99E3CC880B05E75DEC20037351B848E97EAD69EC4F0E",
-      "acceptance": "Patch 1.2 fresh local build and executable-section audit passed. Live gameplay validation pending; see VALIDATION.txt."
+      "acceptance": "Patch 1.2 fresh build and executable-section audit passed; static guard and vtable checks passed. Released for community testing before in-campaign validation; see VALIDATION.txt."
     },
     {
       "destination": "item-feedback-v5.dll",
       "source": "item-feedback-v5.dll",
       "sha256": "CCBCDD160CDFEE378BE36094A63CC6A816EE96214B743C72213A218448D4652F",
-      "acceptance": "Patch 1.2 fresh local build and executable-section audit passed. Live gameplay validation pending; see VALIDATION.txt."
+      "acceptance": "Patch 1.2 fresh build and executable-section audit passed; static guard and vtable checks passed. Released for community testing before in-campaign validation; see VALIDATION.txt."
     },
     {
       "destination": "enemy-cleanup.dll",
       "source": "enemy-cleanup.dll",
       "sha256": "1B6519AD007AA520DCB29BC6260329ECBF239094EDC692DFA3D043B573553949",
-      "acceptance": "Patch 1.2 fresh local build and executable-section audit passed. Live gameplay validation pending; see VALIDATION.txt."
+      "acceptance": "Patch 1.2 fresh build and executable-section audit passed; static guard and vtable checks passed. Released for community testing before in-campaign validation; see VALIDATION.txt."
     },
     {
       "destination": "admin-progression-v2.dll",
       "source": "admin-progression-v2.dll",
       "sha256": "CDAD58DE911AF7F483FF1FA7B077EBAB84DC1BED9E1EA214714B288ADF6B9F96",
-      "acceptance": "Patch 1.2 fresh local build and executable-section audit passed. Live gameplay validation pending; see VALIDATION.txt."
+      "acceptance": "Patch 1.2 fresh build and executable-section audit passed; static guard and vtable checks passed. Released for community testing before in-campaign validation; see VALIDATION.txt."
     },
     {
       "destination": "admin-sandbox.dll",
       "source": "admin-sandbox.dll",
       "sha256": "1B023DDF64833FB5C1264A0FB7F91EA3FD1E291717008D4ADDE5903DA76B0B25",
-      "acceptance": "Patch 1.2 fresh local build and executable-section audit passed. Live gameplay validation pending; see VALIDATION.txt."
+      "acceptance": "Patch 1.2 fresh build and executable-section audit passed; static guard and vtable checks passed. Released for community testing before in-campaign validation; see VALIDATION.txt."
     },
     {
       "destination": "admin-inventory.dll",
       "source": "admin-inventory.dll",
       "sha256": "638370ADED2B7FD2E13E746DF124DBB942074306ED02964CF0F16AB0DA0155E1",
-      "acceptance": "Patch 1.2 fresh local build and executable-section audit passed. Live gameplay validation pending; see VALIDATION.txt."
+      "acceptance": "Patch 1.2 fresh build and executable-section audit passed; static guard and vtable checks passed. Released for community testing before in-campaign validation; see VALIDATION.txt."
     },
     {
       "destination": "workshop.dll",
       "source": "workshop.dll",
       "sha256": "F8F3489ED35DE21C039C3477E7EE6E7A40650ECD579B80E28E6D016AFBCB78D4",
-      "acceptance": "Patch 1.2 fresh local build and executable-section audit passed. Live gameplay validation pending; see VALIDATION.txt."
+      "acceptance": "Patch 1.2 fresh build and executable-section audit passed; static guard and vtable checks passed. Released for community testing before in-campaign validation; see VALIDATION.txt."
     }
   ]
 }
