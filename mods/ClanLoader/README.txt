@@ -2,7 +2,7 @@ CLAN LOADER + CLAN TOOLS
 See bundle-manifest.json and ClanTools/manifest.json for the bundled versions.
 
 Unofficial community mod suite for Warrior Cats: Clans of the Forest.
-Windows x64, Steam app 3960600, game build 26184573 only.
+Windows x64, Steam app 3960600, game build 26337109 only.
 Local release candidate, prepared for community testing. Not published to Steam
 Workshop and not an official Workshop subscription manager.
 

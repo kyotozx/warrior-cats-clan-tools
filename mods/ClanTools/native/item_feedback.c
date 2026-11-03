@@ -1,4 +1,4 @@
-/* Observation-only inventory callback for inspected Steam build 26184573.
+/* Observation-only inventory callback for inspected Steam build 26337109.
  * Replaces the inventory-use entry plus queue/resolve entries in both verified
  * combat component vtables. Every wrapper calls its original exactly once.
  * Records actual count/resource deltas. Never edits gameplay/save values.
@@ -104,23 +104,23 @@ static int build_supported(void){
  if(!readable(base,sizeof(IMAGE_DOS_HEADER),base,0))return 0;
  IMAGE_DOS_HEADER *dos=(IMAGE_DOS_HEADER*)base;if(dos->e_magic!=IMAGE_DOS_SIGNATURE||dos->e_lfanew<64||dos->e_lfanew>0x100000)return 0;
  IMAGE_NT_HEADERS64 *nt=(IMAGE_NT_HEADERS64*)(base+dos->e_lfanew);
- if(!readable(nt,sizeof(*nt),base,0)||nt->Signature!=IMAGE_NT_SIGNATURE||nt->FileHeader.Machine!=IMAGE_FILE_MACHINE_AMD64||nt->OptionalHeader.Magic!=IMAGE_NT_OPTIONAL_HDR64_MAGIC||nt->OptionalHeader.SizeOfImage!=187576320u||nt->FileHeader.TimeDateStamp!=3539680621u)return 0;
+ if(!readable(nt,sizeof(*nt),base,0)||nt->Signature!=IMAGE_NT_SIGNATURE||nt->FileHeader.Machine!=IMAGE_FILE_MACHINE_AMD64||nt->OptionalHeader.Magic!=IMAGE_NT_OPTIONAL_HDR64_MAGIC||nt->OptionalHeader.SizeOfImage!=187203584u||nt->FileHeader.TimeDateStamp!=2887140557u)return 0;
  /* Generated from inspected original bytes; update only after a fresh analysis. */
  static const unsigned char use_prefix[]={0x48,0x89,0x5c,0x24,0x18,0x48,0x89,0x74,0x24,0x20,0x48,0x89,0x54,0x24,0x10};
- if(!readable(base+0x17c4560,sizeof(use_prefix),base,1)||memcmp(base+0x17c4560,use_prefix,sizeof(use_prefix)))return 0;
- if(!readable(base+0x9c4b220+0x4f8,sizeof(void*),base,0))return 0;
+ if(!readable(base+0x17c2db0,sizeof(use_prefix),base,1)||memcmp(base+0x17c2db0,use_prefix,sizeof(use_prefix)))return 0;
+ if(!readable(base+0x9bfca10+0x4f8,sizeof(void*),base,0))return 0;
  static const unsigned char queue_prefix[]={0x48,0x89,0x5c,0x24,0x08,0x48,0x89,0x74,0x24,0x10};
  static const unsigned char resolve_prefix[]={0x4c,0x8b,0xdc,0x55,0x49,0x8d,0x6b,0xe8};
- if(!readable(base+0x17d9ef0,sizeof(queue_prefix),base,1)||memcmp(base+0x17d9ef0,queue_prefix,sizeof(queue_prefix))||!readable(base+0x17dd850,sizeof(resolve_prefix),base,1)||memcmp(base+0x17dd850,resolve_prefix,sizeof(resolve_prefix)))return 0;
- const uintptr_t vt[2]={0x9b8e990,0x9c61af8};
+ if(!readable(base+0x17d8740,sizeof(queue_prefix),base,1)||memcmp(base+0x17d8740,queue_prefix,sizeof(queue_prefix))||!readable(base+0x17dc0a0,sizeof(resolve_prefix),base,1)||memcmp(base+0x17dc0a0,resolve_prefix,sizeof(resolve_prefix)))return 0;
+ const uintptr_t vt[2]={0x9b40150,0x9c139f0};
  for(int i=0;i<2;i++){if(!readable(base+vt[i]+0x4f8,0x58,base,0))return 0;combat_slots[i*2]=(void**)(base+vt[i]+0x4f8);combat_slots[i*2+1]=(void**)(base+vt[i]+0x548);}
- original_queue=(QueueItem)(base+0x17d9ef0);original_resolve=(ResolveItem)(base+0x17dd850);
- patch_slot=(void**)(base+0x9c4b220+0x4f8);original=(UseItem)(base+0x17c4560);return 1;
+ original_queue=(QueueItem)(base+0x17d8740);original_resolve=(ResolveItem)(base+0x17dc0a0);
+ patch_slot=(void**)(base+0x9bfca10+0x4f8);original=(UseItem)(base+0x17c2db0);return 1;
 }
 static int watched_component(uintptr_t component,int32_t *id){
  if(!installed||inside||GetCurrentThreadId()!=game_thread||!same_object(inventory,0x390,inventory_id)||!object(component,0x378,id))return -1;
  uintptr_t vt=*(uintptr_t*)component;
- if(vt!=(uintptr_t)(base+0x9b8e990)&&vt!=(uintptr_t)(base+0x9c61af8)
+ if(vt!=(uintptr_t)(base+0x9b40150)&&vt!=(uintptr_t)(base+0x9c139f0)
 #ifdef ITEM_FEEDBACK_TEST
  &&vt!=(uintptr_t)base
 #endif
@@ -218,7 +218,7 @@ __declspec(dllexport) int ItemFeedback_install(void *unused){
  watch_error="ERROR invalid watch syntax";
  if(!read_watch(&inv,&e,proposed,&n)){status(watch_error);return 0;}
  if(!object(inv,0x390,&id)){status("ERROR invalid inventory object");return 0;}
- if(*(uintptr_t*)inv!=(uintptr_t)(base+0x9c4b220)){status("ERROR inventory vtable mismatch");return 0;}
+ if(*(uintptr_t*)inv!=(uintptr_t)(base+0x9bfca10)){status("ERROR inventory vtable mismatch");return 0;}
  if(installed){if(*patch_slot!=(void*)observed_use||combat_mask!=15){status("ERROR hook replaced or incomplete installation");return 0;}for(int i=0;i<4;i++)if(*combat_slots[i]!=combat_hook(i)){status("ERROR combat hook replaced by another module");return 0;}}
  else{
   if(*patch_slot!=(void*)original){status("ERROR unexpected inventory vtable");return 0;}

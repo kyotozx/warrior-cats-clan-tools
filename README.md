@@ -44,7 +44,7 @@ Graphics presets, saved custom configurations, the frame limiter and FPS counter
 | Platform | Windows x64, Steam |
 | Game | Warrior Cats: Clans of the Forest |
 | Steam app | `3960600` |
-| Game build | `26184573` |
+| Game build | `26337109` |
 | Status | Release candidate |
 | Gameplay tools | Offline campaigns |
 
@@ -52,7 +52,7 @@ The installer checks the game executable before applying changes. Other builds a
 
 ## Install
 
-Use [Clan Loader rc12](https://github.com/kyotozx/warrior-cats-clan-tools/releases/tag/v0.3.0-rc12) for game patch 1.1. It includes combat name fixes and player renaming, along with the package import and downloaded theme DLL fixes.
+Game patch 1.2 (build 26337109) support is on `main`, pending a release package; rc12 and older do not support the 1.2 executable. Use [Clan Loader rc12](https://github.com/kyotozx/warrior-cats-clan-tools/releases/tag/v0.3.0-rc12) for game patch 1.1. It includes combat name fixes and player renaming, along with the package import and downloaded theme DLL fixes.
 
 1. Download the Clan Loader ZIP for your game build from [Releases](https://github.com/kyotozx/warrior-cats-clan-tools/releases). Use this package, rather than GitHub's automatically generated source archives.
 2. Save and close the game. Extract the entire ZIP to a writable folder.

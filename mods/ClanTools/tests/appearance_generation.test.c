@@ -16,7 +16,7 @@ static void field(JsonMap *map,JsonEntry *entry,wchar_t *key,JsonValue *value) {
     *(int32_t*)((char*)entry+0x20)=-1;
 }
 static JsonValue object_value(JsonMap *map) {
-    JsonValue out={{0}};out.words[0]=(uintptr_t)(base+0x7ec2390);
+    JsonValue out={{0}};out.words[0]=(uintptr_t)(base+0x7e7f090);
     *(int32_t*)((char*)&out+8)=6;out.words[2]=(uintptr_t)map;return out;
 }
 int main(void) {
@@ -26,7 +26,7 @@ int main(void) {
     wchar_t hash_b[]=L"abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789";
     JsonMap root,profile_map,slot_map,meta_map;JsonEntry entries[4];
     JsonValue values[4]={object_value(&profile_map),object_value(&slot_map),object_value(&meta_map),{{0}}};
-    values[3].words[0]=(uintptr_t)(base+0x98dc480);*(int32_t*)((char*)&values[3]+8)=2;
+    values[3].words[0]=(uintptr_t)(base+0x988dfc8);*(int32_t*)((char*)&values[3]+8)=2;
     *(Str*)((char*)&values[3]+0x10)=literal(hash_a);
     field(&root,&entries[0],profile,&values[0]);field(&profile_map,&entries[1],slot_name,&values[1]);
     field(&slot_map,&entries[2],meta_name,&values[2]);field(&meta_map,&entries[3],hash_name,&values[3]);
@@ -46,7 +46,7 @@ int main(void) {
     *(Str*)((char*)&values[3]+0x10)=literal(hash_b);
     assert(generation_read_hash(&root,profile,0,b)&&strcmp(a,b));
     values[3].words[0]=(uintptr_t)(base+0x7ec2530);assert(!generation_read_hash(&root,profile,0,b));
-    values[3].words[0]=(uintptr_t)(base+0x98dc480);
+    values[3].words[0]=(uintptr_t)(base+0x988dfc8);
     *(int32_t*)((char*)&values[3]+8)=6;assert(!generation_read_hash(&root,profile,0,b));
     *(int32_t*)((char*)&values[3]+8)=2;hash_b[0]=L'Z';assert(!generation_read_hash(&root,profile,0,b));hash_b[0]=L'a';
     ((Str*)((char*)&values[3]+0x10))->count=64;assert(!generation_read_hash(&root,profile,0,b));

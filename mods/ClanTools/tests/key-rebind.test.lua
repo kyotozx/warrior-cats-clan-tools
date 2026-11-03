@@ -5,10 +5,10 @@ local base={
  {device='keyboard',command=60,kind=1,original='W',key='W',scale_bits=1065353216},
  {device='keyboard',command=60,kind=1,original='S',key='S',scale_bits=3212836864},
  {device='keyboard',command=67,kind=0,original='E',key='E',scale_bits=1065353216},
- {device='keyboard',command=91,kind=0,original='Enter',key='Enter',scale_bits=1065353216},
+ {device='keyboard',command=93,kind=0,original='Enter',key='Enter',scale_bits=1065353216},
  {device='gamepad',command=60,kind=1,original='Gamepad_LeftY',key='Gamepad_LeftY',scale_bits=1065353216},
- {device='gamepad',command=72,kind=0,original='Gamepad_LeftShoulder',key='Gamepad_LeftShoulder',scale_bits=1065353216},
- {device='gamepad',command=91,kind=0,original='Gamepad_Special_Right',key='Gamepad_Special_Right',scale_bits=1065353216},
+ {device='gamepad',command=73,kind=0,original='Gamepad_LeftShoulder',key='Gamepad_LeftShoulder',scale_bits=1065353216},
+ {device='gamepad',command=93,kind=0,original='Gamepad_Special_Right',key='Gamepad_Special_Right',scale_bits=1065353216},
 }
 local function id(r)return table.concat({r.device,r.command,r.kind,r.original,r.scale_bits},':')end
 local current={input=1,pc=2,world='world1',profile='profile1',object_index='Input1'};local active={};local persisted;local saveFail=false;local removeFail=false;local applyFail=false;local removed=0
@@ -48,12 +48,17 @@ print('PASS native menu Confirm binding persists and reloads; controller Start r
 persisted={version=1,profiles={profile1={{device='keyboard',command=65,kind=0,original='E',key='F',scale_bits=1065353216}}}}
 local migrated=Module.new(ctx);assert(migrated.tick(current));assert(active[1].command==67 and active[1].key=='F')
 assert(persisted.version==1,'Loading must not rewrite personal settings')
-assert(migrated.rebind(migrated.bindings()[3].id,'G'));assert(persisted.version==2 and persisted.profiles.profile1[1].command==67)
+assert(migrated.rebind(migrated.bindings()[3].id,'G'));assert(persisted.version==3 and persisted.profiles.profile1[1].command==67)
 assert(migrated.shutdown());local again=Module.new(ctx);assert(again.tick(current));assert(active[1].command==67,'Do not migrate twice');assert(again.shutdown())
 local commands=dofile(directory..'../Scripts/input_commands.lua')
-assert(commands[66]=='Player_Customization_Yaw' and commands[91]=='Player_Pause' and commands[109]=='Map_Axis_Zoom')
+assert(commands[66]=='Player_Customization_Yaw' and commands[93]=='Player_Pause' and commands[111]=='Map_Axis_Zoom')
+assert(commands[68]=='Player_Mouse_Interact' and commands[75]=='Player_Mouse_Crouch' and commands[114]=='Map_Axis_Mouse_Zoom')
 print('PASS patch 1.1 command migration preserves old controls and protects the new pause command')
-persisted={version=2,profiles={profile1={clone(base[1]),clone(base[3])}}}
+persisted={version=2,profiles={profile1={{device='keyboard',command=91,kind=0,original='Enter',key='F',scale_bits=1065353216},{device='gamepad',command=72,kind=0,original='Gamepad_LeftShoulder',key='Gamepad_RightShoulder',scale_bits=1065353216}}}}
+local patch12=Module.new(ctx);assert(patch12.tick(current));assert(#active==2 and active[1].command==93 and active[2].command==73)
+assert(persisted.version==2,'Loading must not rewrite personal settings');assert(patch12.shutdown())
+print('PASS patch 1.2 command migration follows the inserted mouse commands')
+persisted={version=3,profiles={profile1={clone(base[1]),clone(base[3])}}}
 persisted.profiles.profile1[1].key='Up';persisted.profiles.profile1[2].key='F7'
 local reserved=Module.new(ctx);assert(reserved.tick(current));assert(#active==1 and active[1].key=='Up')
 assert(#persisted.profiles.profile1==2,'Loading must not rewrite personal settings')

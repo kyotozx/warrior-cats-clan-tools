@@ -1,121 +1,123 @@
 {
-  "finalized": true,
-  "preparedUtc": "2026-10-27T00:50:37.6578143Z",
-  "blockers": [],
+  "finalized": false,
+  "preparedUtc": "2026-11-03T22:28:53.3184275Z",
+  "blockers": [
+    "Patch 1.2 (build 26337109) live gameplay validation pending."
+  ],
   "files": [
     {
       "destination": "clanparty.dll",
       "source": "clanparty.dll",
-      "sha256": "71A159653C4561C56A80CD3D111A0F87C06F91FE30C9FB62E868F9FBC2DF11BC",
-      "acceptance": "Patch 1.1 source/binary audit passed. See VALIDATION.txt for live coverage and remaining limits."
+      "sha256": "C6BA002144B0496701237D5FD86FC9B11AF335F33FC50969CF78F64C7C493CF8",
+      "acceptance": "Patch 1.2 fresh local build and executable-section audit passed. Live gameplay validation pending; see VALIDATION.txt."
     },
     {
       "destination": "clanappearance.dll",
       "source": "clanappearance-skins-v8.dll",
-      "sha256": "BB960CC86E26721B3C5A7181A4C0CC1DD02B6BC1557FE9E3166B3DEF61FDB0E9",
-      "acceptance": "Patch 1.1 source/binary audit passed. See VALIDATION.txt for live coverage and remaining limits."
+      "sha256": "B6C86B782711799960FB3E61AB9EAC8FB1F5B3C7EAE412C25C1C0E066305E518",
+      "acceptance": "Patch 1.2 fresh local build and executable-section audit passed. Live gameplay validation pending; see VALIDATION.txt."
     },
     {
       "destination": "clanappearance-skins-v8.dll",
       "source": "clanappearance-skins-v8.dll",
-      "sha256": "BB960CC86E26721B3C5A7181A4C0CC1DD02B6BC1557FE9E3166B3DEF61FDB0E9",
-      "acceptance": "Patch 1.1 source/binary audit passed. See VALIDATION.txt for live coverage and remaining limits."
+      "sha256": "B6C86B782711799960FB3E61AB9EAC8FB1F5B3C7EAE412C25C1C0E066305E518",
+      "acceptance": "Patch 1.2 fresh local build and executable-section audit passed. Live gameplay validation pending; see VALIDATION.txt."
     },
     {
       "destination": "item-feedback.dll",
       "source": "item-feedback-v5.dll",
-      "sha256": "D05086819553566BB9041B9D0DD86B6D420D943CC91423A76F3D2118267DE528",
-      "acceptance": "Patch 1.1 source/binary audit passed. See VALIDATION.txt for live coverage and remaining limits."
+      "sha256": "CCBCDD160CDFEE378BE36094A63CC6A816EE96214B743C72213A218448D4652F",
+      "acceptance": "Patch 1.2 fresh local build and executable-section audit passed. Live gameplay validation pending; see VALIDATION.txt."
     },
     {
       "destination": "crafting-v4.dll",
       "source": "crafting-v4.dll",
-      "sha256": "83C7E9AD04336D958C01366E71C3AF555397A1C0970E76C2DC21EEC0DD6098A2",
-      "acceptance": "Patch 1.1 source/binary audit passed. See VALIDATION.txt for live coverage and remaining limits."
+      "sha256": "29F6689F0E5497FD0EF9DD0A85AB0A49D1CD8AA2AF3CD258BC6D17C271412FAB",
+      "acceptance": "Patch 1.2 fresh local build and executable-section audit passed. Live gameplay validation pending; see VALIDATION.txt."
     },
     {
       "destination": "admin-heal.dll",
       "source": "admin-heal.dll",
-      "sha256": "8C317C5CD383490334D351D40E8AA339DF97CB3938532FEC839C453913D69D13",
-      "acceptance": "Patch 1.1 source/binary audit passed. See VALIDATION.txt for live coverage and remaining limits."
+      "sha256": "224D1C34425C18693E31E5D050334EEB12CD61A4603C19982071483B24D28D26",
+      "acceptance": "Patch 1.2 fresh local build and executable-section audit passed. Live gameplay validation pending; see VALIDATION.txt."
     },
     {
       "destination": "admin-progression.dll",
       "source": "admin-progression-v2.dll",
-      "sha256": "4B05823751857E2D907500AE4064E77DE6100B6BCA3DD231CF9707043F0A2565",
-      "acceptance": "Patch 1.1 source/binary audit passed. See VALIDATION.txt for live coverage and remaining limits."
+      "sha256": "CDAD58DE911AF7F483FF1FA7B077EBAB84DC1BED9E1EA214714B288ADF6B9F96",
+      "acceptance": "Patch 1.2 fresh local build and executable-section audit passed. Live gameplay validation pending; see VALIDATION.txt."
     },
     {
       "destination": "admin-quests.dll",
       "source": "admin-quests-v5.dll",
-      "sha256": "5F1145F22DFF062C4D21007B48105DEED493AAA51E48FA8DCD24A914E12F999F",
-      "acceptance": "Patch 1.1 source/binary audit passed. See VALIDATION.txt for live coverage and remaining limits."
+      "sha256": "3D71B9383C6A9715EA1B99E3CC880B05E75DEC20037351B848E97EAD69EC4F0E",
+      "acceptance": "Patch 1.2 fresh local build and executable-section audit passed. Live gameplay validation pending; see VALIDATION.txt."
     },
     {
       "destination": "follower-appearance.dll",
       "source": "follower-appearance-v4.dll",
-      "sha256": "3A501A1F8A1F5ABAA45D82B470E4D8E9CAAE0C2235E9861B154AE66A1DE473AD",
-      "acceptance": "Patch 1.1 source/binary audit passed. See VALIDATION.txt for live coverage and remaining limits."
+      "sha256": "0781CA63537A457BC50851B436777022F17BC22C198C72685D1DD489E6559C75",
+      "acceptance": "Patch 1.2 fresh local build and executable-section audit passed. Live gameplay validation pending; see VALIDATION.txt."
     },
     {
       "destination": "follower-appearance-v4.dll",
       "source": "follower-appearance-v4.dll",
-      "sha256": "3A501A1F8A1F5ABAA45D82B470E4D8E9CAAE0C2235E9861B154AE66A1DE473AD",
-      "acceptance": "Patch 1.1 source/binary audit passed. See VALIDATION.txt for live coverage and remaining limits."
+      "sha256": "0781CA63537A457BC50851B436777022F17BC22C198C72685D1DD489E6559C75",
+      "acceptance": "Patch 1.2 fresh local build and executable-section audit passed. Live gameplay validation pending; see VALIDATION.txt."
     },
     {
       "destination": "settings-bridge-v2.dll",
       "source": "settings-bridge-v2.dll",
-      "sha256": "F4F33D4E0CC374DC0FEC01549D155AE17AF1E39263866F3946772ADC97278357",
-      "acceptance": "Patch 1.1 source/binary audit passed. See VALIDATION.txt for live coverage and remaining limits."
+      "sha256": "DC7915172EAEDEABAF67D855B9A73E865055B5C925A58456A5AF44EFA65DB261",
+      "acceptance": "Patch 1.2 fresh local build and executable-section audit passed. Live gameplay validation pending; see VALIDATION.txt."
     },
     {
       "destination": "settings-remap-v3.dll",
       "source": "settings-remap-v3.dll",
-      "sha256": "379397A9E0BADBC5E4B0A34A205A4DDA569593F775FE0263E700D3763E8292BD",
-      "acceptance": "Patch 1.1 source/binary audit passed. See VALIDATION.txt for live coverage and remaining limits."
+      "sha256": "0064880079D8770DBD5A1E27BE9DE7702D7EC833C31712FF554275A06F535867",
+      "acceptance": "Patch 1.2 fresh local build and executable-section audit passed. Live gameplay validation pending; see VALIDATION.txt."
     },
     {
       "destination": "admin-quests-v5.dll",
       "source": "admin-quests-v5.dll",
-      "sha256": "5F1145F22DFF062C4D21007B48105DEED493AAA51E48FA8DCD24A914E12F999F",
-      "acceptance": "Patch 1.1 source/binary audit passed. See VALIDATION.txt for live coverage and remaining limits."
+      "sha256": "3D71B9383C6A9715EA1B99E3CC880B05E75DEC20037351B848E97EAD69EC4F0E",
+      "acceptance": "Patch 1.2 fresh local build and executable-section audit passed. Live gameplay validation pending; see VALIDATION.txt."
     },
     {
       "destination": "item-feedback-v5.dll",
       "source": "item-feedback-v5.dll",
-      "sha256": "D05086819553566BB9041B9D0DD86B6D420D943CC91423A76F3D2118267DE528",
-      "acceptance": "Patch 1.1 source/binary audit passed. See VALIDATION.txt for live coverage and remaining limits."
+      "sha256": "CCBCDD160CDFEE378BE36094A63CC6A816EE96214B743C72213A218448D4652F",
+      "acceptance": "Patch 1.2 fresh local build and executable-section audit passed. Live gameplay validation pending; see VALIDATION.txt."
     },
     {
       "destination": "enemy-cleanup.dll",
       "source": "enemy-cleanup.dll",
-      "sha256": "EA2313A44CE2E8DB25C51F12C5BA3C0F2F032FF97F52D292E08AD7FD57254D9C",
-      "acceptance": "Patch 1.1 source/binary audit passed. See VALIDATION.txt for live coverage and remaining limits."
+      "sha256": "1B6519AD007AA520DCB29BC6260329ECBF239094EDC692DFA3D043B573553949",
+      "acceptance": "Patch 1.2 fresh local build and executable-section audit passed. Live gameplay validation pending; see VALIDATION.txt."
     },
     {
       "destination": "admin-progression-v2.dll",
       "source": "admin-progression-v2.dll",
-      "sha256": "4B05823751857E2D907500AE4064E77DE6100B6BCA3DD231CF9707043F0A2565",
-      "acceptance": "Patch 1.1 source/binary audit passed. See VALIDATION.txt for live coverage and remaining limits."
+      "sha256": "CDAD58DE911AF7F483FF1FA7B077EBAB84DC1BED9E1EA214714B288ADF6B9F96",
+      "acceptance": "Patch 1.2 fresh local build and executable-section audit passed. Live gameplay validation pending; see VALIDATION.txt."
     },
     {
       "destination": "admin-sandbox.dll",
       "source": "admin-sandbox.dll",
-      "sha256": "B9B77526EC9939ED56555BD95A3105E5AE1D5F6FAD85287B78426920795D4AF3",
-      "acceptance": "Patch 1.1 source/binary audit passed. See VALIDATION.txt for live coverage and remaining limits."
+      "sha256": "1B023DDF64833FB5C1264A0FB7F91EA3FD1E291717008D4ADDE5903DA76B0B25",
+      "acceptance": "Patch 1.2 fresh local build and executable-section audit passed. Live gameplay validation pending; see VALIDATION.txt."
     },
     {
       "destination": "admin-inventory.dll",
       "source": "admin-inventory.dll",
-      "sha256": "C7012F5CD935EB7A66FE0BC4041AACB37B4B585E085BC3FBA6FE915FF3468AFC",
-      "acceptance": "Patch 1.1 source/binary audit passed. See VALIDATION.txt for live coverage and remaining limits."
+      "sha256": "638370ADED2B7FD2E13E746DF124DBB942074306ED02964CF0F16AB0DA0155E1",
+      "acceptance": "Patch 1.2 fresh local build and executable-section audit passed. Live gameplay validation pending; see VALIDATION.txt."
     },
     {
       "destination": "workshop.dll",
       "source": "workshop.dll",
-      "sha256": "06FDEDF2FE836A49B2D4F4E06A60B76E71C1E57CEA8EE1AC9FCEA46FD9694F77",
-      "acceptance": "Patch 1.1 source/binary audit passed. See VALIDATION.txt for live coverage and remaining limits."
+      "sha256": "F8F3489ED35DE21C039C3477E7EE6E7A40650ECD579B80E28E6D016AFBCB78D4",
+      "acceptance": "Patch 1.2 fresh local build and executable-section audit passed. Live gameplay validation pending; see VALIDATION.txt."
     }
   ]
 }

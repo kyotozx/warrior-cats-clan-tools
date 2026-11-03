@@ -24,7 +24,7 @@ try{
 }finally{$script:SupportedGameHash=$productionHash}
 Write-Utf8 (Join-Path $mods 'mods.txt') "OtherMod : 1`r`n"
 Write-Utf8 (Join-Path $pkg 'payload/TestMod/Scripts/main.lua') "print('Example')"
-$m=[ordered]@{schema=1;loaderApi=1;gameBuild='26184573';id='TestMod';name='Test mod';version='1.0.0';description='Fixture';dependencies=@();files=@(@{path='Scripts/main.lua';sha256=(Get-FileHash (Join-Path $pkg 'payload/TestMod/Scripts/main.lua')).Hash})}
+$m=[ordered]@{schema=1;loaderApi=1;gameBuild='26337109';id='TestMod';name='Test mod';version='1.0.0';description='Fixture';dependencies=@();files=@(@{path='Scripts/main.lua';sha256=(Get-FileHash (Join-Path $pkg 'payload/TestMod/Scripts/main.lua')).Hash})}
 Write-Utf8 (Join-Path $pkg 'mod.json') ($m|ConvertTo-Json -Depth 8)
 $null=Install-CommunityPackage $pkg $mods
 Check (Test-Path (Join-Path $mods 'TestMod/Scripts/main.lua')) 'Install failed'
@@ -54,7 +54,7 @@ foreach($name in @('../escape.lua','C:/escape.lua','payload/TestMod/Scripts/../.
 # Windows .NET ZIP writers use backslashes; normalize before every path check.
 function Import-ZipFixture([string]$Separator,[string[]]$Extras=@()){
  $zip=Join-Path $fixture ([guid]::NewGuid().ToString('N')+'.zip')
- $valid=[ordered]@{schema=1;loaderApi=1;gameBuild='26184573';id='TestMod';name='Test mod';version='1.0';description='ZIP fixture';dependencies=@();files=@()}
+ $valid=[ordered]@{schema=1;loaderApi=1;gameBuild='26337109';id='TestMod';name='Test mod';version='1.0';description='ZIP fixture';dependencies=@();files=@()}
  $contents=@{'Scripts/main.lua'="print('Example')";'assets/icons/performance.png'='Icon fixture'}
  $sha=[Security.Cryptography.SHA256]::Create()
  try{foreach($path in $contents.Keys){$valid.files+=@{path=$path;sha256=[BitConverter]::ToString($sha.ComputeHash([Text.Encoding]::UTF8.GetBytes($contents[$path]))).Replace('-','')}}}finally{$sha.Dispose()}

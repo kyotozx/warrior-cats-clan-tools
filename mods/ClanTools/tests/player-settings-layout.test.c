@@ -8,19 +8,24 @@
 int main(void) {
     struct {PlayerSettings player;uint64_t sentinel;} buffer={0};
     buffer.sentinel=UINT64_C(0x0123456789abcdef);
-    /* Model the native getter's full 16-byte write, including both floats. */
-    const unsigned char native[16]={0,1,0,1,0,1,1,0,0,0,128,62,0,0,64,63};
+    /* Model the native getter's full 0x19-byte write: four floats and the
+     * follow-camera flag at 0x18. */
+    const unsigned char native[25]={0,1,0,1,0,1,1,0, 0,0,128,62, 0,0,64,63, 0,0,0,63, 0,0,160,64, 1};
     memcpy(&buffer.player,native,sizeof native);
     assert(buffer.sentinel==UINT64_C(0x0123456789abcdef));
     assert(player_settings_valid(&buffer.player));
     PlayerSettings desired=buffer.player;desired.flags[0]=1;
-    assert(desired.mouse_x==.25f&&desired.mouse_y==.75f&&desired.flags[6]==1);
-    PlayerSettings after=desired;after.padding=255;
+    assert(desired.mouse_x==.25f&&desired.mouse_y==.75f&&desired.map_move==.5f&&desired.map_zoom==5.f&&desired.follow_camera==1&&desired.flags[6]==1);
+    PlayerSettings after=desired;after.padding=255;after.tail[0]=7;
     assert(player_settings_equal(&after,&desired));
     after.mouse_y=.5f;assert(!player_settings_equal(&after,&desired));
     after=desired;after.flags[6]=0;assert(!player_settings_equal(&after,&desired));
+    after=desired;after.follow_camera=0;assert(!player_settings_equal(&after,&desired));
+    after=desired;after.map_zoom=4.f;assert(!player_settings_equal(&after,&desired));
     after=desired;after.flags[6]=2;assert(!player_settings_valid(&after));
+    after=desired;after.follow_camera=2;assert(!player_settings_valid(&after));
     after=desired;after.mouse_x=NAN;assert(!player_settings_valid(&after));
-    puts("PASS patch 1.1 settings capacity, flag and sensitivity preservation");
+    after=desired;after.map_move=-1.f;assert(!player_settings_valid(&after));
+    puts("PASS patch 1.2 settings capacity, flags, follow camera and sensitivity preservation");
     return 0;
 }

@@ -51,7 +51,7 @@ static void *generation_json_child(void *object,const wchar_t *key) {
     unsigned char *value=generation_json_find(object,key);
     if(!value)return NULL;
     if(!readable(value,0x20,NULL,0)){strcpy(generation_failure,"object value unavailable");return NULL;}
-    if(*(void**)value!=base+0x7ec2390||*(int32_t*)(value+8)!=6){
+    if(*(void**)value!=base+0x7e7f090||*(int32_t*)(value+8)!=6){
         strcpy(generation_failure,"unsupported JSON object representation");return NULL;
     }
     return *(void**)(value+0x10);
@@ -84,7 +84,7 @@ static int generation_read_hash(void *root,const wchar_t *profile,int32_t select
     if(!readable(value,0x20,NULL,0)){strcpy(generation_failure,"string value unavailable");return 0;}
     /* The loaded save uses FJsonValueString's UTF-16 implementation. Other
        type-2 vtables can store a different string encoding; do not reinterpret. */
-    if(*(void**)value!=base+0x98dc480||*(int32_t*)(value+8)!=2){
+    if(*(void**)value!=base+0x988dfc8||*(int32_t*)(value+8)!=2){
         strcpy(generation_failure,"unsupported JSON string representation");return 0;
     }
     snprintf(generation_failure,sizeof(generation_failure),"hash format length=%d",((Str*)(value+0x10))->count-1);
@@ -97,7 +97,7 @@ typedef struct {
 } GenerationContext;
 static int generation_context(GenerationContext *out) {
     memset(out,0,sizeof(*out));
-    out->manager=*(void**)(base+0xa8a6e30);
+    out->manager=*(void**)(base+0xa851040);
     if(!object_ok(out->manager,0x170))return 0;
     out->save=*(void**)((char*)out->manager+0x168);
     if(!object_ok(out->save,0xa0)||!current_character_slot(&out->config,&out->slot))return 0;

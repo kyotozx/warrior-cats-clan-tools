@@ -127,28 +127,28 @@ static int initialize(void) {
     if(!readable(n,sizeof(*n),b,0)||n->Signature!=IMAGE_NT_SIGNATURE||
        n->FileHeader.Machine!=IMAGE_FILE_MACHINE_AMD64||n->OptionalHeader.Magic!=IMAGE_NT_OPTIONAL_HDR64_MAGIC||
        n->FileHeader.SizeOfOptionalHeader<sizeof(IMAGE_OPTIONAL_HEADER64)||
-       n->OptionalHeader.SizeOfImage!=187576320u||n->FileHeader.TimeDateStamp!=3539680621u) return 0;
+       n->OptionalHeader.SizeOfImage!=187203584u||n->FileHeader.TimeDateStamp!=2887140557u) return 0;
     for(unsigned i=0;i<sizeof(appearance_guards)/sizeof(appearance_guards[0]);i++) {
         const AppearanceGuard *g=&appearance_guards[i];
         if(g->rva>n->OptionalHeader.SizeOfImage-16||!readable(b+g->rva,16,b,1)||memcmp(b+g->rva,g->bytes,16)) return 0;
     }
-    if(!readable(b+0xa8a6e30,8,b,0)||!readable(b+0xa8a6e08,8,b,0)) return 0;
+    if(!readable(b+0xa851040,8,b,0)||!readable(b+0xa851018,8,b,0)) return 0;
     base=b;
-    read_npc=(void*(*)(void*,Custom*,uint8_t,int32_t))(b+0x194bda0);
-    write_npc=(void(*)(uint8_t,const Custom*))(b+0x194b680);
-    copy_custom=(void*(*)(Custom*,const Custom*))(b+0x1708ea0);
-    assign_custom=(void*(*)(Custom*,const Custom*))(b+0x1708cf0);
-    destroy_custom=(void(*)(Custom*))(b+0x1708b50);
-    free_engine=(void(*)(void*))(b+0x19dd120);
-    apply_preview=(void(*)(void*,const Custom*,uint8_t))(b+0x17b0f80);
-    assign_string=(void*(*)(Str*,const wchar_t*,int32_t))(b+0x1983600);
+    read_npc=(void*(*)(void*,Custom*,uint8_t,int32_t))(b+0x194e4e0);
+    write_npc=(void(*)(uint8_t,const Custom*))(b+0x194ddc0);
+    copy_custom=(void*(*)(Custom*,const Custom*))(b+0x1707520);
+    assign_custom=(void*(*)(Custom*,const Custom*))(b+0x1707370);
+    destroy_custom=(void(*)(Custom*))(b+0x17071d0);
+    free_engine=(void(*)(void*))(b+0x19df860);
+    apply_preview=(void(*)(void*,const Custom*,uint8_t))(b+0x17af7d0);
+    assign_string=(void*(*)(Str*,const wchar_t*,int32_t))(b+0x1985d40);
     return 1;
 }
 static int class_is(void *object,uint32_t class_rva);
 static int current_character_slot(void **config,int32_t *selected) {
     /* SwtAdventureGameConfig owns this field, not SwtAdventureFlowManager. */
-    void *f=*(void**)(base+0xa8a6e08);
-    if(!object_ok(f,0x158)||!class_is(f,0x1613580))return 0;
+    void *f=*(void**)(base+0xa851018);
+    if(!object_ok(f,0x158)||!class_is(f,0x1611d20))return 0;
     int32_t value=*(int32_t*)((char*)f+0x154);
     if(value<0)return 0;
     *config=f;*selected=value;return 1;
@@ -157,7 +157,7 @@ static int current_character_slot(void **config,int32_t *selected) {
 static int same_context(void) {
     void *config;int32_t selected;
     if(!active||GetCurrentThreadId()!=owner_thread||!object_ok(manager,0x170)||
-       *(void**)(base+0xa8a6e30)!=manager||*(void**)((char*)manager+0x168)!=save_game||
+       *(void**)(base+0xa851040)!=manager||*(void**)((char*)manager+0x168)!=save_game||
        !object_ok(save_game,0xa0)||*(int32_t*)((char*)save_game+0x78)!=profile_index||
        !current_character_slot(&config,&selected)||config!=game_config||selected!=slot) return 0;
     Str *g=(Str*)((char*)save_game+0x30);
@@ -184,7 +184,7 @@ static void player_save_blocked(const Custom *data,Str *owned_key,int32_t reques
     }
 }
 static int patch_writer(int install) {
-    unsigned char *target=base+0x18134d0;
+    unsigned char *target=base+0x18129c0;
     const unsigned char *original_bytes=appearance_guards[0].bytes;
     if(memcmp(target,install?original_bytes:patch,15)) return 0;
     if(install) {
@@ -277,12 +277,12 @@ static const char *guard_screen(uintptr_t address) {
     if(!same_context()||screen||cancelled||applied||!bound||!camera_helper||camera_target_mask!=31)
         return "ERROR Cannot bind editor screen";
     void *candidate=(void*)address;
-    if(!object_ok(candidate,0x6a0)||!class_is(candidate,0x1853720))return "ERROR Invalid editor screen";
+    if(!object_ok(candidate,0x6a0)||!class_is(candidate,0x1852de0))return "ERROR Invalid editor screen";
     void *cat=*(void**)((char*)candidate+0x488);
     if(cat&&cat!=actor)return "ERROR Editor does not own the selected preview";
     const char *tree_error=editor_tree_error(candidate);if(tree_error)return tree_error;
     void **v=*(void***)candidate;
-    if(!readable(v-1,0x6d8,base,0)||v[0x608/8]!=base+0x1285f50||v[0x580/8]!=base+0x191c450)
+    if(!readable(v-1,0x6d8,base,0)||v[0x608/8]!=base+0x1284300||v[0x580/8]!=base+0x191e1c0)
         return "ERROR Unsupported editor vtable";
     void **storage=VirtualAlloc(NULL,0x6d8,MEM_COMMIT|MEM_RESERVE,PAGE_READWRITE);
     if(!storage) return "ERROR Cannot allocate editor guard";
@@ -298,9 +298,9 @@ static const char *guard_screen(uintptr_t address) {
 static const char *borrow_camera(uintptr_t address) {
     if(!same_context()||camera_helper||cancelled||applied) return "ERROR No new camera transaction";
     void *helper=(void*)address;
-    if(!object_ok(helper,0x348)||!class_is(helper,0x185e4e0)||
-       *(void**)((char*)*(void**)helper+0x760)!=(void*)(base+0x12583c0)) return "ERROR Invalid camera helper";
-    void *mesh=((void*(*)(void*))(base+0x1d14b30))((char*)helper+0x340);
+    if(!object_ok(helper,0x348)||!class_is(helper,0x185dcc0)||
+       *(void**)((char*)*(void**)helper+0x760)!=(void*)(base+0x12567c0)) return "ERROR Invalid camera helper";
+    void *mesh=((void*(*)(void*))(base+0x1d17270))((char*)helper+0x340);
     void *owner=NULL;
     if(mesh) {
         if(!object_ok(mesh,0xb0))return "ERROR Invalid previous camera mesh";
@@ -311,7 +311,7 @@ static const char *borrow_camera(uintptr_t address) {
     if(!camera_array_ok(targets,sizeof(CameraTarget))||!camera_array_ok(queue,8))return "ERROR Invalid camera arrays";
     /* Reserve a game-owned array, using the verified TArray reserve helper. */
     EngineArray owned={0};
-    ((void(*)(uint32_t,uint32_t,int32_t,int32_t,void**,int32_t,int32_t*))(base+0x119e960))
+    ((void(*)(uint32_t,uint32_t,int32_t,int32_t,void**,int32_t,int32_t*))(base+0x119cd20))
        (sizeof(CameraTarget),8,5,0,&owned.data,5,&owned.capacity);
     if(!owned.data||owned.capacity<5)return "ERROR Cannot allocate private camera targets";
     memset(owned.data,0,(size_t)owned.capacity*sizeof(CameraTarget));
@@ -328,7 +328,7 @@ static const char *camera_target(unsigned index,uintptr_t address) {
     if(!same_context()||!camera_helper||screen||camera_screen||!camera_owned_targets||index<1||index>5)
         return "ERROR No private camera setup";
     void *candidate=(void*)address;
-    if(!object_ok(candidate,0xb00)||!class_is(candidate,0x122a610))return "ERROR Invalid customization camera";
+    if(!object_ok(candidate,0xb00)||!class_is(candidate,0x1228a20))return "ERROR Invalid customization camera";
     unsigned char *p=camera_owned_targets[index-1].bytes;
     assign_string((Str*)p,names[index-1],(int32_t)wcslen(names[index-1]));
     *(int32_t*)(p+0x10)=1;*(void**)(p+0x18)=candidate;p[0x20]=1;
@@ -337,10 +337,10 @@ static const char *camera_target(unsigned index,uintptr_t address) {
 static const char *detach_screen(void) {
     if(!active||GetCurrentThreadId()!=owner_thread) return "ERROR No owned transaction";
     if(!camera_helper) return "OK CAMERA_NOT_BORROWED";
-    if(camera_screen&&object_ok(camera_screen,0x6a0)&&class_is(camera_screen,0x1853720))
-        ((void(*)(void*))(base+0x1285df0))(camera_screen);
+    if(camera_screen&&object_ok(camera_screen,0x6a0)&&class_is(camera_screen,0x1852de0))
+        ((void(*)(void*))(base+0x12841a0))(camera_screen);
     if(object_ok(camera_helper,0x348)&&*(int32_t*)((char*)camera_helper+0xc)==camera_index) {
-        if(camera_screen) ((void(*)(void*,void*))(base+0x125d440))((char*)camera_helper+0x2f0,camera_screen);
+        if(camera_screen) ((void(*)(void*,void*))(base+0x125b840))((char*)camera_helper+0x2f0,camera_screen);
         if(camera_old_actor&&(!object_ok(camera_old_actor,0x2b0)||*(int32_t*)((char*)camera_old_actor+0xc)!=camera_actor_index))
             return "ERROR Previous camera actor disappeared; keep preview alive";
         EngineArray *current=(EngineArray*)((char*)camera_helper+0x2d8);
@@ -378,7 +378,7 @@ static int record_editor_baseline(void) {
 static const char *initialize_screen(uintptr_t address) {
     if(!same_context()||!bound||!camera_helper||cancelled||applied||camera_target_mask!=31) return "ERROR No active editor preview and five private cameras";
     void *candidate=(void*)address;
-    if(!object_ok(candidate,0x6a0)||!class_is(candidate,0x1853720)) return "ERROR Invalid game editor widget";
+    if(!object_ok(candidate,0x6a0)||!class_is(candidate,0x1852de0)) return "ERROR Invalid game editor widget";
     void *cat=*(void**)((char*)candidate+0x488);
     if(cat) {
         if(cat==actor&&*(void**)((char*)candidate+0x578)==camera_helper&&
@@ -391,9 +391,9 @@ static const char *initialize_screen(uintptr_t address) {
     /* BindWidget fields prove the actual blueprint widget tree exists. Never
        initialize an unconstructed base class or run initialization twice. */
     const char *tree_error=editor_tree_error(candidate);if(tree_error)return tree_error;
-    if(!object_ok(*(void**)(base+0xa8a6e10),0x28)) return "ERROR Editor settings manager unavailable";
+    if(!object_ok(*(void**)(base+0xa851020),0x28)) return "ERROR Editor settings manager unavailable";
     camera_screen=candidate;
-    ((void(*)(void*))(base+0x19176e0))(candidate);
+    ((void(*)(void*))(base+0x1919450))(candidate);
     if(*(void**)((char*)candidate+0x488)!=actor||*(void**)((char*)candidate+0x578)!=camera_helper)
         return "ERROR Native editor requires the tagged Cat actor and camera helper";
     return record_editor_baseline()?"OK INITIALIZED":"ERROR Invalid initialized preview";
@@ -417,7 +417,7 @@ static int preview_valid(void) {
 #include "appearance_library.h"
 static int read_player(Custom *out,int selected_slot) {
     Str key={0};memset(out,0,sizeof(*out));
-    return ((uint8_t(*)(Custom*,Str*,int32_t))(base+0x1813790))(out,&key,selected_slot)!=0;
+    return ((uint8_t(*)(Custom*,Str*,int32_t))(base+0x1812c80))(out,&key,selected_slot)!=0;
 }
 static int read_target(Custom *out) {
     if(role==0)return read_player(out,slot);
@@ -432,7 +432,7 @@ static const char *begin_edit(unsigned r,unsigned clan) {
     HMODULE pinned;
     if(!GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS|GET_MODULE_HANDLE_EX_FLAG_PIN,
                           (LPCWSTR)(uintptr_t)player_save_blocked,&pinned)) return "ERROR Cannot retain save guard";
-    manager=*(void**)(base+0xa8a6e30);
+    manager=*(void**)(base+0xa851040);
     if(!object_ok(manager,0x170)) return "ERROR Save manager unavailable";
     save_game=*(void**)((char*)manager+0x168);
     if(!object_ok(save_game,0xa0)) return "ERROR Save unavailable";
@@ -472,7 +472,7 @@ static const char *bind_preview(uintptr_t p) {
     void *candidate=(void*)p;
     if(!object_ok(candidate,0x3c8)) return "ERROR Invalid editor actor";
     /* IsA(AGuiCatCustomActor), using UE's FStructBaseChain, not just offsets. */
-    if(!class_is(candidate,0x1838f70)) return "ERROR Actor must be the game customization preview";
+    if(!class_is(candidate,0x18384b0)) return "ERROR Actor must be the game customization preview";
     void *component=*(void**)((char*)candidate+0x2b8);
     if(!object_ok(component,0x210)||!custom_ok((Custom*)((char*)component+0x118))) return "ERROR Preview is not ready";
     actor=candidate;actor_index=*(int32_t*)((char*)actor+0xc);
@@ -498,7 +498,7 @@ static const char *apply_edit(void) {
             /* Only the explicit Apply transaction may call the original player
                writer. No engine tick/editor teardown runs in this interval. */
             if(!patch_writer(0)){destroy_custom(&merged);return "ERROR Cannot authorize player appearance save";}
-            Str key={0};((void(*)(const Custom*,Str*,int32_t))(base+0x18134d0))(&merged,&key,slot);
+            Str key={0};((void(*)(const Custom*,Str*,int32_t))(base+0x18129c0))(&merged,&key,slot);
             if(!patch_writer(1)){destroy_custom(&merged);applied=1;return "ERROR Appearance saved but editor guard could not resume; close editor";}
         }else write_npc(role,&merged);
     }
@@ -541,8 +541,8 @@ static const char *portrait_preview(unsigned r,uintptr_t address) {
        root. Never pass CatHud or the editor's borrowed preview here. */
     if(r==0||r>254) return "ERROR Invalid portrait role";
     void *preview=(void*)address;
-    if(preview==actor||!object_ok(preview,0x3c8)||!class_is(preview,0x1838f70)) return "ERROR Invalid owned portrait actor";
-    void *m=*(void**)(base+0xa8a6e30),*mesh=*(void**)((char*)preview+0x2b8);
+    if(preview==actor||!object_ok(preview,0x3c8)||!class_is(preview,0x18384b0)) return "ERROR Invalid owned portrait actor";
+    void *m=*(void**)(base+0xa851040),*mesh=*(void**)((char*)preview+0x2b8);
     if(!object_ok(m,0x170)||!object_ok(mesh,0x210)) return "ERROR Portrait context unavailable";
     Custom data;memset(&data,0,sizeof(data));read_npc(m,&data,(uint8_t)r,-1);
     if(!custom_ok(&data)||((Str*)(data.b+0x70))->count<2) {destroy_custom(&data);return "ERROR Portrait cat is unavailable";}
@@ -552,7 +552,7 @@ static const char *portrait_preview(unsigned r,uintptr_t address) {
 static const char *cat_metadata(unsigned r) {
     static char response[128];
     if(r==0||r>254) return "ERROR Invalid cat role";
-    void *m=*(void**)(base+0xa8a6e30);
+    void *m=*(void**)(base+0xa851040);
     if(!object_ok(m,0x170)) return "ERROR Save manager unavailable";
     Custom data;memset(&data,0,sizeof(data));read_npc(m,&data,(uint8_t)r,-1);
     if(!custom_ok(&data)||((Str*)(data.b+0x70))->count<2) {destroy_custom(&data);return "ERROR Cat unavailable";}
@@ -566,7 +566,7 @@ __declspec(dllexport) int ClanAppearance_dispatch(void *lua_state) {
     char line[1024];if(!fgets(line,sizeof(line),f)){fclose(f);report(0,"ERROR Empty request");return 0;}fclose(f);
     if(sscanf(line,"%u %23s",&id,command)!=2){report(id,"ERROR Invalid request");return 0;}
     if(!initialize()){report(id,"ERROR Unsupported executable");return 0;}
-    generation_key_hash=(uint32_t(*)(int32_t,const wchar_t*))(base+0x11a1ff0);
+    generation_key_hash=(uint32_t(*)(int32_t,const wchar_t*))(base+0x11a03b0);
     const char *result="ERROR Unknown command";
     if(!strcmp(command,"BEGIN")&&sscanf(line,"%u %23s %u %u %c",&id,command,&r,&clan,&tail)==4) result=begin_edit(r,clan);
     else if(!strcmp(command,"BIND")&&sscanf(line,"%u %23s %llx %c",&id,command,&address,&tail)==3) result=bind_preview((uintptr_t)address);

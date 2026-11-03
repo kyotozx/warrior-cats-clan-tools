@@ -76,7 +76,7 @@ static int build_ok(void) {
     if(dos->e_magic!=IMAGE_DOS_SIGNATURE||dos->e_lfanew<64||dos->e_lfanew>0x100000)return 0;
     IMAGE_NT_HEADERS64 *nt=(IMAGE_NT_HEADERS64*)(base+dos->e_lfanew);
     if(!readable(nt,sizeof(*nt),base,0)||nt->Signature!=IMAGE_NT_SIGNATURE||nt->FileHeader.Machine!=IMAGE_FILE_MACHINE_AMD64||
-       nt->OptionalHeader.Magic!=IMAGE_NT_OPTIONAL_HDR64_MAGIC||nt->OptionalHeader.SizeOfImage!=187576320u||nt->FileHeader.TimeDateStamp!=3539680621u)return 0;
+       nt->OptionalHeader.Magic!=IMAGE_NT_OPTIONAL_HDR64_MAGIC||nt->OptionalHeader.SizeOfImage!=187203584u||nt->FileHeader.TimeDateStamp!=2887140557u)return 0;
     unsigned ids[]={1,5,7};
     for(unsigned i=0;i<3;i++) {
         const AppearanceGuard *g=&appearance_guards[ids[i]];
@@ -106,11 +106,11 @@ __declspec(dllexport) int ClanFollowers_appearance(void *lua_state) {
         message="Follower class or owner mismatch";goto done;
     }
     if(actor[0x890]!=1&&actor[0x890]!=2){message="Follower character type is not Cat";goto done;}
-    if(!readable(base+0xa8a6e30,8,base,0)){message="Save manager unavailable";goto done;}
-    void *manager=*(void**)(base+0xa8a6e30);
+    if(!readable(base+0xa851040,8,base,0)){message="Save manager unavailable";goto done;}
+    void *manager=*(void**)(base+0xa851040);
     if(!readable(manager,0x170,NULL,0)){message="Save manager unavailable";goto done;}
     _Alignas(8) unsigned char custom[0xf8]={0};
-    ((void*(*)(void*,void*,uint8_t,int32_t))(base+0x194bda0))(manager,custom,(uint8_t)role,-1);
+    ((void*(*)(void*,void*,uint8_t,int32_t))(base+0x194e4e0))(manager,custom,(uint8_t)role,-1);
     int prefix_count=*(int*)(custom+0x78);float size=*(float*)(custom+0x94);
     int strings_ok=1;unsigned string_offsets[]={0x70,0x80,0x98,0xa8,0xb8,0xc8};
     for(unsigned i=0;i<6;i++) {
@@ -123,7 +123,7 @@ __declspec(dllexport) int ClanFollowers_appearance(void *lua_state) {
         /* A temporary copy must retain this clanmate's colors; false would let
          * the native method substitute player colors. No save setter is used. */
         custom[0x64]=1;
-        ((void(*)(void*,const void*,uint8_t))(base+0x17b0f80))(component,custom,0);
+        ((void(*)(void*,const void*,uint8_t))(base+0x17af7d0))(component,custom,0);
         /* Apply calls17B1980(component, BodyValue, true), which stores the
          * selected mesh index in FurIdx(+44). Normalize the temporary expected
          * readback to that derived cache; never overwrite the component/save. */
@@ -131,7 +131,7 @@ __declspec(dllexport) int ClanFollowers_appearance(void *lua_state) {
         message=custom_equal(component+0x118,custom)?"APPLIED":"Appearance readback mismatch";
         if(strcmp(message,"APPLIED"))custom_diff(component+0x118,custom);
     }
-    ((void(*)(void*))(base+0x1708b50))(custom);
+    ((void(*)(void*))(base+0x17071d0))(custom);
  done:;
     FILE *status=local_file(L"follower-status.txt",L"w");
     if(status){fprintf(status,"nonce=%llu\nstatus=%s\n",nonce,message);if(readback_detail[0])fprintf(status,"readback_differences=%s\n",readback_detail);fclose(status);}return 0;

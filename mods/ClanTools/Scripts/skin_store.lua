@@ -2,8 +2,8 @@
 local dir=debug.getinfo(1,'S').source:gsub('^@',''):match('^(.*[/\\])')
 local json=dofile(dir..'json.lua')
 local validate=dofile(dir..'appearance_library.lua').values
-local M={limit=128,build='26184573'}
-local compatibleBuilds={['24847281']=true,['26184573']=true}
+local M={limit=128,build='26337109'}
+local compatibleBuilds={['24847281']=true,['26184573']=true,['26337109']=true}
 local function copy(v)return json.decode(json.encode(v))end
 function M.label(s)
  if type(s)~='string' or not utf8.len(s)then return nil,'Enter a valid skin name.'end

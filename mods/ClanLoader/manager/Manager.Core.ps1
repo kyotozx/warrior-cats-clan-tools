@@ -1,7 +1,7 @@
 Set-StrictMode -Version Latest
 $ErrorActionPreference='Stop'
 . (Join-Path $PSScriptRoot 'Package.Core.ps1')
-$script:SupportedGameHash='CD8AAFB4D2A423BD8D4A4CCD3325590EDE61C97702D595C944D18F5B3984A995'
+$script:SupportedGameHash='297DE1DB494A0312149BB5A561ACE680EDFAC43FDD9EE30990EC7FE1DB1E99FF'
 function Get-ModsRoot([string]$Game,[switch]$RequireSupportedBuild){
  if([string]::IsNullOrWhiteSpace($Game)){throw 'Choose the game installation folder first.'}
  $win=Get-ContainedPath $Game 'Wrc/Binaries/Win64'
@@ -56,7 +56,7 @@ function Save-ModRegistry([string]$Mods,$Registry){
 }
 function Read-CommunityPackage([string]$Root){
  $m=Get-Content -LiteralPath (Get-ContainedPath $Root 'mod.json') -Raw|ConvertFrom-Json
- if($m.schema -ne 1 -or $m.loaderApi -ne 1 -or $m.gameBuild -cne '26184573' -or !(Test-ModId $m.id) -or $m.name.Length -gt 80 -or $m.description.Length -gt 200 -or $m.version -notmatch '^[0-9][A-Za-z0-9._-]{0,50}$'){throw 'Incompatible or invalid mod manifest. Use a mod package updated for game patch 1.1.'}
+ if($m.schema -ne 1 -or $m.loaderApi -ne 1 -or $m.gameBuild -cne '26337109' -or !(Test-ModId $m.id) -or $m.name.Length -gt 80 -or $m.description.Length -gt 200 -or $m.version -notmatch '^[0-9][A-Za-z0-9._-]{0,50}$'){throw 'Incompatible or invalid mod manifest. Use a mod package updated for game patch 1.2.'}
  if(@($m.files).Count -lt 1 -or @($m.files).Count -gt 1000){throw 'Invalid package file count.'}
  foreach($dep in $m.dependencies){if(!(Test-ModId $dep) -or $dep -ieq $m.id){throw 'Invalid mod dependency.'}}
  $seen=@{};foreach($f in $m.files){
@@ -174,7 +174,7 @@ function Remove-ManagedMod([string]$Mods,[string]$Id){
 function Import-PlayerSkin([string]$Path,[string]$Mods){
  $bytes=[IO.File]::ReadAllBytes($Path);if($bytes.Length -gt 8192){throw 'Skin file exceeds size limit.'}
  $text=[Text.Encoding]::UTF8.GetString($bytes);$s=$text|ConvertFrom-Json
- if($s.format -cne 'ClanTools.Skin' -or $s.schema -ne 1 -or $s.gameBuild -cnotin @('24847281','26184573') -or $s.label.Length -lt 1 -or $s.label.Length -gt 40){throw 'Invalid skin format.'}
+ if($s.format -cne 'ClanTools.Skin' -or $s.schema -ne 1 -or $s.gameBuild -cnotin @('24847281','26184573','26337109') -or $s.label.Length -lt 1 -or $s.label.Length -gt 40){throw 'Invalid skin format.'}
  foreach($prop in $s.PSObject.Properties.Name){if($prop -notin @('format','schema','gameBuild','label','values')){throw 'Unexpected skin data.'}}
  $values=@($s.values -split '\s+'|Where-Object {$_ -ne ''});if($values.Count -ne 24){throw 'Invalid appearance fields.'}
  foreach($v in $values){if($v -notmatch '^\d{1,3}$' -or [int]$v -gt 255){throw 'Invalid appearance value.'}}

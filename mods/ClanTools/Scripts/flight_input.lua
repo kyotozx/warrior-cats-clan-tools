@@ -70,7 +70,7 @@ function M.new(ctx)
    end
    -- Only exploration actions can conflict here. Menu, photo and animation
    -- tool mappings use these same physical buttons in other control modes.
-   if reserved[row.key]and(row.command>=60 and row.command<=65 or row.command>=67 and row.command<=81 or row.command==91)then
+   if reserved[row.key]and(row.command>=60 and row.command<=65 or row.command>=67 and row.command<=83 or row.command==93)then
     conflicts[row.key]=row.label or('command '..row.command)
    end
   end

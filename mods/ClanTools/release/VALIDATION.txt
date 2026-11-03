@@ -1,3 +1,17 @@
+PATCH 1.2 PORT - 2026-11-03
+Steam patch 1.2, build 26337109. Native addresses and 16-byte guards were moved
+from body/reference matches of captured 1.1 disassembly; vtable-only and
+guard-only entries were checked against neighbouring mapped slots and deltas.
+Changes required by the patch: the settings manager gained two virtuals (slots
+from 0x5a0 moved by 0x10/0x20), player settings grew to 28 bytes (map mouse
+move/zoom sensitivity and the follow-camera flag), five ECommands were inserted
+(mouse interact/crouch and three map mouse axes; saved keybindings migrate once)
+and the native menu map gained right-click back. Loader theme offsets were
+regenerated; texture and font contents are unchanged.
+80 Lua suites, five PowerShell suites and eight native harnesses passed. All 14
+native bridges built and passed their section audit. Live gameplay on 1.2 has
+NOT been validated yet.
+
 RC8 SAVE IDENTITY CORRECTION - 2026-10-27
 The selected character is read from GameConfig, not FlowManager. The old reader
 could silently return slot 0 for other saves. Ambiguous old party/name state is

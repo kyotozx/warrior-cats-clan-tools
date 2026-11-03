@@ -25,7 +25,7 @@ foreach($f in @($ct.files)+@([pscustomobject]@{path='manifest.json'})){
 function New-ModPackage([string]$Id,[string]$Name,[string]$Description,[string[]]$Dependencies,$Sources,[string]$PackageVersion=$Version){
  $root=Get-ContainedPath $stage ('packages/'+$Id);$files=@()
  foreach($s in $Sources){$dest=Get-ContainedPath $root ('payload/'+$Id+'/'+$s.path);$null=New-Item -ItemType Directory -Path (Split-Path $dest) -Force;Copy-Item -LiteralPath $s.source -Destination $dest;$files+=@{path=$s.path;sha256=(Get-FileHash -LiteralPath $dest).Hash}}
- $m=[ordered]@{schema=1;loaderApi=1;gameBuild='26184573';id=$Id;name=$Name;version=$PackageVersion;description=$Description;dependencies=@($Dependencies);files=$files}
+ $m=[ordered]@{schema=1;loaderApi=1;gameBuild='26337109';id=$Id;name=$Name;version=$PackageVersion;description=$Description;dependencies=@($Dependencies);files=$files}
  Write-Utf8 (Join-Path $root 'mod.json') ($m|ConvertTo-Json -Depth 8)
  $null=Read-CommunityPackage $root
  Add-Type -AssemblyName System.IO.Compression.FileSystem
@@ -43,7 +43,7 @@ foreach($name in @('Launcher.cs','Build-Launcher.ps1','Build-Icons.ps1','Manager
 }
 $example=Join-Path $stage 'example';$null=New-Item -ItemType Directory -Path (Join-Path $example 'payload/HelloClan/Scripts') -Force
 Write-Utf8 (Join-Path $example 'payload/HelloClan/Scripts/main.lua') "print('[HelloClan] Example community mod loaded.\n')`n"
-$em=[ordered]@{schema=1;loaderApi=1;gameBuild='26184573';id='HelloClan';name='Hello Clan';version='1.0.0';description='Minimal Lua package example. Writes one startup message to UE4SS.log.';dependencies=@('ClanLoader');files=@(@{path='Scripts/main.lua';sha256=(Get-FileHash (Join-Path $example 'payload/HelloClan/Scripts/main.lua')).Hash})}
+$em=[ordered]@{schema=1;loaderApi=1;gameBuild='26337109';id='HelloClan';name='Hello Clan';version='1.0.0';description='Minimal Lua package example. Writes one startup message to UE4SS.log.';dependencies=@('ClanLoader');files=@(@{path='Scripts/main.lua';sha256=(Get-FileHash (Join-Path $example 'payload/HelloClan/Scripts/main.lua')).Hash})}
 Write-Utf8 (Join-Path $example 'mod.json') ($em|ConvertTo-Json -Depth 8)
 $null=Read-CommunityPackage $example
 $hashes=@(Get-ChildItem -LiteralPath $stage -File -Recurse|Sort-Object FullName|ForEach-Object {@{path=$_.FullName.Substring($stage.Length+1).Replace('\','/');sha256=(Get-FileHash -LiteralPath $_.FullName).Hash}})
