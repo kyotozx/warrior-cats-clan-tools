@@ -1,3 +1,14 @@
+PATCH 1.3 PORT - 2026-11-08
+Steam patch 1.3, build 26391405. All captured 1.2 function bodies matched
+unchanged; native addresses, guards, vtable slots and the menu catalog were
+moved. The Wrc input class now has its own copies of the keyboard/gamepad map
+generators (same callees as the engine versions); the remapper chains to them.
+ECommands and the player-settings layout are unchanged. Loader theme offsets
+were regenerated. 80 Lua suites, five PowerShell suites and eight native
+harnesses passed; all 14 native bridges passed their section audit. The mods
+loaded at the main menu on 1.3 without errors. In-campaign validation pending.
+
+
 PATCH 1.2 PORT - 2026-11-03
 Steam patch 1.2, build 26337109. Native addresses and 16-byte guards were moved
 from body/reference matches of captured 1.1 disassembly; vtable-only and

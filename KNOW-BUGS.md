@@ -1,6 +1,6 @@
-Status for rc13, November 3, 2026.
+Status for rc14, November 8, 2026.
 
-- Game patch 1.2: rc13 is ported to Steam build 26337109 and passed the automated, build and static native checks. In-campaign testing on 1.2 is still limited; please report anything that misbehaves, especially Controls, Appearance and offline admin. rc12 and older do not work on 1.2.
+- Game patch 1.3: rc14 supports Steam build 26391405. The hotfix did not change commands or settings; all native tools were moved to the new executable and load at the main menu. rc13 only works on 1.2. Please report anything that misbehaves in a campaign.
 
 - Custom names in battle: fixed in rc12. Starting combat temporarily changes who controls the player cat, which stopped the name overlay. Renamed clanmates now keep their display names in combat character panels and the turn list. Player display names are also supported. Save selection, bonds lists and authored dialogue text still use the game's original names.
 
