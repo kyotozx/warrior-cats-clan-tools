@@ -11,9 +11,9 @@ function M.new(ctx)
    if attempted then return nil end
    attempted=true
    local result=ctx.verify()
-   if not result or result.action~='CONTEXT_LAYOUT config_slot=340'then return nil end
+   if not result or result.action~='CONTEXT_LAYOUT config_slot=404'then return nil end
    RegisterCustomProperty({Name='ClanToolsCurrentCharacterSlot',Type=PropertyTypes.IntProperty,
-    BelongsToClass='/Script/SwtAdventure.SwtAdventureGameConfig',OffsetInternal=0x154})
+    BelongsToClass='/Script/SwtAdventure.SwtAdventureGameConfig',OffsetInternal=0x194})
    registered=true
   end
   if not ctx.valid(class)then class=StaticFindObject('/Script/SwtAdventure.SwtAdventureGameConfig')end

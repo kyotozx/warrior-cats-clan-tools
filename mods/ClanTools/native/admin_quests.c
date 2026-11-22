@@ -38,13 +38,13 @@ static int build_ok(void) {
     if(dos->e_magic!=IMAGE_DOS_SIGNATURE||dos->e_lfanew<64||dos->e_lfanew>0x100000)return 0;
     IMAGE_NT_HEADERS64 *nt=(IMAGE_NT_HEADERS64*)(base+dos->e_lfanew);
     if(!readable(nt,sizeof(*nt),base,0)||nt->Signature!=IMAGE_NT_SIGNATURE||nt->FileHeader.Machine!=IMAGE_FILE_MACHINE_AMD64||
-       nt->OptionalHeader.Magic!=IMAGE_NT_OPTIONAL_HDR64_MAGIC||nt->OptionalHeader.SizeOfImage!=187396096u||nt->FileHeader.TimeDateStamp!=3845016363u)return 0;
+       nt->OptionalHeader.Magic!=IMAGE_NT_OPTIONAL_HDR64_MAGIC||nt->OptionalHeader.SizeOfImage!=187224064u||nt->FileHeader.TimeDateStamp!=1640886103u)return 0;
     for(unsigned i=0;i<sizeof(guards)/sizeof(guards[0]);i++)if(!readable(base+guards[i].rva,16,base,1)||memcmp(base+guards[i].rva,guards[i].code,16))return 0;
     return 1;
 }
 static int manager_ok(void *supplied) {
-    if(!readable(base+0xa87b040,8,base,0)||*(void**)(base+0xa87b040)!=supplied||!readable(supplied,0x248,NULL,0))return 0;
-    return *(void**)supplied==base+0x9c335a0;
+    if(!readable(base+0xa8550c8,8,base,0)||*(void**)(base+0xa8550c8)!=supplied||!readable(supplied,0x248,NULL,0))return 0;
+    return *(void**)supplied==base+0x9c100f0;
 }
 static int run(void) {
     unsigned long long nonce=0,q=0,pc=0,manager=0;char command[24]={0};int expected_status=0,expected_count=0;
@@ -60,18 +60,18 @@ static int run(void) {
     if(!manager_ok((void*)(uintptr_t)manager)){message="Save manager changed";goto done;}
     unsigned char *quest=(void*)(uintptr_t)q,*player=(void*)(uintptr_t)pc;
     if(!readable(quest,0x398,NULL,0)||!readable(player,0x28,NULL,0)||
-       (*(void**)quest!=base+0x9a4b410&&*(void**)quest!=base+0x9b304e8)){message="Unsupported quest instance";goto done;}
-    if(*(void**)quest==base+0x9b304e8&&!readable(quest,0x3f0,NULL,0)){message="Invalid adventure quest mapping";goto done;}
+       (*(void**)quest!=base+0x9a28330&&*(void**)quest!=base+0x9b0c2e0)){message="Unsupported quest instance";goto done;}
+    if(*(void**)quest==base+0x9b0c2e0&&!readable(quest,0x3f0,NULL,0)){message="Invalid adventure quest mapping";goto done;}
     void *graph=*(void**)(quest+0x58);
     if(!readable(graph,0xc8,NULL,0)||*(void**)((unsigned char*)graph+0xc0)!=quest){message="Quest graph ownership mismatch";goto done;}
-    void *owning=((void*(*)(void*))(base+0x1d19910))(quest+0x260);
+    void *owning=((void*(*)(void*))(base+0x1d191c0))(quest+0x260);
     if(owning!=player){message="Quest belongs to another player";goto done;}
-    void *qm=*(void**)(base+0xa88b5f0);if(!readable(qm,0x48,NULL,0)){message="Quest manager unavailable";goto done;}
-    status=((uint8_t(*)(void*))(base+0x16c5c10))(quest);
+    void *qm=*(void**)(base+0xa865678);if(!readable(qm,0x48,NULL,0)){message="Quest manager unavailable";goto done;}
+    status=((uint8_t(*)(void*))(base+0x16c6b20))(quest);
     /* Accept virtual340 intentionally resets reflected caches. These original
        getters read the selected graph's QuestAlias data in the active save. */
-    result=((uint8_t(*)(void*))(base+0x16c5af0))(quest);
-    count=((int(*)(void*))(base+0x16c5a90))(quest);active=*(int*)(quest+0x338);
+    result=((uint8_t(*)(void*))(base+0x16c6a00))(quest);
+    count=((int(*)(void*))(base+0x16c69a0))(quest);active=*(int*)(quest+0x338);
     if((status!=2&&status!=3&&status!=4)||result<0||result>2||count<0||count>1000000||active<0||active>128){message="Invalid quest state";goto done;}
     void **objectives=*(void***)(quest+0x330);void *next=NULL,*next_finish=NULL;
     if(active&&!readable(objectives,(size_t)active*8,NULL,0)){message="Invalid objective collection";goto done;}
@@ -84,10 +84,10 @@ static int run(void) {
             objective_status_rva=(uintptr_t)*(void**)(vt+0x410)-(uintptr_t)base;
             objective_finish_rva=(uintptr_t)*(void**)(vt+0x3d8)-(uintptr_t)base;
         }
-        if(!readable(vt,0x518,base,0)||*(void**)(vt+0x410)!=base+0x16d9650){message="Unsupported objective handlers";goto done;}
+        if(!readable(vt,0x518,base,0)||*(void**)(vt+0x410)!=base+0x16da560){message="Unsupported objective handlers";goto done;}
         void *finish=*(void**)(vt+0x3d8);
-        if(finish!=base+0x16d6520&&!(vt==base+0x9a3f6e0&&finish==base+0x16ce3e0&&readable(objective,0x1a8,NULL,0))){message="Unsupported objective handlers";goto done;}
-        int objective_status=((uint8_t(*)(void*))(base+0x16d9650))(objective);
+        if(finish!=base+0x16d7430&&!(vt==base+0x9a1d5e0&&finish==base+0x16cf2f0&&readable(objective,0x1a8,NULL,0))){message="Unsupported objective handlers";goto done;}
+        int objective_status=((uint8_t(*)(void*))(base+0x16da560))(objective);
         if(objective_status<0||objective_status>4){message="Invalid objective status";goto done;}
         if(objective_status==1){in_progress++;if(!next){next=objective;next_finish=finish;}}
         if(turnin&&objective_status!=4){message="Quest still has unfinished objectives";goto done;}
@@ -100,9 +100,9 @@ static int run(void) {
     }else if(turnin) {
         if(status!=3||result!=1){message="Only successful completed quests may be turned in";goto done;}
         /* Ordinary turn-in dispatches reward delegates and sets TurnedIn once. */
-        ((void(*)(void*))(base+0x16c0080))(quest);
+        ((void(*)(void*))(base+0x16c0f90))(quest);
     }
-    after=((uint8_t(*)(void*))(base+0x16c5c10))(quest);
+    after=((uint8_t(*)(void*))(base+0x16c6b20))(quest);
     if(turnin&&after!=4){message="Quest turn-in was not confirmed";goto done;}
     message=probe?"READY":"APPLIED";
 done:;

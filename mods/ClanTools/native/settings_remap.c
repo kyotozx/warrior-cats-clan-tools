@@ -14,7 +14,7 @@ typedef void(*ActionAdder)(void*,uint8_t,void*,uint8_t,uint8_t,uint8_t,uint8_t);
 typedef void(*AxisAdder)(void*,uint8_t,void*,float);
 static ActionAdder original_action;static AxisAdder original_axis;static void **action_slot,**axis_slot;
 static uint8_t(*is_gamepad_key)(void*);
-static int input_ok(void*p,uintptr_t pc){return obj(p,0x9c1caa8,0x4a0)&&readable((void*)pc,0x30)&&!(*(uint32_t*)(pc+8)&0x60018000u)&&*(uintptr_t*)((char*)p+0x20)==pc;}
+static int input_ok(void*p,uintptr_t pc){return obj(p,0x9bf9668,0x4a0)&&readable((void*)pc,0x30)&&!(*(uint32_t*)(pc+8)&0x60018000u)&&*(uintptr_t*)((char*)p+0x20)==pc;}
 static int bound_ok(void){return bound_input&&input_ok(bound_input,bound_pc)&&*(int32_t*)((char*)bound_input+12)==bound_index;}
 static int array_ok(const Array*a){if(a->n<0||a->n>256||a->cap<a->n)return 0;if(a->n&&!readable(a->p,(size_t)a->n*0x58))return 0;for(int i=0;i<a->n;i++)if(a->p[i*0x58]>1)return 0;return 1;}
 static uint64_t entry_key(const unsigned char*p){uint64_t key;memcpy(&key,p+(p[0]?0x40:0x18),8);return key;}
@@ -49,9 +49,9 @@ static Array*generated(void*self_input,Array*out,unsigned device){Array*result=g
 static Array*gamepad(void*p,Array*out){return generated(p,out,0);}
 static Array*keyboard(void*p,Array*out){return generated(p,out,1);}
 static int swap(void**slot,void*old,void*next){DWORD protect;if(!VirtualProtect(slot,8,PAGE_READWRITE,&protect))return 0;void*actual=InterlockedCompareExchangePointer((void*volatile*)slot,next,old);DWORD ignored;int restored=VirtualProtect(slot,8,protect,&ignored)!=0;if(actual!=old)return 0;if(!restored){InterlockedCompareExchangePointer((void*volatile*)slot,old,next);return 0;}return 1;}
-static int remap_init(void){if(!init())return 0;generator_slots[0]=(void**)(base+0x9c1caa8+0x348);generator_slots[1]=(void**)(base+0x9c1caa8+0x350);generators[0]=(Generator)(base+0x192bfb0);generators[1]=(Generator)(base+0x192bee0);release_reference=(void(*)(void*))(base+0x119c230);
- action_slot=(void**)(base+0x9c1caa8+0x388);axis_slot=(void**)(base+0x9c1caa8+0x390);original_action=(ActionAdder)(base+0x1289540);original_axis=(AxisAdder)(base+0x12896b0);is_gamepad_key=(uint8_t(*)(void*))(base+0x1d714c0);
- return *(uintptr_t*)(base+0x9c1caa8+0x340)==(uintptr_t)(base+0x192bdc0)&&*generator_slots[0]==((hook_flags&1)?(void*)gamepad:(void*)generators[0])&&*generator_slots[1]==((hook_flags&2)?(void*)keyboard:(void*)generators[1])&&*action_slot==((hook_flags&4)?(void*)add_action:(void*)original_action)&&*axis_slot==((hook_flags&8)?(void*)add_axis:(void*)original_axis);}
+static int remap_init(void){if(!init())return 0;generator_slots[0]=(void**)(base+0x9bf9668+0x348);generator_slots[1]=(void**)(base+0x9bf9668+0x350);generators[0]=(Generator)(base+0x1288bc0);generators[1]=(Generator)(base+0x1288c90);release_reference=(void(*)(void*))(base+0x119c230);
+ action_slot=(void**)(base+0x9bf9668+0x388);axis_slot=(void**)(base+0x9bf9668+0x390);original_action=(ActionAdder)(base+0x12896e0);original_axis=(AxisAdder)(base+0x1289850);is_gamepad_key=(uint8_t(*)(void*))(base+0x1d70b00);
+ return *(uintptr_t*)(base+0x9bf9668+0x340)==(uintptr_t)(base+0x192ca50)&&*generator_slots[0]==((hook_flags&1)?(void*)gamepad:(void*)generators[0])&&*generator_slots[1]==((hook_flags&2)?(void*)keyboard:(void*)generators[1])&&*action_slot==((hook_flags&4)?(void*)add_action:(void*)original_action)&&*axis_slot==((hook_flags&8)?(void*)add_axis:(void*)original_axis);}
 static int remove_remap(void){
  if(!hook_flags){bound_input=NULL;rule_count=0;remap_installed=0;return 1;}
  remap_installed=0;

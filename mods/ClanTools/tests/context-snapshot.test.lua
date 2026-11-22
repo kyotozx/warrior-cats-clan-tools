@@ -14,8 +14,8 @@ classes['/Script/Wrc.WrcGameplayPlayerController']=object({kind='controller'})
 classes['/Script/SwtAdventure.SwtAdventureGameConfig']=object({kind='config'})
 PropertyTypes={IntProperty=1}
 local registrations,verifications=0,0
-RegisterCustomProperty=function(p)registrations=registrations+1;assert(p.BelongsToClass=='/Script/SwtAdventure.SwtAdventureGameConfig'and p.OffsetInternal==0x154 and p.Type==1)end
-M.native=function(command)assert(command=='CONTEXT_LAYOUT');verifications=verifications+1;return{action='CONTEXT_LAYOUT config_slot=340'}end
+RegisterCustomProperty=function(p)registrations=registrations+1;assert(p.BelongsToClass=='/Script/SwtAdventure.SwtAdventureGameConfig'and p.OffsetInternal==0x194 and p.Type==1)end
+M.native=function(command)assert(command=='CONTEXT_LAYOUT');verifications=verifications+1;return{action='CONTEXT_LAYOUT config_slot=404'}end
 classes['/Script/SwtQuest.Default__BFLSwtQuest']=object({GetChapter=function(_,gs,out)out.chapter={ToString=function()return gs.chapter end}end})
 local standalone=true
 classes['/Script/Engine.Default__KismetSystemLibrary']=object({IsStandalone=function()return standalone end})

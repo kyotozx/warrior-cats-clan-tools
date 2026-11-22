@@ -1,4 +1,4 @@
--- ECommands from Steam build 26391405.
+-- ECommands from Steam build 26717823.
 return {
  [0]="NoCommand",
  [1]="Button_Up",

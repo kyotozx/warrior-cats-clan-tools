@@ -1,121 +1,121 @@
 {
   "finalized": true,
-  "preparedUtc": "2026-11-08T18:31:04.1486096Z",
+  "preparedUtc": "2026-11-22T23:32:14.8454594Z",
   "blockers": [],
   "files": [
     {
       "destination": "clanparty.dll",
       "source": "clanparty.dll",
-      "sha256": "3DEBFD0A13739BDACDE747C14833E2690E004427AF3B39B0E064E5EA0E4058B4",
-      "acceptance": "Patch 1.3 fresh build and executable-section audit passed; static guard and vtable checks passed; mods load at the main menu. Released for community testing; see VALIDATION.txt."
+      "sha256": "9741E8E5EE0858C13DCF7EAE330367E3A1526D5C7644AD4D3ED27FE9E3F2DA46",
+      "acceptance": "Build 26717823 fresh build and executable-section audit passed; static guard and vtable checks passed; mods load at the main menu. Released for community testing; see VALIDATION.txt."
     },
     {
       "destination": "clanappearance.dll",
       "source": "clanappearance-skins-v8.dll",
-      "sha256": "1EF0764A9AC9960405CED78456B198EF7B49C23C02392D8EF1E71EDAE9DBBC58",
-      "acceptance": "Patch 1.3 fresh build and executable-section audit passed; static guard and vtable checks passed; mods load at the main menu. Released for community testing; see VALIDATION.txt."
+      "sha256": "CD9C26892F911ED6EFA5F46027357E6BDB97B768082576C0EF85B6E93466D3DA",
+      "acceptance": "Build 26717823 fresh build and executable-section audit passed; static guard and vtable checks passed; mods load at the main menu. Released for community testing; see VALIDATION.txt."
     },
     {
       "destination": "clanappearance-skins-v8.dll",
       "source": "clanappearance-skins-v8.dll",
-      "sha256": "1EF0764A9AC9960405CED78456B198EF7B49C23C02392D8EF1E71EDAE9DBBC58",
-      "acceptance": "Patch 1.3 fresh build and executable-section audit passed; static guard and vtable checks passed; mods load at the main menu. Released for community testing; see VALIDATION.txt."
+      "sha256": "CD9C26892F911ED6EFA5F46027357E6BDB97B768082576C0EF85B6E93466D3DA",
+      "acceptance": "Build 26717823 fresh build and executable-section audit passed; static guard and vtable checks passed; mods load at the main menu. Released for community testing; see VALIDATION.txt."
     },
     {
       "destination": "item-feedback.dll",
       "source": "item-feedback-v5.dll",
-      "sha256": "81D1805BB3B47B091BCFEFF77421959443733DEE46DFD6C5E912A9CE2C4DE546",
-      "acceptance": "Patch 1.3 fresh build and executable-section audit passed; static guard and vtable checks passed; mods load at the main menu. Released for community testing; see VALIDATION.txt."
+      "sha256": "72F28CBE00FB44566894D9B7F14DD2B9CDDF00D7F293CACD183FBA016405119F",
+      "acceptance": "Build 26717823 fresh build and executable-section audit passed; static guard and vtable checks passed; mods load at the main menu. Released for community testing; see VALIDATION.txt."
     },
     {
       "destination": "crafting-v4.dll",
       "source": "crafting-v4.dll",
-      "sha256": "E9EFE0FC2F730FC510378D475E5AB12CEBBCA38133AAC87E6C2645F3711F8374",
-      "acceptance": "Patch 1.3 fresh build and executable-section audit passed; static guard and vtable checks passed; mods load at the main menu. Released for community testing; see VALIDATION.txt."
+      "sha256": "015E7B907E51BE56E643540F946993AEBB7524495575B2239366B97223D55091",
+      "acceptance": "Build 26717823 fresh build and executable-section audit passed; static guard and vtable checks passed; mods load at the main menu. Released for community testing; see VALIDATION.txt."
     },
     {
       "destination": "admin-heal.dll",
       "source": "admin-heal.dll",
-      "sha256": "15B554809F12E47BE60401BD9677C0B254440BB5AB6EA67CA6A437BD16BE4054",
-      "acceptance": "Patch 1.3 fresh build and executable-section audit passed; static guard and vtable checks passed; mods load at the main menu. Released for community testing; see VALIDATION.txt."
+      "sha256": "51FEB37CA57B4DB993B88147B4CB345A60F2B66555DEDF01F3E755302A9CFE21",
+      "acceptance": "Build 26717823 fresh build and executable-section audit passed; static guard and vtable checks passed; mods load at the main menu. Released for community testing; see VALIDATION.txt."
     },
     {
       "destination": "admin-progression.dll",
       "source": "admin-progression-v2.dll",
-      "sha256": "8BE473FB08355955858FB31222F93FD44F2706D0949497816197F8600A74F5E0",
-      "acceptance": "Patch 1.3 fresh build and executable-section audit passed; static guard and vtable checks passed; mods load at the main menu. Released for community testing; see VALIDATION.txt."
+      "sha256": "A0AEA758EF808D55AC3E7053E6A7B1F22436036F66CD709091EDA4E4DDC47FAD",
+      "acceptance": "Build 26717823 fresh build and executable-section audit passed; static guard and vtable checks passed; mods load at the main menu. Released for community testing; see VALIDATION.txt."
     },
     {
       "destination": "admin-quests.dll",
       "source": "admin-quests-v5.dll",
-      "sha256": "E5F4A040AD0A7DAD04A0C5B1B583BBE03C00454F5B76C7CAE28D0E8B33A78D68",
-      "acceptance": "Patch 1.3 fresh build and executable-section audit passed; static guard and vtable checks passed; mods load at the main menu. Released for community testing; see VALIDATION.txt."
+      "sha256": "168C851C0108E1B829225EB5E865303803A14A3A5426F31DB710252670597E60",
+      "acceptance": "Build 26717823 fresh build and executable-section audit passed; static guard and vtable checks passed; mods load at the main menu. Released for community testing; see VALIDATION.txt."
     },
     {
       "destination": "follower-appearance.dll",
       "source": "follower-appearance-v4.dll",
-      "sha256": "E6462EF7DEB9E7398E23778A6ECA37606313CB3C2869985F0B18CBE6F7F68B39",
-      "acceptance": "Patch 1.3 fresh build and executable-section audit passed; static guard and vtable checks passed; mods load at the main menu. Released for community testing; see VALIDATION.txt."
+      "sha256": "220D4407FA03693784F1A4C2F03842BE1ABF62FE26DCCA4DFE28739922E9D237",
+      "acceptance": "Build 26717823 fresh build and executable-section audit passed; static guard and vtable checks passed; mods load at the main menu. Released for community testing; see VALIDATION.txt."
     },
     {
       "destination": "follower-appearance-v4.dll",
       "source": "follower-appearance-v4.dll",
-      "sha256": "E6462EF7DEB9E7398E23778A6ECA37606313CB3C2869985F0B18CBE6F7F68B39",
-      "acceptance": "Patch 1.3 fresh build and executable-section audit passed; static guard and vtable checks passed; mods load at the main menu. Released for community testing; see VALIDATION.txt."
+      "sha256": "220D4407FA03693784F1A4C2F03842BE1ABF62FE26DCCA4DFE28739922E9D237",
+      "acceptance": "Build 26717823 fresh build and executable-section audit passed; static guard and vtable checks passed; mods load at the main menu. Released for community testing; see VALIDATION.txt."
     },
     {
       "destination": "settings-bridge-v2.dll",
       "source": "settings-bridge-v2.dll",
-      "sha256": "148916E5AF96306B60F4897E055751AD6C9928CF84442463FDD4BFE754C2A476",
-      "acceptance": "Patch 1.3 fresh build and executable-section audit passed; static guard and vtable checks passed; mods load at the main menu. Released for community testing; see VALIDATION.txt."
+      "sha256": "AE164802997E5CD8D9106F4F1D9C25A9E4B647A94439576B4937D7467C83037F",
+      "acceptance": "Build 26717823 fresh build and executable-section audit passed; static guard and vtable checks passed; mods load at the main menu. Released for community testing; see VALIDATION.txt."
     },
     {
       "destination": "settings-remap-v3.dll",
       "source": "settings-remap-v3.dll",
-      "sha256": "490E663E4D7C3531B39894E5A415CC6659E252E6B6E27E4915B5B653B4C84CD6",
-      "acceptance": "Patch 1.3 fresh build and executable-section audit passed; static guard and vtable checks passed; mods load at the main menu. Released for community testing; see VALIDATION.txt."
+      "sha256": "96C0278B1A0B201D98A39C8ED92AF0D5EFB248C7A9FCB7F46E6DB649FD787166",
+      "acceptance": "Build 26717823 fresh build and executable-section audit passed; static guard and vtable checks passed; mods load at the main menu. Released for community testing; see VALIDATION.txt."
     },
     {
       "destination": "admin-quests-v5.dll",
       "source": "admin-quests-v5.dll",
-      "sha256": "E5F4A040AD0A7DAD04A0C5B1B583BBE03C00454F5B76C7CAE28D0E8B33A78D68",
-      "acceptance": "Patch 1.3 fresh build and executable-section audit passed; static guard and vtable checks passed; mods load at the main menu. Released for community testing; see VALIDATION.txt."
+      "sha256": "168C851C0108E1B829225EB5E865303803A14A3A5426F31DB710252670597E60",
+      "acceptance": "Build 26717823 fresh build and executable-section audit passed; static guard and vtable checks passed; mods load at the main menu. Released for community testing; see VALIDATION.txt."
     },
     {
       "destination": "item-feedback-v5.dll",
       "source": "item-feedback-v5.dll",
-      "sha256": "81D1805BB3B47B091BCFEFF77421959443733DEE46DFD6C5E912A9CE2C4DE546",
-      "acceptance": "Patch 1.3 fresh build and executable-section audit passed; static guard and vtable checks passed; mods load at the main menu. Released for community testing; see VALIDATION.txt."
+      "sha256": "72F28CBE00FB44566894D9B7F14DD2B9CDDF00D7F293CACD183FBA016405119F",
+      "acceptance": "Build 26717823 fresh build and executable-section audit passed; static guard and vtable checks passed; mods load at the main menu. Released for community testing; see VALIDATION.txt."
     },
     {
       "destination": "enemy-cleanup.dll",
       "source": "enemy-cleanup.dll",
-      "sha256": "1837E7390456671F135C35F491871A4868235869EAC03BCEADE1E36EFF8579DB",
-      "acceptance": "Patch 1.3 fresh build and executable-section audit passed; static guard and vtable checks passed; mods load at the main menu. Released for community testing; see VALIDATION.txt."
+      "sha256": "542396356EF97938A717188B138DD0A50D795091D43AEE5AB4CB0F35E2F0D53E",
+      "acceptance": "Build 26717823 fresh build and executable-section audit passed; static guard and vtable checks passed; mods load at the main menu. Released for community testing; see VALIDATION.txt."
     },
     {
       "destination": "admin-progression-v2.dll",
       "source": "admin-progression-v2.dll",
-      "sha256": "8BE473FB08355955858FB31222F93FD44F2706D0949497816197F8600A74F5E0",
-      "acceptance": "Patch 1.3 fresh build and executable-section audit passed; static guard and vtable checks passed; mods load at the main menu. Released for community testing; see VALIDATION.txt."
+      "sha256": "A0AEA758EF808D55AC3E7053E6A7B1F22436036F66CD709091EDA4E4DDC47FAD",
+      "acceptance": "Build 26717823 fresh build and executable-section audit passed; static guard and vtable checks passed; mods load at the main menu. Released for community testing; see VALIDATION.txt."
     },
     {
       "destination": "admin-sandbox.dll",
       "source": "admin-sandbox.dll",
-      "sha256": "CBEED826E11C0974CC2EF4A65D50A99AA1F068CE87C0D4B54CB054D0915F7125",
-      "acceptance": "Patch 1.3 fresh build and executable-section audit passed; static guard and vtable checks passed; mods load at the main menu. Released for community testing; see VALIDATION.txt."
+      "sha256": "34871F4C5DAA5300611C583D731C165862729DD1CF946707D032C0910A3E10E0",
+      "acceptance": "Build 26717823 fresh build and executable-section audit passed; static guard and vtable checks passed; mods load at the main menu. Released for community testing; see VALIDATION.txt."
     },
     {
       "destination": "admin-inventory.dll",
       "source": "admin-inventory.dll",
-      "sha256": "9AB0FBC754D60C1C9384EB3E48EC49D94C50F69C75391E4DFBFA6CB1B27A2DCC",
-      "acceptance": "Patch 1.3 fresh build and executable-section audit passed; static guard and vtable checks passed; mods load at the main menu. Released for community testing; see VALIDATION.txt."
+      "sha256": "578D187558D69594E0806786C4377B740A1EC1B8E50C73D0647C730900315023",
+      "acceptance": "Build 26717823 fresh build and executable-section audit passed; static guard and vtable checks passed; mods load at the main menu. Released for community testing; see VALIDATION.txt."
     },
     {
       "destination": "workshop.dll",
       "source": "workshop.dll",
-      "sha256": "07E0B0110FDF6B2968F7455DB20410491927C0435155AC764CCBF7EE136D91B1",
-      "acceptance": "Patch 1.3 fresh build and executable-section audit passed; static guard and vtable checks passed; mods load at the main menu. Released for community testing; see VALIDATION.txt."
+      "sha256": "71207E742CBEE37B8CF54CE69C790278C5B3956A9F041337105CFF5B3B92FD2E",
+      "acceptance": "Build 26717823 fresh build and executable-section audit passed; static guard and vtable checks passed; mods load at the main menu. Released for community testing; see VALIDATION.txt."
     }
   ]
 }

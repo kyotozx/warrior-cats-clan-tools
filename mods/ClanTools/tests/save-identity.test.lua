@@ -1,10 +1,10 @@
 local M=dofile('mods/ClanTools/Scripts/save_identity.lua')
 PropertyTypes={IntProperty=1}
-local registered=0;RegisterCustomProperty=function(p)registered=registered+1;assert(p.BelongsToClass=='/Script/SwtAdventure.SwtAdventureGameConfig'and p.OffsetInternal==340)end
+local registered=0;RegisterCustomProperty=function(p)registered=registered+1;assert(p.BelongsToClass=='/Script/SwtAdventure.SwtAdventureGameConfig'and p.OffsetInternal==404)end
 local class={};StaticFindObject=function(path)assert(path=='/Script/SwtAdventure.SwtAdventureGameConfig');return class end
 local config={ClanToolsCurrentCharacterSlot=4,IsA=function(_,c)return c==class end}
 local instance={GameConfig=config,FlowManager={ClanToolsCurrentCharacterSlot=0,IsA=function()return true end}};local attempts=0
-local ctx={valid=function(o)return type(o)=='table'and not o.dead end,verify=function()attempts=attempts+1;return{action='CONTEXT_LAYOUT config_slot=340'}end}
+local ctx={valid=function(o)return type(o)=='table'and not o.dead end,verify=function()attempts=attempts+1;return{action='CONTEXT_LAYOUT config_slot=404'}end}
 local read=M.new(ctx)
 for i=1,500 do assert(read(instance)==4)end
 assert(attempts==1 and registered==1)

@@ -65,7 +65,7 @@ foreach($name in @('dwmapi.dll','ue4ss/UE4SS.dll','ue4ss/LICENSE','ue4ss/UE4SS-s
 if($ValidateOnly){Write-Output "Validated $($inputs.Count) allowlisted package inputs, source/binary audit, and dependency closure. No files staged; pending runtime acceptance is unchanged.";return}
 $null=New-Item -ItemType Directory -Path $stage -Force
 foreach($f in $inputs){$dest=Get-ContainedPath $stage $f.path;$null=New-Item -ItemType Directory -Path (Split-Path $dest -Parent) -Force;Copy-Item -LiteralPath $f.source -Destination $dest}
-$manifest=[ordered]@{schema=1;name='ClanTools';version=$Version;gameBuild='26391405';steamApp='3960600';gameSha256='37C918C296A2CF975727A436E1D0BDC6F872A99C4D871368AF0FA8F4EDD5CF36';loaderRelease='UE4SS_v3.0.1-1181-g83330635';createdUtc=[DateTime]::UtcNow.ToString('o');files=@($inputs|ForEach-Object {[ordered]@{path=$_.path;area=$_.area;sha256=$_.sha256}})}
+$manifest=[ordered]@{schema=1;name='ClanTools';version=$Version;gameBuild='26717823';steamApp='3960600';gameSha256='037D466234553A43C45FFD2DB735E51BBBA3642BA82C2C497CAECF34965A3854';loaderRelease='UE4SS_v3.0.1-1181-g83330635';createdUtc=[DateTime]::UtcNow.ToString('o');files=@($inputs|ForEach-Object {[ordered]@{path=$_.path;area=$_.area;sha256=$_.sha256}})}
 Write-Utf8 (Join-Path $stage 'manifest.json') ($manifest|ConvertTo-Json -Depth 6)
 $null=Read-PackageManifest $stage
 Compress-Archive -LiteralPath $stage -DestinationPath $zip -CompressionLevel Optimal

@@ -1,4 +1,4 @@
-/* Build-specific bridge for Wrc Steam build 26391405. Called on the game thread
+/* Build-specific bridge for Wrc Steam build 26717823. Called on the game thread
  * from UE4SS Lua, through package.loadlib. No Lua ABI or engine SDK dependency.
  * This uses the game's party reader/copy/writer; it never edits save files. */
 #define WIN32_LEAN_AND_MEAN
@@ -62,7 +62,7 @@ static void status(const char *message) {
 }
 static int initialize(void) {
     base=(unsigned char*)GetModuleHandleW(NULL);
-    const uint32_t offsets[]={0x16a4da0,0x16afc80,0x16a5270,0x19e1aa0};
+    const uint32_t offsets[]={0x16a5cb0,0x16b0b90,0x16a6180,0x19e17b0};
     const unsigned char expected[4][16]={
       {0x40,0x55,0x53,0x57,0x41,0x54,0x41,0x56,0x48,0x8d,0x6c,0x24,0xf0,0x48,0x81,0xec},
       {0x48,0x89,0x5c,0x24,0x08,0x48,0x89,0x74,0x24,0x10,0x57,0x48,0x83,0xec,0x40,0x48},
@@ -79,13 +79,13 @@ static int initialize(void) {
        nt->OptionalHeader.Magic!=IMAGE_NT_OPTIONAL_HDR64_MAGIC) goto unsupported;
     const uint32_t image_size=nt->OptionalHeader.SizeOfImage;
     /* Exact build header plus code guards: reject before dereferencing any RVA. */
-    if(image_size!=187396096u || nt->FileHeader.TimeDateStamp!=3845016363u ||
-       image_size<0xa87b040u+sizeof(void*)) goto unsupported;
+    if(image_size!=187224064u || nt->FileHeader.TimeDateStamp!=1640886103u ||
+       image_size<0xa8550c8u+sizeof(void*)) goto unsupported;
     for(int i=0;i<4;i++) if(offsets[i]>image_size-16 ||
        !readable(base+offsets[i],16,base,1) || memcmp(base+offsets[i],expected[i],16)) goto unsupported;
-    if(!readable(base+0xa87b040,sizeof(void*),base,0)) goto unsupported;
-    if(!*(void**)(base+0xa87b040)){status("WAIT save manager unavailable");return 0;}
-    if(!readable(*(void**)(base+0xa87b040),0x28,NULL,0)) goto unsupported;
+    if(!readable(base+0xa8550c8,sizeof(void*),base,0)) goto unsupported;
+    if(!*(void**)(base+0xa8550c8)){status("WAIT save manager unavailable");return 0;}
+    if(!readable(*(void**)(base+0xa8550c8),0x28,NULL,0)) goto unsupported;
     read_party=(void(*)(Party*))(base+offsets[0]);
     copy_party=(Party*(*)(Party*,const Party*))(base+offsets[1]);
     write_party=(void(*)(Party*))(base+offsets[2]);
